@@ -314,8 +314,8 @@ export default function LandingPage() {
     for (let i = 0; i < particleCount; i++) {
       newParticles.push({
         id: i,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+        y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 4 + 1,
@@ -333,10 +333,12 @@ export default function LandingPage() {
       let newY = particle.y + particle.vy
       
       // Wrap around screen edges
-      if (newX > window.innerWidth) newX = 0
-      if (newX < 0) newX = window.innerWidth
-      if (newY > window.innerHeight) newY = 0
-      if (newY < 0) newY = window.innerHeight
+      const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1200
+      const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800
+      if (newX > screenWidth) newX = 0
+      if (newX < 0) newX = screenWidth
+      if (newY > screenHeight) newY = 0
+      if (newY < 0) newY = screenHeight
       
       return {
         ...particle,
@@ -1669,7 +1671,7 @@ export default function LandingPage() {
               }
             ].map((integration, index) => {
               const angle = (index * 45) + (scrollY * 0.1); // 45 degrees apart, rotates with scroll
-              const radius = window.innerWidth < 640 ? 150 + Math.sin(scrollY * 0.005 + index) * 15 : window.innerWidth < 1024 ? 200 + Math.sin(scrollY * 0.005 + index) * 20 : 280 + Math.sin(scrollY * 0.005 + index) * 30; // Responsive radius
+              const radius = typeof window !== 'undefined' && window.innerWidth < 640 ? 150 + Math.sin(scrollY * 0.005 + index) * 15 : typeof window !== 'undefined' && window.innerWidth < 1024 ? 200 + Math.sin(scrollY * 0.005 + index) * 20 : 280 + Math.sin(scrollY * 0.005 + index) * 30; // Responsive radius
               const x = Math.cos(angle * Math.PI / 180) * radius;
               const y = Math.sin(angle * Math.PI / 180) * radius;
               
@@ -1966,19 +1968,6 @@ export default function LandingPage() {
         </div>
       </footer>
 
-      {/* Floating Action Button */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <Link 
-          href="/get-started"
-          className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 hover:scale-110 animate-pulse-glow flex items-center justify-center"
-        >
-          <div className="flex items-center space-x-2">
-            <Zap className="h-6 w-6 animate-bounce-subtle" />
-            <span className="hidden md:block font-semibold">Get Started</span>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-full transform scale-0 group-hover:scale-100 transition-transform duration-500"></div>
-        </Link>
-      </div>
 
       {/* Scroll to Top Button */}
       {scrollY > 500 && (
