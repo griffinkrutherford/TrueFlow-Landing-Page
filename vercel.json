@@ -1,0 +1,16 @@
+{
+  "buildCommand": "cd .. && pnpm run build:landing",
+  "installCommand": "cd .. && pnpm install",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
+  "rewrites": [
+    {
+      "source": "/app",
+      "destination": "https://app.trueflow.ai"
+    },
+    {
+      "source": "/app/(.*)",
+      "destination": "https://app.trueflow.ai/$1"
+    }
+  ]
+}
