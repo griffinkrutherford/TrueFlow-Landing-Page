@@ -424,7 +424,7 @@ export default function ComingSoonPage() {
             <p className="text-white/60 mb-6">
               Ready to get started with our current features?
             </p>
-            <Link href="/get-started" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:opacity-90 transition-opacity inline-flex items-center space-x-3">
+            <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:opacity-90 transition-opacity inline-flex items-center space-x-3">
               <span>Explore TrueFlow Now</span>
               <ArrowLeft className="h-6 w-6 rotate-180" />
             </Link>

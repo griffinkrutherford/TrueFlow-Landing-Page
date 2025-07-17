@@ -663,7 +663,7 @@ export default function FAQPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <Link href="/get-started" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity">
+                <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity">
                   Start Your Free Trial
                 </Link>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors underline text-lg">
