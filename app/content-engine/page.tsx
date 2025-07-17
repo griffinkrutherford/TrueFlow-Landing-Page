@@ -432,7 +432,7 @@ export default function ContentEnginePage() {
               <Link href="/" className="text-white/70 hover:text-white transition-colors text-lg">
                 Back to Home
               </Link>
-              <Link href="/get-started" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
                 Get Started
               </Link>
             </div>
@@ -1297,7 +1297,7 @@ export default function ContentEnginePage() {
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <div className="space-y-2">
                 <Link href="/content-engine" className="block text-white/70 hover:text-white transition-colors">Content Engine</Link>
-                <Link href="/get-started" className="block text-white/70 hover:text-white transition-colors">Get Started</Link>
+                <Link href="https://trueflow.ai/readiness-assessment" className="block text-white/70 hover:text-white transition-colors">Get Started</Link>
                 <Link href="/faq" className="block text-white/70 hover:text-white transition-colors">FAQs</Link>
               </div>
             </div>

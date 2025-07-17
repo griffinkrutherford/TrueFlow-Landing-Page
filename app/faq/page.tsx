@@ -547,7 +547,7 @@ export default function FAQPage() {
               <Link href="/" className="text-white/70 hover:text-white transition-colors text-lg">
                 Back to Home
               </Link>
-              <Link href="/get-started" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
                 Get Started
               </Link>
             </div>
