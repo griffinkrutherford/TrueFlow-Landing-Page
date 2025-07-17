@@ -76,10 +76,26 @@ Follow up with this lead as soon as possible!
 
     const resend = new Resend(resendApiKey)
 
+    // Test API key validity by attempting to get domains
+    try {
+      console.log('Testing Resend API connection...')
+      const testResponse = await resend.domains.list()
+      console.log('Resend API test successful:', testResponse)
+    } catch (testError) {
+      console.error('Resend API test failed:', testError)
+      return NextResponse.json(
+        { 
+          error: 'Email service authentication failed',
+          details: testError instanceof Error ? testError.message : 'API key may be invalid'
+        },
+        { status: 500 }
+      )
+    }
+
     try {
       // Send email using Resend
       const emailResult = await resend.emails.send({
-        from: 'TrueFlow Leads <leads@trueflow.ai>',
+        from: 'TrueFlow Leads <onboarding@resend.dev>',
         to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
         subject: emailSubject,
         text: emailContent,
@@ -100,6 +116,12 @@ Follow up with this lead as soon as possible!
 
     } catch (emailError) {
       console.error('Failed to send email via Resend:', emailError)
+      console.error('Error details:', {
+        error: emailError,
+        apiKey: resendApiKey ? 'Present (masked)' : 'Missing',
+        fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
+        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai']
+      })
       
       // Return a more specific error message
       const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown email service error'
@@ -108,6 +130,11 @@ Follow up with this lead as soon as possible!
         { 
           error: 'Failed to send lead notification emails',
           details: errorMessage,
+          debug: {
+            hasApiKey: !!resendApiKey,
+            fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
+            timestamp: new Date().toISOString()
+          },
           leadData: {
             name: `${leadData.firstName} ${leadData.lastName}`,
             email: leadData.email,
