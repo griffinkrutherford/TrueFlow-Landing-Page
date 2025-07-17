@@ -1,22 +1,22 @@
 # Nixpacks configuration for TrueFlow Landing Page
 
 [phases.setup]
-nixPkgs = ["nodejs-18_x", "pnpm"]
+nixPkgs = ["nodejs-18_x"]
 
 [phases.install]
 dependsOn = ["setup"]
 cmds = [
-  "pnpm install --frozen-lockfile"
+  "npm ci"
 ]
 
 [phases.build]
 dependsOn = ["install"]
 cmds = [
-  "pnpm run build"
+  "npm run build"
 ]
 
 [start]
-cmd = "PORT=${PORT:-3001} pnpm start"
+cmd = "PORT=${PORT:-3001} npm start"
 
 [variables]
 NODE_ENV = "production"
@@ -26,6 +26,5 @@ NEXT_TELEMETRY_DISABLED = "1"
 [cache]
 paths = [
   "node_modules",
-  ".pnpm-store",
   ".next/cache"
 ]
