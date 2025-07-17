@@ -319,6 +319,54 @@ export default function GetStartedPage() {
     }))
   }
 
+  const submitLead = async () => {
+    try {
+      // Get the business type name from the selected ID
+      const businessType = businessTypes.find(type => type.id === selectedBusinessType)?.title || selectedBusinessType
+      
+      // Get the plan name from the selected ID
+      const planName = plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
+
+      // Prepare the lead data
+      const leadData = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        businessName: formData.businessName,
+        businessType: businessType,
+        selectedPlan: planName,
+        contentGoals: formData.contentGoals,
+        integrations: formData.integrations,
+        timestamp: new Date().toISOString()
+      }
+
+      // Send lead notification to Griffin and Matt
+      const response = await fetch('/api/lead-notification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(leadData)
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send lead notification')
+      }
+
+      const result = await response.json()
+      console.log('Lead notification sent successfully:', result)
+      
+      // Continue to step 5 (success page)
+      nextStep()
+      
+    } catch (error) {
+      console.error('Error submitting lead:', error)
+      // Still proceed to success page even if notification fails
+      // You might want to show a different message or retry logic here
+      nextStep()
+    }
+  }
+
   if (!mounted) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
@@ -768,7 +816,7 @@ export default function GetStartedPage() {
                   Back
                 </button>
                 <button
-                  onClick={nextStep}
+                  onClick={submitLead}
                   disabled={!selectedPlan}
                   className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
                     selectedPlan
@@ -776,7 +824,7 @@ export default function GetStartedPage() {
                       : 'bg-white/10 text-white/50 cursor-not-allowed'
                   }`}
                 >
-                  <span>Continue</span>
+                  <span>Complete Setup</span>
                   <ArrowRight className="h-5 w-5" />
                 </button>
               </div>
@@ -841,7 +889,7 @@ export default function GetStartedPage() {
               </div>
 
               <div className="mt-12 text-center text-white/50">
-                <p>Need help getting started? <a href="mailto:support@trueflow.ai" className="text-blue-400 hover:text-blue-300">Contact our support team</a></p>
+                <p>Need help getting started? <a href="mailto:griffin@trueflow.ai" className="text-blue-400 hover:text-blue-300">Contact our support team</a></p>
               </div>
             </div>
           )}
