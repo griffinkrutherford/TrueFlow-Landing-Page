@@ -93,8 +93,8 @@ export default function GetStartedPage() {
     for (let i = 0; i < particleCount; i++) {
       newParticles.push({
         id: i,
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
+        x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+        y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
         size: Math.random() * 4 + 1,
@@ -112,10 +112,12 @@ export default function GetStartedPage() {
       let newY = particle.y + particle.vy
       
       // Wrap around screen edges
-      if (newX > window.innerWidth) newX = 0
-      if (newX < 0) newX = window.innerWidth
-      if (newY > window.innerHeight) newY = 0
-      if (newY < 0) newY = window.innerHeight
+      const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1200
+      const screenHeight = typeof window !== 'undefined' ? window.innerHeight : 800
+      if (newX > screenWidth) newX = 0
+      if (newX < 0) newX = screenWidth
+      if (newY > screenHeight) newY = 0
+      if (newY < 0) newY = screenHeight
       
       return {
         ...particle,
@@ -803,8 +805,8 @@ export default function GetStartedPage() {
                       <span className="text-white font-bold text-sm">1</span>
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold">Account Setup Email</h4>
-                      <p className="text-white/70">Check your email for login credentials and setup instructions</p>
+                      <h4 className="text-white font-semibold">Welcome Email</h4>
+                      <p className="text-white/70">Check your email for personalized setup instructions and next steps</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
@@ -829,9 +831,10 @@ export default function GetStartedPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity">
-                  Access Your Dashboard
-                </button>
+                <div className="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-full text-lg font-semibold flex items-center space-x-2">
+                  <CheckCircle className="h-5 w-5" />
+                  <span>Check Your Email for Next Steps</span>
+                </div>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors underline text-lg">
                   Return to Home
                 </Link>
