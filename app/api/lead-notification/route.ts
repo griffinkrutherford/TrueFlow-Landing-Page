@@ -3,6 +3,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
 
 interface LeadData {
   firstName: string
@@ -62,53 +63,68 @@ ${leadData.timestamp}
 Follow up with this lead as soon as possible!
     `.trim()
 
-    // Create the email payload for a service like Resend, SendGrid, etc.
-    const emailPayload = {
-      to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
-      from: 'leads@trueflow.ai', // You'll need to configure this sender domain
-      subject: emailSubject,
-      text: emailContent,
-      html: emailContent.replace(/\n/g, '<br>')
+
+    // Initialize Resend with API key from environment variables
+    const resendApiKey = process.env.RESEND_API_KEY
+    if (!resendApiKey) {
+      console.error('RESEND_API_KEY environment variable is not set')
+      return NextResponse.json(
+        { error: 'Email service configuration error' },
+        { status: 500 }
+      )
     }
 
-    // For now, we'll use a webhook approach since we don't have email service configured
-    // In production, you would integrate with an email service like:
-    // - Resend
-    // - SendGrid
-    // - AWS SES
-    // - Mailgun
+    const resend = new Resend(resendApiKey)
 
-    console.log('New Lead Notification:', emailPayload)
+    try {
+      // Send email using Resend
+      const emailResult = await resend.emails.send({
+        from: 'TrueFlow Leads <leads@trueflow.ai>',
+        to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        subject: emailSubject,
+        text: emailContent,
+        html: emailContent.replace(/\n/g, '<br>')
+      })
 
-    // You can also send to a webhook service like Zapier or Make.com
-    // const webhookUrl = process.env.LEAD_NOTIFICATION_WEBHOOK
-    // if (webhookUrl) {
-    //   await fetch(webhookUrl, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       ...leadData,
-    //       notification_emails: ['griffin@trueflow.ai', 'matt@trueflow.ai']
-    //     })
-    //   })
-    // }
+      console.log('Email sent successfully:', emailResult)
 
-    // For demonstration, we'll simulate sending the email
-    // Replace this with actual email service integration
-    const simulatedEmailResponse = {
-      success: true,
-      message: 'Lead notification emails sent successfully',
-      recipients: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
-      leadId: `lead_${Date.now()}`,
-      emailContent: emailContent
+      const response = {
+        success: true,
+        message: 'Lead notification emails sent successfully',
+        recipients: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        leadId: `lead_${Date.now()}`,
+        emailId: emailResult.data?.id || 'unknown'
+      }
+
+      return NextResponse.json(response, { status: 200 })
+
+    } catch (emailError) {
+      console.error('Failed to send email via Resend:', emailError)
+      
+      // Return a more specific error message
+      const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown email service error'
+      
+      return NextResponse.json(
+        { 
+          error: 'Failed to send lead notification emails',
+          details: errorMessage,
+          leadData: {
+            name: `${leadData.firstName} ${leadData.lastName}`,
+            email: leadData.email,
+            business: leadData.businessName
+          }
+        },
+        { status: 500 }
+      )
     }
-
-    return NextResponse.json(simulatedEmailResponse, { status: 200 })
 
   } catch (error) {
-    console.error('Error sending lead notification:', error)
+    console.error('Error processing lead notification:', error)
     return NextResponse.json(
-      { error: 'Failed to send lead notification' },
+      { 
+        error: 'Failed to process lead notification',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }
