@@ -1,17 +1,19 @@
 # TrueFlow Landing Page Deployment Guide
 
-This guide explains how to successfully build and deploy changes to the TrueFlow landing page on GitHub and Railway.
+**⚠️ IMPORTANT: This guide is specifically for the TrueFlow Landing Page, NOT the main TrueFlow UI application.**
+
+This guide explains how to successfully build and deploy changes to the TrueFlow landing page on GitHub and Railway. The landing page is a separate, standalone Next.js application with its own repository and deployment pipeline.
 
 ## Prerequisites
 
 - Git installed locally
-- Access to the GitHub repository: `griffinkrutherford/TrueFlow-Landing-Page`
+- Access to the GitHub repository: `griffinkrutherford/TrueFlow-Landing-Page` (NOT the main UI repo)
 - Railway project connected to the GitHub repository
 - Node.js 18+ installed locally
 
 ## Repository Structure
 
-The landing page is located at:
+**Landing Page Location** (separate from main UI):
 ```
 /Users/griffinrutherford/Documents/TrueFlow AI MVP/apps/landing/
 ```
@@ -191,7 +193,19 @@ For issues:
 
 ## Additional Notes
 
+- **This is the landing page deployment only** - The main TrueFlow UI has a different deployment process
+- The landing page is a standalone Next.js app, separate from the main application
 - The site automatically deploys when changes are pushed to the main branch
 - Railway uses Nixpacks for building the Next.js application
 - The production URL is: `trueflow-landing-page-production.up.railway.app`
 - Always use `npm` commands (not `pnpm`) as configured in the deployment files
+
+## Difference from Main UI Deployment
+
+The main TrueFlow UI application:
+- Is located in the parent directory
+- Uses a different repository: `griffinkrutherford/TrueFlow-UI`
+- Has its own deployment configuration
+- May use different build commands and dependencies
+
+**Make sure you're in the correct directory and repository when deploying!**
