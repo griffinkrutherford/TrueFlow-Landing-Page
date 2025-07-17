@@ -8,6 +8,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import './animations.css'
 import { 
   ChevronRight, 
   Play, 
@@ -572,183 +573,6 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      <style jsx>{`
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
-        }
-        @keyframes fade-in-up {
-          0% { transform: translateY(20px); opacity: 0; }
-          100% { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes fade-in {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
-        }
-        @keyframes subtle-scale {
-          0% { transform: scale(0.95); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes gentle-float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-4px); }
-        }
-        @keyframes soft-glow {
-          0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); }
-          50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
-        }
-        @keyframes progress-line {
-          0% { width: 0%; }
-          100% { width: 100%; }
-        }
-        @keyframes card-stack {
-          0% { transform: translateX(200px) rotateY(45deg); opacity: 0; }
-          100% { transform: translateX(0) rotateY(0); opacity: 1; }
-        }
-        @keyframes testimonial-fade {
-          0% { transform: scale(0.8) translateY(40px); opacity: 0; }
-          100% { transform: scale(1) translateY(0); opacity: 1; }
-        }
-        @keyframes quote-reveal {
-          0% { max-height: 0; opacity: 0; }
-          100% { max-height: 200px; opacity: 1; }
-        }
-        @keyframes fadeInScale {
-          0% { opacity: 0; transform: scale(0.8) translate(-50%, -50%); }
-          100% { opacity: 1; transform: scale(1) translate(-50%, -50%); }
-        }
-        @keyframes fragmentBreak {
-          0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-          100% { transform: translate(var(--break-x, 0), var(--break-y, 0)) rotate(var(--break-rotation, 0)) scale(0.9); }
-        }
-        @keyframes crackAppear {
-          0% { stroke-dasharray: 0 1000; opacity: 0; }
-          50% { opacity: 1; }
-          100% { stroke-dasharray: 1000 0; opacity: 1; }
-        }
-        @keyframes orbit-wrapper-0 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(0deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(360deg);
-          }
-        }
-        @keyframes orbit-wrapper-60 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(60deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(420deg);
-          }
-        }
-        @keyframes orbit-wrapper-120 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(120deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(480deg);
-          }
-        }
-        @keyframes orbit-wrapper-180 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(180deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(540deg);
-          }
-        }
-        @keyframes orbit-wrapper-240 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(240deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(600deg);
-          }
-        }
-        @keyframes orbit-wrapper-300 {
-          0% { 
-            transform: translate(-50%, -50%) rotate(300deg);
-          }
-          100% { 
-            transform: translate(-50%, -50%) rotate(660deg);
-          }
-        }
-        /* Counter-rotation to keep icons upright */
-        @keyframes counter-rotate {
-          0% { 
-            transform: translateX(45px) rotate(0deg);
-            opacity: 1;
-          }
-          100% { 
-            transform: translateX(45px) rotate(-360deg);
-            opacity: 1;
-          }
-        }
-        @keyframes orbit {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        @keyframes orbit-around-center {
-          0% { transform: translate(-50%, -50%) rotate(0deg); }
-          100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        @keyframes counter-rotate {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(-360deg); }
-        }
-        @keyframes crack-reveal {
-          0% { stroke-dashoffset: var(--dash-length, 120); opacity: 0; }
-          50% { opacity: 1; }
-          100% { stroke-dashoffset: 0; opacity: 0.8; }
-        }
-        @keyframes fragment-0 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(-40px, -20px) rotate(-15deg); }
-        }
-        @keyframes fragment-1 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(60px, -20px) rotate(12deg); }
-        }
-        @keyframes fragment-2 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(60px, 40px) rotate(-8deg); }
-        }
-        @keyframes fragment-3 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(-40px, 60px) rotate(18deg); }
-        }
-        @keyframes fragment-4 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(-60px, 40px) rotate(-12deg); }
-        }
-        @keyframes fragment-5 {
-          0%, 50% { transform: translate(0, 0) rotate(0deg); }
-          100% { transform: translate(-60px, -20px) rotate(10deg); }
-        }
-        .cursor-trail {
-          pointer-events: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          z-index: 9999;
-        }
-        .particle {
-          position: fixed;
-          pointer-events: none;
-          border-radius: 50%;
-          animation: float 6s ease-in-out infinite;
-        }
-      `}</style>
 
       {/* Floating Particles */}
       {particles.map((particle) => (
@@ -1164,8 +988,10 @@ export default function LandingPage() {
                 
                 {/* Simple Problem Statement */}
                 <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/20 max-w-xl mx-auto">
-                  <p className="text-red-400 font-semibold text-lg mb-2">$500+/month. Data everywhere.</p>
-                  <p className="text-white/70">Fragmented & Disconnected</p>
+                  <p className="text-red-400 font-semibold text-lg mb-2">$1500+/month. Data everywhere.</p>
+                  <p className="text-red-400 font-semibold text-lg mb-2">$10,000+ per month for employees to manage those tools...</p>
+                  <p className="text-white/70 text-sm">Think systems administrators, social media managers, virtual assistants...</p>
+                  <p className="text-white/70 mt-2">Fragmented & Disconnected</p>
                 </div>
               </div>
             </div>
@@ -1863,30 +1689,33 @@ export default function LandingPage() {
                   }}
                 >
                   <div className="group relative">
-                    {/* Tapered connection line to center - invisible near center, thick outwards */}
+                    {/* Tapered connection line to center - Always render for all logos */}
+                    {/* Force render connecting lines for ALL integration logos */}
                     <div 
-                      className="absolute top-6 left-6 opacity-40 hover:opacity-60 transition-opacity duration-300"
+                      className="absolute transition-opacity duration-300"
                       style={{
                         width: `${radius}px`,
                         height: `8px`, // Slightly increased height for better visibility
-                        transformOrigin: '0 0',
-                        transform: `rotate(${angle + 180}deg)`,
+                        transformOrigin: '0 50%',
+                        transform: `rotate(${angle + 180}deg) translateY(-50%)`,
                         zIndex: -1,
+                        top: '50%',
+                        left: '50%',
                         opacity: Math.max(0.25, 0.4 + totalDepth * 0.003),
                         clipPath: `polygon(0 0%, 0 100%, 80% 90%, 100% 50%, 80% 10%)`, // Dramatic taper: thick at outer logo, invisible near TrueFlow center
                         background: (() => {
                           // Enhanced gradient with transparency for taper effect
                           const colorMap: Record<number, string> = {
-                            0: 'linear-gradient(to left, transparent 0%, rgba(190, 24, 93, 0.3) 60%, #be185d 100%)', // Instagram - thick at logo, invisible at center
-                            1: 'linear-gradient(to left, transparent 0%, rgba(29, 78, 216, 0.3) 60%, #1d4ed8 100%)', // Facebook - thick at logo, invisible at center
-                            2: 'linear-gradient(to left, transparent 0%, rgba(21, 128, 61, 0.3) 60%, #15803d 100%)', // WhatsApp - thick at logo, invisible at center
-                            3: 'linear-gradient(to left, transparent 0%, rgba(220, 38, 38, 0.3) 60%, #dc2626 100%)', // YouTube - thick at logo, invisible at center
-                            4: 'linear-gradient(to left, transparent 0%, rgba(67, 56, 202, 0.3) 60%, #4338ca 100%)', // Discord - thick at logo, invisible at center
-                            5: 'linear-gradient(to left, transparent 0%, rgba(55, 65, 81, 0.3) 60%, #374151 100%)', // X - thick at logo, invisible at center
-                            6: 'linear-gradient(to left, transparent 0%, rgba(234, 88, 12, 0.3) 60%, #ea580c 100%)', // Zapier - thick at logo, invisible at center
-                            7: 'linear-gradient(to left, transparent 0%, rgba(21, 128, 61, 0.3) 60%, #15803d 100%)', // GoHighLevel - thick at logo, invisible at center
+                            0: 'linear-gradient(to left, transparent 0%, rgba(190, 24, 93, 0.3) 50%, #be185d 100%)', // Instagram
+                            1: 'linear-gradient(to left, transparent 0%, rgba(29, 78, 216, 0.3) 50%, #1d4ed8 100%)', // Facebook
+                            2: 'linear-gradient(to left, transparent 0%, rgba(21, 128, 61, 0.3) 50%, #15803d 100%)', // WhatsApp
+                            3: 'linear-gradient(to left, transparent 0%, rgba(220, 38, 38, 0.3) 50%, #dc2626 100%)', // YouTube
+                            4: 'linear-gradient(to left, transparent 0%, rgba(67, 56, 202, 0.3) 50%, #4338ca 100%)', // Discord
+                            5: 'linear-gradient(to left, transparent 0%, rgba(55, 65, 81, 0.3) 50%, #374151 100%)', // X
+                            6: 'linear-gradient(to left, transparent 0%, rgba(234, 88, 12, 0.3) 50%, #ea580c 100%)', // Zapier
+                            7: 'linear-gradient(to left, transparent 0%, rgba(21, 128, 61, 0.3) 50%, #15803d 100%)', // GoHighLevel
                           };
-                          return colorMap[index] || 'linear-gradient(to right, transparent 0%, rgba(59, 130, 246, 0.3) 60%, #3b82f6 100%)';
+                          return colorMap[index] || 'linear-gradient(to left, transparent 0%, rgba(59, 130, 246, 0.3) 50%, #3b82f6 100%)';
                         })()
                       }}
                     />
@@ -1916,6 +1745,7 @@ export default function LandingPage() {
                 </div>
               );
             })}
+
 
             {/* Orbital rings for visual effect */}
             <div className="absolute border border-white/10 rounded-full w-[600px] h-[600px] animate-spin" style={{ animationDuration: '20s' }} />
@@ -2097,10 +1927,10 @@ export default function LandingPage() {
             <div>
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><Link href="/features" className="text-white/60 hover:text-white transition-colors text-sm">Features</Link></li>
-                <li><Link href="/pricing" className="text-white/60 hover:text-white transition-colors text-sm">Pricing</Link></li>
-                <li><Link href="/api" className="text-white/60 hover:text-white transition-colors text-sm">API</Link></li>
-                <li><Link href="/integrations" className="text-white/60 hover:text-white transition-colors text-sm">Integrations</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Features</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Pricing</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">API</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Integrations</Link></li>
               </ul>
             </div>
             
@@ -2108,10 +1938,10 @@ export default function LandingPage() {
             <div>
               <h4 className="text-white font-semibold mb-4">Support</h4>
               <ul className="space-y-2">
-                <li><Link href="/help" className="text-white/60 hover:text-white transition-colors text-sm">Help Center</Link></li>
-                <li><Link href="/contact" className="text-white/60 hover:text-white transition-colors text-sm">Contact</Link></li>
-                <li><Link href="/status" className="text-white/60 hover:text-white transition-colors text-sm">Status</Link></li>
-                <li><Link href="/community" className="text-white/60 hover:text-white transition-colors text-sm">Community</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Help Center</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Contact</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Status</Link></li>
+                <li><Link href="/coming-soon" className="text-white/60 hover:text-white transition-colors text-sm">Community</Link></li>
               </ul>
             </div>
             
@@ -2129,8 +1959,8 @@ export default function LandingPage() {
               © 2025 TrueFlow™️ AI, LLC. All rights reserved.
             </p>
             <div className="flex gap-6">
-              <Link href="/terms" className="text-white/40 hover:text-white/60 transition-colors text-sm">Terms</Link>
-              <Link href="/privacy" className="text-white/40 hover:text-white/60 transition-colors text-sm">Privacy Policy</Link>
+              <Link href="/coming-soon" className="text-white/40 hover:text-white/60 transition-colors text-sm">Terms</Link>
+              <Link href="/coming-soon" className="text-white/40 hover:text-white/60 transition-colors text-sm">Privacy Policy</Link>
             </div>
           </div>
         </div>
