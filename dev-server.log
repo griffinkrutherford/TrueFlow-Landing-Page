@@ -1,0 +1,18 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3001
+
+npm error code ENOWORKSPACES
+npm error This command does not support workspaces.
+npm error A complete log of this run can be found in: /Users/griffinrutherford/.npm/_logs/2025-07-18T01_11_00_250Z-debug-0.log
+ ✓ Ready in 2.3s
+(node:32639) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.5s (644 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled in 180ms (347 modules)
