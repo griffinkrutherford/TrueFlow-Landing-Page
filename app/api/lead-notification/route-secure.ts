@@ -1,9 +1,18 @@
 /**
  * API endpoint for sending lead notification emails to Griffin and Matt
+ * Enhanced with security improvements
  */
 
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+
+// Simple in-memory rate limiting (consider Redis for production)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>()
+const RATE_LIMIT_WINDOW = 60 * 1000 // 1 minute
+const MAX_REQUESTS = 5 // 5 requests per minute
+
+// Email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 interface LeadData {
   firstName: string
@@ -19,6 +28,27 @@ interface LeadData {
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting check
+    const clientIp = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    const now = Date.now()
+    const clientRateLimit = rateLimitMap.get(clientIp)
+    
+    if (clientRateLimit) {
+      if (now < clientRateLimit.resetTime) {
+        if (clientRateLimit.count >= MAX_REQUESTS) {
+          return NextResponse.json(
+            { error: 'Too many requests. Please try again later.' },
+            { status: 429 }
+          )
+        }
+        clientRateLimit.count++
+      } else {
+        rateLimitMap.set(clientIp, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+      }
+    } else {
+      rateLimitMap.set(clientIp, { count: 1, resetTime: now + RATE_LIMIT_WINDOW })
+    }
+    
     const leadData: LeadData = await request.json()
 
     // Validate required fields
@@ -28,6 +58,21 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
+    
+    // Validate email format
+    if (!EMAIL_REGEX.test(leadData.email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      )
+    }
+    
+    // Sanitize input data (basic XSS prevention)
+    const sanitize = (str: string) => str.replace(/[<>"'&]/g, '')
+    leadData.firstName = sanitize(leadData.firstName)
+    leadData.lastName = sanitize(leadData.lastName)
+    leadData.businessName = sanitize(leadData.businessName)
+    leadData.businessType = leadData.businessType ? sanitize(leadData.businessType) : ''
 
     // Format the email content
     const emailSubject = `🚀 New TrueFlow Lead: ${leadData.firstName} ${leadData.lastName} - ${leadData.businessName}`
@@ -69,8 +114,8 @@ Follow up with this lead as soon as possible!
     if (!resendApiKey) {
       console.error('RESEND_API_KEY environment variable is not set')
       return NextResponse.json(
-        { error: 'Email service configuration error' },
-        { status: 500 }
+        { error: 'Email service is temporarily unavailable' },
+        { status: 503 }
       )
     }
 
@@ -85,10 +130,9 @@ Follow up with this lead as soon as possible!
       console.error('Resend API test failed:', testError)
       return NextResponse.json(
         { 
-          error: 'Email service authentication failed',
-          details: testError instanceof Error ? testError.message : 'API key may be invalid'
+          error: 'Email service is temporarily unavailable'
         },
-        { status: 500 }
+        { status: 503 }
       )
     }
 
@@ -116,30 +160,10 @@ Follow up with this lead as soon as possible!
 
     } catch (emailError) {
       console.error('Failed to send email via Resend:', emailError)
-      console.error('Error details:', {
-        error: emailError,
-        apiKey: resendApiKey ? 'Present (masked)' : 'Missing',
-        fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
-        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai']
-      })
-      
-      // Return a more specific error message
-      const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown email service error'
       
       return NextResponse.json(
         { 
-          error: 'Failed to send lead notification emails',
-          details: errorMessage,
-          debug: {
-            hasApiKey: !!resendApiKey,
-            fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
-            timestamp: new Date().toISOString()
-          },
-          leadData: {
-            name: `${leadData.firstName} ${leadData.lastName}`,
-            email: leadData.email,
-            business: leadData.businessName
-          }
+          error: 'Failed to send notification. Please try again later.'
         },
         { status: 500 }
       )
@@ -149,8 +173,7 @@ Follow up with this lead as soon as possible!
     console.error('Error processing lead notification:', error)
     return NextResponse.json(
       { 
-        error: 'Failed to process lead notification',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        error: 'An error occurred processing your request'
       },
       { status: 500 }
     )
@@ -171,7 +194,7 @@ export async function OPTIONS(request: NextRequest) {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
-  }
+  } as Record<string, string>
   
   if (origin && allowedOrigins.includes(origin)) {
     corsHeaders['Access-Control-Allow-Origin'] = origin

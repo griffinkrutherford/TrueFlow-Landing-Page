@@ -10,6 +10,19 @@ import Image from 'next/image'
 import Link from 'next/link'
 import './animations.css'
 import { 
+  FadeInUp, 
+  SlideInLeft, 
+  SlideInRight, 
+  ScaleIn, 
+  RotateIn, 
+  FlipIn, 
+  ZoomIn, 
+  StaggeredAnimation, 
+  ParallaxScroll, 
+  TextReveal, 
+  BlurIn 
+} from './scroll-animations'
+import { 
   ChevronRight, 
   Play, 
   Sparkles, 
@@ -732,14 +745,15 @@ export default function LandingPage() {
                 </div>
                 <span className="text-lg sm:text-xl group-hover:text-blue-400 transition-colors duration-300">Watch Demo</span>
               </Link>
+              </ScaleIn>
             </div>
           </div>
 
           {/* Enhanced Floating Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-12 sm:mt-16 lg:mt-20 mb-20 sm:mb-24 lg:mb-32 px-4" ref={statsRef}>
             {stats.map((stat, index) => (
+              <ZoomIn key={index} delay={1.2 + index * 0.15}>
               <div
-                key={index}
                 className={`bg-white/5 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 text-center hover:bg-white/10 hover:border-blue-400/30 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500 group relative overflow-hidden transform-gpu ${
                   ''
                 }`}
@@ -823,6 +837,7 @@ export default function LandingPage() {
                 {/* Gentle border effect */}
                 <div className="absolute inset-0 rounded-2xl border-2 border-blue-400/0 group-hover:border-blue-400/20 transition-all duration-500 animate-[soft-glow_3s_ease-in-out_infinite]" style={{ animationDelay: `${index * 500}ms` }}></div>
               </div>
+              </ZoomIn>
             ))}
           </div>
         </div>
@@ -1165,12 +1180,16 @@ export default function LandingPage() {
       <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 overflow-hidden pt-16 sm:pt-24 lg:pt-32" ref={featuresRef}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
-              TrueFlow Core System
-            </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
-              Everything you need. Nothing you don't. Built for speed, clarity, and scale.
-            </p>
+            <FadeInUp>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+                TrueFlow Core System
+              </h2>
+            </FadeInUp>
+            <FadeInUp delay={0.2}>
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
+                Everything you need. Nothing you don't. Built for speed, clarity, and scale.
+              </p>
+            </FadeInUp>
           </div>
 
           {/* Modern Feature Grid */}
@@ -1254,16 +1273,12 @@ export default function LandingPage() {
       <section id="how-it-works" className="py-16 sm:py-24 lg:py-32 px-4" ref={howItWorksRef}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className={`text-5xl md:text-7xl font-bold text-white mb-8 transition-all duration-1000 ${
-              ''
-            }`}>
-              How It Works
-            </h2>
-            <p className={`text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4 transition-all duration-1000 ${
-              ''
-            }`}>
-              Transform your ideas into powerful content in three simple steps
-            </p>
+            <TextReveal text="How It Works" className="text-5xl md:text-7xl font-bold text-white mb-8" delay={0} />
+            <FadeInUp delay={0.4}>
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
+                Transform your ideas into powerful content in three simple steps
+              </p>
+            </FadeInUp>
           </div>
 
           {/* Animated Progress Line */}
@@ -1302,8 +1317,8 @@ export default function LandingPage() {
                 animation: "slide-in-right"
               }
             ].map((step, index) => (
+              <RotateIn key={index} delay={0.2 + index * 0.2}>
               <div
-                key={index}
                 className={`text-center group bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 hover:bg-black/60 hover:border-white/30 relative transition-all duration-700 transform-gpu perspective-1000 ${
                   ''
                 }`}
@@ -1389,6 +1404,7 @@ export default function LandingPage() {
                 </p>
 
               </div>
+              </RotateIn>
             ))}
           </div>
         </div>
@@ -1398,11 +1414,11 @@ export default function LandingPage() {
       <section id="testimonials" className="py-16 sm:py-24 lg:py-32 px-4" ref={testimonialsScrollRef}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 transition-all duration-1000 ${
-              ''
-            }`}>
-              Real Results from Real Businesses
-            </h2>
+            <BlurIn>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+                Real Results from Real Businesses
+              </h2>
+            </BlurIn>
             <p className={`text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4 transition-all duration-1000 ${
               ''
             }`}>
@@ -1414,8 +1430,8 @@ export default function LandingPage() {
           <div className="relative">
             <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 overflow-x-auto scrollbar-hidden pb-8 pt-8 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8" style={{ scrollSnapType: 'x mandatory' }}>
               {testimonials.map((testimonial, index) => (
+                <FlipIn key={index} delay={0.2 + index * 0.1}>
                 <div
-                  key={index}
                   className={`flex-none w-80 sm:w-88 lg:w-96 bg-black/60 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 scroll-snap-align-start hover:bg-black/80 hover:border-blue-400/30 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 group relative overflow-hidden transform-gpu ${
                     ''
                   }`}
@@ -1522,6 +1538,7 @@ export default function LandingPage() {
                     ))}
                   </div>
                 </div>
+                </FlipIn>
               ))}
             </div>
 
@@ -1545,9 +1562,10 @@ export default function LandingPage() {
       <section className="py-16 sm:py-24 lg:py-32 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
-              Seamless{' '}
-              <span 
+            <FadeInUp>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+                Seamless{' '}
+                <span 
                 className="bg-clip-text text-transparent "
                 style={{
                   backgroundImage: `linear-gradient(${gradientOffset}deg, 
@@ -1560,14 +1578,18 @@ export default function LandingPage() {
                 }}
               >
                 Integrations
-              </span>
-            </h2>
-            <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
-              Connect with your favorite tools and platforms to supercharge your workflow
-            </p>
+                </span>
+              </h2>
+            </FadeInUp>
+            <FadeInUp delay={0.2}>
+              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
+                Connect with your favorite tools and platforms to supercharge your workflow
+              </p>
+            </FadeInUp>
           </div>
 
           {/* Orbital Animation Container */}
+          <ScaleIn delay={0.5}>
           <div className="relative flex items-center justify-center min-h-[500px] sm:min-h-[600px] lg:min-h-[800px]" style={{ perspective: '1000px' }}>
             {/* Central TrueFlow Infinity Symbol */}
             <div className="absolute z-10">
@@ -1767,6 +1789,7 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
+          </ScaleIn>
         </div>
       </section>
 
@@ -1777,12 +1800,12 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           {/* Pricing Section Header */}
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-lg sm:text-xl text-white/80">
-              Choose the plan that fits your business needs
-            </p>
+            <TextReveal text="Simple, Transparent Pricing" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" delay={0} />
+            <FadeInUp delay={0.4}>
+              <p className="text-lg sm:text-xl text-white/80">
+                Choose the plan that fits your business needs
+              </p>
+            </FadeInUp>
           </div>
 
               {/* Pricing Options */}
@@ -1906,6 +1929,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
+      <FadeInUp delay={0}>
       <footer className="py-12 sm:py-16 px-4 bg-black/80 border-t border-white/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -1967,6 +1991,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      </FadeInUp>
 
 
       {/* Scroll to Top Button */}
