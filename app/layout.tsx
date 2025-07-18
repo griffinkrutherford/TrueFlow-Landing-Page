@@ -20,7 +20,11 @@ export const metadata: Metadata = {
     title: 'TrueFlow AI - Transform Your Voice Into Powerful Content',
     description: 'The most intelligent content creation system available. Transform your voice into powerful email campaigns and blogs.',
   },
-  viewport: 'width=device-width, initial-scale=1',
+}
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({

@@ -1,0 +1,394 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3001
+
+ ✓ Ready in 1586ms
+(node:56230) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.4s (594 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled in 164ms (296 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled /not-found in 227ms (492 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_next/webpack-hot-middleware/webpack-hot-middleware.js. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ⚠ Unsupported metadata viewport is configured in metadata export in /_next/webpack-hot-middleware/webpack-hot-middleware.js. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled in 234ms (492 modules)
+ ✓ Compiled in 422ms (296 modules)
+ ✓ Compiled in 221ms (296 modules)
+ ✓ Compiled / in 211ms (558 modules)
+ ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+ ✓ Compiled in 205ms (296 modules)
+ ✓ Compiled in 374ms (572 modules)
+ ⨯ ./app/advanced-animations.tsx:4:0
+Module not found: Can't resolve 'react-intersection-observer'
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useRef[33m,[39m useState[33m,[39m useCallback[33m,[39m useMemo } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useInView } [36mfrom[39m [32m'react-intersection-observer'[39m[33m;[39m[0m
+[0m [90m 5 |[39m[0m
+[0m [90m 6 |[39m [90m// Types[39m[0m
+[0m [90m 7 |[39m [36mexport[39m [36minterface[39m [33mAnimationConfig[39m {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/advanced-animations.tsx:4:0
+Module not found: Can't resolve 'react-intersection-observer'
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useRef[33m,[39m useState[33m,[39m useCallback[33m,[39m useMemo } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useInView } [36mfrom[39m [32m'react-intersection-observer'[39m[33m;[39m[0m
+[0m [90m 5 |[39m[0m
+[0m [90m 6 |[39m [90m// Types[39m[0m
+[0m [90m 7 |[39m [36mexport[39m [36minterface[39m [33mAnimationConfig[39m {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/advanced-animations.tsx:4:0
+Module not found: Can't resolve 'react-intersection-observer'
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useRef[33m,[39m useState[33m,[39m useCallback[33m,[39m useMemo } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useInView } [36mfrom[39m [32m'react-intersection-observer'[39m[33m;[39m[0m
+[0m [90m 5 |[39m[0m
+[0m [90m 6 |[39m [90m// Types[39m[0m
+[0m [90m 7 |[39m [36mexport[39m [36minterface[39m [33mAnimationConfig[39m {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/advanced-animations.tsx:4:0
+Module not found: Can't resolve 'react-intersection-observer'
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useRef[33m,[39m useState[33m,[39m useCallback[33m,[39m useMemo } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useInView } [36mfrom[39m [32m'react-intersection-observer'[39m[33m;[39m[0m
+[0m [90m 5 |[39m[0m
+[0m [90m 6 |[39m [90m// Types[39m[0m
+[0m [90m 7 |[39m [36mexport[39m [36minterface[39m [33mAnimationConfig[39m {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/advanced-animations.tsx:4:0
+Module not found: Can't resolve 'react-intersection-observer'
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useRef[33m,[39m useState[33m,[39m useCallback[33m,[39m useMemo } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { useInView } [36mfrom[39m [32m'react-intersection-observer'[39m[33m;[39m[0m
+[0m [90m 5 |[39m[0m
+[0m [90m 6 |[39m [90m// Types[39m[0m
+[0m [90m 7 |[39m [36mexport[39m [36minterface[39m [33mAnimationConfig[39m {[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 78ms (562 modules)
+ ✓ Compiled in 191ms (298 modules)
+ ✓ Compiled in 397ms (576 modules)
+ ✓ Compiled in 1023ms (1360 modules)
+ ✓ Compiled in 434ms (1360 modules)
+ ✓ Compiled in 294ms (1360 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 435ms (1360 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:598:1]
+ [2m598[0m |   }
+ [2m599[0m | 
+ [2m600[0m |   return (
+ [2m601[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m602[0m | 
+ [2m603[0m |       {/* Floating Particles */}
+ [2m604[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 104ms (223 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 107ms (223 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 105ms (346 modules)
+ ✓ Compiled in 97ms (346 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ○ Compiling /not-found ...
+ ✓ Compiled /not-found in 129ms (348 modules)
+[?25h

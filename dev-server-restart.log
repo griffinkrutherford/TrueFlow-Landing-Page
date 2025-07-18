@@ -1,0 +1,173 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3001
+
+ ✓ Ready in 1770ms
+(node:69953) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled /_error in 198ms (348 modules)
+ ✓ Compiled in 109ms (348 modules)
+ ✓ Compiled in 104ms (348 modules)
+ ✓ Compiled in 401ms (604 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   }
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   };
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:597:1]
+ [2m597[0m |   };
+ [2m598[0m | 
+ [2m599[0m |   return (
+ [2m600[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m601[0m | 
+ [2m602[0m |       {/* Floating Particles */}
+ [2m603[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 122ms (346 modules)
+ ✓ Compiled in 158ms (345 modules)
+ ✓ Compiled in 102ms (345 modules)
+ ✓ Compiled in 313ms (392 modules)
+ ✓ Compiled in 138ms (345 modules)
+ ✓ Compiled in 174ms (345 modules)
+ ✓ Compiled in 167ms (345 modules)
+ ✓ Compiled in 142ms (345 modules)
+ ✓ Compiled in 101ms (345 modules)
+ ✓ Compiled in 169ms (345 modules)
+ ✓ Compiled in 138ms (345 modules)
+ ✓ Compiled in 137ms (345 modules)
+ ✓ Compiled in 158ms (345 modules)
+ ✓ Compiled in 140ms (345 modules)
+ ✓ Compiled in 163ms (345 modules)
+ ✓ Compiled in 165ms (345 modules)
+ ✓ Compiled in 103ms (345 modules)
+ ✓ Compiled in 131ms (345 modules)
+ ✓ Compiled in 137ms (345 modules)
+ ✓ Compiled in 110ms (345 modules)
+ ✓ Compiled in 189ms (345 modules)
+ ✓ Compiled in 102ms (345 modules)
+ ✓ Compiled in 187ms (345 modules)
+ ✓ Compiled in 155ms (345 modules)
+ ✓ Compiled in 104ms (345 modules)
+ ✓ Compiled in 137ms (345 modules)
+ ✓ Compiled in 97ms (345 modules)
+ ✓ Compiled in 158ms (345 modules)
+ ✓ Compiled in 101ms (345 modules)
+ ✓ Compiled in 137ms (345 modules)
+ ✓ Compiled in 133ms (345 modules)
+ ✓ Compiled in 158ms (345 modules)
+ ✓ Compiled in 145ms (345 modules)
+ ✓ Compiled in 114ms (345 modules)
+ ✓ Compiled in 132ms (345 modules)
+ ✓ Compiled in 127ms (345 modules)
+ ✓ Compiled in 134ms (345 modules)
+ ✓ Compiled in 165ms (345 modules)
+ ✓ Compiled in 137ms (345 modules)
+ ✓ Compiled in 99ms (345 modules)
+ ✓ Compiled in 164ms (345 modules)
+ ✓ Compiled in 136ms (345 modules)
+ ✓ Compiled in 148ms (345 modules)

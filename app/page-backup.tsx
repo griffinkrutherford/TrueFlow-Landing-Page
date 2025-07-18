@@ -36,26 +36,6 @@ import {
   BorderBeam,
   ShimmerButton
 } from './hover-effects'
-import {
-  MultiLayerParallax,
-  ParallaxText,
-  ScrollProgress,
-  ParallaxImage,
-  ScrollReveal3D,
-  StickyParallax,
-  DepthCards,
-  ScrollTimeline
-} from './parallax-effects'
-import {
-  ConnectedParticles,
-  ParticleExplosion,
-  MorphingBackground,
-  ParticleTrail,
-  FlowField,
-  WaveBackground,
-  GeometricBackground,
-  ParticleText
-} from './particle-systems'
 import { 
   ChevronRight, 
   Play, 
@@ -290,22 +270,10 @@ export default function LandingPage() {
   // Removed mounted state - not needed with App Router
   const [gradientOffset, setGradientOffset] = useState(0)
   const [particles, setParticles] = useState<Particle[]>([])
-  const [explosionTrigger, setExplosionTrigger] = useState(0)
-  const [explosionPosition, setExplosionPosition] = useState({ x: 0, y: 0 })
   const [cursorTrail, setCursorTrail] = useState<CursorTrailPoint[]>([])
   const cursorTrailRef = useRef<CursorTrailPoint[]>([])
   const animationFrameRef = useRef<number | null>(null)
   const [statsVisible, setStatsVisible] = useState(true)
-
-  // Handler for particle explosion on CTA click
-  const handleCTAClick = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    setExplosionPosition({
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2
-    })
-    setExplosionTrigger(prev => prev + 1)
-  }
   const [animatedValues, setAnimatedValues] = useState<Record<string, string | number>>({
     "10x": "10x",
     "85%": "85%",
@@ -626,32 +594,10 @@ export default function LandingPage() {
         }, 20) // 20ms intervals for smooth animation
       }, index * 200) // Stagger animations
     })
-  };
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Particle Trail that follows cursor */}
-      <ParticleTrail
-        color="#3b82f6"
-        particleCount={20}
-        fadeSpeed={0.95}
-        className="z-50"
-      />
-      
-      {/* Particle Explosion on CTA clicks */}
-      <ParticleExplosion
-        x={explosionPosition.x}
-        y={explosionPosition.y}
-        particleCount={50}
-        colors={['#3b82f6', '#8b5cf6', '#ec4899']}
-        trigger={explosionTrigger}
-      />
-      {/* Scroll Progress Indicator */}
-      <ScrollProgress 
-        color="#3b82f6"
-        height={4}
-        showPercentage={false}
-      />
 
       {/* Floating Particles */}
       {particles.map((particle) => (
@@ -747,10 +693,7 @@ export default function LandingPage() {
               <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
                 <Link href="/faq">FAQs</Link>
               </ElasticButton>
-              <ShimmerButton 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold"
-                onClick={handleCTAClick}
-              >
+              <ShimmerButton className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold">
                 <Link href="https://trueflow.ai/readiness-assessment">Get Started</Link>
               </ShimmerButton>
             </div>
@@ -786,50 +729,21 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center px-4 pt-32 overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center px-4 pt-32"
       >
-        {/* Morphing Background */}
-        <div className="absolute inset-0">
-          <MorphingBackground
-            color1="#3b82f6"
-            color2="#8b5cf6"
-            speed={0.002}
-            className="opacity-20"
-          />
-        </div>
-        
-        {/* Connected Particles instead of basic particles */}
-        <ConnectedParticles
-          particleCount={80}
-          color="#ffffff"
-          lineColor="#ffffff"
-          maxDistance={150}
-          className="absolute inset-0 opacity-30"
-        />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
+        <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <Link href="/content-engine" className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-12 border border-white/20 mt-16 hover:bg-white/20 transition-colors">
               <Sparkles className="h-5 w-5 text-blue-400" />
               <span className="text-white/90 text-lg">Introducing TrueFlow AI Content Engine</span>
             </Link>
             
-            <div className="relative group">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
-                We build AI systems that<br />
-                <span className="inline-block min-h-[1.2em]">
-                  <TypewriterText gradientOffset={gradientOffset} />
-                </span>
-              </h1>
-              {/* Particle Text effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <ParticleText
-                  text="We build AI systems that"
-                  fontSize={80}
-                  color="#ffffff"
-                  className="scale-75 lg:scale-100"
-                />
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
+              We build AI systems that<br />
+              <span className="inline-block min-h-[1.2em]">
+                <TypewriterText gradientOffset={gradientOffset} />
+              </span>
+            </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/70 max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
               Transform your voice into powerful content and automate your entire business. 
@@ -840,7 +754,6 @@ export default function LandingPage() {
               <MagneticButton 
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2 sm:space-x-3 relative overflow-hidden group w-full sm:w-auto justify-center"
                 strength={0.3}
-                onClick={handleCTAClick}
               >
                 <Link href="https://trueflow.ai/readiness-assessment" className="flex items-center space-x-2 sm:space-x-3">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1017,14 +930,10 @@ export default function LandingPage() {
       </section>
 
       {/* Problem Statement - Storytelling Section */}
-      <StickyParallax
-        stickyClassName="sticky top-20"
-        parallaxSpeed={0.5}
-      >
-        <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-          <div className="max-w-6xl mx-auto">
-            {/* Story Timeline */}
-            <div className="space-y-20 sm:space-y-24 lg:space-y-32">
+      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          {/* Story Timeline */}
+          <div className="space-y-20 sm:space-y-24 lg:space-y-32">
             
             {/* Chapter 1: Once Upon A Time */}
             <div className="text-center relative">
@@ -1367,7 +1276,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      </StickyParallax>
 
       {/* Features Carousel Section */}
       <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 overflow-hidden pt-16 sm:pt-24 lg:pt-32" ref={featuresRef}>
@@ -1390,14 +1298,7 @@ export default function LandingPage() {
             {/* Feature Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12">
               {features.map((feature, index) => (
-                <ScrollReveal3D
-                  key={index}
-                  rotateX={15}
-                  rotateY={15}
-                  scale={0.95}
-                  delay={index * 0.1}
-                >
-                  <GlowCard
+                <GlowCard
                   key={index}
                   className={`group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-white/15 transition-all duration-500 hover:bg-white/7 cursor-pointer ${
                     index === currentFeatureIndex ? 'ring-1 ring-blue-500/30 bg-white/8' : ''
@@ -1458,7 +1359,6 @@ export default function LandingPage() {
                   </Link>
                 </div>
                 </GlowCard>
-                </ScrollReveal3D>
               ))}
             </div>
             
@@ -1492,8 +1392,17 @@ export default function LandingPage() {
             </FadeInUp>
           </div>
 
-          <ScrollTimeline
-            items={[
+          {/* Animated Progress Line */}
+          <div className="relative mb-20">
+            <div className="hidden md:block absolute top-16 left-1/2 transform -translate-x-1/2 w-2/3 h-1 bg-white/20 rounded-full">
+              <div className={`h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-full transition-all duration-2000 ${
+                'w-full'
+              }`}></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 relative px-4 sm:px-0">
+            {[
               {
                 step: 1,
                 title: "Record Your Ideas",
@@ -1518,25 +1427,103 @@ export default function LandingPage() {
                 color: "from-purple-500 to-pink-600",
                 animation: "slide-in-right"
               }
-            ]}
-            className="max-w-6xl mx-auto"
-          />
+            ].map((step, index) => (
+              <RotateIn key={index} delay={0.2 + index * 0.2}>
+              <div
+                className={`text-center group bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 hover:bg-black/60 hover:border-white/30 relative transition-all duration-700 transform-gpu perspective-1000 ${
+                  ''
+                }`}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.320, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const centerX = rect.left + rect.width / 2
+                  const centerY = rect.top + rect.height / 2
+                  const mouseX = e.clientX - centerX
+                  const mouseY = e.clientY - centerY
+                  const rotateX = (mouseY / rect.height) * -20
+                  const rotateY = (mouseX / rect.width) * 20
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.05)`
+                }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const centerX = rect.left + rect.width / 2
+                  const centerY = rect.top + rect.height / 2
+                  const mouseX = e.clientX - centerX
+                  const mouseY = e.clientY - centerY
+                  const rotateX = (mouseY / rect.height) * -20
+                  const rotateY = (mouseX / rect.width) * 20
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.05)`
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)'
+                }}
+              >
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                {/* Floating microparticles */}
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white/40 rounded-full animate-[icon-float_3s_ease-in-out_infinite]"
+                      style={{
+                        left: `${15 + i * 10}%`,
+                        top: `${20 + (i % 3) * 25}%`,
+                        animationDelay: `${i * 0.4}s`
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="relative mb-8 sm:mb-10 lg:mb-12 transform transition-all duration-500 group-hover:scale-105" style={{ margin: '2rem 0.5rem 2rem 0.5rem' }}>
+                  {/* Animated circle with gentle glow */}
+                  <div className={`w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto text-white shadow-xl group-hover:shadow-2xl transition-all duration-500 relative ${
+                    ''
+                  }`} style={{ animationDelay: `${index * 500}ms` }}>
+                    {/* Gentle rings */}
+                    <div className="absolute inset-0 rounded-full border-2 border-white/20 opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <div className="absolute inset-2 rounded-full border border-white/10 opacity-50"></div>
+                    
+                    {/* Icon with gentle animation */}
+                    <div className={`transform transition-all duration-500 group-hover:scale-105 ${
+                      ''
+                    }`} style={{ animationDelay: `${index * 700}ms` }}>
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  {/* Step number with enhanced styling - positioned to not get cut off */}
+                  <AnimatedStepNumber stepNumber={step.step} index={index} visible={howItWorksVisible} />
+                </div>
+
+                {/* Title with typewriter effect */}
+                <h3 className={`text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 transition-all duration-500 group-hover:text-blue-100 ${
+                  'translate-y-0 opacity-100'
+                }`} style={{ transitionDelay: `${index * 300 + 1000}ms` }}>
+                  {step.title}
+                </h3>
+
+                {/* Description with slide-in */}
+                <p className={`text-white/70 leading-relaxed text-sm sm:text-base lg:text-lg group-hover:text-white/90 transition-all duration-500 ${
+                  'translate-y-0 opacity-100'
+                }`} style={{ transitionDelay: `${index * 300 + 1200}ms` }}>
+                  {step.description}
+                </p>
+
+              </div>
+              </RotateIn>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Enhanced Testimonials Section */}
-      <section id="testimonials" className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden" ref={testimonialsScrollRef}>
-        {/* Wave Background */}
-        <div className="absolute inset-0">
-          <WaveBackground
-            color="#06b6d4"
-            amplitude={50}
-            frequency={0.002}
-            speed={0.001}
-            className="opacity-10"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section id="testimonials" className="py-16 sm:py-24 lg:py-32 px-4" ref={testimonialsScrollRef}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <BlurIn>
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
@@ -1632,6 +1619,7 @@ export default function LandingPage() {
                       />
                     ))}
                   </div>
+                </div>
                   </TiltCard>
                 </FlipIn>
               ))}
@@ -1654,26 +1642,27 @@ export default function LandingPage() {
       </section>
 
       {/* Integrations Section */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-        {/* Flow Field Background */}
-        <div className="absolute inset-0">
-          <FlowField
-            particleCount={300}
-            color="#8b5cf6"
-            noiseScale={0.005}
-            speed={0.001}
-            className="opacity-20"
-          />
-        </div>
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="py-16 sm:py-24 lg:py-32 px-4">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <FadeInUp>
-              <ParallaxText 
-                baseVelocity={5}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8"
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+                Seamless{' '}
+                <span 
+                className="bg-clip-text text-transparent "
+                style={{
+                  backgroundImage: `linear-gradient(${gradientOffset}deg, 
+                    hsl(${(gradientOffset + 220) % 360}, 70%, 60%), 
+                    hsl(${(gradientOffset + 280) % 360}, 80%, 65%), 
+                    hsl(${(gradientOffset + 340) % 360}, 85%, 70%), 
+                    hsl(${(gradientOffset + 40) % 360}, 75%, 65%))`,
+                  backgroundSize: '300% 300%',
+                  animation: `gradient-shift 3s ease-in-out infinite`
+                }}
               >
-                Seamless Integrations
-              </ParallaxText>
+                Integrations
+                </span>
+              </h2>
             </FadeInUp>
             <FadeInUp delay={0.2}>
               <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
@@ -1890,18 +1879,8 @@ export default function LandingPage() {
 
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-        {/* Geometric Background for Pricing */}
-        <div className="absolute inset-0">
-          <GeometricBackground
-            shapes={['hexagon', 'triangle', 'circle']}
-            colors={['#f59e0b', '#ef4444', '#10b981']}
-            particleCount={30}
-            speed={0.0005}
-            className="opacity-10"
-          />
-        </div>
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="py-16 sm:py-24 lg:py-32 px-4">
+        <div className="max-w-6xl mx-auto">
           {/* Pricing Section Header */}
           <div className="text-center mb-12 sm:mb-16">
             <TextReveal text="Simple, Transparent Pricing" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" delay={0} />
@@ -1913,13 +1892,7 @@ export default function LandingPage() {
           </div>
 
               {/* Pricing Options */}
-              <DepthCards
-                className="mb-12 max-w-6xl mx-auto"
-                ref={pricingRef}
-                gap={32}
-                perspective={1000}
-                cardClassName="w-full"
-              >
+              <div ref={pricingRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
                 {/* Plan 1: Content Engine Only */}
                 <BorderBeam className="" duration={4} borderWidth={2} colorFrom="#6B7280" colorTo="#9CA3AF">
                 <div className="relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu bg-white/5 border-white/20 hover:bg-white/10">
@@ -1965,10 +1938,7 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <ShimmerButton 
-                    className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group"
-                    onClick={handleCTAClick}
-                  >
+                  <ShimmerButton className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group">
                     <Link href="https://trueflow.ai/readiness-assessment" className="relative z-10">Get Started</Link>
                   </ShimmerButton>
                 </div>
@@ -2027,11 +1997,7 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <ShimmerButton 
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group" 
-                    shimmerColor="rgba(255, 255, 255, 0.7)"
-                    onClick={handleCTAClick}
-                  >
+                  <ShimmerButton className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group" shimmerColor="rgba(255, 255, 255, 0.7)">
                     <Link href="https://trueflow.ai/readiness-assessment" className="relative z-10">Get Complete System</Link>
                   </ShimmerButton>
                 </div>
@@ -2078,7 +2044,7 @@ export default function LandingPage() {
                   </ShimmerButton>
                 </div>
                 </BorderBeam>
-              </DepthCards>
+              </div>
         </div>
       </section>
 
