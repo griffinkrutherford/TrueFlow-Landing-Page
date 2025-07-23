@@ -167,7 +167,7 @@ export async function OPTIONS(request: NextRequest) {
     'http://localhost:3001'
   ]
   
-  const corsHeaders = {
+  const corsHeaders: Record<string, string> = {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Max-Age': '86400',
