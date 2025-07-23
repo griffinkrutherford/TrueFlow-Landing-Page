@@ -1,0 +1,18 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+   ▲ Next.js 14.1.4
+   - Local:        http://localhost:3001
+
+ ✓ Ready in 1374ms
+ ○ Compiling / ...
+(node:9037) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Compiled / in 2.4s (1384 modules)
+ ✓ Compiled in 208ms (691 modules)
+ ✓ Compiled /content-engine in 407ms (1358 modules)
+ ✓ Compiled /faq in 236ms (1370 modules)
+ ✓ Compiled in 505ms (1386 modules)
+ ✓ Compiled in 441ms (598 modules)
+[?25h

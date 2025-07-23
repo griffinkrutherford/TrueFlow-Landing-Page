@@ -33,13 +33,13 @@
     transform-style: preserve-3d;
   }
 
-  /* Icon floating animation for 3D depth effect */
+  /* Icon floating animation for 3D depth effect - TONED DOWN */
   @keyframes iconFloat {
     0%, 100% {
-      transform: scale(1.15) translateZ(40px);
+      transform: scale(1.05) translateZ(20px);
     }
     50% {
-      transform: scale(1.2) translateZ(60px);
+      transform: scale(1.1) translateZ(30px);
     }
   }
 
@@ -90,15 +90,38 @@
     }
   }
 
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateY(-10px) translateX(-10px);
+      opacity: 0.4;
+    }
+    75% {
+      transform: translateY(-30px) translateX(5px);
+      opacity: 0.7;
+    }
+  }
+
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+
   @keyframes float-up-down {
     0%, 100% {
       transform: translateY(0) rotate(0deg);
     }
     33% {
-      transform: translateY(-8px) rotate(1deg);
+      transform: translateY(-4px) rotate(0.5deg);
     }
     66% {
-      transform: translateY(4px) rotate(-1deg);
+      transform: translateY(2px) rotate(-0.5deg);
     }
   }
 
@@ -162,8 +185,8 @@
   }
   
   .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 
   /* Gradient text animations */
@@ -269,30 +292,30 @@
   @keyframes float-particles {
     0%, 100% { 
       transform: translateY(0px) rotate(0deg); 
-      opacity: 0.3;
+      opacity: 0.2;
     }
     25% { 
-      transform: translateY(-10px) rotate(45deg); 
-      opacity: 0.6;
+      transform: translateY(-5px) rotate(22deg); 
+      opacity: 0.3;
     }
     50% { 
-      transform: translateY(-20px) rotate(90deg); 
-      opacity: 1;
+      transform: translateY(-10px) rotate(45deg); 
+      opacity: 0.5;
     }
     75% { 
-      transform: translateY(-10px) rotate(135deg); 
-      opacity: 0.6;
+      transform: translateY(-5px) rotate(67deg); 
+      opacity: 0.3;
     }
   }
 
   @keyframes pulse-glow {
     0%, 100% { 
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.2);
       transform: scale(1);
     }
     50% { 
-      box-shadow: 0 0 30px rgba(139, 92, 246, 0.7);
-      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+      transform: scale(1.02);
     }
   }
 
@@ -358,8 +381,8 @@
   }
 
   .btn-magnetic:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
   }
 
   /* Cursor interaction effects */

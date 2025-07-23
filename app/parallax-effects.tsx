@@ -365,15 +365,23 @@ export const WaveScroll: React.FC<WaveScrollProps> = ({
 
 // ========== 9. DepthCards ==========
 interface DepthCardsProps {
-  cards: ReactNode[];
+  children?: ReactNode;
+  cards?: ReactNode[];
   spacing?: number;
   className?: string;
+  gap?: number;
+  perspective?: number;
+  cardClassName?: string;
 }
 
 export const DepthCards: React.FC<DepthCardsProps> = ({ 
+  children,
   cards, 
   spacing = 100,
-  className = ''
+  className = '',
+  gap,
+  perspective,
+  cardClassName
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -381,9 +389,12 @@ export const DepthCards: React.FC<DepthCardsProps> = ({
     offset: ["start start", "end end"]
   });
 
+  // Support both children and cards prop
+  const items = cards || (children ? React.Children.toArray(children) : []);
+
   return (
     <div ref={containerRef} className={`relative ${className}`}>
-      {cards.map((card, index) => {
+      {items.map((card, index) => {
         const progress = useTransform(
           scrollYProgress,
           [index * 0.25, (index + 1) * 0.25],
@@ -404,7 +415,7 @@ export const DepthCards: React.FC<DepthCardsProps> = ({
               y: smoothY, 
               scale: smoothScale,
               opacity,
-              zIndex: cards.length - index
+              zIndex: items.length - index
             }}
             className="sticky top-20 will-change-transform"
           >
@@ -521,3 +532,75 @@ export const useParallaxOffset = (speed: number = 0.5) => {
   const offset = useTransform(scrollY, (value) => value * speed);
   return useSpring(offset, { stiffness: 100, damping: 30 });
 };
+
+// ========== Additional Components ==========
+
+// MouseParallax - Component that moves based on mouse position
+const MouseParallax: React.FC<{
+  children: ReactNode;
+  factor?: number;
+  className?: string;
+}> = ({ children, factor = 0.1, className = '' }) => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return;
+      
+      const rect = ref.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const x = (e.clientX - centerX) * factor;
+      const y = (e.clientY - centerY) * factor;
+      
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [factor]);
+
+  const springX = useSpring(mousePosition.x, { stiffness: 100, damping: 30 });
+  const springY = useSpring(mousePosition.y, { stiffness: 100, damping: 30 });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ x: springX, y: springY }}
+      className={`will-change-transform ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// ScrollRotate - Component that rotates based on scroll position
+const ScrollRotate: React.FC<{
+  children: ReactNode;
+  rotationRange?: [number, number];
+  className?: string;
+}> = ({ children, rotationRange = [0, 360], className = '' }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const rotation = useTransform(scrollYProgress, [0, 1], rotationRange);
+  const smoothRotation = useSpring(rotation, { stiffness: 100, damping: 30 });
+
+  return (
+    <motion.div
+      ref={ref}
+      style={{ rotate: smoothRotation }}
+      className={`will-change-transform ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// Export the additional components
+export { MouseParallax, ScrollRotate };

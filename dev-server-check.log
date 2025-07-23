@@ -5,26 +5,1023 @@
    ▲ Next.js 14.1.4
    - Local:        http://localhost:3001
 
- ✓ Ready in 1375ms
-(node:55512) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Ready in 1366ms
  ○ Compiling / ...
- ✓ Compiled / in 2.4s (594 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ✓ Compiled in 180ms (296 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled / in 2.2s (1377 modules)
+ ⨯ app/parallax-effects.tsx (386:13) @ map
+ ⨯ TypeError: Cannot read properties of undefined (reading 'map')
+    at DepthCards (./app/parallax-effects.tsx:479:25)
+[0m [90m 384 |[39m   [36mreturn[39m ([0m
+[0m [90m 385 |[39m     [33m<[39m[33mdiv[39m ref[33m=[39m{containerRef} className[33m=[39m{[32m`relative ${className}`[39m}[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 386 |[39m       {cards[33m.[39mmap((card[33m,[39m index) [33m=>[39m {[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 387 |[39m         [36mconst[39m progress [33m=[39m useTransform([0m
+[0m [90m 388 |[39m           scrollYProgress[33m,[39m[0m
+[0m [90m 389 |[39m           [index [33m*[39m [35m0.25[39m[33m,[39m (index [33m+[39m [35m1[39m) [33m*[39m [35m0.25[39m][33m,[39m[0m
+ ✓ Compiled in 318ms (692 modules)
+ ✓ Compiled in 389ms (1364 modules)
+ ✓ Compiled in 352ms (1364 modules)
+ ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
+ ✓ Compiled in 629ms (1364 modules)
+ ✓ Compiled in 353ms (1364 modules)
+ ✓ Compiled in 372ms (1364 modules)
+ ✓ Compiled in 298ms (1364 modules)
+ ✓ Compiled in 253ms (1364 modules)
+ ✓ Compiled in 325ms (1364 modules)
+ ✓ Compiled in 348ms (1364 modules)
+ ✓ Compiled in 269ms (1364 modules)
+ ✓ Compiled in 327ms (1364 modules)
+ ✓ Compiled in 525ms (1364 modules)
+ ✓ Compiled in 264ms (1377 modules)
+ ✓ Compiled in 394ms (1364 modules)
+ ✓ Compiled in 491ms (1362 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/page.tsx (624:7) @ ParticleTrail
+ ⨯ ReferenceError: ParticleTrail is not defined
+    at LandingPage (./app/page.tsx:645:89)
+[0m [90m 622 |[39m     [33m<[39m[33mdiv[39m className[33m=[39m[32m"min-h-screen bg-black text-white overflow-x-hidden"[39m[33m>[39m[0m
+[0m [90m 623 |[39m       {[90m/* Particle Trail that follows cursor */[39m}[0m
+[0m[31m[1m>[22m[39m[90m 624 |[39m       [33m<[39m[33mParticleTrail[39m[0m
+[0m [90m     |[39m       [31m[1m^[22m[39m[0m
+[0m [90m 625 |[39m         color[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 626 |[39m         particleCount[33m=[39m{[35m10[39m}[0m
+[0m [90m 627 |[39m         fadeSpeed[33m=[39m{[35m0.90[39m}[0m
+ ✓ Compiled in 355ms (1362 modules)
+ ⨯ app/page.tsx (767:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:983:111)
+[0m [90m 765 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 766 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 767 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 768 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 769 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 770 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⨯ app/page.tsx (767:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:983:111)
+[0m [90m 765 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 766 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 767 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 768 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 769 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 770 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 476ms (1362 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/page.tsx (749:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:965:111)
+[0m [90m 747 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 748 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 749 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 750 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 751 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 752 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⨯ app/page.tsx (749:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:965:111)
+[0m [90m 747 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 748 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 749 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 750 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 751 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 752 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ✓ Compiled in 336ms (1362 modules)
+ ⨯ app/page.tsx (726:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:937:111)
+[0m [90m 724 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 725 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 726 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 727 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 728 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 729 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⨯ app/page.tsx (726:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:937:111)
+[0m [90m 724 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 725 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 726 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 727 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 728 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 729 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 307ms (1362 modules)
+ ⨯ app/page.tsx (715:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:923:111)
+[0m [90m 713 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 714 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 715 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 716 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 717 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 718 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⨯ app/page.tsx (715:11) @ MorphingBackground
+ ⨯ ReferenceError: MorphingBackground is not defined
+    at LandingPage (./app/page.tsx:923:111)
+[0m [90m 713 |[39m         {[90m/* Morphing Background - SIMPLIFIED */[39m}[0m
+[0m [90m 714 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 715 |[39m           [33m<[39m[33mMorphingBackground[39m[0m
+[0m [90m     |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 716 |[39m             color1[33m=[39m[32m"#3b82f6"[39m[0m
+[0m [90m 717 |[39m             color2[33m=[39m[32m"#8b5cf6"[39m[0m
+[0m [90m 718 |[39m             speed[33m=[39m{[35m0.001[39m}[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 370ms (1362 modules)
+ ⨯ app/page.tsx (1426:11) @ WaveBackground
+ ⨯ ReferenceError: WaveBackground is not defined
+    at LandingPage (./app/page.tsx:2578:111)
+[0m [90m 1424 |[39m         {[90m/* Wave Background - SIMPLIFIED */[39m}[0m
+[0m [90m 1425 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 1426 |[39m           [33m<[39m[33mWaveBackground[39m[0m
+[0m [90m      |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 1427 |[39m             color[33m=[39m[32m"#06b6d4"[39m[0m
+[0m [90m 1428 |[39m             amplitude[33m=[39m{[35m30[39m}[0m
+[0m [90m 1429 |[39m             frequency[33m=[39m{[35m0.001[39m}[0m
+ ⨯ app/page.tsx (1426:11) @ WaveBackground
+ ⨯ ReferenceError: WaveBackground is not defined
+    at LandingPage (./app/page.tsx:2578:111)
+[0m [90m 1424 |[39m         {[90m/* Wave Background - SIMPLIFIED */[39m}[0m
+[0m [90m 1425 |[39m         [33m<[39m[33mdiv[39m className[33m=[39m[32m"absolute inset-0"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 1426 |[39m           [33m<[39m[33mWaveBackground[39m[0m
+[0m [90m      |[39m           [31m[1m^[22m[39m[0m
+[0m [90m 1427 |[39m             color[33m=[39m[32m"#06b6d4"[39m[0m
+[0m [90m 1428 |[39m             amplitude[33m=[39m{[35m30[39m}[0m
+[0m [90m 1429 |[39m             frequency[33m=[39m{[35m0.001[39m}[0m
+ ✓ Compiled in 492ms (1362 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 370ms (1362 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 385ms (1362 modules)
+ ✓ Compiled in 343ms (1362 modules)
+ ✓ Compiled in 329ms (1362 modules)
+ ✓ Compiled in 338ms (1362 modules)
+ ✓ Compiled in 324ms (1362 modules)
+ ✓ Compiled in 336ms (1362 modules)
+ ✓ Compiled in 253ms (1375 modules)
+ ✓ Compiled in 304ms (1362 modules)
+ ✓ Compiled in 318ms (1362 modules)
+ ✓ Compiled in 406ms (1362 modules)
+ ✓ Compiled in 326ms (1362 modules)
+ ✓ Compiled in 614ms (1364 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/scroll-animations.tsx (199:16) @ map
+ ⨯ TypeError: children.map is not a function
+    at StaggeredAnimation (./app/scroll-animations.tsx:187:28)
+[0m [90m 197 |[39m   [36mreturn[39m ([0m
+[0m [90m 198 |[39m     [33m<[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 199 |[39m       {children[33m.[39mmap((child[33m,[39m index) [33m=>[39m ([0m
+[0m [90m     |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 200 |[39m         [33m<[39m[33mAnimationComponent[39m key[33m=[39m{index} delay[33m=[39m{delay [33m+[39m index [33m*[39m staggerDelay}[33m>[39m[0m
+[0m [90m 201 |[39m           {child}[0m
+[0m [90m 202 |[39m         [33m<[39m[33m/[39m[33mAnimationComponent[39m[33m>[39m[0m
+ ⨯ app/scroll-animations.tsx (199:16) @ map
+ ⨯ TypeError: children.map is not a function
+    at StaggeredAnimation (./app/scroll-animations.tsx:187:28)
+[0m [90m 197 |[39m   [36mreturn[39m ([0m
+[0m [90m 198 |[39m     [33m<[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 199 |[39m       {children[33m.[39mmap((child[33m,[39m index) [33m=>[39m ([0m
+[0m [90m     |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 200 |[39m         [33m<[39m[33mAnimationComponent[39m key[33m=[39m{index} delay[33m=[39m{delay [33m+[39m index [33m*[39m staggerDelay}[33m>[39m[0m
+[0m [90m 201 |[39m           {child}[0m
+[0m [90m 202 |[39m         [33m<[39m[33m/[39m[33mAnimationComponent[39m[33m>[39m[0m
+ ✓ Compiled in 658ms (1364 modules)
+ ⨯ app/scroll-animations.tsx (199:16) @ map
+ ⨯ TypeError: children.map is not a function
+    at StaggeredAnimation (./app/scroll-animations.tsx:187:28)
+[0m [90m 197 |[39m   [36mreturn[39m ([0m
+[0m [90m 198 |[39m     [33m<[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 199 |[39m       {children[33m.[39mmap((child[33m,[39m index) [33m=>[39m ([0m
+[0m [90m     |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 200 |[39m         [33m<[39m[33mAnimationComponent[39m key[33m=[39m{index} delay[33m=[39m{delay [33m+[39m index [33m*[39m staggerDelay}[33m>[39m[0m
+[0m [90m 201 |[39m           {child}[0m
+[0m [90m 202 |[39m         [33m<[39m[33m/[39m[33mAnimationComponent[39m[33m>[39m[0m
+ ⨯ app/scroll-animations.tsx (199:16) @ map
+ ⨯ TypeError: children.map is not a function
+    at StaggeredAnimation (./app/scroll-animations.tsx:187:28)
+[0m [90m 197 |[39m   [36mreturn[39m ([0m
+[0m [90m 198 |[39m     [33m<[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 199 |[39m       {children[33m.[39mmap((child[33m,[39m index) [33m=>[39m ([0m
+[0m [90m     |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 200 |[39m         [33m<[39m[33mAnimationComponent[39m key[33m=[39m{index} delay[33m=[39m{delay [33m+[39m index [33m*[39m staggerDelay}[33m>[39m[0m
+[0m [90m 201 |[39m           {child}[0m
+[0m [90m 202 |[39m         [33m<[39m[33m/[39m[33mAnimationComponent[39m[33m>[39m[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/scroll-animations.tsx (199:16) @ map
+ ⨯ TypeError: children.map is not a function
+    at StaggeredAnimation (./app/scroll-animations.tsx:187:28)
+[0m [90m 197 |[39m   [36mreturn[39m ([0m
+[0m [90m 198 |[39m     [33m<[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 199 |[39m       {children[33m.[39mmap((child[33m,[39m index) [33m=>[39m ([0m
+[0m [90m     |[39m                [31m[1m^[22m[39m[0m
+[0m [90m 200 |[39m         [33m<[39m[33mAnimationComponent[39m key[33m=[39m{index} delay[33m=[39m{delay [33m+[39m index [33m*[39m staggerDelay}[33m>[39m[0m
+[0m [90m 201 |[39m           {child}[0m
+[0m [90m 202 |[39m         [33m<[39m[33m/[39m[33mAnimationComponent[39m[33m>[39m[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 557ms (1364 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/parallax-effects.tsx (462:13) @ map
+ ⨯ TypeError: Cannot read properties of undefined (reading 'map')
+    at ScrollTimeline (./app/parallax-effects.tsx:591:19)
+[0m [90m 460 |[39m       [33m/[39m[33m>[39m[0m
+[0m [90m 461 |[39m       [0m
+[0m[31m[1m>[22m[39m[90m 462 |[39m       {items[33m.[39mmap((item[33m,[39m index) [33m=>[39m {[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 463 |[39m         [36mconst[39m itemProgress [33m=[39m useTransform([0m
+[0m [90m 464 |[39m           scrollYProgress[33m,[39m[0m
+[0m [90m 465 |[39m           [index [33m/[39m items[33m.[39mlength[33m,[39m (index [33m+[39m [35m1[39m) [33m/[39m items[33m.[39mlength][33m,[39m[0m
+ ⨯ app/parallax-effects.tsx (462:13) @ map
+ ⨯ TypeError: Cannot read properties of undefined (reading 'map')
+    at ScrollTimeline (./app/parallax-effects.tsx:591:19)
+[0m [90m 460 |[39m       [33m/[39m[33m>[39m[0m
+[0m [90m 461 |[39m       [0m
+[0m[31m[1m>[22m[39m[90m 462 |[39m       {items[33m.[39mmap((item[33m,[39m index) [33m=>[39m {[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 463 |[39m         [36mconst[39m itemProgress [33m=[39m useTransform([0m
+[0m [90m 464 |[39m           scrollYProgress[33m,[39m[0m
+[0m [90m 465 |[39m           [index [33m/[39m items[33m.[39mlength[33m,[39m (index [33m+[39m [35m1[39m) [33m/[39m items[33m.[39mlength][33m,[39m[0m
+ ⨯ app/parallax-effects.tsx (462:13) @ map
+ ⨯ TypeError: Cannot read properties of undefined (reading 'map')
+    at ScrollTimeline (./app/parallax-effects.tsx:591:19)
+[0m [90m 460 |[39m       [33m/[39m[33m>[39m[0m
+[0m [90m 461 |[39m       [0m
+[0m[31m[1m>[22m[39m[90m 462 |[39m       {items[33m.[39mmap((item[33m,[39m index) [33m=>[39m {[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 463 |[39m         [36mconst[39m itemProgress [33m=[39m useTransform([0m
+[0m [90m 464 |[39m           scrollYProgress[33m,[39m[0m
+[0m [90m 465 |[39m           [index [33m/[39m items[33m.[39mlength[33m,[39m (index [33m+[39m [35m1[39m) [33m/[39m items[33m.[39mlength][33m,[39m[0m
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:435:1]
+ [2m435[0m |   }, [])
+ [2m436[0m | 
+ [2m437[0m |   return (
+ [2m438[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m439[0m |       {/* Scroll Progress */}
+ [2m440[0m |       <ScrollProgress 
+ [2m441[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:435:1]
+ [2m435[0m |   }, [])
+ [2m436[0m | 
+ [2m437[0m |   return (
+ [2m438[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m439[0m |       {/* Scroll Progress */}
+ [2m440[0m |       <ScrollProgress 
+ [2m441[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:435:1]
+ [2m435[0m |   }, [])
+ [2m436[0m | 
+ [2m437[0m |   return (
+ [2m438[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m439[0m |       {/* Scroll Progress */}
+ [2m440[0m |       <ScrollProgress 
+ [2m441[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ○ Compiling /_error ...
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:435:1]
+ [2m435[0m |   }, [])
+ [2m436[0m | 
+ [2m437[0m |   return (
+ [2m438[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m439[0m |       {/* Scroll Progress */}
+ [2m440[0m |       <ScrollProgress 
+ [2m441[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled /_error in 1015ms (1517 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (701:19) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1318:121)
+[0m [90m 699 |[39m                   [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+[0m [90m 700 |[39m                   [0m
+[0m[31m[1m>[22m[39m[90m 701 |[39m                   [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.4[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m                   [31m[1m^[22m[39m[0m
+[0m [90m 702 |[39m                     [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-3 gap-3 mb-8 max-w-2xl mx-auto"[39m[33m>[39m[0m
+[0m [90m 703 |[39m                       {[[0m
+[0m [90m 704 |[39m                         { name[33m:[39m [32m'CRMs'[39m[33m,[39m color[33m:[39m [32m'from-blue-500 to-blue-600'[39m[33m,[39m icon[33m:[39m [33mUsers[39m }[33m,[39m[0m
+ ⨯ app/page.tsx (701:19) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1318:121)
+[0m [90m 699 |[39m                   [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+[0m [90m 700 |[39m                   [0m
+[0m[31m[1m>[22m[39m[90m 701 |[39m                   [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.4[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m                   [31m[1m^[22m[39m[0m
+[0m [90m 702 |[39m                     [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-3 gap-3 mb-8 max-w-2xl mx-auto"[39m[33m>[39m[0m
+[0m [90m 703 |[39m                       {[[0m
+[0m [90m 704 |[39m                         { name[33m:[39m [32m'CRMs'[39m[33m,[39m color[33m:[39m [32m'from-blue-500 to-blue-600'[39m[33m,[39m icon[33m:[39m [33mUsers[39m }[33m,[39m[0m
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (701:19) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1318:121)
+[0m [90m 699 |[39m                   [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+[0m [90m 700 |[39m                   [0m
+[0m[31m[1m>[22m[39m[90m 701 |[39m                   [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.4[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m                   [31m[1m^[22m[39m[0m
+[0m [90m 702 |[39m                     [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-3 gap-3 mb-8 max-w-2xl mx-auto"[39m[33m>[39m[0m
+[0m [90m 703 |[39m                       {[[0m
+[0m [90m 704 |[39m                         { name[33m:[39m [32m'CRMs'[39m[33m,[39m color[33m:[39m [32m'from-blue-500 to-blue-600'[39m[33m,[39m icon[33m:[39m [33mUsers[39m }[33m,[39m[0m
+ ⨯ app/page.tsx (701:19) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1318:121)
+[0m [90m 699 |[39m                   [33m<[39m[33m/[39m[33mp[39m[33m>[39m[0m
+[0m [90m 700 |[39m                   [0m
+[0m[31m[1m>[22m[39m[90m 701 |[39m                   [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.4[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m                   [31m[1m^[22m[39m[0m
+[0m [90m 702 |[39m                     [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-3 gap-3 mb-8 max-w-2xl mx-auto"[39m[33m>[39m[0m
+[0m [90m 703 |[39m                       {[[0m
+[0m [90m 704 |[39m                         { name[33m:[39m [32m'CRMs'[39m[33m,[39m color[33m:[39m [32m'from-blue-500 to-blue-600'[39m[33m,[39m icon[33m:[39m [33mUsers[39m }[33m,[39m[0m
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 416ms (1517 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (828:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1694:115)
+[0m [90m 826 |[39m[0m
+[0m [90m 827 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 828 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 829 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 830 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 831 |[39m                   key[33m=[39m{index}[0m
+ ⨯ app/page.tsx (828:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1694:115)
+[0m [90m 826 |[39m[0m
+[0m [90m 827 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 828 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 829 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 830 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 831 |[39m                   key[33m=[39m{index}[0m
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (828:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1694:115)
+[0m [90m 826 |[39m[0m
+[0m [90m 827 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 828 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 829 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 830 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 831 |[39m                   key[33m=[39m{index}[0m
+ ⨯ app/page.tsx (828:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1694:115)
+[0m [90m 826 |[39m[0m
+[0m [90m 827 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 828 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 829 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 830 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 831 |[39m                   key[33m=[39m{index}[0m
+ ✓ Compiled in 236ms (1531 modules)
+ ⨯ app/page.tsx (829:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1701:115)
+[0m [90m 827 |[39m[0m
+[0m [90m 828 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 829 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 830 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 831 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 832 |[39m                   key[33m=[39m{index}[0m
+ ⨯ app/page.tsx (829:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1701:115)
+[0m [90m 827 |[39m[0m
+[0m [90m 828 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 829 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 830 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 831 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 832 |[39m                   key[33m=[39m{index}[0m
+ ⨯ app/page.tsx (829:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1701:115)
+[0m [90m 827 |[39m[0m
+[0m [90m 828 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 829 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 830 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 831 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 832 |[39m                   key[33m=[39m{index}[0m
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ app/page.tsx (829:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1701:115)
+[0m [90m 827 |[39m[0m
+[0m [90m 828 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 829 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.1[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 830 |[39m               {features[33m.[39mmap((feature[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 831 |[39m                 [33m<[39m[33mTiltCard[39m[0m
+[0m [90m 832 |[39m                   key[33m=[39m{index}[0m
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 321ms (1517 modules)
+ ⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at loadManifest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-manifest.js:35:27)
+    at DevServer.getNextFontManifest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:699:47)
+    at DevServer.findPageComponents (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:559:43)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1832:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1882:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:895:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:269:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:791:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:331:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:151:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:328:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:174:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:353:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:377:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:140:13) {
+  page: '/'
+}
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (931:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1957:115)
+[0m [90m 929 |[39m[0m
+[0m [90m 930 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-3 gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 931 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.15[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 932 |[39m               {testimonials[33m.[39mmap((testimonial[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 933 |[39m                 [33m<[39m[33mFlipIn[39m key[33m=[39m{index} delay[33m=[39m{index [33m*[39m [35m0.15[39m}[33m>[39m[0m
+[0m [90m 934 |[39m                   [33m<[39m[33mTiltCard[39m[0m
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (931:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1957:115)
+[0m [90m 929 |[39m[0m
+[0m [90m 930 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-3 gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 931 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.15[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 932 |[39m               {testimonials[33m.[39mmap((testimonial[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 933 |[39m                 [33m<[39m[33mFlipIn[39m key[33m=[39m{index} delay[33m=[39m{index [33m*[39m [35m0.15[39m}[33m>[39m[0m
+[0m [90m 934 |[39m                   [33m<[39m[33mTiltCard[39m[0m
+ ⨯ app/page.tsx (931:13) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:1957:115)
+[0m [90m 929 |[39m[0m
+[0m [90m 930 |[39m           [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-1 md:grid-cols-3 gap-8"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m 931 |[39m             [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.2[39m} staggerDelay[33m=[39m{[35m0.15[39m}[33m>[39m[0m
+[0m [90m     |[39m             [31m[1m^[22m[39m[0m
+[0m [90m 932 |[39m               {testimonials[33m.[39mmap((testimonial[33m,[39m index) [33m=>[39m ([0m
+[0m [90m 933 |[39m                 [33m<[39m[33mFlipIn[39m key[33m=[39m{index} delay[33m=[39m{index [33m*[39m [35m0.15[39m}[33m>[39m[0m
+[0m [90m 934 |[39m                   [33m<[39m[33mTiltCard[39m[0m
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 339ms (1517 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (997:17) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:2146:127)
+[0m [90m  995 |[39m               [0m
+[0m [90m  996 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m  997 |[39m                 [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.3[39m} staggerDelay[33m=[39m{[35m0.05[39m}[33m>[39m[0m
+[0m [90m      |[39m                 [31m[1m^[22m[39m[0m
+[0m [90m  998 |[39m                   {integrations[33m.[39mmap((integration[33m,[39m index) [33m=>[39m ([0m
+[0m [90m  999 |[39m                     [33m<[39m[33mGlowCard[39m[0m
+[0m [90m 1000 |[39m                       key[33m=[39m{index}[0m
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ app/page.tsx (997:17) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:2146:127)
+[0m [90m  995 |[39m               [0m
+[0m [90m  996 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m  997 |[39m                 [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.3[39m} staggerDelay[33m=[39m{[35m0.05[39m}[33m>[39m[0m
+[0m [90m      |[39m                 [31m[1m^[22m[39m[0m
+[0m [90m  998 |[39m                   {integrations[33m.[39mmap((integration[33m,[39m index) [33m=>[39m ([0m
+[0m [90m  999 |[39m                     [33m<[39m[33mGlowCard[39m[0m
+[0m [90m 1000 |[39m                       key[33m=[39m{index}[0m
+ ⨯ app/page.tsx (997:17) @ StaggeredAnimation
+ ⨯ ReferenceError: StaggeredAnimation is not defined
+    at LandingPage (./app/page.tsx:2146:127)
+[0m [90m  995 |[39m               [0m
+[0m [90m  996 |[39m               [33m<[39m[33mdiv[39m className[33m=[39m[32m"grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12"[39m[33m>[39m[0m
+[0m[31m[1m>[22m[39m[90m  997 |[39m                 [33m<[39m[33mStaggeredAnimation[39m delay[33m=[39m{[35m0.3[39m} staggerDelay[33m=[39m{[35m0.05[39m}[33m>[39m[0m
+[0m [90m      |[39m                 [31m[1m^[22m[39m[0m
+[0m [90m  998 |[39m                   {integrations[33m.[39mmap((integration[33m,[39m index) [33m=>[39m ([0m
+[0m [90m  999 |[39m                     [33m<[39m[33mGlowCard[39m[0m
+[0m [90m 1000 |[39m                       key[33m=[39m{index}[0m
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:434:1]
+ [2m434[0m |   }, [])
+ [2m435[0m | 
+ [2m436[0m |   return (
+ [2m437[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m438[0m |       {/* Scroll Progress */}
+ [2m439[0m |       <ScrollProgress 
+ [2m440[0m |         color="#3b82f6"
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 353ms (1517 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 570ms (1524 modules)
+ ✓ Compiled in 272ms (1524 modules)
+ ✓ Compiled in 300ms (1524 modules)
+ ✓ Compiled in 288ms (1524 modules)
+ ✓ Compiled in 267ms (1524 modules)
+ ✓ Compiled in 321ms (1524 modules)
+ ✓ Compiled in 264ms (1524 modules)
+ ✓ Compiled in 320ms (1524 modules)
+ ✓ Compiled in 378ms (1524 modules)
+ ✓ Compiled in 336ms (1524 modules)
+ ✓ Compiled in 281ms (1524 modules)
+ ✓ Compiled in 439ms (1524 modules)
+ ✓ Compiled in 267ms (1524 modules)
+ ✓ Compiled in 318ms (1524 modules)
+ ✓ Compiled in 374ms (1524 modules)
+ ✓ Compiled in 556ms (1524 modules)
+ ✓ Compiled in 495ms (730 modules)
+ ✓ Compiled in 294ms (730 modules)
+ ✓ Compiled in 314ms (732 modules)
+ ✓ Compiled in 321ms (732 modules)
+ ✓ Compiled in 309ms (732 modules)
+ ✓ Compiled in 865ms (1516 modules)
+ ✓ Compiled in 577ms (1520 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:608:1]
+ [2m608[0m |   }
+ [2m609[0m | 
+ [2m610[0m |   return (
+ [2m611[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m612[0m | 
+ [2m613[0m |       {/* Floating Particles */}
+ [2m614[0m |       {particles.map((particle) => (
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 342ms (1520 modules)
+ ✓ Compiled in 380ms (1520 modules)
+ ✓ Compiled in 373ms (1520 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 220ms (1520 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 358ms (1520 modules)
+ ✓ Compiled in 357ms (1520 modules)
+ ✓ Compiled in 248ms (1520 modules)
+ ✓ Compiled in 335ms (1520 modules)
+ ✓ Compiled in 276ms (1520 modules)
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m Unexpected token `div`. Expected jsx identifier
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:618:1]
+ [2m618[0m |   }
+ [2m619[0m | 
+ [2m620[0m |   return (
+ [2m621[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
+     : [31;1m     ^^^[0m
+ [2m622[0m |       {/* Scroll Progress Indicator */}
+ [2m623[0m |       <ScrollProgress height={3} color="#3B82F6" />
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error: 
+  [31mx[0m the name `ScrollProgress` is defined multiple times
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/page.tsx[0m:62:1]
+ [2m62[0m |   ProgressiveBlur,
+ [2m63[0m |   CountUp,
+ [2m64[0m |   SplitText,
+ [2m65[0m |   ScrollProgress
+    : [31;1m  ^^^^^^^|^^^^^^[0m
+    :          [31;1m`-- [31;1mprevious definition of `ScrollProgress` here[0m[0m
+ [2m66[0m | } from './scroll-animations'
+ [2m67[0m | import { 
+ [2m68[0m |   AnimatedNumber, 
+ [2m69[0m |   easings 
+ [2m70[0m | } from './advanced-animations'
+ [2m71[0m | import {
+ [2m72[0m |   MagneticButton,
+ [2m73[0m |   ElasticButton,
+ [2m74[0m |   TextScramble,
+ [2m75[0m |   RippleEffect,
+ [2m76[0m |   GlowCard,
+ [2m77[0m |   TiltCard,
+ [2m78[0m |   BorderBeam,
+ [2m79[0m |   ShimmerButton
+ [2m80[0m | } from './hover-effects'
+ [2m81[0m | import {
+ [2m82[0m |   MultiLayerParallax,
+ [2m83[0m |   ParallaxText,
+ [2m84[0m |   ScrollProgress,
+    : [33;1m  ^^^^^^^|^^^^^^[0m
+    :          [33;1m`-- [33;1m`ScrollProgress` redefined here[0m[0m
+ [2m85[0m |   ParallaxImage,
+ [2m86[0m |   ScrollReveal3D,
+ [2m87[0m |   StickyParallax,
+    `----
+
+Import trace for requested module:
+./app/page.tsx
+ ○ Compiling /_error ...
+ ✓ Compiled /not-found in 1202ms (1515 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 413ms (1524 modules)
+ ✓ Compiled in 413ms (1524 modules)
 [?25h

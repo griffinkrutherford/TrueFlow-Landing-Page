@@ -191,7 +191,7 @@ export const ParticleText: React.FC<{
     
     // Create text bitmap
     ctx.fillStyle = color;
-    ctx.font = `bold ${fontSize}px Arial`;
+    ctx.font = `bold ${fontSize}px Inter, -apple-system, BlinkMacSystemFont, sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
@@ -972,6 +972,431 @@ export const NoiseBackground: React.FC<{
     />
   );
 };
+
+// Additional component exports for missing components
+
+// ConfettiCannon - Celebratory particle burst effect
+const ConfettiCannon: React.FC<{
+  trigger?: boolean;
+  origin?: { x: number; y: number };
+  particleCount?: number;
+  spread?: number;
+  colors?: string[];
+  className?: string;
+}> = ({
+  trigger = false,
+  origin = { x: window.innerWidth / 2, y: window.innerHeight },
+  particleCount = 100,
+  spread = 45,
+  colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'],
+  className = ''
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const animationRef = useRef<number>();
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Create confetti particles
+    particlesRef.current = Array.from({ length: particleCount }, () => {
+      const angle = (Math.random() * spread - spread / 2) * (Math.PI / 180) - Math.PI / 2;
+      const velocity = Math.random() * 10 + 5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      return new Particle(
+        origin.x,
+        origin.y,
+        Math.cos(angle) * velocity,
+        Math.sin(angle) * velocity,
+        Math.random() * 6 + 3,
+        1,
+        color
+      );
+    });
+
+    let lastTime = 0;
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particlesRef.current = particlesRef.current.filter(particle => {
+        particle.update(deltaTime);
+        particle.vy += 0.2; // Gravity
+        particle.vx *= 0.99; // Air resistance
+
+        if (particle.life > 0 && particle.y < canvas.height) {
+          // Draw rectangular confetti
+          ctx.save();
+          ctx.translate(particle.x, particle.y);
+          ctx.rotate(particle.x * 0.01);
+          ctx.fillStyle = particle.color;
+          ctx.globalAlpha = particle.life;
+          ctx.fillRect(-particle.size / 2, -particle.size / 2, particle.size, particle.size * 2);
+          ctx.restore();
+          return true;
+        }
+        return false;
+      });
+
+      if (particlesRef.current.length > 0) {
+        animationRef.current = requestAnimationFrame(animate);
+      }
+    };
+
+    animate(0);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [trigger, origin, particleCount, spread, colors]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`fixed inset-0 pointer-events-none ${className}`}
+      style={{ zIndex: 9999 }}
+    />
+  );
+};
+
+// MatrixRain - Digital rain effect
+const MatrixRain: React.FC<{
+  charSet?: string;
+  fontSize?: number;
+  speed?: number;
+  color?: string;
+  className?: string;
+}> = ({
+  charSet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  fontSize = 16,
+  speed = 0.5,
+  color = '#00ff00',
+  className = ''
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>();
+  const columnsRef = useRef<number[]>([]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const columns = Math.floor(canvas.width / fontSize);
+      columnsRef.current = new Array(columns).fill(0);
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let lastTime = 0;
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      // Semi-transparent black for trail effect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = color;
+      ctx.font = `${fontSize}px monospace`;
+
+      columnsRef.current.forEach((y, x) => {
+        const char = charSet[Math.floor(Math.random() * charSet.length)];
+        const xPos = x * fontSize;
+        const yPos = y * fontSize;
+
+        ctx.fillText(char, xPos, yPos);
+
+        if (yPos > canvas.height && Math.random() > 0.975) {
+          columnsRef.current[x] = 0;
+        } else {
+          columnsRef.current[x] = y + speed;
+        }
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate(0);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [charSet, fontSize, speed, color]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`fixed inset-0 ${className}`}
+      style={{ background: '#000' }}
+    />
+  );
+};
+
+// FireworkDisplay - Fireworks animation
+const FireworkDisplay: React.FC<{
+  autoStart?: boolean;
+  interval?: number;
+  maxFireworks?: number;
+  colors?: string[];
+  className?: string;
+}> = ({
+  autoStart = true,
+  interval = 1000,
+  maxFireworks = 5,
+  colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'],
+  className = ''
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const fireworksRef = useRef<any[]>([]);
+  const animationRef = useRef<number>();
+
+  class Firework {
+    x: number;
+    y: number;
+    targetY: number;
+    vx: number;
+    vy: number;
+    color: string;
+    exploded: boolean;
+    particles: Particle[];
+
+    constructor(x: number, targetY: number, color: string) {
+      this.x = x;
+      this.y = window.innerHeight;
+      this.targetY = targetY;
+      this.vx = 0;
+      this.vy = -15;
+      this.color = color;
+      this.exploded = false;
+      this.particles = [];
+    }
+
+    update() {
+      if (!this.exploded) {
+        this.y += this.vy;
+        if (this.y <= this.targetY) {
+          this.explode();
+        }
+      } else {
+        this.particles = this.particles.filter(particle => {
+          particle.update(16);
+          particle.vy += 0.2;
+          return particle.life > 0;
+        });
+      }
+    }
+
+    explode() {
+      this.exploded = true;
+      for (let i = 0; i < 50; i++) {
+        const angle = (Math.PI * 2 / 50) * i;
+        const velocity = Math.random() * 5 + 2;
+        this.particles.push(
+          new Particle(
+            this.x,
+            this.y,
+            Math.cos(angle) * velocity,
+            Math.sin(angle) * velocity,
+            Math.random() * 3 + 1,
+            1,
+            this.color
+          )
+        );
+      }
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      if (!this.exploded) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x - 2, this.y - 10, 4, 10);
+      } else {
+        this.particles.forEach(particle => particle.draw(ctx));
+      }
+    }
+  }
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let intervalId: NodeJS.Timeout;
+    if (autoStart) {
+      intervalId = setInterval(() => {
+        if (fireworksRef.current.length < maxFireworks) {
+          const x = Math.random() * canvas.width;
+          const targetY = Math.random() * canvas.height * 0.5;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          fireworksRef.current.push(new Firework(x, targetY, color));
+        }
+      }, interval);
+    }
+
+    const animate = () => {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      fireworksRef.current = fireworksRef.current.filter(firework => {
+        firework.update();
+        firework.draw(ctx);
+        return !firework.exploded || firework.particles.length > 0;
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      if (intervalId) clearInterval(intervalId);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [autoStart, interval, maxFireworks, colors]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`fixed inset-0 pointer-events-none ${className}`}
+      style={{ background: 'transparent' }}
+    />
+  );
+};
+
+// ParticleEmitter - Continuous particle emission from a point
+const ParticleEmitter: React.FC<{
+  position: { x: number; y: number };
+  emissionRate?: number;
+  particleLife?: number;
+  spread?: number;
+  velocity?: number;
+  color?: string;
+  className?: string;
+}> = ({
+  position,
+  emissionRate = 5,
+  particleLife = 2,
+  spread = 45,
+  velocity = 2,
+  color = '#3b82f6',
+  className = ''
+}) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const animationRef = useRef<number>();
+  const lastEmissionRef = useRef(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let lastTime = 0;
+    const animate = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+      lastTime = currentTime;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Emit new particles
+      if (currentTime - lastEmissionRef.current > 1000 / emissionRate) {
+        const angle = (Math.random() * spread - spread / 2) * (Math.PI / 180) - Math.PI / 2;
+        const speed = Math.random() * velocity + velocity / 2;
+
+        particlesRef.current.push(
+          new Particle(
+            position.x,
+            position.y,
+            Math.cos(angle) * speed,
+            Math.sin(angle) * speed,
+            Math.random() * 4 + 2,
+            particleLife,
+            color
+          )
+        );
+        lastEmissionRef.current = currentTime;
+      }
+
+      // Update and draw particles
+      particlesRef.current = particlesRef.current.filter(particle => {
+        particle.update(deltaTime);
+        if (particle.life > 0) {
+          particle.draw(ctx);
+          return true;
+        }
+        return false;
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate(0);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [position, emissionRate, particleLife, spread, velocity, color]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className={`fixed inset-0 pointer-events-none ${className}`}
+    />
+  );
+};
+
+// Export the new components
+export { ConfettiCannon, MatrixRain, FireworkDisplay, ParticleEmitter };
 
 // 10. ParticleTrail - Particles that follow cursor movement
 export const ParticleTrail: React.FC<{
