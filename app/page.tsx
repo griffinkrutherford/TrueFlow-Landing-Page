@@ -10,53 +10,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import './animations.css'
 import { 
-  FadeInUp, 
-  SlideInLeft, 
-  SlideInRight, 
-  ScaleIn, 
-  RotateIn, 
-  FlipIn, 
-  ZoomIn, 
-  StaggeredAnimation, 
-  ParallaxScroll, 
-  TextReveal, 
-  BlurIn 
-} from './scroll-animations'
-import { 
-  AnimatedNumber, 
-  easings 
-} from './advanced-animations'
-import {
-  MagneticButton,
-  ElasticButton,
-  TextScramble,
-  RippleEffect,
-  GlowCard,
-  TiltCard,
-  BorderBeam,
-  ShimmerButton
-} from './hover-effects'
-import {
-  MultiLayerParallax,
-  ParallaxText,
-  ScrollProgress,
-  ParallaxImage,
-  ScrollReveal3D,
-  StickyParallax,
-  DepthCards,
-  ScrollTimeline
-} from './parallax-effects'
-import {
-  ConnectedParticles,
-  ParticleExplosion,
-  MorphingBackground,
-  ParticleTrail,
-  FlowField,
-  WaveBackground,
-  GeometricBackground,
-  ParticleText
-} from './particle-systems'
-import { 
   ChevronRight, 
   Play, 
   Sparkles, 
@@ -145,17 +98,12 @@ function useAnimatedCounter(endValue: number, duration: number = 2000, prefix: s
 
 // Animated step number component to avoid hooks in loops
 function AnimatedStepNumber({ stepNumber, index, visible }: { stepNumber: number, index: number, visible: boolean }) {
+  const animatedValue = useAnimatedCounter(stepNumber, 1000 + index * 300, '', '', visible)
+  
   return (
     <div className={`absolute -top-2 sm:-top-3 -right-2 sm:-right-3 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-r from-white to-gray-100 text-black rounded-full flex items-center justify-center text-lg sm:text-xl lg:text-2xl font-bold shadow-xl border-2 sm:border-4 border-white transition-all duration-500 group-hover:scale-110 group-hover:rotate-12`} 
       style={{ animationDelay: `${index * 300 + 800}ms` }}>
-      <AnimatedNumber
-        to={stepNumber}
-        variant="morphing"
-        scrollTrigger={true}
-        duration={1500 + index * 300}
-        easing={easings.easeInOutCubic}
-        className="inline-block"
-      />
+      {animatedValue}
     </div>
   )
 }
@@ -287,25 +235,13 @@ export default function LandingPage() {
   const [activeFeature, setActiveFeature] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [currentFeatureIndex, setCurrentFeatureIndex] = useState(-1)
-  // Removed mounted state - not needed with App Router
+  const [mounted, setMounted] = useState(false)
   const [gradientOffset, setGradientOffset] = useState(0)
   const [particles, setParticles] = useState<Particle[]>([])
-  const [explosionTrigger, setExplosionTrigger] = useState(0)
-  const [explosionPosition, setExplosionPosition] = useState({ x: 0, y: 0 })
   const [cursorTrail, setCursorTrail] = useState<CursorTrailPoint[]>([])
   const cursorTrailRef = useRef<CursorTrailPoint[]>([])
   const animationFrameRef = useRef<number | null>(null)
   const [statsVisible, setStatsVisible] = useState(true)
-
-  // Handler for particle explosion on CTA click
-  const handleCTAClick = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    setExplosionPosition({
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2
-    })
-    setExplosionTrigger(prev => prev + 1)
-  }
   const [animatedValues, setAnimatedValues] = useState<Record<string, string | number>>({
     "10x": "10x",
     "85%": "85%",
@@ -412,8 +348,9 @@ export default function LandingPage() {
     }))
   }
 
-  // Initialize particles on mount
+  // Handle mounting to avoid hydration issues
   useEffect(() => {
+    setMounted(true)
     if (typeof window !== 'undefined') {
       generateParticles()
     }
@@ -439,6 +376,8 @@ export default function LandingPage() {
   }, [])
 
   useEffect(() => {
+    if (!mounted) return
+
     const handleScroll = () => {
       setScrollY(window.scrollY)
       
@@ -549,10 +488,16 @@ export default function LandingPage() {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [])
+  }, [mounted])
 
-  // Remove the mounting check - it's not necessary with App Router
-  // The 'use client' directive handles hydration properly
+  // Don't render dynamic content until mounted
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    )
+  }
 
   const testimonials = [
     {
@@ -626,32 +571,10 @@ export default function LandingPage() {
         }, 20) // 20ms intervals for smooth animation
       }, index * 200) // Stagger animations
     })
-  };
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Particle Trail that follows cursor */}
-      <ParticleTrail
-        color="#3b82f6"
-        particleCount={20}
-        fadeSpeed={0.95}
-        className="z-50"
-      />
-      
-      {/* Particle Explosion on CTA clicks */}
-      <ParticleExplosion
-        x={explosionPosition.x}
-        y={explosionPosition.y}
-        particleCount={50}
-        colors={['#3b82f6', '#8b5cf6', '#ec4899']}
-        trigger={explosionTrigger}
-      />
-      {/* Scroll Progress Indicator */}
-      <ScrollProgress 
-        color="#3b82f6"
-        height={4}
-        showPercentage={false}
-      />
 
       {/* Floating Particles */}
       {particles.map((particle) => (
@@ -729,30 +652,15 @@ export default function LandingPage() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <a href="#">Home</a>
-              </ElasticButton>
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <Link href="/content-engine">Content Engine</Link>
-              </ElasticButton>
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <a href="#features">Features</a>
-              </ElasticButton>
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <a href="#how-it-works">How it Works</a>
-              </ElasticButton>
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <a href="#testimonials">Success Stories</a>
-              </ElasticButton>
-              <ElasticButton className="text-white/70 hover:text-white transition-colors text-lg">
-                <Link href="/faq">FAQs</Link>
-              </ElasticButton>
-              <ShimmerButton 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full text-lg font-semibold"
-                onClick={handleCTAClick}
-              >
-                <Link href="https://trueflow.ai/readiness-assessment">Get Started</Link>
-              </ShimmerButton>
+              <a href="#" className="text-white/70 hover:text-white transition-colors text-lg">Home</a>
+              <Link href="/content-engine" className="text-white/70 hover:text-white transition-colors text-lg">Content Engine</Link>
+              <a href="#features" className="text-white/70 hover:text-white transition-colors text-lg">Features</a>
+              <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-lg">How it Works</a>
+              <a href="#testimonials" className="text-white/70 hover:text-white transition-colors text-lg">Success Stories</a>
+              <Link href="/faq" className="text-white/70 hover:text-white transition-colors text-lg">FAQs</Link>
+              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+                Get Started
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -786,50 +694,21 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center px-4 pt-32 overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center px-4 pt-32"
       >
-        {/* Morphing Background */}
-        <div className="absolute inset-0">
-          <MorphingBackground
-            color1="#3b82f6"
-            color2="#8b5cf6"
-            speed={0.002}
-            className="opacity-20"
-          />
-        </div>
-        
-        {/* Connected Particles instead of basic particles */}
-        <ConnectedParticles
-          particleCount={80}
-          color="#ffffff"
-          lineColor="#ffffff"
-          maxDistance={150}
-          className="absolute inset-0 opacity-30"
-        />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
+        <div className="max-w-6xl mx-auto text-center">
           <div className="mb-8">
             <Link href="/content-engine" className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-3 mb-12 border border-white/20 mt-16 hover:bg-white/20 transition-colors">
               <Sparkles className="h-5 w-5 text-blue-400" />
               <span className="text-white/90 text-lg">Introducing TrueFlow AI Content Engine</span>
             </Link>
             
-            <div className="relative group">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
-                We build AI systems that<br />
-                <span className="inline-block min-h-[1.2em]">
-                  <TypewriterText gradientOffset={gradientOffset} />
-                </span>
-              </h1>
-              {/* Particle Text effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <ParticleText
-                  text="We build AI systems that"
-                  fontSize={80}
-                  color="#ffffff"
-                  className="scale-75 lg:scale-100"
-                />
-              </div>
-            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2">
+              We build AI systems that<br />
+              <span className="inline-block min-h-[1.2em]">
+                <TypewriterText gradientOffset={gradientOffset} />
+              </span>
+            </h1>
             
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/70 max-w-4xl mx-auto mb-8 sm:mb-12 px-4">
               Transform your voice into powerful content and automate your entire business. 
@@ -837,38 +716,30 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 px-4">
-              <MagneticButton 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-semibold hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2 sm:space-x-3 relative overflow-hidden group w-full sm:w-auto justify-center"
-                strength={0.3}
-                onClick={handleCTAClick}
+              <Link 
+                href="https://trueflow.ai/readiness-assessment" 
+                className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-semibold hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2 sm:space-x-3 relative overflow-hidden group w-full sm:w-auto justify-center"
               >
-                <Link href="https://trueflow.ai/readiness-assessment" className="flex items-center space-x-2 sm:space-x-3">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10">Discover TrueFlow</span>
-                  <ChevronRight className="h-6 w-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
-                </Link>
-              </MagneticButton>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10">Discover TrueFlow</span>
+                <ChevronRight className="h-6 w-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
               
-              <MagneticButton 
-                className="flex items-center space-x-3 sm:space-x-4 text-white/70 hover:text-white transition-all duration-300 group"
-                strength={0.2}
-              >
-                <Link href="/coming-soon" className="flex items-center space-x-3 sm:space-x-4">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white/20 group-hover:scale-110 group-hover:border-blue-400/50 transition-all duration-300 relative">
-                    <div className="absolute inset-0 rounded-full bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
-                    <Play className="h-4 w-4 sm:h-6 sm:w-6 ml-1 relative z-10 group-hover:text-blue-400 transition-colors duration-300" />
-                  </div>
-                  <span className="text-lg sm:text-xl group-hover:text-blue-400 transition-colors duration-300">Watch Demo</span>
-                </Link>
-              </MagneticButton>
+              <Link href="/coming-soon" className="flex items-center space-x-3 sm:space-x-4 text-white/70 hover:text-white transition-all duration-300 group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 group-hover:bg-white/20 group-hover:scale-110 group-hover:border-blue-400/50 transition-all duration-300 relative">
+                  <div className="absolute inset-0 rounded-full bg-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
+                  <Play className="h-4 w-4 sm:h-6 sm:w-6 ml-1 relative z-10 group-hover:text-blue-400 transition-colors duration-300" />
+                </div>
+                <span className="text-lg sm:text-xl group-hover:text-blue-400 transition-colors duration-300">Watch Demo</span>
+              </Link>
             </div>
           </div>
 
           {/* Enhanced Floating Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mt-12 sm:mt-16 lg:mt-20 mb-20 sm:mb-24 lg:mb-32 px-4" ref={statsRef}>
             {stats.map((stat, index) => (
-              <ZoomIn key={index} delay={1.2 + index * 0.15}>
               <div
+                key={index}
                 className={`bg-white/5 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 text-center hover:bg-white/10 hover:border-blue-400/30 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500 group relative overflow-hidden transform-gpu ${
                   ''
                 }`}
@@ -936,54 +807,7 @@ export default function LandingPage() {
                 style={{ 
                   animationDelay: `${index * 200 + 400}ms`
                 }}>
-                  {stat.value === "10x" ? (
-                    <AnimatedNumber
-                      to={10}
-                      suffix="x"
-                      variant="odometer"
-                      scrollTrigger={true}
-                      duration={2000}
-                      easing={easings.easeOutExpo}
-                      className="inline-block"
-                    />
-                  ) : stat.value === "85%" ? (
-                    <AnimatedNumber
-                      to={85}
-                      suffix="%"
-                      variant="morphing"
-                      scrollTrigger={true}
-                      duration={2500}
-                      easing={easings.easeOutElastic}
-                      className="inline-block"
-                    />
-                  ) : stat.value === "300%" ? (
-                    <AnimatedNumber
-                      to={300}
-                      suffix="%"
-                      variant="particle"
-                      scrollTrigger={true}
-                      duration={3000}
-                      easing={easings.easeOutBounce}
-                      particleConfig={{
-                        colors: ['#3B82F6', '#8B5CF6', '#EC4899'],
-                        count: 15,
-                        spread: 40
-                      }}
-                      className="inline-block"
-                    />
-                  ) : stat.value === "500+" ? (
-                    <AnimatedNumber
-                      to={500}
-                      suffix="+"
-                      variant="countup"
-                      scrollTrigger={true}
-                      duration={2800}
-                      easing={easings.easeInOutCubic}
-                      className="inline-block"
-                    />
-                  ) : (
-                    animatedValues[stat.value] || stat.value
-                  )}
+                  {animatedValues[stat.value] || stat.value}
                 </div>
                 
                 {/* Label with slide-in effect */}
@@ -999,7 +823,6 @@ export default function LandingPage() {
                 {/* Gentle border effect */}
                 <div className="absolute inset-0 rounded-2xl border-2 border-blue-400/0 group-hover:border-blue-400/20 transition-all duration-500 animate-[soft-glow_3s_ease-in-out_infinite]" style={{ animationDelay: `${index * 500}ms` }}></div>
               </div>
-              </ZoomIn>
             ))}
           </div>
         </div>
@@ -1017,14 +840,10 @@ export default function LandingPage() {
       </section>
 
       {/* Problem Statement - Storytelling Section */}
-      <StickyParallax
-        stickyClassName="sticky top-20"
-        parallaxSpeed={0.5}
-      >
-        <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-          <div className="max-w-6xl mx-auto">
-            {/* Story Timeline */}
-            <div className="space-y-20 sm:space-y-24 lg:space-y-32">
+      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          {/* Story Timeline */}
+          <div className="space-y-20 sm:space-y-24 lg:space-y-32">
             
             {/* Chapter 1: Once Upon A Time */}
             <div className="text-center relative">
@@ -1171,34 +990,8 @@ export default function LandingPage() {
                 
                 {/* Simple Problem Statement */}
                 <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/20 max-w-xl mx-auto">
-                  <p className="text-red-400 font-semibold text-lg mb-2">
-                    <AnimatedNumber
-                      to={1500}
-                      prefix="$"
-                      suffix="+/month"
-                      variant="odometer"
-                      scrollTrigger={true}
-                      duration={2000}
-                      easing={easings.easeOutCubic}
-                      separator=","
-                      className="inline-block"
-                    />
-                    . Data everywhere.
-                  </p>
-                  <p className="text-red-400 font-semibold text-lg mb-2">
-                    <AnimatedNumber
-                      to={10000}
-                      prefix="$"
-                      suffix="+"
-                      variant="odometer"
-                      scrollTrigger={true}
-                      duration={2500}
-                      easing={easings.easeOutCubic}
-                      separator=","
-                      className="inline-block"
-                    />
-                    {" "}per month for employees to manage those tools...
-                  </p>
+                  <p className="text-red-400 font-semibold text-lg mb-2">$1500+/month. Data everywhere.</p>
+                  <p className="text-red-400 font-semibold text-lg mb-2">$10,000+ per month for employees to manage those tools...</p>
                   <p className="text-white/70 text-sm">Think systems administrators, social media managers, virtual assistants...</p>
                   <p className="text-white/70 mt-2">Fragmented & Disconnected</p>
                 </div>
@@ -1367,22 +1160,17 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      </StickyParallax>
 
       {/* Features Carousel Section */}
       <section id="features" className="py-12 sm:py-16 lg:py-20 px-4 overflow-hidden pt-16 sm:pt-24 lg:pt-32" ref={featuresRef}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <FadeInUp>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
-                <TextScramble text="TrueFlow Core System" />
-              </h2>
-            </FadeInUp>
-            <FadeInUp delay={0.2}>
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
-                Everything you need. Nothing you don't. Built for speed, clarity, and scale.
-              </p>
-            </FadeInUp>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+              TrueFlow Core System
+            </h2>
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto mb-6 sm:mb-8 px-4">
+              Everything you need. Nothing you don't. Built for speed, clarity, and scale.
+            </p>
           </div>
 
           {/* Modern Feature Grid */}
@@ -1390,27 +1178,11 @@ export default function LandingPage() {
             {/* Feature Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12">
               {features.map((feature, index) => (
-                <ScrollReveal3D
-                  key={index}
-                  rotateX={15}
-                  rotateY={15}
-                  scale={0.95}
-                  delay={index * 0.1}
-                >
-                  <GlowCard
+                <div
                   key={index}
                   className={`group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-white/15 transition-all duration-500 hover:bg-white/7 cursor-pointer ${
                     index === currentFeatureIndex ? 'ring-1 ring-blue-500/30 bg-white/8' : ''
                   }`}
-                  glowColor={
-                    feature.gradient.includes('from-blue-500') ? '#3b82f6' :
-                    feature.gradient.includes('from-purple-500') ? '#8b5cf6' :
-                    feature.gradient.includes('from-green-500') ? '#10b981' :
-                    feature.gradient.includes('from-orange-500') ? '#f97316' :
-                    '#3b82f6'
-                  }
-                >
-                <div
                   onClick={() => setCurrentFeatureIndex(index)}
                   style={{
                     animationDelay: `${feature.delay}ms`
@@ -1457,8 +1229,6 @@ export default function LandingPage() {
                     <ArrowRight className="h-4 w-4 ml-2 transition-transform duration-300" />
                   </Link>
                 </div>
-                </GlowCard>
-                </ScrollReveal3D>
               ))}
             </div>
             
@@ -1484,16 +1254,29 @@ export default function LandingPage() {
       <section id="how-it-works" className="py-16 sm:py-24 lg:py-32 px-4" ref={howItWorksRef}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <TextReveal text="How It Works" className="text-5xl md:text-7xl font-bold text-white mb-8" delay={0} />
-            <FadeInUp delay={0.4}>
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
-                Transform your ideas into powerful content in three simple steps
-              </p>
-            </FadeInUp>
+            <h2 className={`text-5xl md:text-7xl font-bold text-white mb-8 transition-all duration-1000 ${
+              ''
+            }`}>
+              How It Works
+            </h2>
+            <p className={`text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4 transition-all duration-1000 ${
+              ''
+            }`}>
+              Transform your ideas into powerful content in three simple steps
+            </p>
           </div>
 
-          <ScrollTimeline
-            items={[
+          {/* Animated Progress Line */}
+          <div className="relative mb-20">
+            <div className="hidden md:block absolute top-16 left-1/2 transform -translate-x-1/2 w-2/3 h-1 bg-white/20 rounded-full">
+              <div className={`h-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 rounded-full transition-all duration-2000 ${
+                'w-full'
+              }`}></div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 relative px-4 sm:px-0">
+            {[
               {
                 step: 1,
                 title: "Record Your Ideas",
@@ -1518,31 +1301,108 @@ export default function LandingPage() {
                 color: "from-purple-500 to-pink-600",
                 animation: "slide-in-right"
               }
-            ]}
-            className="max-w-6xl mx-auto"
-          />
+            ].map((step, index) => (
+              <div
+                key={index}
+                className={`text-center group bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 hover:bg-black/60 hover:border-white/30 relative transition-all duration-700 transform-gpu perspective-1000 ${
+                  ''
+                }`}
+                style={{
+                  transformStyle: 'preserve-3d',
+                  transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.320, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const centerX = rect.left + rect.width / 2
+                  const centerY = rect.top + rect.height / 2
+                  const mouseX = e.clientX - centerX
+                  const mouseY = e.clientY - centerY
+                  const rotateX = (mouseY / rect.height) * -20
+                  const rotateY = (mouseX / rect.width) * 20
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.05)`
+                }}
+                onMouseMove={(e) => {
+                  const rect = e.currentTarget.getBoundingClientRect()
+                  const centerX = rect.left + rect.width / 2
+                  const centerY = rect.top + rect.height / 2
+                  const mouseX = e.clientX - centerX
+                  const mouseY = e.clientY - centerY
+                  const rotateX = (mouseY / rect.height) * -20
+                  const rotateY = (mouseX / rect.width) * 20
+                  e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px) scale(1.05)`
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)'
+                }}
+              >
+                {/* Animated background gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+
+                {/* Floating microparticles */}
+                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white/40 rounded-full animate-[icon-float_3s_ease-in-out_infinite]"
+                      style={{
+                        left: `${15 + i * 10}%`,
+                        top: `${20 + (i % 3) * 25}%`,
+                        animationDelay: `${i * 0.4}s`
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div className="relative mb-8 sm:mb-10 lg:mb-12 transform transition-all duration-500 group-hover:scale-105" style={{ margin: '2rem 0.5rem 2rem 0.5rem' }}>
+                  {/* Animated circle with gentle glow */}
+                  <div className={`w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-gradient-to-r ${step.color} rounded-full flex items-center justify-center mx-auto text-white shadow-xl group-hover:shadow-2xl transition-all duration-500 relative ${
+                    ''
+                  }`} style={{ animationDelay: `${index * 500}ms` }}>
+                    {/* Gentle rings */}
+                    <div className="absolute inset-0 rounded-full border-2 border-white/20 opacity-0 group-hover:opacity-40 transition-opacity duration-500"></div>
+                    <div className="absolute inset-2 rounded-full border border-white/10 opacity-50"></div>
+                    
+                    {/* Icon with gentle animation */}
+                    <div className={`transform transition-all duration-500 group-hover:scale-105 ${
+                      ''
+                    }`} style={{ animationDelay: `${index * 700}ms` }}>
+                      {step.icon}
+                    </div>
+                  </div>
+
+                  {/* Step number with enhanced styling - positioned to not get cut off */}
+                  <AnimatedStepNumber stepNumber={step.step} index={index} visible={howItWorksVisible} />
+                </div>
+
+                {/* Title with typewriter effect */}
+                <h3 className={`text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 transition-all duration-500 group-hover:text-blue-100 ${
+                  'translate-y-0 opacity-100'
+                }`} style={{ transitionDelay: `${index * 300 + 1000}ms` }}>
+                  {step.title}
+                </h3>
+
+                {/* Description with slide-in */}
+                <p className={`text-white/70 leading-relaxed text-sm sm:text-base lg:text-lg group-hover:text-white/90 transition-all duration-500 ${
+                  'translate-y-0 opacity-100'
+                }`} style={{ transitionDelay: `${index * 300 + 1200}ms` }}>
+                  {step.description}
+                </p>
+
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Enhanced Testimonials Section */}
-      <section id="testimonials" className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden" ref={testimonialsScrollRef}>
-        {/* Wave Background */}
-        <div className="absolute inset-0">
-          <WaveBackground
-            color="#06b6d4"
-            amplitude={50}
-            frequency={0.002}
-            speed={0.001}
-            className="opacity-10"
-          />
-        </div>
-        <div className="max-w-7xl mx-auto relative z-10">
+      <section id="testimonials" className="py-16 sm:py-24 lg:py-32 px-4" ref={testimonialsScrollRef}>
+        <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <BlurIn>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
-                <TextScramble text="Real Results from Real Businesses" />
-              </h2>
-            </BlurIn>
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 transition-all duration-1000 ${
+              ''
+            }`}>
+              Real Results from Real Businesses
+            </h2>
             <p className={`text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4 transition-all duration-1000 ${
               ''
             }`}>
@@ -1554,11 +1414,40 @@ export default function LandingPage() {
           <div className="relative">
             <div className="flex space-x-4 sm:space-x-6 lg:space-x-8 overflow-x-auto scrollbar-hidden pb-8 pt-8 pl-4 pr-4 sm:pl-6 sm:pr-6 lg:pl-8 lg:pr-8" style={{ scrollSnapType: 'x mandatory' }}>
               {testimonials.map((testimonial, index) => (
-                <FlipIn key={index} delay={0.2 + index * 0.1}>
-                  <TiltCard
-                    className="flex-none w-80 sm:w-88 lg:w-96 bg-black/60 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 scroll-snap-align-start hover:bg-black/80 hover:border-blue-400/30 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 group relative overflow-hidden transform-gpu"
-                    maxTilt={15}
-                  >
+                <div
+                  key={index}
+                  className={`flex-none w-80 sm:w-88 lg:w-96 bg-black/60 backdrop-blur-md rounded-xl sm:rounded-2xl border border-white/20 p-4 sm:p-6 lg:p-8 scroll-snap-align-start hover:bg-black/80 hover:border-blue-400/30 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 group relative overflow-hidden transform-gpu ${
+                    ''
+                  }`}
+                  style={{ 
+                    animationDelay: `${index * 200}ms`,
+                    transformStyle: 'preserve-3d',
+                    transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.320, 1)'
+                  }}
+                  onMouseEnter={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect()
+                    const centerX = rect.left + rect.width / 2
+                    const centerY = rect.top + rect.height / 2
+                    const mouseX = e.clientX - centerX
+                    const mouseY = e.clientY - centerY
+                    const rotateX = (mouseY / rect.height) * -15
+                    const rotateY = (mouseX / rect.width) * 15
+                    e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(15px) scale(1.02)`
+                  }}
+                  onMouseMove={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect()
+                    const centerX = rect.left + rect.width / 2
+                    const centerY = rect.top + rect.height / 2
+                    const mouseX = e.clientX - centerX
+                    const mouseY = e.clientY - centerY
+                    const rotateX = (mouseY / rect.height) * -15
+                    const rotateY = (mouseX / rect.width) * 15
+                    e.currentTarget.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(15px) scale(1.02)`
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)'
+                  }}
+                >
                   {/* Animated background gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
                   
@@ -1632,8 +1521,7 @@ export default function LandingPage() {
                       />
                     ))}
                   </div>
-                  </TiltCard>
-                </FlipIn>
+                </div>
               ))}
             </div>
 
@@ -1654,36 +1542,32 @@ export default function LandingPage() {
       </section>
 
       {/* Integrations Section */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-        {/* Flow Field Background */}
-        <div className="absolute inset-0">
-          <FlowField
-            particleCount={300}
-            color="#8b5cf6"
-            noiseScale={0.005}
-            speed={0.001}
-            className="opacity-20"
-          />
-        </div>
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="py-16 sm:py-24 lg:py-32 px-4">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
-            <FadeInUp>
-              <ParallaxText 
-                baseVelocity={5}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8"
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8">
+              Seamless{' '}
+              <span 
+                className="bg-clip-text text-transparent "
+                style={{
+                  backgroundImage: `linear-gradient(${gradientOffset}deg, 
+                    hsl(${(gradientOffset + 220) % 360}, 70%, 60%), 
+                    hsl(${(gradientOffset + 280) % 360}, 80%, 65%), 
+                    hsl(${(gradientOffset + 340) % 360}, 85%, 70%), 
+                    hsl(${(gradientOffset + 40) % 360}, 75%, 65%))`,
+                  backgroundSize: '300% 300%',
+                  animation: `gradient-shift 3s ease-in-out infinite`
+                }}
               >
-                Seamless Integrations
-              </ParallaxText>
-            </FadeInUp>
-            <FadeInUp delay={0.2}>
-              <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
-                Connect with your favorite tools and platforms to supercharge your workflow
-              </p>
-            </FadeInUp>
+                Integrations
+              </span>
+            </h2>
+            <p className="text-lg sm:text-xl lg:text-2xl text-white/70 max-w-4xl mx-auto px-4">
+              Connect with your favorite tools and platforms to supercharge your workflow
+            </p>
           </div>
 
           {/* Orbital Animation Container */}
-          <ScaleIn delay={0.5}>
           <div className="relative flex items-center justify-center min-h-[500px] sm:min-h-[600px] lg:min-h-[800px]" style={{ perspective: '1000px' }}>
             {/* Central TrueFlow Infinity Symbol */}
             <div className="absolute z-10">
@@ -1883,66 +1767,32 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-          </ScaleIn>
         </div>
       </section>
 
 
 
       {/* CTA Section */}
-      <section className="py-16 sm:py-24 lg:py-32 px-4 relative overflow-hidden">
-        {/* Geometric Background for Pricing */}
-        <div className="absolute inset-0">
-          <GeometricBackground
-            shapes={['hexagon', 'triangle', 'circle']}
-            colors={['#f59e0b', '#ef4444', '#10b981']}
-            particleCount={30}
-            speed={0.0005}
-            className="opacity-10"
-          />
-        </div>
-        <div className="max-w-6xl mx-auto relative z-10">
+      <section className="py-16 sm:py-24 lg:py-32 px-4">
+        <div className="max-w-6xl mx-auto">
           {/* Pricing Section Header */}
           <div className="text-center mb-12 sm:mb-16">
-            <TextReveal text="Simple, Transparent Pricing" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" delay={0} />
-            <FadeInUp delay={0.4}>
-              <p className="text-lg sm:text-xl text-white/80">
-                Choose the plan that fits your business needs
-              </p>
-            </FadeInUp>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              Simple, Transparent Pricing
+            </h2>
+            <p className="text-lg sm:text-xl text-white/80">
+              Choose the plan that fits your business needs
+            </p>
           </div>
 
               {/* Pricing Options */}
-              <DepthCards
-                className="mb-12 max-w-6xl mx-auto"
-                ref={pricingRef}
-                gap={32}
-                perspective={1000}
-                cardClassName="w-full"
-              >
+              <div ref={pricingRef} className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
                 {/* Plan 1: Content Engine Only */}
-                <BorderBeam className="" duration={4} borderWidth={2} colorFrom="#6B7280" colorTo="#9CA3AF">
                 <div className="relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu bg-white/5 border-white/20 hover:bg-white/10">
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-white mb-2">Content Engine</h3>
                     <div className="flex items-center justify-center space-x-1 mb-4">
-                      <span className="text-4xl font-bold text-white">
-                        <AnimatedNumber
-                          to={150}
-                          prefix="$"
-                          variant="particle"
-                          scrollTrigger={true}
-                          duration={2000}
-                          easing={easings.easeOutExpo}
-                          particleConfig={{
-                            colors: ['#6B7280', '#9CA3AF', '#D1D5DB'],
-                            count: 12,
-                            spread: 30,
-                            fadeOut: true
-                          }}
-                          className="inline-block"
-                        />
-                      </span>
+                      <span className="text-4xl font-bold text-white">$150</span>
                       <span className="text-white/70">/week</span>
                     </div>
                     <p className="text-white/70">Access to our powerful AI content creation system</p>
@@ -1965,17 +1815,13 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <ShimmerButton 
-                    className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group"
-                    onClick={handleCTAClick}
-                  >
-                    <Link href="https://trueflow.ai/readiness-assessment" className="relative z-10">Get Started</Link>
-                  </ShimmerButton>
+                  <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group">
+                    <span className="relative z-10">Get Started</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                  </Link>
                 </div>
-                </BorderBeam>
 
                 {/* Plan 2: Complete System with CRM */}
-                <BorderBeam className="" duration={3} borderWidth={3} colorFrom="#3b82f6" colorTo="#8b5cf6">
                 <div className="relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-blue-500 scale-105 ring-2 ring-purple-500">
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
@@ -1986,24 +1832,7 @@ export default function LandingPage() {
                   <div className="text-center mb-6">
                     <h3 className="text-2xl font-bold text-white mb-2">Complete System</h3>
                     <div className="flex items-center justify-center space-x-1 mb-4">
-                      <span className="text-4xl font-bold text-white">
-                        <AnimatedNumber
-                          to={300}
-                          prefix="$"
-                          variant="particle"
-                          scrollTrigger={true}
-                          duration={2200}
-                          easing={easings.easeOutExpo}
-                          particleConfig={{
-                            colors: ['#3B82F6', '#8B5CF6', '#EC4899'],
-                            count: 20,
-                            spread: 50,
-                            fadeOut: true,
-                            gravity: 0.3
-                          }}
-                          className="inline-block"
-                        />
-                      </span>
+                      <span className="text-4xl font-bold text-white">$300</span>
                       <span className="text-white/70">/week</span>
                     </div>
                     <p className="text-white/70">Everything in Content Engine plus full CRM</p>
@@ -2027,18 +1856,13 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <ShimmerButton 
-                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group" 
-                    shimmerColor="rgba(255, 255, 255, 0.7)"
-                    onClick={handleCTAClick}
-                  >
-                    <Link href="https://trueflow.ai/readiness-assessment" className="relative z-10">Get Complete System</Link>
-                  </ShimmerButton>
+                  <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group">
+                    <span className="relative z-10">Get Complete System</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                  </Link>
                 </div>
-                </BorderBeam>
 
                 {/* Plan 3: Custom Enterprise */}
-                <BorderBeam className="" duration={5} borderWidth={2} colorFrom="#8b5cf6" colorTo="#ec4899">
                 <div className="relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu bg-white/5 border-white/20 hover:bg-white/10">
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span className="bg-purple-500/20 text-purple-400 px-4 py-1 rounded-full text-sm font-semibold border border-purple-500/30">
@@ -2073,17 +1897,15 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <ShimmerButton className="w-full py-3 px-6 rounded-lg font-semibold transition-all bg-white/10 text-white hover:bg-white/20 border border-white/20 block text-center" shimmerColor="rgba(139, 92, 246, 0.5)">
-                    <a href="mailto:matt@trueflow.ai">Contact Sales</a>
-                  </ShimmerButton>
+                  <a href="mailto:matt@trueflow.ai" className="w-full py-3 px-6 rounded-lg font-semibold transition-all bg-white/10 text-white hover:bg-white/20 border border-white/20 block text-center">
+                    Contact Sales
+                  </a>
                 </div>
-                </BorderBeam>
-              </DepthCards>
+              </div>
         </div>
       </section>
 
       {/* Footer */}
-      <FadeInUp delay={0}>
       <footer className="py-12 sm:py-16 px-4 bg-black/80 border-t border-white/10 backdrop-blur-md">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
@@ -2145,22 +1967,19 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
-      </FadeInUp>
 
 
       {/* Scroll to Top Button */}
       {scrollY > 500 && (
         <div className="fixed bottom-8 left-8 z-50">
-          <RippleEffect color="rgba(59, 130, 246, 0.5)" className="rounded-full">
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="bg-black/50 backdrop-blur-md text-white p-3 rounded-full shadow-lg hover:bg-black/70 transition-all duration-300 hover:scale-110 animate-float-up-down border border-white/20"
-            >
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-            </button>
-          </RippleEffect>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="bg-black/50 backdrop-blur-md text-white p-3 rounded-full shadow-lg hover:bg-black/70 transition-all duration-300 hover:scale-110 animate-float-up-down border border-white/20"
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+          </button>
         </div>
       )}
     </div>
