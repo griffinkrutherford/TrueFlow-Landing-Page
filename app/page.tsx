@@ -658,7 +658,7 @@ export default function LandingPage() {
               <a href="#how-it-works" className="text-white/70 hover:text-white transition-colors text-lg">How it Works</a>
               <a href="#testimonials" className="text-white/70 hover:text-white transition-colors text-lg">Success Stories</a>
               <Link href="/faq" className="text-white/70 hover:text-white transition-colors text-lg">FAQs</Link>
-              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
                 Get Started
               </Link>
             </div>
@@ -683,7 +683,7 @@ export default function LandingPage() {
               <a href="#how-it-works" className="block text-white/70 hover:text-white transition-colors text-lg">How it Works</a>
               <a href="#testimonials" className="block text-white/70 hover:text-white transition-colors text-lg">Success Stories</a>
               <Link href="/faq" className="block text-white/70 hover:text-white transition-colors text-lg">FAQs</Link>
-              <Link href="https://trueflow.ai/readiness-assessment" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold block text-center">
+              <Link href="/readiness-assessment" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold block text-center">
                 Get Started
               </Link>
             </div>
@@ -717,7 +717,7 @@ export default function LandingPage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 px-4">
               <Link 
-                href="https://trueflow.ai/readiness-assessment" 
+                href="/readiness-assessment" 
                 className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full text-lg sm:text-xl font-semibold hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-2 sm:space-x-3 relative overflow-hidden group w-full sm:w-auto justify-center"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -1815,7 +1815,7 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group">
+                  <Link href="/readiness-assessment" className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-full font-bold hover:from-gray-700 hover:to-gray-800 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-gray-500 text-lg relative overflow-hidden group">
                     <span className="relative z-10">Get Started</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                   </Link>
@@ -1856,7 +1856,7 @@ export default function LandingPage() {
                     ))}
                   </div>
 
-                  <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group">
+                  <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold hover:from-blue-700 hover:to-purple-700 hover:shadow-xl hover:scale-105 transition-all duration-300 w-full block text-center border-2 border-blue-500 text-lg relative overflow-hidden group">
                     <span className="relative z-10">Get Complete System</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent transform translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
                   </Link>
@@ -1949,7 +1949,7 @@ export default function LandingPage() {
             
             {/* CTA */}
             <div>
-              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 inline-block text-center">
+              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 inline-block text-center">
                 Get Started
               </Link>
             </div>

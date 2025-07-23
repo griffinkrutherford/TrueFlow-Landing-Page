@@ -432,7 +432,7 @@ export default function ContentEnginePage() {
               <Link href="/" className="text-white/70 hover:text-white transition-colors text-lg">
                 Back to Home
               </Link>
-              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
                 Get Started
               </Link>
             </div>
@@ -480,7 +480,7 @@ export default function ContentEnginePage() {
           <div className={`flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8 transition-all duration-1000 ${
             ''
           }`}>
-            <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-3 relative overflow-hidden group">
+            <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center space-x-3 relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <span className="relative z-10">Try It Now</span>
               <ChevronRight className="h-6 w-6 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
@@ -1250,7 +1250,7 @@ export default function ContentEnginePage() {
             <div className={`flex flex-col sm:flex-row items-center justify-center space-y-6 sm:space-y-0 sm:space-x-8 relative z-10 transition-all duration-1000 ${
               ''
             }`}>
-              <Link href="https://trueflow.ai/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:scale-110 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden group/btn">
+              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:scale-110 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 relative overflow-hidden group/btn">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-700 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative z-10">Start Creating Now</span>
               </Link>
@@ -1297,7 +1297,7 @@ export default function ContentEnginePage() {
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <div className="space-y-2">
                 <Link href="/content-engine" className="block text-white/70 hover:text-white transition-colors">Content Engine</Link>
-                <Link href="https://trueflow.ai/readiness-assessment" className="block text-white/70 hover:text-white transition-colors">Get Started</Link>
+                <Link href="/readiness-assessment" className="block text-white/70 hover:text-white transition-colors">Get Started</Link>
                 <Link href="/faq" className="block text-white/70 hover:text-white transition-colors">FAQs</Link>
               </div>
             </div>
