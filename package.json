@@ -4,14 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3001",
+    "dev:start": "npm run dev:status || npm run dev",
+    "dev:daemon": "nohup npm run dev > dev-server.log 2>&1 & echo $! > .pidfile && echo 'Server started in background with PID: '$(cat .pidfile)",
+    "dev:stop": "[ -f .pidfile ] && kill $(cat .pidfile) && rm .pidfile && echo 'Server stopped' || echo 'No server running'",
+    "dev:restart": "npm run dev:stop && sleep 2 && npm run dev:start",
+    "dev:status": "[ -f .pidfile ] && ps -p $(cat .pidfile) > /dev/null 2>&1 && echo 'Server running (PID: '$(cat .pidfile)')' || echo 'No server running'",
+    "dev:logs": "[ -f dev-server.log ] && tail -f dev-server.log || echo 'No log file found'",
+    "dev:logs:tail": "[ -f dev-server.log ] && tail -n 100 dev-server.log || echo 'No log file found'",
+    "dev:clean": "pkill -f 'next.*3001' 2>/dev/null || true && rm -f .pidfile && echo 'Cleaned up processes'",
+    "dev:check-port": "lsof -i :3001 || echo 'Port 3001 is free'",
+    "dev:kill-port": "lsof -ti:3001 | xargs kill -9 2>/dev/null || echo 'Port 3001 already free'",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate:env": "node -e \"const e=require('fs').readFileSync('.env.local','utf8'); if(e.includes('your_')) {console.error('⚠️  WARNING: Placeholder values found in .env.local'); process.exit(1);} else {console.log('✅ Environment variables validated');}\""
   },
   "dependencies": {
     "framer-motion": "^12.23.6",
     "lucide-react": "^0.263.1",
-    "next": "14.1.4",
+    "next": "^14.2.30",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-intersection-observer": "^9.16.0",
