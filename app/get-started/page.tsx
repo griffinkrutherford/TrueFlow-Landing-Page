@@ -28,7 +28,8 @@ import {
   Download,
   Upload,
   Settings,
-  Sparkles
+  Sparkles,
+  HelpCircle
 } from 'lucide-react'
 
 interface BusinessType {
@@ -502,7 +503,9 @@ export default function GetStartedPage() {
       const businessType = businessTypes.find(type => type.id === selectedBusinessType)?.title || selectedBusinessType
       
       // Get the plan name from the selected ID
-      const planName = plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
+      const planName = selectedPlan === 'not-sure' 
+        ? 'Not Sure' 
+        : plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
 
       // Split full name into first and last
       const [firstName, ...lastNameParts] = formData.fullName.trim().split(' ')
@@ -979,7 +982,7 @@ export default function GetStartedPage() {
               </p>
 
               {/* Recommendation Banner */}
-              {(() => {
+              {selectedPlan !== 'not-sure' && (() => {
                 const recommendation = getRecommendedTier()
                 const recommendedPlan = plans.find(p => p.id === recommendation.id)
                 return (
@@ -1106,14 +1109,34 @@ export default function GetStartedPage() {
                 })}
               </div>
 
+              {/* Not Sure Option - Separate button below main options */}
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => setSelectedPlan('not-sure')}
+                  className={`inline-flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                    selectedPlan === 'not-sure'
+                      ? 'bg-white/20 text-white border-2 border-white/40'
+                      : 'bg-white/10 text-white/70 border border-white/20 hover:bg-white/15 hover:text-white/90'
+                  }`}
+                >
+                  <HelpCircle className="h-4 w-4" />
+                  <span>Not sure which plan is right for me</span>
+                </button>
+                {selectedPlan === 'not-sure' && (
+                  <p className="text-white/60 text-sm mt-2">
+                    No problem! We'll help you find the perfect plan after you submit.
+                  </p>
+                )}
+              </div>
+
               {submitError && (
-                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 max-w-2xl mx-auto">
+                <div className="mb-6 mt-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 max-w-2xl mx-auto">
                   <p className="font-semibold">Error submitting form:</p>
                   <p>{submitError}</p>
                 </div>
               )}
 
-              <div className="flex items-center justify-center space-x-4">
+              <div className="flex items-center justify-center space-x-4 mt-8">
                 <button
                   onClick={prevStep}
                   disabled={isSubmitting}
