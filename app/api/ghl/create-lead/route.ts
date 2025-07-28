@@ -64,12 +64,16 @@ export async function POST(request: Request) {
         })
       } catch (emailError) {
         console.error('[API] Email notification failed:', emailError)
-        // Return error to help debug
+        console.log('[API] Lead data saved to logs:', JSON.stringify(data, null, 2))
+        
+        // Still return success to prevent form error
+        // The lead data is logged and can be retrieved from Railway logs
         return NextResponse.json({ 
-          success: false, 
-          message: 'Failed to send notification',
-          error: process.env.NODE_ENV === 'development' ? (emailError as Error).message : 'Email service error'
-        }, { status: 500 })
+          success: true, 
+          message: 'Assessment submitted successfully',
+          warning: 'Email notification pending, but your submission has been received.',
+          leadId: `log-${Date.now()}`
+        })
       }
     }
 
@@ -192,14 +196,10 @@ export async function POST(request: Request) {
 async function sendEmailNotification(data: AssessmentData) {
   console.log('[Email] Starting email notification process')
   
-  if (!process.env.RESEND_API_KEY) {
-    console.error('[Email] ERROR: Resend API key not configured')
-    throw new Error('Email service not configured')
-  }
-
-  if (process.env.RESEND_API_KEY === 'your_resend_api_key_here') {
-    console.error('[Email] ERROR: Resend API key is still a placeholder')
-    throw new Error('Email service not properly configured')
+  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('your_')) {
+    console.error('[Email] ERROR: Resend API key not configured or is placeholder')
+    console.log('[Email] Resend API key status:', process.env.RESEND_API_KEY ? 'Set but invalid' : 'Not set')
+    throw new Error('Email service not configured - please set RESEND_API_KEY in Railway')
   }
 
   console.log('[Email] Loading Resend library...')
