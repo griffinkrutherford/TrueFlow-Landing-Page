@@ -6,7 +6,7 @@ export const authors: Record<string, Author> = {
     name: 'Griffin Rutherford',
     role: 'Lead AI Implementation Engineer',
     avatar: '/avatars/griffin-rutherford.jpg',
-    bio: 'Recent MS graduate from Colorado School of Mines who believes technology should enhance life, not consume it. When not coding at TrueFlow, you\'ll find Griffin trail running in the Rockies, bodybuilding, or hosting the Malestrum podcast where he explores human potential. Founded Coherascent to promote holistic well-being. Brings a balanced perspective to tech implementation, ensuring solutions truly serve people.'
+    bio: 'Recent Master of Science graduate from Colorado School of Mines who believes technology should enhance life, not consume it. When not coding at TrueFlow, you\'ll find Griffin trail running in the Rockies, bodybuilding, or hosting the Malestrum podcast where he explores healthy masculinity and human potential. Founded Coherascent to promote holistic well-being. Brings a balanced perspective to tech implementation, ensuring solutions truly serve people.'
   },
   'matt-gallo': {
     name: 'Matt Gallo',
