@@ -9,7 +9,6 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
-  ArrowLeft,
   ArrowRight,
   ChevronRight,
   Check,
@@ -72,13 +71,19 @@ export default function GetStartedPage() {
   const [selectedBusinessType, setSelectedBusinessType] = useState<string>('')
   const [selectedPlan, setSelectedPlan] = useState<string>('')
   const [formData, setFormData] = useState({
-    businessName: '',
+    fullName: '',
     email: '',
-    firstName: '',
-    lastName: '',
+    phone: '',
+    businessName: '',
     contentGoals: [] as string[],
     integrations: [] as string[]
   })
+  const [validationErrors, setValidationErrors] = useState({
+    fullName: '',
+    email: '',
+    phone: ''
+  })
+  const [partialLeadSent, setPartialLeadSent] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [particles, setParticles] = useState<Particle[]>([])
@@ -219,36 +224,36 @@ export default function GetStartedPage() {
 
   const plans: Plan[] = [
     {
-      id: 'trial',
-      name: '14-Day Free Trial',
-      price: '$0',
-      period: 'then $150/week',
-      description: 'Risk-free trial of our full content creation service',
+      id: 'content-engine',
+      name: 'Content Engine',
+      price: '$150',
+      period: '/week',
+      description: 'Access to our powerful AI content creation system',
       features: [
-        'Complete content dashboard setup',
-        'SEO-optimized blog posts from your ideas',
-        'Daily email sequences',
-        'Branded social media posts',
-        'You don\'t pay until it works',
-        'Full onboarding & training',
-        'Direct access to content team'
+        'AI-powered content creation',
+        'Transform voice to content',
+        'SEO-optimized blog posts',
+        'Email sequences',
+        'Social media posts',
+        'Content dashboard access',
+        'Basic analytics'
       ]
     },
     {
-      id: 'standard',
-      name: 'Done-For-You Content',
-      price: '$150',
+      id: 'complete-system',
+      name: 'Complete System',
+      price: '$300',
       period: '/week',
-      description: 'We turn your raw ideas into professional content',
+      description: 'Everything in Content Engine plus full CRM',
       features: [
-        'Transform voice recordings into content',
-        'SEO blogs, emails & social posts',
-        'Complete content calendar management',
-        'Branded design & messaging',
-        'Weekly niche question brain dumps',
-        'Content dashboard & analytics',
-        'Dedicated content strategist',
-        'Rate increases to $300/week after 13 weeks'
+        'Everything in Content Engine',
+        'Full CRM system',
+        'Lead capture & tracking',
+        'Automated follow-ups',
+        'Sales pipeline management',
+        'Customer communication hub',
+        'Advanced analytics & reporting',
+        'Dedicated success manager'
       ],
       popular: true
     },
@@ -289,8 +294,101 @@ export default function GetStartedPage() {
     { id: 'zapier', label: 'Zapier', icon: <Zap className="h-5 w-5" /> }
   ]
 
-  const nextStep = () => {
-    if (currentStep < 5) {
+  // Validation functions
+  const validateName = (name: string): string => {
+    if (!name.trim()) return 'Name is required'
+    if (/\d/.test(name)) return 'Name cannot contain numbers'
+    if (!/^[a-zA-Z\s\-']+$/.test(name)) return 'Name can only contain letters, spaces, hyphens, and apostrophes'
+    return ''
+  }
+
+  const validateEmail = (email: string): string => {
+    if (!email.trim()) return 'Email is required'
+    if (!email.includes('@')) return 'Email must contain @ symbol'
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) return 'Please enter a valid email address'
+    return ''
+  }
+
+  const validatePhone = (phone: string): string => {
+    if (!phone.trim()) return 'Phone number is required'
+    const digitsOnly = phone.replace(/\D/g, '')
+    if (digitsOnly.length !== 10) return 'Phone number must be 10 digits'
+    return ''
+  }
+
+  // Format phone number as user types
+  const formatPhoneNumber = (value: string): string => {
+    const digitsOnly = value.replace(/\D/g, '')
+    if (digitsOnly.length <= 3) return digitsOnly
+    if (digitsOnly.length <= 6) return `(${digitsOnly.slice(0, 3)}) ${digitsOnly.slice(3)}`
+    return `(${digitsOnly.slice(0, 3)}) ${digitsOnly.slice(3, 6)}-${digitsOnly.slice(6, 10)}`
+  }
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, '')
+    if (digitsOnly.length <= 10) {
+      const formatted = formatPhoneNumber(digitsOnly)
+      setFormData(prev => ({ ...prev, phone: formatted }))
+      setValidationErrors(prev => ({ ...prev, phone: validatePhone(formatted) }))
+    }
+  }
+
+  const sendPartialLead = async () => {
+    try {
+      const [firstName, ...lastNameParts] = formData.fullName.trim().split(' ')
+      const lastName = lastNameParts.join(' ') || ''
+      
+      const partialLeadData = {
+        firstName,
+        lastName,
+        email: formData.email,
+        phone: formData.phone,
+        timestamp: new Date().toISOString(),
+        isPartialLead: true
+      }
+
+      const response = await fetch('/api/partial-lead-notification', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(partialLeadData)
+      })
+
+      if (response.ok) {
+        setPartialLeadSent(true)
+        console.log('Partial lead notification sent successfully')
+      }
+    } catch (error) {
+      console.error('Error sending partial lead:', error)
+    }
+  }
+
+  const nextStep = async () => {
+    // Validate contact info on step 1
+    if (currentStep === 1) {
+      const nameError = validateName(formData.fullName)
+      const emailError = validateEmail(formData.email)
+      const phoneError = validatePhone(formData.phone)
+      
+      setValidationErrors({
+        fullName: nameError,
+        email: emailError,
+        phone: phoneError
+      })
+      
+      if (nameError || emailError || phoneError) {
+        return
+      }
+      
+      // Send partial lead notification when moving from step 1 to step 2
+      if (!partialLeadSent) {
+        await sendPartialLead()
+      }
+    }
+    
+    if (currentStep < 6) {
       setCurrentStep(currentStep + 1)
     }
   }
@@ -319,6 +417,80 @@ export default function GetStartedPage() {
     }))
   }
 
+  // Function to determine recommended tier based on user inputs
+  const getRecommendedTier = () => {
+    const contentGoalCount = formData.contentGoals.length
+    const businessType = selectedBusinessType
+    const hasIntegrations = formData.integrations.length > 0
+    const needsCRM = formData.contentGoals.includes('sales') || formData.contentGoals.includes('support')
+    const needsEmailMarketing = formData.contentGoals.includes('newsletters')
+    const needsSocialMedia = formData.contentGoals.includes('social')
+    
+    // Custom enterprise for agencies and large-scale operations
+    if (businessType === 'agency' || contentGoalCount >= 5) {
+      return {
+        id: 'custom',
+        reason: 'Based on your agency needs and multiple content types, our Custom Enterprise plan offers the scalability and white-label solutions you need.',
+        confidence: 'high',
+        alternativeReason: 'Perfect for managing multiple clients and brands with dedicated support.'
+      }
+    }
+    
+    // Complete System for businesses needing CRM + content
+    if (
+      (businessType === 'business' || businessType === 'coach') && 
+      (contentGoalCount >= 3 || needsCRM || hasIntegrations)
+    ) {
+      return {
+        id: 'complete-system',
+        reason: 'Your business would benefit from our Complete System with integrated CRM to manage leads and customer relationships alongside content creation.',
+        confidence: 'high',
+        alternativeReason: `Ideal for ${businessType === 'coach' ? 'managing client relationships' : 'growing your business'} with automated follow-ups and sales pipeline.`
+      }
+    }
+    
+    // Content Engine for creators and podcasters focused on content
+    if (
+      (businessType === 'creator' || businessType === 'podcaster') && 
+      contentGoalCount <= 3 &&
+      !needsCRM
+    ) {
+      return {
+        id: 'content-engine',
+        reason: 'The Content Engine is perfect for transforming your creative ideas into professional content across multiple channels.',
+        confidence: 'high',
+        alternativeReason: businessType === 'podcaster' ? 'Transform episodes into SEO blogs and grow your audience.' : 'Focus on content creation without the complexity of CRM features.'
+      }
+    }
+    
+    // Special case: Other professionals with specific needs
+    if (businessType === 'other') {
+      if (needsCRM || hasIntegrations || contentGoalCount >= 4) {
+        return {
+          id: 'complete-system',
+          reason: 'Based on your content goals and integration needs, the Complete System offers the most flexibility.',
+          confidence: 'medium',
+          alternativeReason: 'Provides both content creation and customer management capabilities.'
+        }
+      } else {
+        return {
+          id: 'content-engine',
+          reason: 'The Content Engine provides a focused solution for your content creation needs.',
+          confidence: 'medium',
+          alternativeReason: 'Start with content creation and upgrade later if you need CRM features.'
+        }
+      }
+    }
+    
+    // Default recommendation: Complete System for comprehensive needs
+    return {
+      id: 'complete-system',
+      reason: 'Our Complete System provides the most comprehensive solution for growing your business with both content creation and customer management tools.',
+      confidence: 'medium',
+      alternativeReason: 'Covers all bases with content creation, lead management, and automation features.'
+    }
+  }
+
   const submitLead = async () => {
     try {
       // Get the business type name from the selected ID
@@ -327,11 +499,16 @@ export default function GetStartedPage() {
       // Get the plan name from the selected ID
       const planName = plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
 
+      // Split full name into first and last
+      const [firstName, ...lastNameParts] = formData.fullName.trim().split(' ')
+      const lastName = lastNameParts.join(' ') || ''
+
       // Prepare the lead data
       const leadData = {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+        firstName,
+        lastName,
         email: formData.email,
+        phone: formData.phone,
         businessName: formData.businessName,
         businessType: businessType,
         selectedPlan: planName,
@@ -340,8 +517,8 @@ export default function GetStartedPage() {
         timestamp: new Date().toISOString()
       }
 
-      // Send lead notification to Griffin and Matt
-      const response = await fetch('/api/lead-notification', {
+      // Send lead notification to Griffin and Matt using the get-started specific endpoint
+      const response = await fetch('/api/get-started-notification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -356,14 +533,14 @@ export default function GetStartedPage() {
       const result = await response.json()
       console.log('Lead notification sent successfully:', result)
       
-      // Continue to step 5 (success page)
-      nextStep()
+      // Continue to step 6 (success page)
+      setCurrentStep(6)
       
     } catch (error) {
       console.error('Error submitting lead:', error)
       // Still proceed to success page even if notification fails
       // You might want to show a different message or retry logic here
-      nextStep()
+      setCurrentStep(6)
     }
   }
 
@@ -461,15 +638,19 @@ export default function GetStartedPage() {
                 src="/true-flow-logo.webp" 
                 alt="TrueFlow" 
                 width={280} 
-                height={84} 
-                className="h-20 w-auto transform hover:scale-105 transition-transform"
+                height={70} 
+                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto transform hover:scale-105 transition-transform"
                 priority
+                style={{ 
+                  maxWidth: '100%',
+                  objectFit: 'contain'
+                }}
               />
             </Link>
 
             <div className="flex items-center space-x-4">
-              <Link href="/" className="text-white/70 hover:text-white transition-colors text-lg">
-                <ArrowLeft className="h-6 w-6" />
+              <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
+                Back to Home
               </Link>
             </div>
           </div>
@@ -496,8 +677,85 @@ export default function GetStartedPage() {
       <main className="pt-48 pb-20 px-4">
         <div className="max-w-4xl mx-auto">
           
-          {/* Step 1: Business Type Selection */}
+          {/* Step 1: Contact Information */}
           {currentStep === 1 && (
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Let's get started
+              </h1>
+              <p className="text-xl text-white/70 mb-12 max-w-2xl mx-auto">
+                Enter your contact information to begin your TrueFlow journey
+              </p>
+
+              <div className="max-w-2xl mx-auto space-y-6 mb-12">
+                <div>
+                  <label className="block text-left text-white/80 mb-2">Full Name</label>
+                  <input
+                    type="text"
+                    value={formData.fullName}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setFormData(prev => ({ ...prev, fullName: value }))
+                      setValidationErrors(prev => ({ ...prev, fullName: validateName(value) }))
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
+                    placeholder="Enter your full name"
+                  />
+                  {validationErrors.fullName && (
+                    <p className="text-red-400 text-sm text-left mt-1">{validationErrors.fullName}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-left text-white/80 mb-2">Business Email</label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => {
+                      const value = e.target.value
+                      setFormData(prev => ({ ...prev, email: value }))
+                      setValidationErrors(prev => ({ ...prev, email: validateEmail(value) }))
+                    }}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
+                    placeholder="Enter your business email"
+                  />
+                  {validationErrors.email && (
+                    <p className="text-red-400 text-sm text-left mt-1">{validationErrors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label className="block text-left text-white/80 mb-2">Phone Number</label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handlePhoneChange}
+                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
+                    placeholder="(123) 456-7890"
+                  />
+                  {validationErrors.phone && (
+                    <p className="text-red-400 text-sm text-left mt-1">{validationErrors.phone}</p>
+                  )}
+                </div>
+              </div>
+
+              <button
+                onClick={nextStep}
+                disabled={!formData.fullName || !formData.email || !formData.phone}
+                className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 mx-auto ${
+                  formData.fullName && formData.email && formData.phone
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90'
+                    : 'bg-white/10 text-white/50 cursor-not-allowed'
+                }`}
+              >
+                <span>Continue</span>
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </div>
+          )}
+
+          {/* Step 2: Business Type Selection */}
+          {currentStep === 2 && (
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Tell us about yourself
@@ -582,8 +840,8 @@ export default function GetStartedPage() {
             </div>
           )}
 
-          {/* Step 2: Business Information */}
-          {currentStep === 2 && (
+          {/* Step 3: Business Details */}
+          {currentStep === 3 && (
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Tell us about your business
@@ -593,29 +851,6 @@ export default function GetStartedPage() {
               </p>
 
               <div className="max-w-2xl mx-auto space-y-6 mb-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-left text-white/80 mb-2">First Name</label>
-                    <input
-                      type="text"
-                      value={formData.firstName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
-                      placeholder="Enter your first name"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-left text-white/80 mb-2">Last Name</label>
-                    <input
-                      type="text"
-                      value={formData.lastName}
-                      onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
-                      placeholder="Enter your last name"
-                    />
-                  </div>
-                </div>
-
                 <div>
                   <label className="block text-left text-white/80 mb-2">Business Name</label>
                   <input
@@ -624,17 +859,6 @@ export default function GetStartedPage() {
                     onChange={(e) => setFormData(prev => ({ ...prev, businessName: e.target.value }))}
                     className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
                     placeholder="Enter your business name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-left text-white/80 mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-white/50 focus:border-blue-500 focus:outline-none transition-colors"
-                    placeholder="Enter your email address"
                   />
                 </div>
               </div>
@@ -648,9 +872,9 @@ export default function GetStartedPage() {
                 </button>
                 <button
                   onClick={nextStep}
-                  disabled={!formData.firstName || !formData.lastName || !formData.businessName || !formData.email}
+                  disabled={!formData.businessName}
                   className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
-                    formData.firstName && formData.lastName && formData.businessName && formData.email
+                    formData.businessName
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90'
                       : 'bg-white/10 text-white/50 cursor-not-allowed'
                   }`}
@@ -662,8 +886,8 @@ export default function GetStartedPage() {
             </div>
           )}
 
-          {/* Step 3: Content Goals */}
-          {currentStep === 3 && (
+          {/* Step 4: Content Goals */}
+          {currentStep === 4 && (
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 What content do you want to create?
@@ -719,8 +943,8 @@ export default function GetStartedPage() {
             </div>
           )}
 
-          {/* Step 4: Plan Selection */}
-          {currentStep === 4 && (
+          {/* Step 5: Plan Selection */}
+          {currentStep === 5 && (
             <div className="text-center">
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Choose your plan
@@ -729,15 +953,54 @@ export default function GetStartedPage() {
                 Select the plan that best fits your content creation needs
               </p>
 
+              {/* Recommendation Banner */}
+              {(() => {
+                const recommendation = getRecommendedTier()
+                const recommendedPlan = plans.find(p => p.id === recommendation.id)
+                return (
+                  <div className="mb-12 max-w-4xl mx-auto">
+                    <div className="bg-gradient-to-r from-blue-500/10 to-purple-600/10 border border-blue-500/30 rounded-2xl p-6">
+                      <div className="flex items-center justify-center mb-3">
+                        <Sparkles className="h-6 w-6 text-blue-400 mr-2" />
+                        <h3 className="text-lg font-semibold text-white">Recommended for You</h3>
+                      </div>
+                      <p className="text-white/80 mb-2">
+                        {recommendation.reason}
+                      </p>
+                      {recommendation.alternativeReason && (
+                        <p className="text-white/70 text-sm mb-3">
+                          {recommendation.alternativeReason}
+                        </p>
+                      )}
+                      <div className="flex items-center justify-center space-x-3">
+                        <p className="text-blue-400 font-semibold">
+                          We recommend: {recommendedPlan?.name}
+                        </p>
+                        {recommendation.confidence === 'high' && (
+                          <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs font-medium">
+                            Best Match
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )
+              })()}
+
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-                {plans.map((plan) => (
-                  <div
-                    key={plan.id}
-                    className={`relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu ${
-                      selectedPlan === plan.id
-                        ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-blue-500 scale-105'
-                        : 'bg-white/5 border-white/20 hover:bg-white/10'
-                    } ${plan.popular ? 'ring-2 ring-purple-500' : ''}`}
+                {plans.map((plan) => {
+                  const recommendation = getRecommendedTier()
+                  const isRecommended = plan.id === recommendation.id
+                  return (
+                    <div
+                      key={plan.id}
+                      className={`relative p-8 rounded-2xl border transition-all duration-500 cursor-pointer transform-gpu ${
+                        selectedPlan === plan.id
+                          ? 'bg-gradient-to-r from-blue-500/20 to-purple-600/20 border-blue-500 scale-105'
+                          : isRecommended
+                          ? 'bg-gradient-to-r from-blue-500/10 to-purple-600/10 border-blue-500/50 hover:border-blue-500'
+                          : 'bg-white/5 border-white/20 hover:bg-white/10'
+                      } ${plan.popular ? 'ring-2 ring-purple-500' : ''}`}
                     style={{
                       transformStyle: 'preserve-3d',
                       transition: 'transform 0.5s cubic-bezier(0.23, 1, 0.320, 1)'
@@ -776,6 +1039,15 @@ export default function GetStartedPage() {
                         </span>
                       </div>
                     )}
+                    
+                    {isRecommended && !plan.popular && (
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center">
+                          <Sparkles className="h-3 w-3 mr-1" />
+                          Recommended
+                        </span>
+                      </div>
+                    )}
 
                     <div className="text-center mb-6">
                       <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
@@ -805,7 +1077,8 @@ export default function GetStartedPage() {
                       </div>
                     )}
                   </div>
-                ))}
+                  )
+                })}
               </div>
 
               <div className="flex items-center justify-center space-x-4">
@@ -831,8 +1104,8 @@ export default function GetStartedPage() {
             </div>
           )}
 
-          {/* Step 5: Setup Complete */}
-          {currentStep === 5 && (
+          {/* Step 6: Setup Complete */}
+          {currentStep === 6 && (
             <div className="text-center">
               <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
                 <CheckCircle className="h-12 w-12 text-white" />

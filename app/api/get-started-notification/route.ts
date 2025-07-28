@@ -1,42 +1,25 @@
 /**
- * API endpoint for sending lead notification emails to Griffin and Matt
+ * API endpoint for sending getting started lead notification emails to Griffin and Matt
  */
 
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-interface AssessmentAnswer {
-  questionId: string
-  category: string
-  question: string
-  answer: string
-  score: number
-}
-
-interface LeadData {
+interface GetStartedLeadData {
   firstName: string
   lastName: string
   email: string
-  phone?: string
   businessName: string
   businessType: string
   selectedPlan: string
   contentGoals: string[]
   integrations: string[]
   timestamp: string
-  assessmentAnswers?: AssessmentAnswer[]
-  totalScore?: number
-  maxPossibleScore?: number
-  scorePercentage?: number
-  recommendation?: string
-  readinessLevel?: string
-  assessmentVersion?: string
-  source?: string
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const leadData: LeadData = await request.json()
+    const leadData: GetStartedLeadData = await request.json()
 
     // Validate required fields
     if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.businessName) {
@@ -46,43 +29,24 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Format the email content with comprehensive data
-    const readinessEmoji = leadData.scorePercentage && leadData.scorePercentage >= 75 ? '🟢' : 
-                           leadData.scorePercentage && leadData.scorePercentage >= 50 ? '🟡' : '🔴'
-    
-    const emailSubject = `🚀 New TrueFlow Lead: ${leadData.firstName} ${leadData.lastName} - ${leadData.businessName} ${readinessEmoji}`
+    // Format the email content
+    const emailSubject = `🚀 New TrueFlow Get Started Lead: ${leadData.firstName} ${leadData.lastName} - ${leadData.businessName}`
     
     const emailContent = `
-🎯 NEW TRUEFLOW AI READINESS ASSESSMENT LEAD
+🎯 NEW TRUEFLOW AI GET STARTED LEAD
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 👤 CONTACT INFORMATION:
 • Name: ${leadData.firstName} ${leadData.lastName}
 • Email: ${leadData.email}
-• Phone: ${leadData.phone || 'Not provided'}
 • Business: ${leadData.businessName}
-• Business Type: ${leadData.businessType || 'Not specified'}
+• Business Type: ${leadData.businessType}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-📊 READINESS SCORE:
-• Total Score: ${leadData.totalScore || 0} / ${leadData.maxPossibleScore || 24}
-• Percentage: ${leadData.scorePercentage || 0}% ${readinessEmoji}
-• Readiness Level: ${leadData.readinessLevel || 'Not calculated'}
-• Recommendation: ${leadData.recommendation || 'Not available'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-📝 ASSESSMENT RESPONSES:
-${leadData.assessmentAnswers && leadData.assessmentAnswers.length > 0
-  ? leadData.assessmentAnswers.map((qa, index) => `
-${index + 1}. ${qa.category.toUpperCase()}
-   Q: ${qa.question}
-   A: ${qa.answer} (Score: ${qa.score}/4)
-`).join('\n')
-  : 'No assessment answers recorded'
-}
+💰 PLAN SELECTION:
+• Selected Plan: ${leadData.selectedPlan}
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -102,29 +66,17 @@ ${leadData.integrations && leadData.integrations.length > 0
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-💰 PLAN SELECTION:
-• Selected Plan: ${leadData.selectedPlan || 'Not specified'}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
 📅 SUBMISSION DETAILS:
 • Timestamp: ${leadData.timestamp}
-• Assessment Version: ${leadData.assessmentVersion || '1.0'}
-• Source: ${leadData.source || 'readiness-assessment'}
+• Source: get-started-form
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 🚨 ACTION REQUIRED:
-${leadData.scorePercentage && leadData.scorePercentage >= 75 
-  ? '✅ HIGH PRIORITY - This lead is highly qualified and ready for TrueFlow!'
-  : leadData.scorePercentage && leadData.scorePercentage >= 50
-  ? '⚠️ MEDIUM PRIORITY - This lead shows good potential but may need education.'
-  : '📋 NURTURE LEAD - This lead needs more education before they\'re ready.'
-}
+✅ HIGH PRIORITY - This lead has completed the get started process and selected a plan!
 
-Follow up within 24 hours for best results!
+Follow up within 24 hours to schedule onboarding.
     `.trim()
-
 
     // Initialize Resend with API key from environment variables
     const resendApiKey = process.env.RESEND_API_KEY
@@ -181,14 +133,9 @@ Follow up within 24 hours for best results!
     .content { background: #f8f9fa; padding: 30px; border: 1px solid #e9ecef; }
     .section { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     .section-title { color: #495057; font-size: 18px; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #e9ecef; padding-bottom: 10px; }
-    .score-box { background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
-    .score-big { font-size: 48px; font-weight: bold; color: #667eea; }
+    .plan-box { background: #667eea; color: white; padding: 20px; border-radius: 8px; text-align: center; margin: 20px 0; }
+    .plan-name { font-size: 24px; font-weight: bold; }
     .priority-high { background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; border: 1px solid #c3e6cb; }
-    .priority-medium { background: #fff3cd; color: #856404; padding: 15px; border-radius: 8px; border: 1px solid #ffeeba; }
-    .priority-low { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; border: 1px solid #f5c6cb; }
-    .assessment-item { background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 6px; }
-    .assessment-question { font-weight: bold; color: #495057; }
-    .assessment-answer { color: #667eea; margin-top: 5px; }
     ul { padding-left: 20px; }
     li { margin: 5px 0; }
   </style>
@@ -196,7 +143,7 @@ Follow up within 24 hours for best results!
 <body>
   <div class="container">
     <div class="header">
-      <h1>🚀 New TrueFlow AI Lead ${readinessEmoji}</h1>
+      <h1>🚀 New TrueFlow Get Started Lead</h1>
       <p style="margin: 0; font-size: 20px;">${leadData.firstName} ${leadData.lastName} - ${leadData.businessName}</p>
     </div>
     
@@ -205,33 +152,15 @@ Follow up within 24 hours for best results!
         <div class="section-title">👤 Contact Information</div>
         <p><strong>Name:</strong> ${leadData.firstName} ${leadData.lastName}<br>
         <strong>Email:</strong> <a href="mailto:${leadData.email}">${leadData.email}</a><br>
-        <strong>Phone:</strong> ${leadData.phone || 'Not provided'}<br>
         <strong>Business:</strong> ${leadData.businessName}<br>
-        <strong>Business Type:</strong> ${leadData.businessType || 'Not specified'}</p>
+        <strong>Business Type:</strong> ${leadData.businessType}</p>
       </div>
       
       <div class="section">
-        <div class="section-title">📊 Readiness Score</div>
-        <div class="score-box">
-          <div class="score-big">${leadData.scorePercentage || 0}%</div>
-          <p><strong>${leadData.readinessLevel || 'Not calculated'}</strong><br>
-          Score: ${leadData.totalScore || 0} / ${leadData.maxPossibleScore || 24}</p>
+        <div class="section-title">💰 Plan Selection</div>
+        <div class="plan-box">
+          <div class="plan-name">${leadData.selectedPlan}</div>
         </div>
-        <p><strong>Recommendation:</strong> ${leadData.recommendation || 'Not available'}</p>
-      </div>
-      
-      <div class="section">
-        <div class="section-title">📝 Assessment Responses</div>
-        ${leadData.assessmentAnswers && leadData.assessmentAnswers.length > 0
-          ? leadData.assessmentAnswers.map((qa, index) => `
-            <div class="assessment-item">
-              <div class="assessment-question">${index + 1}. ${qa.question}</div>
-              <div class="assessment-answer">→ ${qa.answer} (Score: ${qa.score}/4)</div>
-              <small style="color: #6c757d;">Category: ${qa.category}</small>
-            </div>
-          `).join('')
-          : '<p>No assessment answers recorded</p>'
-        }
       </div>
       
       <div class="section">
@@ -250,27 +179,15 @@ Follow up within 24 hours for best results!
         }
       </div>
       
-      <div class="section">
-        <div class="section-title">💰 Plan Selection</div>
-        <p><strong>Selected Plan:</strong> ${leadData.selectedPlan || 'Not specified'}</p>
-      </div>
-      
-      <div class="${leadData.scorePercentage && leadData.scorePercentage >= 75 ? 'priority-high' : 
-                   leadData.scorePercentage && leadData.scorePercentage >= 50 ? 'priority-medium' : 'priority-low'}">
+      <div class="priority-high">
         <strong>🚨 ACTION REQUIRED:</strong><br>
-        ${leadData.scorePercentage && leadData.scorePercentage >= 75 
-          ? '✅ HIGH PRIORITY - This lead is highly qualified and ready for TrueFlow!'
-          : leadData.scorePercentage && leadData.scorePercentage >= 50
-          ? '⚠️ MEDIUM PRIORITY - This lead shows good potential but may need education.'
-          : '📋 NURTURE LEAD - This lead needs more education before they\'re ready.'
-        }<br><br>
-        <strong>Follow up within 24 hours for best results!</strong>
+        ✅ HIGH PRIORITY - This lead has completed the get started process and selected a plan!<br><br>
+        <strong>Follow up within 24 hours to schedule onboarding.</strong>
       </div>
       
       <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e9ecef; color: #6c757d; font-size: 12px;">
         <p>Submitted: ${leadData.timestamp}<br>
-        Assessment Version: ${leadData.assessmentVersion || '1.0'}<br>
-        Source: ${leadData.source || 'readiness-assessment'}</p>
+        Source: get-started-form</p>
       </div>
     </div>
   </div>
@@ -291,7 +208,7 @@ Follow up within 24 hours for best results!
 
       const response = {
         success: true,
-        message: 'Lead notification emails sent successfully',
+        message: 'Get started lead notification emails sent successfully',
         recipients: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
         leadId: `lead_${Date.now()}`,
         emailId: emailResult.data?.id || 'unknown'
@@ -331,7 +248,7 @@ Follow up within 24 hours for best results!
     }
 
   } catch (error) {
-    console.error('Error processing lead notification:', error)
+    console.error('Error processing get started lead notification:', error)
     return NextResponse.json(
       { 
         error: 'Failed to process lead notification',
