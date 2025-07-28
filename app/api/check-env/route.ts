@@ -20,7 +20,7 @@ export async function GET() {
       exists: hasResendKey,
       preview: keyPreview,
       isPlaceholder: isPlaceholder,
-      isValid: hasResendKey && !isPlaceholder && process.env.RESEND_API_KEY.startsWith('re_')
+      isValid: hasResendKey && !isPlaceholder && process.env.RESEND_API_KEY?.startsWith('re_') || false
     },
     timestamp: new Date().toISOString(),
     instructions: !hasResendKey ? 
