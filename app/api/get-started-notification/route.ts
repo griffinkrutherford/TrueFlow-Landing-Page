@@ -19,8 +19,24 @@ interface GetStartedLeadData {
 }
 
 export async function POST(request: NextRequest) {
+  // Log the request origin for debugging
+  const origin = request.headers.get('origin')
+  const host = request.headers.get('host')
+  console.log('Get Started notification request received:', {
+    origin,
+    host,
+    timestamp: new Date().toISOString(),
+    nodeEnv: process.env.NODE_ENV
+  })
+
   try {
     const leadData: GetStartedLeadData = await request.json()
+    console.log('Get Started lead data received:', {
+      name: `${leadData.firstName} ${leadData.lastName}`,
+      email: leadData.email,
+      business: leadData.businessName,
+      plan: leadData.selectedPlan
+    })
 
     // Validate required fields
     if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.businessName) {
@@ -85,17 +101,28 @@ Follow up within 24 hours to schedule onboarding.
     if (!resendApiKey) {
       console.error('RESEND_API_KEY environment variable is not set')
       return NextResponse.json(
-        { error: 'Email service configuration error' },
+        { 
+          error: 'Email service configuration error',
+          details: 'RESEND_API_KEY is missing in production environment',
+          timestamp: new Date().toISOString()
+        },
         { status: 500 }
       )
     }
 
+    // Log API key presence (not the actual key)
+    console.log('Resend API configuration:', {
+      hasApiKey: !!resendApiKey,
+      keyLength: resendApiKey.length,
+      keyPrefix: resendApiKey.substring(0, 7) + '...',
+      nodeEnv: process.env.NODE_ENV
+    })
+
     const resend = new Resend(resendApiKey)
 
-    // Test API key validity by attempting to get domains
     // Skip the domain test since the API key is restricted to sending emails only
     // This is expected behavior for restricted API keys
-    console.log('Using Resend API key for email sending only (restricted key detected)')
+    console.log('Using Resend API key for email sending only (restricted key mode)')
 
     try {
       // Create HTML version with better formatting
@@ -173,6 +200,14 @@ Follow up within 24 hours to schedule onboarding.
 </html>
       `.trim()
 
+      // Log email attempt
+      console.log('Attempting to send Get Started email:', {
+        from: 'TrueFlow Leads <onboarding@resend.dev>',
+        to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        subject: emailSubject,
+        timestamp: new Date().toISOString()
+      })
+
       // Send email using Resend
       const emailResult = await resend.emails.send({
         from: 'TrueFlow Leads <onboarding@resend.dev>',
@@ -182,7 +217,11 @@ Follow up within 24 hours to schedule onboarding.
         html: emailHtml
       })
 
-      console.log('Email sent successfully:', emailResult)
+      console.log('Get Started email sent successfully:', {
+        emailId: emailResult.data?.id,
+        timestamp: new Date().toISOString(),
+        recipients: ['griffin@trueflow.ai', 'matt@trueflow.ai']
+      })
 
       const response = {
         success: true,
@@ -194,13 +233,19 @@ Follow up within 24 hours to schedule onboarding.
 
       return NextResponse.json(response, { status: 200 })
 
-    } catch (emailError) {
-      console.error('Failed to send email via Resend:', emailError)
-      console.error('Error details:', {
-        error: emailError,
+    } catch (emailError: any) {
+      console.error('Failed to send Get Started email via Resend:', emailError)
+      console.error('Get Started error details:', {
+        message: emailError?.message || 'Unknown error',
+        statusCode: emailError?.statusCode || emailError?.error?.statusCode,
+        type: emailError?.type || emailError?.error?.type,
+        name: emailError?.name || emailError?.error?.name,
         apiKey: resendApiKey ? 'Present (masked)' : 'Missing',
+        keyPrefix: resendApiKey ? resendApiKey.substring(0, 7) + '...' : 'N/A',
         fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
-        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai']
+        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        timestamp: new Date().toISOString(),
+        nodeEnv: process.env.NODE_ENV
       })
       
       // Return a more specific error message
@@ -225,12 +270,18 @@ Follow up within 24 hours to schedule onboarding.
       )
     }
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing get started lead notification:', error)
+    console.error('Get Started full error details:', {
+      message: error?.message,
+      stack: error?.stack,
+      timestamp: new Date().toISOString()
+    })
     return NextResponse.json(
       { 
         error: 'Failed to process lead notification',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
       },
       { status: 500 }
     )

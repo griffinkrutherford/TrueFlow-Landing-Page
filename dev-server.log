@@ -37,3 +37,6 @@ Email sent successfully: { data: { id: 'ff1af13b-205c-4a57-99b3-0df719b62e38' },
 Using Resend API key for email sending only (restricted key detected)
 Email sent successfully: { data: { id: 'ad48808a-5139-4d0f-b4c5-99099e791857' }, error: null }
  POST /api/get-started-notification 200 in 872ms
+ ✓ Compiled in 15ms
+ ✓ Compiled in 626ms (202 modules)
+ ✓ Compiled in 55ms (202 modules)

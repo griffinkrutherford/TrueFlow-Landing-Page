@@ -4,6 +4,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { logEmailAttempt, createFallbackResponse } from './backup-logger'
 
 interface AssessmentAnswer {
   questionId: string
@@ -35,8 +36,23 @@ interface LeadData {
 }
 
 export async function POST(request: NextRequest) {
+  // Log the request origin for debugging
+  const origin = request.headers.get('origin')
+  const host = request.headers.get('host')
+  console.log('Lead notification request received:', {
+    origin,
+    host,
+    timestamp: new Date().toISOString(),
+    nodeEnv: process.env.NODE_ENV
+  })
+
   try {
     const leadData: LeadData = await request.json()
+    console.log('Lead data received:', {
+      name: `${leadData.firstName} ${leadData.lastName}`,
+      email: leadData.email,
+      business: leadData.businessName
+    })
 
     // Validate required fields
     if (!leadData.firstName || !leadData.lastName || !leadData.email || !leadData.businessName) {
@@ -131,10 +147,22 @@ Follow up within 24 hours for best results!
     if (!resendApiKey) {
       console.error('RESEND_API_KEY environment variable is not set')
       return NextResponse.json(
-        { error: 'Email service configuration error' },
+        { 
+          error: 'Email service configuration error',
+          details: 'RESEND_API_KEY is missing in production environment',
+          timestamp: new Date().toISOString()
+        },
         { status: 500 }
       )
     }
+
+    // Log API key presence (not the actual key)
+    console.log('Resend API configuration:', {
+      hasApiKey: !!resendApiKey,
+      keyLength: resendApiKey.length,
+      keyPrefix: resendApiKey.substring(0, 7) + '...',
+      nodeEnv: process.env.NODE_ENV
+    })
 
     const resend = new Resend(resendApiKey)
 
@@ -144,28 +172,41 @@ Follow up within 24 hours for best results!
       const testResponse = await resend.domains.list()
       console.log('Resend API test successful:', testResponse)
     } catch (testError: any) {
-      console.error('Resend API test failed:', testError)
+      // For restricted API keys, domain listing might fail but sending emails could still work
+      console.log('Domain test failed (this is normal for restricted API keys):', {
+        error: testError?.message || 'Unknown error',
+        statusCode: testError?.statusCode || testError?.error?.statusCode
+      })
       
-      // Check if it's an API key error
-      if (testError?.statusCode === 401 || testError?.error?.statusCode === 401 || 
-          testError?.message?.includes('API key') || testError?.error?.message?.includes('API key')) {
+      // If it's not a 401 error, it might just be a restricted key
+      const is401Error = testError?.statusCode === 401 || testError?.error?.statusCode === 401
+      if (!is401Error) {
+        console.log('Proceeding with email send despite domain test failure (likely restricted key)')
+      } else {
+        console.error('Resend API test failed with 401:', testError)
+        
+        // Check if it's an API key error
+        if (testError?.message?.includes('API key') || testError?.error?.message?.includes('API key')) {
+          return NextResponse.json(
+            { 
+              error: 'Invalid Resend API key',
+              details: 'Please check that RESEND_API_KEY in production contains a valid API key from https://resend.com/api-keys',
+              statusCode: 401,
+              timestamp: new Date().toISOString()
+            },
+            { status: 401 }
+          )
+        }
+        
         return NextResponse.json(
           { 
-            error: 'Invalid Resend API key',
-            details: 'Please check that RESEND_API_KEY in .env.local contains a valid API key from https://resend.com/api-keys',
-            statusCode: 401
+            error: 'Email service authentication failed',
+            details: testError instanceof Error ? testError.message : 'API key may be invalid',
+            timestamp: new Date().toISOString()
           },
-          { status: 401 }
+          { status: 500 }
         )
       }
-      
-      return NextResponse.json(
-        { 
-          error: 'Email service authentication failed',
-          details: testError instanceof Error ? testError.message : 'API key may be invalid'
-        },
-        { status: 500 }
-      )
     }
 
     try {
@@ -278,6 +319,14 @@ Follow up within 24 hours for best results!
 </html>
       `.trim()
 
+      // Log email attempt
+      console.log('Attempting to send email:', {
+        from: 'TrueFlow Leads <onboarding@resend.dev>',
+        to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        subject: emailSubject,
+        timestamp: new Date().toISOString()
+      })
+
       // Send email using Resend
       const emailResult = await resend.emails.send({
         from: 'TrueFlow Leads <onboarding@resend.dev>',
@@ -287,7 +336,22 @@ Follow up within 24 hours for best results!
         html: emailHtml
       })
 
-      console.log('Email sent successfully:', emailResult)
+      console.log('Email sent successfully:', {
+        emailId: emailResult.data?.id,
+        timestamp: new Date().toISOString(),
+        recipients: ['griffin@trueflow.ai', 'matt@trueflow.ai']
+      })
+
+      // Log successful email
+      await logEmailAttempt({
+        timestamp: new Date().toISOString(),
+        type: 'lead-notification',
+        recipient: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        subject: emailSubject,
+        leadData,
+        emailId: emailResult.data?.id,
+        success: true
+      })
 
       const response = {
         success: true,
@@ -299,43 +363,39 @@ Follow up within 24 hours for best results!
 
       return NextResponse.json(response, { status: 200 })
 
-    } catch (emailError) {
+    } catch (emailError: any) {
       console.error('Failed to send email via Resend:', emailError)
       console.error('Error details:', {
-        error: emailError,
+        message: emailError?.message || 'Unknown error',
+        statusCode: emailError?.statusCode || emailError?.error?.statusCode,
+        type: emailError?.type || emailError?.error?.type,
+        name: emailError?.name || emailError?.error?.name,
         apiKey: resendApiKey ? 'Present (masked)' : 'Missing',
         fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
-        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai']
+        toAddresses: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
+        timestamp: new Date().toISOString(),
+        nodeEnv: process.env.NODE_ENV
       })
       
       // Return a more specific error message
       const errorMessage = emailError instanceof Error ? emailError.message : 'Unknown email service error'
       
-      return NextResponse.json(
-        { 
-          error: 'Failed to send lead notification emails',
-          details: errorMessage,
-          debug: {
-            hasApiKey: !!resendApiKey,
-            fromAddress: 'TrueFlow Leads <onboarding@resend.dev>',
-            timestamp: new Date().toISOString()
-          },
-          leadData: {
-            name: `${leadData.firstName} ${leadData.lastName}`,
-            email: leadData.email,
-            business: leadData.businessName
-          }
-        },
-        { status: 500 }
-      )
+      // Use fallback response to ensure we don't lose the lead
+      return createFallbackResponse(leadData, emailError)
     }
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error processing lead notification:', error)
+    console.error('Full error details:', {
+      message: error?.message,
+      stack: error?.stack,
+      timestamp: new Date().toISOString()
+    })
     return NextResponse.json(
       { 
         error: 'Failed to process lead notification',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date().toISOString()
       },
       { status: 500 }
     )
@@ -351,6 +411,11 @@ export async function OPTIONS(request: NextRequest) {
     'http://localhost:3000',
     'http://localhost:3001'
   ]
+  
+  console.log('CORS preflight request:', {
+    origin,
+    timestamp: new Date().toISOString()
+  })
   
   const corsHeaders: Record<string, string> = {
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
