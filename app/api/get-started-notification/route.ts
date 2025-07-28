@@ -9,6 +9,7 @@ interface GetStartedLeadData {
   firstName: string
   lastName: string
   email: string
+  phone: string
   businessName: string
   businessType: string
   selectedPlan: string
@@ -40,6 +41,7 @@ export async function POST(request: NextRequest) {
 👤 CONTACT INFORMATION:
 • Name: ${leadData.firstName} ${leadData.lastName}
 • Email: ${leadData.email}
+• Phone: ${leadData.phone}
 • Business: ${leadData.businessName}
 • Business Type: ${leadData.businessType}
 
@@ -152,6 +154,7 @@ Follow up within 24 hours to schedule onboarding.
         <div class="section-title">👤 Contact Information</div>
         <p><strong>Name:</strong> ${leadData.firstName} ${leadData.lastName}<br>
         <strong>Email:</strong> <a href="mailto:${leadData.email}">${leadData.email}</a><br>
+        <strong>Phone:</strong> ${leadData.phone}<br>
         <strong>Business:</strong> ${leadData.businessName}<br>
         <strong>Business Type:</strong> ${leadData.businessType}</p>
       </div>
