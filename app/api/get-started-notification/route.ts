@@ -22,24 +22,7 @@ export async function POST(request: NextRequest) {
   // Log the request origin for debugging
   const origin = request.headers.get('origin')
   const host = request.headers.get('host')
-  console.log('Get Started notification request received:', {
-    origin,
-    host,
-    timestamp: new Date().toISOString(),
-    nodeEnv: process.env.NODE_ENV
-  })
-  
-  // CRITICAL: Check if RESEND_API_KEY exists in Railway environment
-  if (!process.env.RESEND_API_KEY) {
-    console.error('🚨 CRITICAL ERROR: RESEND_API_KEY is not set in environment variables!')
-    console.error('To fix: Go to Railway Dashboard > Your Service > Variables > Add RESEND_API_KEY')
-    console.error('The key should start with "re_" and be your actual Resend API key from https://resend.com/api-keys')
-  } else if (process.env.RESEND_API_KEY.includes('your_')) {
-    console.error('🚨 CRITICAL ERROR: RESEND_API_KEY contains placeholder value!')
-    console.error('Current value starts with:', process.env.RESEND_API_KEY.substring(0, 10) + '...')
-  } else {
-    console.log('✅ RESEND_API_KEY is present, starting with:', process.env.RESEND_API_KEY.substring(0, 7) + '...')
-  }
+  console.log('Get Started notification request received from:', origin || 'unknown')
 
   try {
     const leadData: GetStartedLeadData = await request.json()
