@@ -68,7 +68,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ 
           success: false, 
           message: 'Failed to send notification',
-          error: process.env.NODE_ENV === 'development' ? emailError.message : 'Email service error'
+          error: process.env.NODE_ENV === 'development' ? (emailError as Error).message : 'Email service error'
         }, { status: 500 })
       }
     }
