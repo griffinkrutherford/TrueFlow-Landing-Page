@@ -243,10 +243,10 @@ export default function ComingSoonPage() {
             </Link>
 
             <div className="flex items-center space-x-6">
-              <Link href="/" className="text-white/70 hover:text-white transition-colors text-lg">
+              <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
                 Back to Home
               </Link>
-              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold">
+              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity text-sm font-semibold">
                 Get Started
               </Link>
             </div>

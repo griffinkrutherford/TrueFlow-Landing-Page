@@ -1,0 +1,444 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1248ms
+(node:49601) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.5s (617 modules)
+ HEAD / 200 in 2661ms
+ ✓ Compiled in 167ms (307 modules)
+ GET / 200 in 25ms
+ GET / 200 in 20ms
+ ✓ Compiled in 533ms (595 modules)
+ GET / 200 in 60ms
+ ✓ Compiled in 535ms (595 modules)
+ ✓ Compiled in 294ms (595 modules)
+ ✓ Compiled in 154ms (307 modules)
+ ✓ Compiled in 169ms (307 modules)
+ ✓ Compiled in 153ms (307 modules)
+ ✓ Compiled in 123ms (307 modules)
+ ✓ Compiled in 120ms (581 modules)
+ ✓ Compiled in 111ms (307 modules)
+ ✓ Compiled in 149ms (307 modules)
+ ✓ Compiled in 135ms (581 modules)
+ ✓ Compiled in 173ms (307 modules)
+ ✓ Compiled in 138ms (307 modules)
+ ✓ Compiled in 150ms (307 modules)
+ ✓ Compiled in 299ms (307 modules)
+ ✓ Compiled in 147ms (307 modules)
+ ✓ Compiled in 430ms (595 modules)
+ ✓ Compiled in 617ms (595 modules)
+ ✓ Compiled in 448ms (595 modules)
+ ✓ Compiled in 135ms (307 modules)
+ ✓ Compiled in 114ms (307 modules)
+ ✓ Compiled in 241ms (307 modules)
+ ✓ Compiled in 162ms (307 modules)
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'Awareness'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:424:1]
+ [2m424[0m | 
+ [2m425[0m | **Step 1: Map Your Customer Journey**
+ [2m426[0m | ```
+ [2m427[0m | Awareness → Consideration → Decision → Purchase → Retention → Advocacy
+     : [31;1m^^^^^^^^^[0m
+ [2m428[0m | ```
+ [2m429[0m | 
+ [2m430[0m | For each stage, identify:
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'Awareness'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:424:1]
+ [2m424[0m | 
+ [2m425[0m | **Step 1: Map Your Customer Journey**
+ [2m426[0m | ```
+ [2m427[0m | Awareness → Consideration → Decision → Purchase → Retention → Advocacy
+     : [31;1m^^^^^^^^^[0m
+ [2m428[0m | ```
+ [2m429[0m | 
+ [2m430[0m | For each stage, identify:
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ○ Compiling /_not-found ...
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'Awareness'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:424:1]
+ [2m424[0m | 
+ [2m425[0m | **Step 1: Map Your Customer Journey**
+ [2m426[0m | ```
+ [2m427[0m | Awareness → Consideration → Decision → Purchase → Retention → Advocacy
+     : [31;1m^^^^^^^^^[0m
+ [2m428[0m | ```
+ [2m429[0m | 
+ [2m430[0m | For each stage, identify:
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 15ms
+ GET /blog 500 in 17ms
+ GET / 500 in 33ms
+ GET / 500 in 14ms
+ GET / 500 in 7ms
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'Awareness'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:424:1]
+ [2m424[0m | 
+ [2m425[0m | **Step 1: Map Your Customer Journey**
+ [2m426[0m | ```
+ [2m427[0m | Awareness → Consideration → Decision → Purchase → Retention → Advocacy
+     : [31;1m^^^^^^^^^[0m
+ [2m428[0m | ```
+ [2m429[0m | 
+ [2m430[0m | For each stage, identify:
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'Email'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:437:1]
+ [2m437[0m | 
+ [2m438[0m | **Welcome Series Example:**
+ [2m439[0m | ```
+ [2m440[0m | Email 1 (Immediate): Welcome & Thank You
+     : [31;1m^^^^^[0m
+ [2m441[0m | - Warm greeting
+ [2m442[0m | - Set expectations
+ [2m443[0m | - Quick win resource
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 195ms
+ GET / 500 in 7ms
+ GET / 500 in 18ms
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 228ms
+ GET / 500 in 5ms
+ GET / 500 in 12ms
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 205ms
+ GET / 500 in 6ms
+ GET / 500 in 10ms
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 156ms
+ GET / 500 in 5ms
+ GET / 500 in 9ms
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ ⨯ ./app/data/blog-posts.ts
+Error: 
+  [31mx[0m Expected ',', got 'High'
+      ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/data/blog-posts.ts[0m:1134:1]
+ [2m1134[0m | 
+ [2m1135[0m | 3. **Priority Matrix**
+ [2m1136[0m |    ```
+ [2m1137[0m |    High Impact + Low Effort = Quick Wins
+      : [31;1m   ^^^^[0m
+ [2m1138[0m |    High Impact + High Effort = Strategic Projects
+ [2m1139[0m |    Low Impact + Low Effort = Fill-ins
+ [2m1140[0m |    Low Impact + High Effort = Avoid
+      `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/data/blog-posts.ts
+./app/blog/page.tsx
+ GET / 500 in 241ms
+ GET / 500 in 5ms
+ GET / 500 in 11ms
+[?25h

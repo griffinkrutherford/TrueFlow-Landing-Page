@@ -2,17 +2,227 @@
 > trueflow-landing@1.0.0 dev
 > next dev -p 3001
 
-   ▲ Next.js 14.1.4
-   - Local:        http://localhost:3001
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3001
+  - Environments: .env.local
 
-npm error code ENOWORKSPACES
-npm error This command does not support workspaces.
-npm error A complete log of this run can be found in: /Users/griffinrutherford/.npm/_logs/2025-07-18T01_11_00_250Z-debug-0.log
- ✓ Ready in 2.3s
-(node:32639) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+ ✓ Starting...
+ ✓ Ready in 1194ms
+(node:37082) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 (Use `node --trace-deprecation ...` to show where the warning was created)
  ○ Compiling / ...
- ✓ Compiled / in 2.5s (644 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ✓ Compiled in 180ms (347 modules)
+ ✓ Compiled / in 2.6s (619 modules)
+ HEAD / 200 in 2736ms
+ ✓ Compiled in 246ms (308 modules)
+ GET / 200 in 168ms
+ ✓ Compiled /_not-found in 411ms (586 modules)
+ GET /apple-touch-icon-precomposed.png 404 in 488ms
+ GET /apple-touch-icon.png 404 in 482ms
+ GET / 200 in 91ms
+ GET / 200 in 28ms
+ ✓ Compiled /blog/[slug] in 428ms (634 modules)
+ ✓ Compiled /readiness-assessment in 271ms (656 modules)
+ GET / 200 in 104ms
+ ○ Compiling /api/ghl/create-lead ...
+ ✓ Compiled /api/ghl/create-lead in 536ms (422 modules)
+GHL integration disabled or not configured, using email fallback
+ POST /api/ghl/create-lead 200 in 1291ms
+ ✓ Compiled /api/lead-notification in 88ms (424 modules)
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 400,
+    message: 'API key is invalid',
+    name: 'validation_error'
+  }
+}
+Email sent successfully: {
+  data: null,
+  error: {
+    statusCode: 401,
+    name: 'validation_error',
+    message: 'API key is invalid'
+  }
+}
+ POST /api/lead-notification 200 in 1134ms
+   Reload env: .env.local
+ ✓ Compiled in 244ms (656 modules)
+ ✓ Compiled in 299ms (327 modules)
+ ✓ Compiled in 263ms (327 modules)
+ ✓ Compiled in 160ms (327 modules)
+ ✓ Compiled in 185ms (327 modules)
+ ✓ Compiled in 268ms (327 modules)
+ ✓ Compiled in 176ms (327 modules)
+ GET /readiness-assessment 200 in 98ms
+ ✓ Compiled /api/ghl/create-lead in 143ms (422 modules)
+GHL integration disabled or not configured, using email fallback
+ POST /api/ghl/create-lead 200 in 751ms
+ ✓ Compiled /api/lead-notification in 135ms (424 modules)
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 400,
+    message: 'API key is invalid',
+    name: 'validation_error'
+  }
+}
+Email sent successfully: {
+  data: null,
+  error: {
+    statusCode: 401,
+    name: 'validation_error',
+    message: 'API key is invalid'
+  }
+}
+ POST /api/lead-notification 200 in 1115ms
+   Reload env: .env.local
+ ✓ Compiled in 220ms (656 modules)
+ GET /readiness-assessment 200 in 69ms
+ ✓ Compiled /api/ghl/create-lead in 113ms (422 modules)
+GHL integration disabled or not configured, using email fallback
+ POST /api/ghl/create-lead 200 in 837ms
+ ✓ Compiled /api/lead-notification in 64ms (424 modules)
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 401,
+    message: 'This API key is restricted to only send emails',
+    name: 'restricted_api_key'
+  }
+}
+Email sent successfully: { data: { id: 'd310a669-8ab9-409c-abd7-2c196c041166' }, error: null }
+ POST /api/lead-notification 200 in 1366ms
+ ✓ Compiled /get-started in 473ms (745 modules)
+ GET /get-started 200 in 528ms
+ ✓ Compiled in 468ms (664 modules)
+ ✓ Compiled in 455ms (678 modules)
+ ✓ Compiled in 246ms (678 modules)
+ ✓ Compiled in 284ms (678 modules)
+ ✓ Compiled in 191ms (330 modules)
+ ✓ Compiled in 157ms (330 modules)
+ ✓ Compiled in 140ms (330 modules)
+ GET /get-started 200 in 62ms
+ ✓ Compiled /api/ghl/create-lead in 487ms (427 modules)
+GHL integration disabled or not configured, using email fallback
+ POST /api/ghl/create-lead 200 in 1426ms
+ ✓ Compiled /api/lead-notification in 73ms (429 modules)
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 401,
+    message: 'This API key is restricted to only send emails',
+    name: 'restricted_api_key'
+  }
+}
+Email sent successfully: { data: { id: '2296d24b-afb4-4a68-b353-cc96678006be' }, error: null }
+ POST /api/lead-notification 200 in 1004ms
+ ✓ Compiled in 680ms (678 modules)
+ ✓ Compiled in 306ms (678 modules)
+ GET / 200 in 74ms
+ ✓ Compiled /blog in 479ms (674 modules)
+ GET /blog/business-blogging-necessity-hero.jpg 404 in 64ms
+ ⨯ The requested resource isn't a valid image for /blog/business-blogging-necessity-hero.jpg received text/html; charset=utf-8
+ GET /blog/ai-customer-engagement-hero.jpg 404 in 68ms
+ ⨯ The requested resource isn't a valid image for /blog/ai-customer-engagement-hero.jpg received text/html; charset=utf-8
+ GET /blog/marketing-automation-guide-hero.jpg 404 in 70ms
+ ⨯ The requested resource isn't a valid image for /blog/marketing-automation-guide-hero.jpg received text/html; charset=utf-8
+ GET /blog/data-driven-decisions-hero.jpg 404 in 73ms
+ ⨯ The requested resource isn't a valid image for /blog/data-driven-decisions-hero.jpg received text/html; charset=utf-8
+ ✓ Compiled in 516ms (688 modules)
+ ✓ Compiled in 663ms (688 modules)
+ GET /blog/business-blogging-necessity-hero.jpg 404 in 92ms
+ ⨯ The requested resource isn't a valid image for /blog/business-blogging-necessity-hero.jpg received text/html; charset=utf-8
+ GET /blog/ai-customer-engagement-hero.jpg 404 in 95ms
+ ⨯ The requested resource isn't a valid image for /blog/ai-customer-engagement-hero.jpg received text/html; charset=utf-8
+ GET /blog/marketing-automation-guide-hero.jpg 404 in 91ms
+ ⨯ The requested resource isn't a valid image for /blog/marketing-automation-guide-hero.jpg received text/html; charset=utf-8
+ ✓ Compiled in 368ms (688 modules)
+ GET /blog 200 in 62ms
+ ✓ Compiled in 437ms (688 modules)
+ ✓ Compiled in 365ms (688 modules)
+ ✓ Compiled in 382ms (688 modules)
+ ✓ Compiled in 0ms (354 modules)
+ ✓ Compiled in 0ms (354 modules)
+ ✓ Compiled in 0ms (354 modules)
+ ✓ Compiled in 0ms (354 modules)
+ GET / 200 in 72ms
+ ✓ Compiled in 375ms (688 modules)
+ ✓ Compiled in 342ms (688 modules)
+ ✓ Compiled in 322ms (688 modules)
+ ✓ Compiled in 389ms (688 modules)
+ ✓ Compiled in 331ms (688 modules)
+ ✓ Compiled in 365ms (688 modules)
+ ✓ Compiled in 265ms (688 modules)
+ ✓ Compiled in 343ms (688 modules)
+ GET /readiness-assessment 200 in 69ms
+ ✓ Compiled in 286ms (688 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /blog/does-your-business-even-need-a-blog 200 in 195ms
+ ✓ Compiled in 308ms (688 modules)
+ ✓ Compiled in 0ms (354 modules)
+ ✓ Compiled in 0ms (354 modules)
+ ✓ Compiled in 1ms (354 modules)
+ GET /readiness-assessment 200 in 374ms
+ ✓ Compiled in 0ms (354 modules)
+ GET /blog/does-your-business-even-need-a-blog 200 in 48ms
+ ✓ Compiled in 312ms (688 modules)
+ ✓ Compiled in 456ms (674 modules)
+ ✓ Compiled in 525ms (688 modules)
+ ✓ Compiled in 236ms (334 modules)
+ ✓ Compiled in 462ms (688 modules)
+ ✓ Compiled /_not-found in 366ms (677 modules)
+ GET /get-started! 404 in 424ms
+ GET /get-started 200 in 38ms
+ ✓ Compiled /api/partial-lead-notification in 205ms (434 modules)
+Partial lead email sent successfully: { data: { id: 'b835f951-7415-46e7-9cf8-f78022f372aa' }, error: null }
+ POST /api/partial-lead-notification 200 in 1126ms
+Partial lead email sent successfully: { data: { id: 'dd1f6d78-71cd-47d0-8584-3b5a230975e4' }, error: null }
+ POST /api/partial-lead-notification 200 in 676ms
+ ✓ Compiled in 581ms (688 modules)
+ ✓ Compiled in 415ms (688 modules)
+ GET /blog 200 in 54ms
+ ✓ Compiled in 467ms (688 modules)
+ ✓ Compiled in 449ms (688 modules)
+ ✓ Compiled in 425ms (688 modules)
+ ✓ Compiled in 719ms (688 modules)
+ ✓ Compiled in 438ms (688 modules)
+ GET /readiness-assessment 200 in 56ms
+ ✓ Compiled /api/ghl/create-lead in 286ms (433 modules)
+GHL integration disabled or not configured, using email fallback
+ POST /api/ghl/create-lead 200 in 1060ms
+ ✓ Compiled /api/lead-notification in 89ms (435 modules)
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 401,
+    message: 'This API key is restricted to only send emails',
+    name: 'restricted_api_key'
+  }
+}
+Email sent successfully: { data: { id: '25348fd3-6e9e-4633-ac3a-682d62177665' }, error: null }
+ POST /api/lead-notification 200 in 1309ms
+ ✓ Compiled in 477ms (688 modules)
+ ○ Compiling /faq ...
+ ✓ Compiled /faq in 566ms (686 modules)
+ ✓ Compiled in 484ms (700 modules)
+ ✓ Compiled in 381ms (700 modules)
+ ✓ Compiled in 357ms (700 modules)
+ ✓ Compiled in 336ms (700 modules)
+ ✓ Compiled in 343ms (700 modules)
+ ✓ Compiled in 355ms (700 modules)
+ ✓ Compiled in 293ms (700 modules)
+ ✓ Compiled in 391ms (700 modules)
+ ✓ Compiled in 268ms (700 modules)
+ ✓ Compiled in 247ms (693 modules)
+ GET /readiness-assessment 200 in 112ms
+ GET / 200 in 67ms
+ ✓ Compiled in 510ms (687 modules)
+ ✓ Compiled in 511ms (687 modules)
+ ✓ Compiled in 443ms (687 modules)
+ ✓ Compiled in 418ms (687 modules)
+ ✓ Compiled in 426ms (687 modules)

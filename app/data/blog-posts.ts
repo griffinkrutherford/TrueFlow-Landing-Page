@@ -12,7 +12,7 @@ export const authors: Record<string, Author> = {
     name: 'Matt Gallo',
     role: 'Operations & Creative Director',
     avatar: '/avatars/matt-gallo.jpg',
-    bio: 'Serial entrepreneur with 6+ years building and scaling businesses including Mind Heart Muscle, Micro Adventures, and Thrive. Certified CrossFit Level 3 Trainer and accomplished guitarist with deep roots in music composition. His creative background and operational expertise help him orchestrate AI-powered systems that feel intuitive and human-centered for growing businesses.'
+    bio: 'Matt Gallo is the creative mind behind TrueFlow AI, where he helps creators, coaches, and service pros automate their marketing and content systems without losing the human touch. A strategist by nature and a builder at heart, Matt blends AI, storytelling, and operational rigor to create business systems that feel like flow and kill friction. After years of consulting and scaling businesses behind the scenes, he now leads a small, elite team that turns raw ideas into done-for-you systems that attract leads, convert clients, and buy back time. You\'ll usually find him writing from a mountaintop, testing workflows between jiu jitsu rounds, or helping visionary founders finally get their backend dialed in.'
   }
 }
 

@@ -2,130 +2,19 @@
 > trueflow-landing@1.0.0 dev
 > next dev -p 3001
 
-   ▲ Next.js 14.1.4
-   - Local:        http://localhost:3001
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3001
+  - Environments: .env.local
 
-npm error code ENOWORKSPACES
-npm error This command does not support workspaces.
-npm error A complete log of this run can be found in: /Users/griffinrutherford/.npm/_logs/2025-07-17T16_59_50_349Z-debug-0.log
- ✓ Ready in 1682ms
-(node:60985) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Starting...
+ ✓ Ready in 1520ms
  ○ Compiling / ...
- ✓ Compiled / in 4.5s (634 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ✓ Compiled in 297ms (348 modules)
- ✓ Compiled in 428ms (625 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ The "images.domains" configuration is deprecated. Please use "images.remotePatterns" configuration instead.
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ✓ Compiled /not-found in 310ms (616 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /api. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /api. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /pricing. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /pricing. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ✓ Compiled in 767ms (630 modules)
- ⚠ Unsupported metadata viewport is configured in metadata export in /?_rsc=1xuj0. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
-Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
- ⨯ ./app/page.tsx
-Error: 
-  [31mx[0m Unexpected token `div`. Expected jsx identifier
-     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/apps/landing/app/page.tsx[0m:571:1]
- [2m571[0m |   }
- [2m572[0m | 
- [2m573[0m |   return (
- [2m574[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-     : [31;1m     ^^^[0m
- [2m575[0m |       <style jsx>{`
- [2m576[0m |         @keyframes gradient-shift {
- [2m577[0m |           0% { background-position: 0% 50%; }
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./app/page.tsx
- ⨯ ./app/page.tsx
-Error: 
-  [31mx[0m Unexpected token `div`. Expected jsx identifier
-     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/apps/landing/app/page.tsx[0m:571:1]
- [2m571[0m |   }
- [2m572[0m | 
- [2m573[0m |   return (
- [2m574[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-     : [31;1m     ^^^[0m
- [2m575[0m |       <style jsx>{`
- [2m576[0m |         @keyframes gradient-shift {
- [2m577[0m |           0% { background-position: 0% 50%; }
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./app/page.tsx
- ○ Compiling /_error ...
- ⨯ ./app/page.tsx
-Error: 
-  [31mx[0m Unexpected token `div`. Expected jsx identifier
-     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/apps/landing/app/page.tsx[0m:571:1]
- [2m571[0m |   }
- [2m572[0m | 
- [2m573[0m |   return (
- [2m574[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-     : [31;1m     ^^^[0m
- [2m575[0m |       <style jsx>{`
- [2m576[0m |         @keyframes gradient-shift {
- [2m577[0m |           0% { background-position: 0% 50%; }
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./app/page.tsx
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- ✓ Compiled /not-found in 261ms (346 modules)
- ⨯ ./app/page.tsx
-Error: 
-  [31mx[0m Unexpected token `div`. Expected jsx identifier
-     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/apps/landing/app/page.tsx[0m:572:1]
- [2m572[0m |   }
- [2m573[0m | 
- [2m574[0m |   return (
- [2m575[0m |     <div className="min-h-screen bg-black text-white overflow-x-hidden">
-     : [31;1m     ^^^[0m
- [2m576[0m | 
- [2m577[0m |       {/* Floating Particles */}
- [2m578[0m |       {particles.map((particle) => (
-     `----
-
-Caused by:
-    Syntax Error
-
-Import trace for requested module:
-./app/page.tsx
- ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
- ○ Compiling /not-found ...
- ✓ Compiled /not-found in 171ms (348 modules)
+ ✓ Compiled / in 1888ms (595 modules)
+ HEAD / 200 in 2019ms
+ ✓ Compiled in 194ms (307 modules)
+ ✓ Compiled /blog in 375ms (604 modules)
+ HEAD /blog 200 in 439ms
+ GET / 200 in 37ms
+ ○ Compiling /blog/[slug] ...
+ ✓ Compiled /blog/[slug] in 531ms (650 modules)
 [?25h
