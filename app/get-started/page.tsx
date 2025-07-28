@@ -90,6 +90,8 @@ export default function GetStartedPage() {
   const [cursorTrail, setCursorTrail] = useState<CursorTrailPoint[]>([])
   const cursorTrailRef = useRef<CursorTrailPoint[]>([])
   const animationFrameRef = useRef<number | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   // Generate floating particles
   const generateParticles = () => {
@@ -492,6 +494,9 @@ export default function GetStartedPage() {
   }
 
   const submitLead = async () => {
+    setIsSubmitting(true)
+    setSubmitError(null)
+    
     try {
       // Get the business type name from the selected ID
       const businessType = businessTypes.find(type => type.id === selectedBusinessType)?.title || selectedBusinessType
@@ -517,6 +522,8 @@ export default function GetStartedPage() {
         timestamp: new Date().toISOString()
       }
 
+      console.log('Submitting lead data:', leadData)
+
       // Send lead notification to Griffin and Matt using the get-started specific endpoint
       const response = await fetch('/api/get-started-notification', {
         method: 'POST',
@@ -526,21 +533,39 @@ export default function GetStartedPage() {
         body: JSON.stringify(leadData)
       })
 
+      let responseData;
+      try {
+        responseData = await response.json()
+      } catch (jsonError) {
+        console.error('Failed to parse response JSON:', jsonError)
+        responseData = { error: 'Invalid response from server' }
+      }
+      
       if (!response.ok) {
-        throw new Error('Failed to send lead notification')
+        // Log the full error for debugging
+        console.error('API Error Response:', {
+          status: response.status,
+          statusText: response.statusText,
+          data: responseData
+        })
+        throw new Error(responseData.error || `Failed to send lead notification (Status: ${response.status})`)
       }
 
-      const result = await response.json()
-      console.log('Lead notification sent successfully:', result)
+      console.log('Lead notification sent successfully:', responseData)
       
       // Continue to step 6 (success page)
       setCurrentStep(6)
       
     } catch (error) {
       console.error('Error submitting lead:', error)
-      // Still proceed to success page even if notification fails
-      // You might want to show a different message or retry logic here
-      setCurrentStep(6)
+      setSubmitError(error instanceof Error ? error.message : 'Failed to submit form. Please try again.')
+      
+      // Try to proceed to success page after a delay to show error
+      setTimeout(() => {
+        setCurrentStep(6)
+      }, 3000)
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -1081,24 +1106,41 @@ export default function GetStartedPage() {
                 })}
               </div>
 
+              {submitError && (
+                <div className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 max-w-2xl mx-auto">
+                  <p className="font-semibold">Error submitting form:</p>
+                  <p>{submitError}</p>
+                </div>
+              )}
+
               <div className="flex items-center justify-center space-x-4">
                 <button
                   onClick={prevStep}
-                  className="px-6 py-3 border border-white/20 text-white rounded-full hover:bg-white/10 transition-colors"
+                  disabled={isSubmitting}
+                  className="px-6 py-3 border border-white/20 text-white rounded-full hover:bg-white/10 transition-colors disabled:opacity-50"
                 >
                   Back
                 </button>
                 <button
                   onClick={submitLead}
-                  disabled={!selectedPlan}
+                  disabled={!selectedPlan || isSubmitting}
                   className={`px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center space-x-2 ${
-                    selectedPlan
+                    selectedPlan && !isSubmitting
                       ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:opacity-90'
                       : 'bg-white/10 text-white/50 cursor-not-allowed'
                   }`}
                 >
-                  <span>Complete Setup</span>
-                  <ArrowRight className="h-5 w-5" />
+                  {isSubmitting ? (
+                    <>
+                      <span>Submitting...</span>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    </>
+                  ) : (
+                    <>
+                      <span>Complete Setup</span>
+                      <ArrowRight className="h-5 w-5" />
+                    </>
+                  )}
                 </button>
               </div>
             </div>

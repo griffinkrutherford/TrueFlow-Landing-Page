@@ -93,34 +93,9 @@ Follow up within 24 hours to schedule onboarding.
     const resend = new Resend(resendApiKey)
 
     // Test API key validity by attempting to get domains
-    try {
-      console.log('Testing Resend API connection...')
-      const testResponse = await resend.domains.list()
-      console.log('Resend API test successful:', testResponse)
-    } catch (testError: any) {
-      console.error('Resend API test failed:', testError)
-      
-      // Check if it's an API key error
-      if (testError?.statusCode === 401 || testError?.error?.statusCode === 401 || 
-          testError?.message?.includes('API key') || testError?.error?.message?.includes('API key')) {
-        return NextResponse.json(
-          { 
-            error: 'Invalid Resend API key',
-            details: 'Please check that RESEND_API_KEY in .env.local contains a valid API key from https://resend.com/api-keys',
-            statusCode: 401
-          },
-          { status: 401 }
-        )
-      }
-      
-      return NextResponse.json(
-        { 
-          error: 'Email service authentication failed',
-          details: testError instanceof Error ? testError.message : 'API key may be invalid'
-        },
-        { status: 500 }
-      )
-    }
+    // Skip the domain test since the API key is restricted to sending emails only
+    // This is expected behavior for restricted API keys
+    console.log('Using Resend API key for email sending only (restricted key detected)')
 
     try {
       // Create HTML version with better formatting

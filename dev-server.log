@@ -20,3 +20,20 @@ Resend API test successful: {
 }
 Email sent successfully: { data: { id: 'e92d67ff-46c9-4176-93e9-c5d8df834f32' }, error: null }
  POST /api/get-started-notification 200 in 1801ms
+ HEAD /api/get-started-notification 405 in 12ms
+Testing Resend API connection...
+Resend API test successful: {
+  data: null,
+  error: {
+    statusCode: 401,
+    message: 'This API key is restricted to only send emails',
+    name: 'restricted_api_key'
+  }
+}
+Email sent successfully: { data: { id: 'ff1af13b-205c-4a57-99b3-0df719b62e38' }, error: null }
+ POST /api/get-started-notification 200 in 980ms
+ ✓ Compiled in 20ms
+ ✓ Compiled /api/get-started-notification in 69ms (108 modules)
+Using Resend API key for email sending only (restricted key detected)
+Email sent successfully: { data: { id: 'ad48808a-5139-4d0f-b4c5-99099e791857' }, error: null }
+ POST /api/get-started-notification 200 in 872ms
