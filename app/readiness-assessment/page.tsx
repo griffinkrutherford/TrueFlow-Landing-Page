@@ -36,7 +36,8 @@ import {
   Play,
   Download,
   Upload,
-  Settings
+  Settings,
+  HelpCircle
 } from 'lucide-react'
 import { DebugComponent } from './debug'
 
@@ -413,23 +414,6 @@ export default function ReadinessAssessment() {
         'Priority support & training'
       ]
     },
-    {
-      id: 'not-sure',
-      name: 'Not Sure Yet',
-      price: 'Let\'s talk',
-      period: 'to find the right fit',
-      description: 'Need help choosing? We\'ll guide you',
-      features: [
-        'Free consultation call',
-        'Personalized recommendation',
-        'Custom package options',
-        'Flexible pricing available',
-        'No commitment required',
-        'Expert guidance on best fit',
-        'Trial options available',
-        'Money-back guarantee'
-      ]
-    }
   ]
 
   const handleAnswer = (questionId: string, value: string) => {
@@ -666,7 +650,9 @@ export default function ReadinessAssessment() {
       const score = calculateScore()
       const recommendation = getRecommendation(score)
       const businessType = businessTypes.find(type => type.id === selectedBusinessType)?.title || selectedBusinessType
-      const planName = plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
+      const planName = selectedPlan === 'not-sure' 
+        ? 'Not Sure Yet' 
+        : plans.find(plan => plan.id === selectedPlan)?.name || selectedPlan
 
       // Calculate raw score for the email
       let rawTotalScore = 0
@@ -1560,7 +1546,7 @@ export default function ReadinessAssessment() {
                   </div>
                 )}
                 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                   {plans.map((plan) => (
                     <div
                       key={plan.id}
@@ -1608,6 +1594,26 @@ export default function ReadinessAssessment() {
                       )}
                     </div>
                   ))}
+                </div>
+                
+                {/* Not Sure Option - Separate button below main options */}
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={() => setSelectedPlan('not-sure')}
+                    className={`inline-flex items-center space-x-2 px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                      selectedPlan === 'not-sure'
+                        ? 'bg-white/20 text-white border-2 border-white/40'
+                        : 'bg-white/10 text-white/70 border border-white/20 hover:bg-white/15 hover:text-white/90'
+                    }`}
+                  >
+                    <HelpCircle className="h-4 w-4" />
+                    <span>Not sure which plan is right for me</span>
+                  </button>
+                  {selectedPlan === 'not-sure' && (
+                    <p className="text-white/60 text-sm mt-2">
+                      No problem! We'll help you find the perfect plan after you submit.
+                    </p>
+                  )}
                 </div>
               </div>
 
