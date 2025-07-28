@@ -133,8 +133,8 @@ export default function BlogHeader({ post }: BlogHeaderProps) {
               {post.readTime} min read
             </span>
 
-            {/* Share Button */}
-            <div className="relative ml-auto">
+            {/* Share Button - Coming Soon */}
+            {/* <div className="relative ml-auto">
               <button
                 onClick={() => setShowShareMenu(!showShareMenu)}
                 className="flex items-center gap-2 text-white/70 hover:text-white transition-all duration-300 hover:scale-105 px-4 py-2 rounded-full hover:bg-white/10"
@@ -174,7 +174,7 @@ export default function BlogHeader({ post }: BlogHeaderProps) {
                   </a>
                 </div>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
