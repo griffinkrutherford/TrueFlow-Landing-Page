@@ -40,28 +40,36 @@ interface AssessmentData {
 }
 
 export async function POST(request: Request) {
+  console.log('[API] Received POST request to /api/ghl/create-lead')
+  console.log('[API] Headers:', Object.fromEntries(request.headers.entries()))
+  
   try {
     // Parse request body
     const data: AssessmentData = await request.json()
+    console.log('[API] Request data:', JSON.stringify(data, null, 2))
 
     // Check if GHL integration is enabled and configured
     if (process.env.GHL_ENABLED !== 'true' || !process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID) {
-      console.log('GHL integration disabled or not configured, using email fallback')
+      console.log('[API] GHL integration disabled or not configured, using email fallback')
+      console.log('[API] GHL_ENABLED:', process.env.GHL_ENABLED)
+      console.log('[API] GHL_ACCESS_TOKEN:', process.env.GHL_ACCESS_TOKEN ? 'Set' : 'Not set')
+      console.log('[API] GHL_LOCATION_ID:', process.env.GHL_LOCATION_ID ? 'Set' : 'Not set')
       
       // Try to send email notification as fallback
       try {
         await sendEmailNotification(data)
         return NextResponse.json({ 
           success: true, 
-          message: 'Assessment submitted successfully' 
+          message: 'Assessment submitted successfully (email sent)' 
         })
       } catch (emailError) {
-        console.error('Email notification failed:', emailError)
-        // Still return success to not break the user flow
+        console.error('[API] Email notification failed:', emailError)
+        // Return error to help debug
         return NextResponse.json({ 
-          success: true, 
-          message: 'Assessment submitted successfully' 
-        })
+          success: false, 
+          message: 'Failed to send notification',
+          error: process.env.NODE_ENV === 'development' ? emailError.message : 'Email service error'
+        }, { status: 500 })
       }
     }
 
@@ -156,9 +164,11 @@ export async function POST(request: Request) {
 
     // Also send email notification (as backup)
     try {
+      console.log('[API] Sending backup email notification...')
       await sendEmailNotification(data)
+      console.log('[API] Backup email sent successfully')
     } catch (emailError) {
-      console.error('Email notification failed:', emailError)
+      console.error('[API] Backup email notification failed:', emailError)
       // Don't fail the request if email fails
     }
 
@@ -180,11 +190,19 @@ export async function POST(request: Request) {
 
 // Helper function to send email notification
 async function sendEmailNotification(data: AssessmentData) {
+  console.log('[Email] Starting email notification process')
+  
   if (!process.env.RESEND_API_KEY) {
-    console.warn('Resend API key not configured')
-    return
+    console.error('[Email] ERROR: Resend API key not configured')
+    throw new Error('Email service not configured')
   }
 
+  if (process.env.RESEND_API_KEY === 'your_resend_api_key_here') {
+    console.error('[Email] ERROR: Resend API key is still a placeholder')
+    throw new Error('Email service not properly configured')
+  }
+
+  console.log('[Email] Loading Resend library...')
   const { Resend } = await import('resend')
   const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -206,12 +224,31 @@ async function sendEmailNotification(data: AssessmentData) {
     </ul>
   `
 
-  await resend.emails.send({
-    from: 'TrueFlow AI <notifications@trueflow.ai>',
-    to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
-    subject: `New Assessment Lead: ${data.firstName} ${data.lastName} (Score: ${data.score}%)`,
-    html: emailContent
-  })
+  // Use the resend.dev domain for reliable email delivery
+  // (custom domains like @trueflow.ai require domain verification in Resend)
+  const fromEmail = 'TrueFlow AI <onboarding@resend.dev>'
+  const toEmails = ['griffin@trueflow.ai', 'matt@trueflow.ai']
+
+  console.log('[Email] Sending email...')
+  console.log('[Email] From:', fromEmail)
+  console.log('[Email] To:', toEmails)
+  console.log('[Email] Subject:', `New Assessment Lead: ${data.firstName} ${data.lastName} (Score: ${data.score}%)`)
+
+  try {
+    const result = await resend.emails.send({
+      from: fromEmail,
+      to: toEmails,
+      subject: `New Assessment Lead: ${data.firstName} ${data.lastName} (Score: ${data.score}%)`,
+      html: emailContent
+    })
+    
+    console.log('[Email] Email sent successfully:', result)
+    return result
+  } catch (error) {
+    console.error('[Email] ERROR sending email:', error)
+    console.error('[Email] Error details:', JSON.stringify(error, null, 2))
+    throw error
+  }
 }
 
 // OPTIONS handler for CORS
