@@ -40,7 +40,6 @@ import {
   Settings,
   HelpCircle
 } from 'lucide-react'
-import { DebugComponent } from './debug'
 
 interface Question {
   id: string

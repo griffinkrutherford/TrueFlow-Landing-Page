@@ -70,3 +70,44 @@ Email sent successfully: { data: { id: 'ad48808a-5139-4d0f-b4c5-99099e791857' },
  ✓ Compiled in 159ms (333 modules)
  ✓ Compiled in 86ms (636 modules)
  ✓ Compiled in 158ms (333 modules)
+ GET / 200 in 70ms
+ ○ Compiling /get-started ...
+ ⨯ ./app/get-started/page.tsx:43:1
+Module not found: Can't resolve './debug'
+[0m [90m 41 |[39m   [33mHelpCircle[39m[0m
+[0m [90m 42 |[39m } [36mfrom[39m [32m'lucide-react'[39m[0m
+[0m[31m[1m>[22m[39m[90m 43 |[39m [36mimport[39m { [33mDebugComponent[39m } [36mfrom[39m [32m'./debug'[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m 44 |[39m[0m
+[0m [90m 45 |[39m [36minterface[39m [33mQuestion[39m {[0m
+[0m [90m 46 |[39m   id[33m:[39m string[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./app/get-started/page.tsx:43:1
+Module not found: Can't resolve './debug'
+[0m [90m 41 |[39m   [33mHelpCircle[39m[0m
+[0m [90m 42 |[39m } [36mfrom[39m [32m'lucide-react'[39m[0m
+[0m[31m[1m>[22m[39m[90m 43 |[39m [36mimport[39m { [33mDebugComponent[39m } [36mfrom[39m [32m'./debug'[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m 44 |[39m[0m
+[0m [90m 45 |[39m [36minterface[39m [33mQuestion[39m {[0m
+[0m [90m 46 |[39m   id[33m:[39m string[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ ⨯ ./app/get-started/page.tsx:43:1
+Module not found: Can't resolve './debug'
+[0m [90m 41 |[39m   [33mHelpCircle[39m[0m
+[0m [90m 42 |[39m } [36mfrom[39m [32m'lucide-react'[39m[0m
+[0m[31m[1m>[22m[39m[90m 43 |[39m [36mimport[39m { [33mDebugComponent[39m } [36mfrom[39m [32m'./debug'[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m 44 |[39m[0m
+[0m [90m 45 |[39m [36minterface[39m [33mQuestion[39m {[0m
+[0m [90m 46 |[39m   id[33m:[39m string[0m
+
+https://nextjs.org/docs/messages/module-not-found
+ GET /get-started 500 in 9ms
+ ✓ Compiled /_error in 454ms (882 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /get-started 200 in 37ms
+ GET /_next/static/webpack/1a759c8cf55accbb.webpack.hot-update.json 404 in 292ms
+ GET /get-started 200 in 26ms
