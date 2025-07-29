@@ -7,7 +7,8 @@
       "**/*",
       "package.json",
       "package-lock.json"
-    ]
+    ],
+    "nixpacksConfigPath": "nixpacks.toml"
   },
   "deploy": {
     "startCommand": "npm start",
@@ -19,6 +20,9 @@
   "variables": {
     "PORT": "3001",
     "NODE_ENV": "production",
-    "NEXT_TELEMETRY_DISABLED": "1"
+    "NEXT_TELEMETRY_DISABLED": "1",
+    "NODE_VERSION": "20.11.0",
+    "NIXPACKS_NO_CACHE": "1",
+    "FORCE_COLOR": "0"
   }
 }
