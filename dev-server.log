@@ -111,3 +111,7 @@ https://nextjs.org/docs/messages/module-not-found
  GET /get-started 200 in 37ms
  GET /_next/static/webpack/1a759c8cf55accbb.webpack.hot-update.json 404 in 292ms
  GET /get-started 200 in 26ms
+ GET /get-started 200 in 29ms
+ ✓ Compiled in 462ms (893 modules)
+ ✓ Compiled in 336ms (893 modules)
+ ✓ Compiled in 340ms (893 modules)
