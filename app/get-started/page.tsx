@@ -511,7 +511,7 @@ export default function GetStartedPage() {
       const [firstName, ...lastNameParts] = formData.fullName.trim().split(' ')
       const lastName = lastNameParts.join(' ') || ''
 
-      // Prepare the lead data
+      // Prepare the lead data with additional fields for GHL
       const leadData = {
         firstName,
         lastName,
@@ -520,12 +520,39 @@ export default function GetStartedPage() {
         businessName: formData.businessName,
         businessType: businessType,
         selectedPlan: planName,
+        pricingPlan: selectedPlan, // Send the plan ID for GHL
         contentGoals: formData.contentGoals,
         integrations: formData.integrations,
+        // Add default values for fields that GHL expects
+        monthlyLeads: '10-50', // Default value
+        teamSize: '1-5', // Default value
+        currentTools: formData.integrations.length > 0 ? formData.integrations : ['None'], // Use integrations as current tools
+        biggestChallenge: 'Creating consistent, engaging content that converts', // Default value
         timestamp: new Date().toISOString()
       }
 
       console.log('Submitting lead data:', leadData)
+
+      // First, send to GHL API for CRM integration
+      try {
+        const ghlResponse = await fetch('/api/ghl/create-lead', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(leadData)
+        })
+
+        if (!ghlResponse.ok) {
+          console.error('GHL API failed, but continuing with email notification')
+        } else {
+          const ghlData = await ghlResponse.json()
+          console.log('GHL integration successful:', ghlData)
+        }
+      } catch (ghlError) {
+        console.error('GHL integration error:', ghlError)
+        // Don't fail the whole submission if GHL fails
+      }
 
       // Send lead notification to Griffin and Matt using the get-started specific endpoint
       const response = await fetch('/api/get-started-notification', {
