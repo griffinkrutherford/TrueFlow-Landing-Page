@@ -288,9 +288,9 @@ export function buildCustomFieldsPayload(
     // If not in cache, look in existing fields
     if (!fieldId) {
       const field = existingFields.find(f => f.fieldKey === fieldKey)
-      if (field) {
+      if (field && field.id) {
         fieldId = field.id
-        cacheFieldId(fieldKey, fieldId)
+        cacheFieldId(fieldKey, field.id)
       }
     }
     
