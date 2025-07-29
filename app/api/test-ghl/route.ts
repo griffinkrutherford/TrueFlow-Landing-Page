@@ -62,6 +62,22 @@ export async function GET(request: NextRequest) {
       timestamp: new Date().toISOString(),
       source: "get-started"
     },
+    getstarted: {
+      firstName: "GetStarted",
+      lastName: "Test",
+      email: "getstarted@example.com",
+      phone: "5555551234",
+      businessName: "Test Agency",
+      businessType: "Marketing Agency",
+      contentGoals: ["newsletters", "blog", "social"],
+      monthlyLeads: "50-100",
+      teamSize: "5-10",
+      currentTools: ["mailchimp", "hubspot", "wordpress"],
+      biggestChallenge: "Scaling content creation while maintaining quality",
+      pricingPlan: "professional",
+      timestamp: new Date().toISOString(),
+      source: "get-started-form"
+    },
     minimal: {
       firstName: "Minimal",
       lastName: "Test",
@@ -78,6 +94,21 @@ export async function GET(request: NextRequest) {
       recommendation: null,
       timestamp: new Date().toISOString(),
       source: "test"
+    },
+    edgecase: {
+      // Test edge cases with undefined/null arrays
+      firstName: "Edge",
+      lastName: "Case",
+      email: "edge@example.com",
+      businessName: "Edge Business",
+      businessType: "Other",
+      contentGoals: undefined, // This should trigger the error
+      currentTools: null, // This should also be handled
+      monthlyLeads: "1-10",
+      teamSize: "1",
+      biggestChallenge: "Just starting out",
+      pricingPlan: "starter",
+      timestamp: new Date().toISOString()
     }
   }
   

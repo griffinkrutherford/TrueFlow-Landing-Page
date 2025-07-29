@@ -110,11 +110,47 @@ export async function POST(request: Request) {
     const data = await request.json()
     console.log('[API] Request data:', JSON.stringify(data, null, 2))
     
+    // Validate required fields
+    if (!data.firstName || !data.lastName || !data.email) {
+      console.error('[API] Missing required fields:', {
+        firstName: !!data.firstName,
+        lastName: !!data.lastName,
+        email: !!data.email
+      })
+      return NextResponse.json({ 
+        success: false, 
+        message: 'Missing required fields: firstName, lastName, or email' 
+      }, { status: 400 })
+    }
+    
     // Determine form type
     const isAssessment = 'score' in data && 'recommendation' in data
     const formType = isAssessment ? 'assessment' : 'get-started'
     
     console.log(`[API] Processing ${formType} form submission`)
+    
+    // Normalize array fields for get-started form
+    if (!isAssessment) {
+      // Ensure contentGoals is an array
+      if (data.contentGoals && !Array.isArray(data.contentGoals)) {
+        console.warn('[API] contentGoals is not an array, converting:', data.contentGoals)
+        data.contentGoals = typeof data.contentGoals === 'string' 
+          ? data.contentGoals.split(',').map((s: string) => s.trim())
+          : []
+      }
+      
+      // Ensure currentTools is an array
+      if (data.currentTools && !Array.isArray(data.currentTools)) {
+        console.warn('[API] currentTools is not an array, converting:', data.currentTools)
+        data.currentTools = typeof data.currentTools === 'string'
+          ? data.currentTools.split(',').map((s: string) => s.trim())
+          : []
+      }
+      
+      // Set default empty arrays if missing
+      data.contentGoals = data.contentGoals || []
+      data.currentTools = data.currentTools || []
+    }
 
     // Check if GHL integration is enabled and configured
     if (!process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID) {
@@ -145,6 +181,16 @@ export async function POST(request: Request) {
     const contactResult = await createOrUpdateGHLContact(data, formType)
     
     if (!contactResult.success) {
+      // If GHL is not configured, still return success
+      if (contactResult.message && contactResult.message.includes('not configured')) {
+        console.log('[API] GHL not configured, but form submission successful')
+        return NextResponse.json({ 
+          success: true, 
+          message: 'Form submission received successfully',
+          contactId: contactResult.contactId,
+          ghlStatus: 'not_configured'
+        })
+      }
       throw new Error(contactResult.error || 'Failed to create/update contact')
     }
 
@@ -176,10 +222,23 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('Error processing lead:', error)
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+    console.error('Error details:', {
+      name: error instanceof Error ? error.name : 'Unknown',
+      message: error instanceof Error ? error.message : String(error),
+      type: typeof error
+    })
+    
     return NextResponse.json({ 
       success: false, 
       message: 'Internal server error',
-      error: process.env.NODE_ENV === 'development' ? error : undefined
+      error: process.env.NODE_ENV === 'development' 
+        ? {
+            message: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined,
+            details: error
+          }
+        : undefined
     }, { status: 500 })
   }
 }
@@ -187,6 +246,21 @@ export async function POST(request: Request) {
 // Create or update contact in GHL
 async function createOrUpdateGHLContact(data: any, formType: string) {
   try {
+    // Check if GHL is properly configured
+    const isGHLConfigured = 
+      process.env.GHL_ACCESS_TOKEN && 
+      !process.env.GHL_ACCESS_TOKEN.includes('your_') &&
+      process.env.GHL_LOCATION_ID &&
+      !process.env.GHL_LOCATION_ID.includes('your_')
+    
+    if (!isGHLConfigured) {
+      console.log('[GHL] GoHighLevel is not configured. Skipping CRM integration.')
+      return {
+        success: true,
+        contactId: `demo-${Date.now()}`,
+        message: 'GHL not configured - data logged only'
+      }
+    }
     // Build tags
     const tags = [
       `trueflow-${formType}`,
@@ -244,34 +318,49 @@ async function createOrUpdateGHLContact(data: any, formType: string) {
       })
     } else {
       const getStartedData = data as GetStartedData
+      
+      // Log the data structure for debugging
+      console.log('[GHL] Processing Get Started data:', {
+        hasContentGoals: !!getStartedData.contentGoals,
+        contentGoalsType: Array.isArray(getStartedData.contentGoals) ? 'array' : typeof getStartedData.contentGoals,
+        contentGoalsValue: getStartedData.contentGoals,
+        hasCurrentTools: !!getStartedData.currentTools,
+        currentToolsType: Array.isArray(getStartedData.currentTools) ? 'array' : typeof getStartedData.currentTools,
+        currentToolsValue: getStartedData.currentTools
+      })
+      
       customFields.push(
         {
           key: CUSTOM_FIELD_MAPPING.business_type,
-          field_value: getStartedData.businessType
+          field_value: getStartedData.businessType || ''
         },
         {
           key: CUSTOM_FIELD_MAPPING.content_goals,
-          field_value: getStartedData.contentGoals.join(', ')
+          field_value: Array.isArray(getStartedData.contentGoals) 
+            ? getStartedData.contentGoals.join(', ') 
+            : (getStartedData.contentGoals || '')
         },
         {
           key: CUSTOM_FIELD_MAPPING.monthly_leads,
-          field_value: getStartedData.monthlyLeads
+          field_value: getStartedData.monthlyLeads || ''
         },
         {
           key: CUSTOM_FIELD_MAPPING.team_size,
-          field_value: getStartedData.teamSize
+          field_value: getStartedData.teamSize || ''
         },
         {
           key: CUSTOM_FIELD_MAPPING.current_tools,
-          field_value: getStartedData.currentTools.join(', ')
+          field_value: Array.isArray(getStartedData.currentTools) 
+            ? getStartedData.currentTools.join(', ') 
+            : (getStartedData.currentTools || '')
         },
         {
           key: CUSTOM_FIELD_MAPPING.biggest_challenge,
-          field_value: getStartedData.biggestChallenge
+          field_value: getStartedData.biggestChallenge || ''
         },
         {
           key: CUSTOM_FIELD_MAPPING.selected_plan,
-          field_value: getStartedData.pricingPlan
+          field_value: getStartedData.pricingPlan || ''
         }
       )
     }
@@ -467,11 +556,11 @@ async function sendEmailNotification(data: any, formType: string) {
       
       <h3>Business Details:</h3>
       <ul>
-        <li><strong>Content Goals:</strong> ${getStartedData.contentGoals.join(', ')}</li>
-        <li><strong>Monthly Leads:</strong> ${getStartedData.monthlyLeads}</li>
-        <li><strong>Team Size:</strong> ${getStartedData.teamSize}</li>
-        <li><strong>Current Tools:</strong> ${getStartedData.currentTools.join(', ')}</li>
-        <li><strong>Biggest Challenge:</strong> ${getStartedData.biggestChallenge}</li>
+        <li><strong>Content Goals:</strong> ${Array.isArray(getStartedData.contentGoals) ? getStartedData.contentGoals.join(', ') : (getStartedData.contentGoals || 'Not specified')}</li>
+        <li><strong>Monthly Leads:</strong> ${getStartedData.monthlyLeads || 'Not specified'}</li>
+        <li><strong>Team Size:</strong> ${getStartedData.teamSize || 'Not specified'}</li>
+        <li><strong>Current Tools:</strong> ${Array.isArray(getStartedData.currentTools) ? getStartedData.currentTools.join(', ') : (getStartedData.currentTools || 'Not specified')}</li>
+        <li><strong>Biggest Challenge:</strong> ${getStartedData.biggestChallenge || 'Not specified'}</li>
       </ul>
     `
   }
