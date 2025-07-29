@@ -708,7 +708,7 @@ export default function ReadinessAssessment() {
       }
 
       // Send to GHL API
-      const response = await fetch('/api/ghl/create-lead', {
+      const response = await fetch('/api/ghl/create-lead-v2', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

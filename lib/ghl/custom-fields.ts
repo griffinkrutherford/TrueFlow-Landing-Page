@@ -10,16 +10,22 @@ export interface CustomFieldDefinition {
   description?: string
   showInForms?: boolean
   options?: Array<{ key: string; label: string }>
+  placeholder?: string
 }
 
-// Define all TrueFlow custom fields
-export const TRUEFLOW_CUSTOM_FIELDS: CustomFieldDefinition[] = [
+// GHL API configuration
+const GHL_API_BASE = 'https://services.leadconnectorhq.com'
+const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
+
+// Define all TrueFlow custom fields with consistent naming
+export const customFieldDefinitions: CustomFieldDefinition[] = [
   // Core tracking fields
   {
     name: 'TrueFlow Form Type',
     fieldKey: 'trueflow_form_type',
     dataType: 'TEXT',
     description: 'Type of form submitted (assessment or get-started)',
+    placeholder: 'assessment or get-started',
     showInForms: false
   },
   {
@@ -30,8 +36,8 @@ export const TRUEFLOW_CUSTOM_FIELDS: CustomFieldDefinition[] = [
     showInForms: false
   },
   {
-    name: 'TrueFlow Lead Quality Score',
-    fieldKey: 'trueflow_lead_quality_score',
+    name: 'TrueFlow Lead Score',
+    fieldKey: 'trueflow_lead_score',
     dataType: 'NUMERICAL',
     description: 'Calculated lead quality score (0-100)',
     showInForms: false
@@ -202,7 +208,7 @@ export function clearFieldCache() {
 /**
  * Calculate lead quality score based on form data
  */
-export function calculateLeadQualityScore(data: any, formType: string): number {
+export function calculateLeadScore(data: any, formType: string): number {
   let score = 0
   
   if (formType === 'assessment') {
@@ -303,13 +309,13 @@ export function buildCustomFieldsPayload(
   }
   
   // Calculate lead quality score
-  const leadScore = calculateLeadQualityScore(data, formType)
+  const leadScore = calculateLeadScore(data, formType)
   const qualStatus = getQualificationStatus(leadScore)
   
   // Add common fields
   addField('trueflow_form_type', formType)
   addField('trueflow_submission_date', data.timestamp || new Date().toISOString())
-  addField('trueflow_lead_quality_score', leadScore)
+  addField('trueflow_lead_score', leadScore)
   addField('trueflow_qualification_status', qualStatus)
   addField('trueflow_business_name', data.businessName)
   
@@ -341,4 +347,105 @@ export function buildCustomFieldsPayload(
   }
   
   return fields
+}
+
+/**
+ * Ensure all custom fields exist in GoHighLevel
+ */
+export async function ensureCustomFieldsExist(): Promise<void> {
+  if (!process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID) {
+    console.log('[CustomFields] GHL not configured, skipping field creation')
+    return
+  }
+
+  try {
+    // First, get existing custom fields
+    const existingResponse = await fetch(
+      `${GHL_API_BASE}/locations/${process.env.GHL_LOCATION_ID}/customFields?model=contact`,
+      {
+        headers: {
+          'Authorization': `Bearer ${process.env.GHL_ACCESS_TOKEN}`,
+          'Version': GHL_API_VERSION,
+          'Accept': 'application/json'
+        }
+      }
+    )
+
+    if (!existingResponse.ok) {
+      console.error('[CustomFields] Failed to fetch existing fields:', existingResponse.status)
+      return
+    }
+
+    const existingData = await existingResponse.json()
+    const existingFields = existingData.customFields || []
+    const existingFieldKeys = new Set(existingFields.map((f: any) => f.fieldKey))
+
+    console.log(`[CustomFields] Found ${existingFields.length} existing custom fields`)
+
+    // Create missing fields
+    const fieldsToCreate = customFieldDefinitions.filter(field => 
+      !existingFieldKeys.has(field.fieldKey)
+    )
+
+    if (fieldsToCreate.length === 0) {
+      console.log('[CustomFields] All required fields already exist')
+      return
+    }
+
+    console.log(`[CustomFields] Creating ${fieldsToCreate.length} missing fields...`)
+
+    for (const field of fieldsToCreate) {
+      try {
+        const payload: any = {
+          name: field.name,
+          dataType: field.dataType,
+          placeholder: field.placeholder || field.description || '',
+          model: 'contact'
+        }
+
+        // Add options for SINGLE_OPTIONS fields
+        if (field.dataType === 'SINGLE_OPTIONS' && field.options) {
+          payload.textBoxListOptions = field.options.map(opt => ({
+            label: opt.label,
+            prefillValue: opt.key
+          }))
+        }
+
+        console.log(`[CustomFields] Creating field: ${field.fieldKey}`)
+
+        const createResponse = await fetch(
+          `${GHL_API_BASE}/locations/${process.env.GHL_LOCATION_ID}/customFields`,
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${process.env.GHL_ACCESS_TOKEN}`,
+              'Version': GHL_API_VERSION,
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          }
+        )
+
+        if (createResponse.ok) {
+          const result = await createResponse.json()
+          console.log(`[CustomFields] Created field ${field.fieldKey} with ID: ${result.customField?.id}`)
+          
+          // Cache the field ID
+          if (result.customField?.id) {
+            cacheFieldId(field.fieldKey, result.customField.id)
+          }
+        } else {
+          const errorText = await createResponse.text()
+          console.error(`[CustomFields] Failed to create field ${field.fieldKey}:`, errorText)
+        }
+      } catch (error) {
+        console.error(`[CustomFields] Error creating field ${field.fieldKey}:`, error)
+      }
+    }
+
+    console.log('[CustomFields] Field creation process completed')
+  } catch (error) {
+    console.error('[CustomFields] Error in ensureCustomFieldsExist:', error)
+  }
 }
