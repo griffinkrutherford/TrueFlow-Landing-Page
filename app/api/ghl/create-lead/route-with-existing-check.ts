@@ -150,7 +150,7 @@ async function createOrUpdateGHLContactWithCheck(data: any, formType: string) {
         lastName: data.lastName,
         phone: data.phone || existingContact.phone,
         companyName: data.businessName || existingContact.companyName,
-        tags: [...new Set([...(existingContact.tags || []), ...finalTags])], // Merge tags
+        tags: Array.from(new Set([...(existingContact.tags || []), ...finalTags])), // Merge tags
         customFields: data.customFields || []
       }
       
