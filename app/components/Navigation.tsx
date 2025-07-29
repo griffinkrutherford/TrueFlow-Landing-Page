@@ -79,31 +79,36 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden bg-black/90 backdrop-blur-xl border-t border-white/10">
           <div className="px-4 py-6 space-y-4">
-            {pathname !== '/' && (
-              <Link 
-                href="/" 
-                onClick={handleLinkClick}
-                className="block text-white/70 hover:text-white transition-colors text-lg"
-              >
-                Back to Home
-              </Link>
-            )}
+            <Link 
+              href="/" 
+              onClick={handleLinkClick}
+              className={`block hover:text-white transition-colors text-lg ${pathname === '/' ? 'text-white font-semibold' : 'text-white/70'}`}
+            >
+              Home
+            </Link>
+            <Link 
+              href="/content-engine" 
+              onClick={handleLinkClick}
+              className={`block hover:text-white transition-colors text-lg ${pathname === '/content-engine' ? 'text-white font-semibold' : 'text-white/70'}`}
+            >
+              Content Engine
+            </Link>
+            <Link 
+              href="/blog" 
+              onClick={handleLinkClick}
+              className={`block hover:text-white transition-colors text-lg ${pathname.startsWith('/blog') ? 'text-white font-semibold' : 'text-white/70'}`}
+            >
+              Blog
+            </Link>
+            <Link 
+              href="/faq" 
+              onClick={handleLinkClick}
+              className={`block hover:text-white transition-colors text-lg ${pathname === '/faq' ? 'text-white font-semibold' : 'text-white/70'}`}
+            >
+              FAQs
+            </Link>
             {pathname === '/' && (
               <>
-                <a 
-                  href="#" 
-                  onClick={handleLinkClick}
-                  className="block text-white/70 hover:text-white transition-colors text-lg"
-                >
-                  Home
-                </a>
-                <Link 
-                  href="/content-engine" 
-                  onClick={handleLinkClick}
-                  className="block text-white/70 hover:text-white transition-colors text-lg"
-                >
-                  Content Engine
-                </Link>
                 <a 
                   href="#features" 
                   onClick={handleLinkClick}
@@ -125,26 +130,12 @@ export default function Navigation() {
                 >
                   Success Stories
                 </a>
-                <a 
-                  href="#blog" 
-                  onClick={handleLinkClick}
-                  className="block text-white/70 hover:text-white transition-colors text-lg"
-                >
-                  Blog
-                </a>
-                <Link 
-                  href="/faq" 
-                  onClick={handleLinkClick}
-                  className="block text-white/70 hover:text-white transition-colors text-lg"
-                >
-                  FAQs
-                </Link>
               </>
             )}
             <Link 
               href="/get-started" 
               onClick={handleLinkClick}
-              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold block text-center"
+              className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-3 rounded-full hover:opacity-90 transition-opacity text-lg font-semibold block text-center mt-6"
             >
               Get Started
             </Link>
