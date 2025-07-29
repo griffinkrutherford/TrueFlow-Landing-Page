@@ -79,8 +79,8 @@ async function getExistingCustomFields(forceRefresh = false): Promise<any[]> {
     customFieldsCache = data.customFields || []
     cacheTimestamp = Date.now()
     
-    console.log(`[GHL] Found ${customFieldsCache.length} existing custom fields`)
-    return customFieldsCache
+    console.log(`[GHL] Found ${customFieldsCache?.length || 0} existing custom fields`)
+    return customFieldsCache || []
   } catch (error) {
     console.error('[GHL] Error fetching custom fields:', error)
     return []
