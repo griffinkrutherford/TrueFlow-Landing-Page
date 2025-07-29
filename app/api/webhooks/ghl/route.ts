@@ -138,7 +138,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     events: events.slice(0, limit),
     total: events.length,
-    types: [...new Set(webhookEvents.map(e => e.type))],
+    types: Array.from(new Set(webhookEvents.map(e => e.type))),
     oldestEvent: webhookEvents[webhookEvents.length - 1]?.timestamp,
     newestEvent: webhookEvents[0]?.timestamp
   })
