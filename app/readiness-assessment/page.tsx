@@ -722,14 +722,8 @@ export default function ReadinessAssessment() {
         throw new Error(errorData.message || 'Failed to submit assessment')
       }
 
-      // Send lead notification
-      await fetch('/api/lead-notification', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(leadData)
-      })
+      const result = await response.json()
+      console.log('Assessment submitted successfully:', result)
 
       // Show success page
       setShowSuccess(true)
