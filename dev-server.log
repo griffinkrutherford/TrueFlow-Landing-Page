@@ -72,3 +72,4 @@
 [Email] Email sent successfully: { data: { id: 'a1668522-a747-4ec9-ad47-b08da68d1d62' }, error: null }
  POST /api/ghl/create-lead-test 200 in 513ms
  ✓ Compiled in 16ms
+ ✓ Compiled in 285ms (308 modules)

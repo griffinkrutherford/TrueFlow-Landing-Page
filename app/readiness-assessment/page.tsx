@@ -669,42 +669,29 @@ export default function ReadinessAssessment() {
       // Prepare comprehensive lead data with all assessment details
       const leadData = {
         // Contact information
-        ...contactInfo,
+        firstName: contactInfo.firstName,
+        lastName: contactInfo.lastName,
+        email: contactInfo.email,
+        phone: contactInfo.phone || '',
+        businessName: contactInfo.businessName || '',
         
         // Business profile
         businessType,
-        contentGoals,
         
-        // Assessment answers with questions for context
-        assessmentAnswers: Object.entries(answers).map(([questionId, answer]) => {
-          const question = questions.find(q => q.id === questionId)
-          return {
-            questionId,
-            category: question?.category || 'Unknown',
-            question: question?.question || 'Unknown question',
-            answer: question?.options.find(opt => opt.value === answer)?.label || answer,
-            score: question?.options.find(opt => opt.value === answer)?.score || 0
-          }
-        }),
-        
-        // Raw answers for backup
-        answers,
-        
-        // Scoring and recommendations
-        totalScore: rawTotalScore,
-        maxPossibleScore: questions.length * 4, // 4 is max score per question
-        scorePercentage: score, // score is already a percentage
+        // Core assessment data
+        score: score, // This is the percentage score
         recommendation: recommendation.recommendation,
-        readinessLevel: recommendation.level,
         
-        // Preferences
-        integrations,
+        // Simplified answers object (not nested)
+        answers: answers,
+        
+        // Additional context
         selectedPlan: planName,
+        contentGoals: contentGoals || [],
+        integrations: integrations || [],
         
         // Metadata
-        timestamp: new Date().toISOString(),
-        assessmentVersion: '2.0',
-        source: 'readiness-assessment'
+        timestamp: new Date().toISOString()
       }
 
       // Send to GHL API
