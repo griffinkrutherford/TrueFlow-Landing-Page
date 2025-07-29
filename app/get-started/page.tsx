@@ -1660,17 +1660,6 @@ export default function ReadinessAssessment() {
 
         </div>
       </main>
-      
-      {showResults && (
-        <DebugComponent 
-          currentStep={currentStep}
-          answers={answers}
-          showResults={showResults}
-          showContactForm={false}
-          isSubmitting={isSubmitting}
-          submitError={submitError}
-        />
-      )}
     </div>
   )
 }
