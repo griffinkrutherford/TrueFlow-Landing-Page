@@ -3,7 +3,7 @@
  * This module provides a robust API client for GHL integration
  */
 
-import { TRUEFLOW_CUSTOM_FIELDS, CustomFieldDefinition, cacheFieldId } from './custom-fields'
+import { customFieldDefinitions, CustomFieldDefinition, cacheFieldId } from './custom-fields'
 
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
 const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
@@ -176,7 +176,7 @@ export async function ensureCustomFieldsExist(config: GHLApiConfig): Promise<any
     const existingFieldKeys = new Set(existingFields.map(f => f.fieldKey))
     
     // Create missing fields
-    const createPromises = TRUEFLOW_CUSTOM_FIELDS
+    const createPromises = customFieldDefinitions
       .filter(field => !existingFieldKeys.has(field.fieldKey))
       .map(field => createCustomField(field, config))
     

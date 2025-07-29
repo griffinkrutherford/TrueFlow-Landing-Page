@@ -1,0 +1,2937 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 1488ms
+(node:25603) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 2.7s (619 modules)
+ GET / 200 in 2850ms
+ ✓ Compiled in 250ms (308 modules)
+ ✓ Compiled /api/ghl/create-lead-v2 in 376ms (371 modules)
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 1189ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Missing required fields
+ POST /api/ghl/create-lead-v2 400 in 6ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Missing required fields
+ POST /api/ghl/create-lead-v2 400 in 8ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Missing required fields
+ POST /api/ghl/create-lead-v2 400 in 11ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 490ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 403ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "complete-system",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "complete-system",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 245ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "not-sure",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "not-sure",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 231ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-creator@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-creator@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 190ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-podcaster@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "podcaster",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-podcaster@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "podcaster",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 168ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-business@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "business",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-business@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "business",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 188ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-coach@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "coach",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-coach@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "coach",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 165ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-agency@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "agency",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-agency@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "agency",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 162ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-other@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "other",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test-other@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "other",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 184ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "test@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business LLC",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "currentContent": "manual",
+  "contentVolume": "moderate",
+  "crmUsage": "spreadsheets",
+  "leadResponse": "hours",
+  "timeSpent": "high",
+  "budget": "moderate",
+  "selectedPlan": "content-engine",
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "timestamp": "2025-07-29T22:57:31.942Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 258ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Minimal",
+  "lastName": "Test",
+  "email": "minimal@example.com",
+  "businessName": "Minimal Business"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Minimal",
+  "lastName": "Test",
+  "email": "minimal@example.com",
+  "businessName": "Minimal Business",
+  "contentGoals": [],
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 203ms
+ GET / 200 in 55ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "Test",
+  "lastName": "User_y4l2jg",
+  "email": "test_1753829945973@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business y4l2jg",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "selectedPlan": "content-engine",
+  "timestamp": "2025-07-29T22:59:05.973Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "Test",
+  "lastName": "User_y4l2jg",
+  "email": "test_1753829945973@example.com",
+  "phone": "+1 (555) 123-4567",
+  "businessName": "Test Business y4l2jg",
+  "businessType": "creator",
+  "contentGoals": [
+    "newsletters",
+    "blogs",
+    "social"
+  ],
+  "integrations": [
+    "gohighlevel",
+    "mailchimp"
+  ],
+  "answers": {
+    "current-content": "manual",
+    "content-volume": "moderate",
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "time-spent": "high",
+    "budget": "moderate"
+  },
+  "assessmentAnswers": [
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Manually write everything",
+      "score": 1
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "15-30 hours",
+      "score": 2
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "$500 - $2,000",
+      "score": 2
+    }
+  ],
+  "totalScore": 10,
+  "maxPossibleScore": 24,
+  "scorePercentage": 42,
+  "recommendation": "Content Engine",
+  "readinessLevel": "Getting Ready",
+  "selectedPlan": "content-engine",
+  "timestamp": "2025-07-29T22:59:05.973Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 1146ms
+[API V2] Received POST request to /api/ghl/create-lead-v2
+[API V2] Request data: {
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1 (555) 987-6543",
+  "businessName": "Doe Enterprises LLC",
+  "businessType": "business",
+  "contentGoals": [
+    "blogs",
+    "newsletters"
+  ],
+  "selectedPlan": "complete-system",
+  "answers": {
+    "current-content": "outsource",
+    "content-volume": "high",
+    "crm-usage": "basic-crm",
+    "lead-response": "quick",
+    "time-spent": "moderate",
+    "budget": "high"
+  },
+  "totalScore": 18,
+  "maxPossibleScore": 24,
+  "scorePercentage": 75,
+  "recommendation": "Complete System",
+  "readinessLevel": "Highly Ready",
+  "timestamp": "2025-07-29T22:59:59.934Z",
+  "source": "readiness-assessment"
+}
+[API V2] Processing get-started form submission
+[API V2] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V2] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v2/route.ts:53:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V2] Lead data saved to logs: {
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "phone": "+1 (555) 987-6543",
+  "businessName": "Doe Enterprises LLC",
+  "businessType": "business",
+  "contentGoals": [
+    "blogs",
+    "newsletters"
+  ],
+  "selectedPlan": "complete-system",
+  "answers": {
+    "current-content": "outsource",
+    "content-volume": "high",
+    "crm-usage": "basic-crm",
+    "lead-response": "quick",
+    "time-spent": "moderate",
+    "budget": "high"
+  },
+  "totalScore": 18,
+  "maxPossibleScore": 24,
+  "scorePercentage": 75,
+  "recommendation": "Complete System",
+  "readinessLevel": "Highly Ready",
+  "timestamp": "2025-07-29T22:59:59.934Z",
+  "source": "readiness-assessment",
+  "currentTools": []
+}
+ POST /api/ghl/create-lead-v2 200 in 581ms
+ ✓ Compiled in 250ms (308 modules)
+ ✓ Compiled in 265ms (308 modules)

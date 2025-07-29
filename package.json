@@ -20,6 +20,8 @@
     "validate:env": "node -e \"const e=require('fs').readFileSync('.env.local','utf8'); if(e.includes('your_')) {console.error('⚠️  WARNING: Placeholder values found in .env.local'); process.exit(1);} else {console.log('✅ Environment variables validated');}\""
   },
   "dependencies": {
+    "axios": "^1.11.0",
+    "colors": "^1.4.0",
     "dotenv": "^17.2.1",
     "framer-motion": "^12.23.6",
     "lucide-react": "^0.263.1",

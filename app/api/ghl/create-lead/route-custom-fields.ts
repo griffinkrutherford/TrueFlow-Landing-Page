@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { buildCustomFieldsPayload, calculateLeadQualityScore, getQualificationStatus } from '@/lib/ghl/custom-fields'
+// Import custom field utilities - using calculateLeadScore (not calculateLeadQualityScore)
+import { buildCustomFieldsPayload, calculateLeadScore, getQualificationStatus } from '@/lib/ghl/custom-fields'
 import { isGHLConfigured, ensureCustomFieldsExist, upsertContact } from '@/lib/ghl/api-client'
 
 export async function POST(request: Request) {
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
     }
     
     // Calculate lead quality score
-    const leadScore = calculateLeadQualityScore(data, formType)
+    const leadScore = calculateLeadScore(data, formType)
     const qualStatus = getQualificationStatus(leadScore)
     console.log(`[API] Lead quality: ${leadScore}/100 (${qualStatus})`)
     
