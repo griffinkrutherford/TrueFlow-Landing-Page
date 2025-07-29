@@ -196,13 +196,17 @@ async function createOrUpdateGHLContact(data: any, formType: string) {
     
     if (formType === 'assessment') {
       tags.push(
-        `score-${data.score}`,
-        data.recommendation.toLowerCase().replace(' ', '-')
+        `score-${data.totalScore || data.score || 0}`,
+        data.recommendation?.toLowerCase().replace(' ', '-') || 'assessment-completed'
       )
+      // Also add the selected plan if available
+      if (data.selectedPlan) {
+        tags.push(`plan-${data.selectedPlan.toLowerCase().replace(/\s+/g, '-')}`)
+      }
     } else {
       tags.push(
-        `plan-${data.pricingPlan.toLowerCase()}`,
-        `business-${data.businessType.toLowerCase().replace(/\s+/g, '-')}`
+        `plan-${data.pricingPlan?.toLowerCase() || 'unknown'}`,
+        `business-${data.businessType?.toLowerCase().replace(/\s+/g, '-') || 'unknown'}`
       )
     }
 
@@ -232,10 +236,10 @@ async function createOrUpdateGHLContact(data: any, formType: string) {
       )
       
       // Add assessment answers
-      Object.entries(assessmentData.answers).forEach(([questionId, answer]) => {
+      Object.entries(assessmentData.answers || {}).forEach(([questionId, answer]) => {
         customFields.push({
-          key: `assessment_${questionId.toLowerCase().replace(/\s+/g, '_')}`,
-          field_value: answer
+          key: `assessment_${questionId?.toLowerCase().replace(/\s+/g, '_') || 'unknown'}`,
+          field_value: answer || ''
         })
       })
     } else {
@@ -358,7 +362,7 @@ async function createGHLOpportunity(contactId: string, data: any, formType: stri
         'growth': 497,
         'enterprise': 997
       }
-      monetaryValue = planValues[data.pricingPlan.toLowerCase()] || 0
+      monetaryValue = planValues[data.pricingPlan?.toLowerCase() || 'unknown'] || 0
     } else if (formType === 'assessment' && data.recommendation) {
       const recommendationValues: Record<string, number> = {
         'starter': 97,
@@ -366,7 +370,7 @@ async function createGHLOpportunity(contactId: string, data: any, formType: stri
         'growth': 497,
         'enterprise': 997
       }
-      monetaryValue = recommendationValues[data.recommendation.toLowerCase()] || 0
+      monetaryValue = recommendationValues[data.recommendation?.toLowerCase() || 'unknown'] || 0
     }
 
     const opportunityPayload = {

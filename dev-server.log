@@ -119,3 +119,154 @@ https://nextjs.org/docs/messages/module-not-found
  GET / 200 in 81ms
  GET / 200 in 21ms
  ✓ Compiled in 493ms (893 modules)
+ ✓ Compiled /api/ghl/create-lead in 259ms (446 modules)
+[API] Received POST request to /api/ghl/create-lead
+[API] Headers: {
+  accept: '*/*',
+  'accept-encoding': 'gzip, deflate, br, zstd',
+  'accept-language': 'en-US,en;q=0.9',
+  connection: 'keep-alive',
+  'content-length': '1688',
+  'content-type': 'application/json',
+  cookie: 'next-auth.callback-url=http%3A%2F%2Flocalhost%3A3000; next-auth.csrf-token=0c6a3ed1cde276924ac5c36e1c110f3fcfbbb770948ce5e498c6d850d1753e65%7C61f34fa3159722d4404cd77935650f55d580a295facf46982895f6707623c368',
+  host: 'localhost:3001',
+  origin: 'http://localhost:3001',
+  referer: 'http://localhost:3001/get-started',
+  'sec-ch-ua': '"Not)A;Brand";v="8", "Chromium";v="138", "Google Chrome";v="138"',
+  'sec-ch-ua-mobile': '?0',
+  'sec-ch-ua-platform': '"macOS"',
+  'sec-fetch-dest': 'empty',
+  'sec-fetch-mode': 'cors',
+  'sec-fetch-site': 'same-origin',
+  'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36',
+  'x-forwarded-for': '::1',
+  'x-forwarded-host': 'localhost:3001',
+  'x-forwarded-port': '3001',
+  'x-forwarded-proto': 'http'
+}
+[API] Request data: {
+  "firstName": "Griffin",
+  "lastName": "Rutherford",
+  "email": "grutherford@mines.edu",
+  "phone": "12149984594",
+  "businessName": "trueflow",
+  "businessType": "Marketing Agency",
+  "contentGoals": [
+    "newsletters",
+    "sales"
+  ],
+  "assessmentAnswers": [
+    {
+      "questionId": "crm-usage",
+      "category": "Customer Management",
+      "question": "How do you currently manage customer relationships?",
+      "answer": "Spreadsheets or manual tracking",
+      "score": 1
+    },
+    {
+      "questionId": "lead-response",
+      "category": "Customer Management",
+      "question": "How quickly do you typically respond to new leads?",
+      "answer": "Within 24 hours",
+      "score": 2
+    },
+    {
+      "questionId": "current-content",
+      "category": "Content Creation",
+      "question": "How do you currently create content for your business?",
+      "answer": "Outsource to freelancers/agencies",
+      "score": 2
+    },
+    {
+      "questionId": "content-volume",
+      "category": "Content Creation",
+      "question": "How much content do you need to produce monthly?",
+      "answer": "6-20 pieces",
+      "score": 2
+    },
+    {
+      "questionId": "time-spent",
+      "category": "Time Management",
+      "question": "How much time do you spend on repetitive tasks weekly?",
+      "answer": "5-15 hours",
+      "score": 3
+    },
+    {
+      "questionId": "budget",
+      "category": "Investment",
+      "question": "What's your monthly budget for content and customer management?",
+      "answer": "More than $5,000",
+      "score": 4
+    }
+  ],
+  "answers": {
+    "crm-usage": "spreadsheets",
+    "lead-response": "hours",
+    "current-content": "outsource",
+    "content-volume": "moderate",
+    "time-spent": "moderate",
+    "budget": "enterprise"
+  },
+  "totalScore": 14,
+  "maxPossibleScore": 24,
+  "scorePercentage": 58,
+  "recommendation": "Complete System",
+  "readinessLevel": "Ready",
+  "integrations": [
+    "activecampaign",
+    "hubspot"
+  ],
+  "selectedPlan": "Complete System",
+  "timestamp": "2025-07-29T02:41:37.301Z",
+  "assessmentVersion": "2.0",
+  "source": "readiness-assessment"
+}
+[API] Processing get-started form submission
+[GHL] Error creating/updating contact: TypeError: Cannot read properties of undefined (reading 'toLowerCase')
+    at createOrUpdateGHLContact (webpack-internal:///(rsc)/./app/api/ghl/create-lead/route.ts:134:48)
+    at POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead/route.ts:84:37)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+Error processing lead: Error: Cannot read properties of undefined (reading 'toLowerCase')
+    at POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead/route.ts:86:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/ghl/create-lead 500 in 339ms
+ ✓ Compiled in 314ms (972 modules)
+ ✓ Compiled in 295ms (893 modules)
+ ✓ Compiled in 196ms (526 modules)
+ ✓ Compiled in 150ms (526 modules)
