@@ -4,315 +4,374 @@ import { NextResponse } from 'next/server'
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
 const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
 
-// Cache for custom fields to avoid repeated API calls
-let customFieldsCache: any[] | null = null
-let cacheTimestamp: number = 0
-const CACHE_DURATION = 5 * 60 * 1000 // 5 minutes
-
-// Define all the fields we need from the Get Started form
-const REQUIRED_CUSTOM_FIELDS = [
-  // Assessment/Form metadata
-  { name: 'Form Type', fieldKey: 'form_type', dataType: 'TEXT' },
-  { name: 'Submission Date', fieldKey: 'submission_date', dataType: 'DATE' },
-  { name: 'Lead Source', fieldKey: 'lead_source', dataType: 'TEXT' },
-  
-  // Business Information
-  { name: 'Business Type', fieldKey: 'business_type', dataType: 'TEXT' },
-  { name: 'Business Name', fieldKey: 'business_name', dataType: 'TEXT' },
-  
-  // Get Started specific fields
-  { name: 'Content Goals', fieldKey: 'content_goals', dataType: 'TEXT_AREA' },
-  { name: 'Monthly Leads', fieldKey: 'monthly_leads', dataType: 'TEXT' },
-  { name: 'Team Size', fieldKey: 'team_size', dataType: 'TEXT' },
-  { name: 'Current Tools', fieldKey: 'current_tools', dataType: 'TEXT_AREA' },
-  { name: 'Biggest Challenge', fieldKey: 'biggest_challenge', dataType: 'TEXT_AREA' },
-  { name: 'Selected Plan', fieldKey: 'selected_plan', dataType: 'TEXT' },
-  
-  // Assessment specific fields
-  { name: 'Assessment Score', fieldKey: 'assessment_score', dataType: 'NUMBER' },
-  { name: 'Recommended Plan', fieldKey: 'recommended_plan', dataType: 'TEXT' },
-  { name: 'Assessment Date', fieldKey: 'assessment_date', dataType: 'DATE' },
-  
-  // Scoring and qualification
-  { name: 'Lead Quality Score', fieldKey: 'lead_quality_score', dataType: 'NUMBER' },
-  { name: 'Qualification Status', fieldKey: 'qualification_status', dataType: 'TEXT' },
-  
-  // Additional tracking fields
-  { name: 'First Touch Date', fieldKey: 'first_touch_date', dataType: 'DATE' },
-  { name: 'Last Activity Date', fieldKey: 'last_activity_date', dataType: 'DATE' },
-  { name: 'Engagement Score', fieldKey: 'engagement_score', dataType: 'NUMBER' },
-  
-  // Answer tracking for assessments
-  { name: 'Assessment Answers', fieldKey: 'assessment_answers', dataType: 'TEXT_AREA' },
-  { name: 'Marketing Goals', fieldKey: 'marketing_goals', dataType: 'TEXT_AREA' },
-  { name: 'Current Challenges', fieldKey: 'current_challenges', dataType: 'TEXT_AREA' },
-  { name: 'Budget Range', fieldKey: 'budget_range', dataType: 'TEXT' },
-  { name: 'Timeline', fieldKey: 'timeline', dataType: 'TEXT' },
-  { name: 'Decision Maker', fieldKey: 'decision_maker', dataType: 'TEXT' }
-]
-
-// Fetch existing custom fields from GHL
-async function getExistingCustomFields(forceRefresh = false): Promise<any[]> {
-  // Check cache first
-  if (!forceRefresh && customFieldsCache && (Date.now() - cacheTimestamp) < CACHE_DURATION) {
-    console.log('[GHL] Using cached custom fields')
-    return customFieldsCache
-  }
-
-  try {
-    console.log('[GHL] Fetching custom fields from API...')
-    const response = await fetch(`${GHL_API_BASE}/locations/${process.env.GHL_LOCATION_ID}/customFields`, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${process.env.GHL_ACCESS_TOKEN}`,
-        'Accept': 'application/json',
-        'Version': GHL_API_VERSION
-      }
-    })
-
-    if (!response.ok) {
-      console.error('[GHL] Failed to fetch custom fields:', response.status)
-      return []
-    }
-
-    const data = await response.json()
-    customFieldsCache = data.customFields || []
-    cacheTimestamp = Date.now()
-    
-    console.log(`[GHL] Found ${customFieldsCache?.length || 0} existing custom fields`)
-    return customFieldsCache || []
-  } catch (error) {
-    console.error('[GHL] Error fetching custom fields:', error)
-    return []
-  }
+interface GHLCustomField {
+  id?: string
+  key?: string
+  field_value: string
 }
 
-// Create a custom field if it doesn't exist
-async function ensureCustomFieldExists(field: { name: string, fieldKey: string, dataType: string }): Promise<string | null> {
-  try {
-    // Get existing fields
-    const existingFields = await getExistingCustomFields()
-    
-    // Check if field already exists (by fieldKey)
-    const existing = existingFields.find(f => 
-      f.fieldKey === field.fieldKey || 
-      f.name.toLowerCase() === field.name.toLowerCase()
-    )
-    
-    if (existing) {
-      console.log(`[GHL] Custom field already exists: ${field.name} (${existing.id})`)
-      return existing.id
-    }
-    
-    // Create new custom field
-    console.log(`[GHL] Creating new custom field: ${field.name}`)
-    const response = await fetch(`${GHL_API_BASE}/locations/${process.env.GHL_LOCATION_ID}/customFields`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.GHL_ACCESS_TOKEN}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Version': GHL_API_VERSION
-      },
-      body: JSON.stringify({
-        name: field.name,
-        fieldKey: field.fieldKey,
-        dataType: field.dataType,
-        position: 0
-      })
-    })
-    
-    if (!response.ok) {
-      const error = await response.text()
-      console.error(`[GHL] Failed to create custom field ${field.name}:`, error)
-      return null
-    }
-    
-    const result = await response.json()
-    console.log(`[GHL] Created custom field: ${field.name} (${result.customField.id})`)
-    
-    // Invalidate cache
-    customFieldsCache = null
-    
-    return result.customField.id
-  } catch (error) {
-    console.error(`[GHL] Error ensuring custom field ${field.name}:`, error)
-    return null
-  }
+interface GHLLeadData {
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  locationId: string
+  name?: string
+  address1?: string
+  city?: string
+  state?: string
+  postalCode?: string
+  website?: string
+  timezone?: string
+  tags?: string[]
+  customFields?: GHLCustomField[]
+  source?: string
+  companyName?: string
 }
 
-// Ensure all required custom fields exist
-async function ensureAllCustomFieldsExist() {
-  console.log('[GHL] Ensuring all required custom fields exist...')
-  
-  const results = await Promise.all(
-    REQUIRED_CUSTOM_FIELDS.map(field => ensureCustomFieldExists(field))
-  )
-  
-  const created = results.filter(r => r !== null).length
-  console.log(`[GHL] Custom fields check complete. ${created} fields ready.`)
+interface AssessmentData {
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  businessName?: string
+  answers: Record<string, string>
+  score: number
+  recommendation: string
+  timestamp: string
 }
 
-// Build custom fields array for contact creation/update
-async function buildCustomFieldsArray(data: any, formType: string): Promise<any[]> {
-  // Ensure all fields exist first
-  await ensureAllCustomFieldsExist()
+interface GetStartedData {
+  firstName: string
+  lastName: string
+  email: string
+  phone?: string
+  businessName?: string
+  businessType: string
+  contentGoals: string[]
+  monthlyLeads: string
+  teamSize: string
+  currentTools: string[]
+  biggestChallenge: string
+  pricingPlan: string
+  timestamp: string
+}
+
+// Map form fields to custom field keys
+const CUSTOM_FIELD_MAPPING = {
+  // Assessment fields
+  assessment_score: 'assessment_score',
+  recommended_plan: 'recommended_plan',
+  assessment_date: 'assessment_date',
   
-  // Get fresh list of fields
-  const existingFields = await getExistingCustomFields(true)
+  // Getting Started fields
+  business_type: 'business_type',
+  content_goals: 'content_goals',
+  monthly_leads: 'monthly_leads',
+  team_size: 'team_size',
+  current_tools: 'current_tools',
+  biggest_challenge: 'biggest_challenge',
+  selected_plan: 'selected_plan',
+  form_type: 'form_type',
+  submission_date: 'submission_date'
+}
+
+// Pipeline configuration
+const PIPELINE_CONFIG = {
+  assessmentPipelineId: process.env.GHL_ASSESSMENT_PIPELINE_ID || process.env.GHL_PIPELINE_ID,
+  getStartedPipelineId: process.env.GHL_GETSTARTED_PIPELINE_ID || process.env.GHL_PIPELINE_ID,
   
-  // Helper to find field ID by key
-  const getFieldId = (fieldKey: string): string | undefined => {
-    const field = existingFields.find(f => f.fieldKey === fieldKey)
-    return field?.id
+  // Pipeline stages - you'll need to set these in environment variables
+  assessmentStages: {
+    new: process.env.GHL_ASSESSMENT_STAGE_NEW || 'new_assessment',
+    contacted: process.env.GHL_ASSESSMENT_STAGE_CONTACTED || 'contacted',
+    qualified: process.env.GHL_ASSESSMENT_STAGE_QUALIFIED || 'qualified',
+    proposal: process.env.GHL_ASSESSMENT_STAGE_PROPOSAL || 'proposal_sent',
+    won: process.env.GHL_ASSESSMENT_STAGE_WON || 'customer',
+    lost: process.env.GHL_ASSESSMENT_STAGE_LOST || 'lost'
+  },
+  
+  getStartedStages: {
+    new: process.env.GHL_GETSTARTED_STAGE_NEW || 'new_lead',
+    exploring: process.env.GHL_GETSTARTED_STAGE_EXPLORING || 'exploring_options',
+    demo: process.env.GHL_GETSTARTED_STAGE_DEMO || 'demo_scheduled',
+    trial: process.env.GHL_GETSTARTED_STAGE_TRIAL || 'trial_started',
+    won: process.env.GHL_GETSTARTED_STAGE_WON || 'customer',
+    lost: process.env.GHL_GETSTARTED_STAGE_LOST || 'lost'
   }
-  
-  const customFields: any[] = []
-  
-  // Add field helper
-  const addField = (fieldKey: string, value: any) => {
-    const fieldId = getFieldId(fieldKey)
-    if (fieldId && value !== undefined && value !== null && value !== '') {
-      customFields.push({
-        id: fieldId,
-        field_value: typeof value === 'object' ? JSON.stringify(value) : String(value)
-      })
-    }
-  }
-  
-  // Common fields for all forms
-  addField('form_type', formType)
-  addField('submission_date', data.timestamp || new Date().toISOString())
-  addField('lead_source', 'TrueFlow Landing Page')
-  addField('business_name', data.businessName)
-  addField('first_touch_date', new Date().toISOString())
-  addField('last_activity_date', new Date().toISOString())
-  
-  if (formType === 'assessment') {
-    // Assessment specific fields
-    addField('assessment_score', data.score)
-    addField('recommended_plan', data.recommendation)
-    addField('assessment_date', data.timestamp || new Date().toISOString())
-    addField('lead_quality_score', data.score)
-    addField('qualification_status', data.score >= 70 ? 'Highly Qualified' : data.score >= 50 ? 'Qualified' : 'Needs Nurturing')
-    
-    // Process assessment answers
-    if (data.answers) {
-      addField('assessment_answers', data.answers)
-      
-      // Extract specific answers if available
-      Object.entries(data.answers).forEach(([key, value]) => {
-        if (key.includes('marketing') || key.includes('goals')) {
-          addField('marketing_goals', value)
-        } else if (key.includes('challenge')) {
-          addField('current_challenges', value)
-        } else if (key.includes('budget')) {
-          addField('budget_range', value)
-        } else if (key.includes('timeline')) {
-          addField('timeline', value)
-        } else if (key.includes('decision')) {
-          addField('decision_maker', value)
-        }
-      })
-    }
-  } else {
-    // Get Started specific fields
-    addField('business_type', data.businessType)
-    addField('content_goals', Array.isArray(data.contentGoals) ? data.contentGoals.join(', ') : data.contentGoals)
-    addField('monthly_leads', data.monthlyLeads)
-    addField('team_size', data.teamSize)
-    addField('current_tools', Array.isArray(data.currentTools) ? data.currentTools.join(', ') : data.currentTools)
-    addField('biggest_challenge', data.biggestChallenge)
-    addField('selected_plan', data.pricingPlan)
-    
-    // Calculate lead quality score for Get Started
-    let qualityScore = 50 // Base score
-    if (data.monthlyLeads === '100+') qualityScore += 20
-    else if (data.monthlyLeads === '50-100') qualityScore += 15
-    else if (data.monthlyLeads === '10-50') qualityScore += 10
-    
-    if (data.teamSize === '10+') qualityScore += 15
-    else if (data.teamSize === '5-10') qualityScore += 10
-    
-    if (data.pricingPlan === 'enterprise') qualityScore += 15
-    else if (data.pricingPlan === 'growth') qualityScore += 10
-    else if (data.pricingPlan === 'professional') qualityScore += 5
-    
-    addField('lead_quality_score', qualityScore)
-    addField('qualification_status', qualityScore >= 70 ? 'Hot Lead' : qualityScore >= 50 ? 'Warm Lead' : 'Cold Lead')
-    addField('engagement_score', qualityScore)
-  }
-  
-  console.log(`[GHL] Built ${customFields.length} custom fields for contact`)
-  return customFields
 }
 
 export async function POST(request: Request) {
-  console.log('[API] Received POST request to /api/ghl/create-lead (v2)')
+  console.log('[API] Received POST request to /api/ghl/create-lead')
+  console.log('[API] Headers:', Object.fromEntries(request.headers.entries()))
   
   try {
+    // Parse request body
     const data = await request.json()
     console.log('[API] Request data:', JSON.stringify(data, null, 2))
     
     // Validate required fields
     if (!data.firstName || !data.lastName || !data.email) {
+      console.error('[API] Missing required fields:', {
+        firstName: !!data.firstName,
+        lastName: !!data.lastName,
+        email: !!data.email
+      })
       return NextResponse.json({ 
         success: false, 
         message: 'Missing required fields: firstName, lastName, or email' 
       }, { status: 400 })
     }
     
-    // Check if GHL is configured
-    if (!process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID || 
-        process.env.GHL_ACCESS_TOKEN.includes('your_') || 
-        process.env.GHL_ENABLED !== 'true') {
-      console.log('[API] GHL not properly configured, using fallback')
+    // Determine form type
+    const isAssessment = 'score' in data && 'recommendation' in data
+    const formType = isAssessment ? 'assessment' : 'get-started'
+    
+    console.log(`[API] Processing ${formType} form submission`)
+    
+    // Normalize array fields for get-started form
+    if (!isAssessment) {
+      // Ensure contentGoals is an array
+      if (data.contentGoals && !Array.isArray(data.contentGoals)) {
+        console.warn('[API] contentGoals is not an array, converting:', data.contentGoals)
+        data.contentGoals = typeof data.contentGoals === 'string' 
+          ? data.contentGoals.split(',').map((s: string) => s.trim())
+          : []
+      }
       
-      // Send email notification as fallback
+      // Ensure currentTools is an array
+      if (data.currentTools && !Array.isArray(data.currentTools)) {
+        console.warn('[API] currentTools is not an array, converting:', data.currentTools)
+        data.currentTools = typeof data.currentTools === 'string'
+          ? data.currentTools.split(',').map((s: string) => s.trim())
+          : []
+      }
+      
+      // Set default empty arrays if missing
+      data.contentGoals = data.contentGoals || []
+      data.currentTools = data.currentTools || []
+    }
+
+    // Check if GHL integration is enabled and configured
+    if (!process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID) {
+      console.log('[API] GHL integration not configured, using email fallback')
+      
+      // Try to send email notification as fallback
       try {
-        await sendEmailNotification(data, data.score ? 'assessment' : 'get-started')
+        await sendEmailNotification(data, formType)
         return NextResponse.json({ 
           success: true, 
-          message: 'Submission received (email notification sent)',
-          contactId: `email-only-${Date.now()}`
+          message: 'Submission received successfully (email sent)' 
         })
       } catch (emailError) {
         console.error('[API] Email notification failed:', emailError)
+        console.log('[API] Lead data saved to logs:', JSON.stringify(data, null, 2))
+        
+        // Still return success to prevent form error
         return NextResponse.json({ 
           success: true, 
-          message: 'Submission received',
-          contactId: `logged-${Date.now()}`
+          message: 'Submission received successfully',
+          warning: 'Email notification pending, but your submission has been received.',
+          leadId: `log-${Date.now()}`
         })
       }
     }
+
+    // Create or update contact in GHL
+    const contactResult = await createOrUpdateGHLContact(data, formType)
     
-    // Determine form type
-    const formType = data.score !== undefined ? 'assessment' : 'get-started'
-    console.log(`[API] Processing ${formType} form submission`)
+    if (!contactResult.success) {
+      // If GHL is not configured, still return success
+      if (contactResult.message && contactResult.message.includes('not configured')) {
+        console.log('[API] GHL not configured, but form submission successful')
+        return NextResponse.json({ 
+          success: true, 
+          message: 'Form submission received successfully',
+          contactId: contactResult.contactId,
+          ghlStatus: 'not_configured'
+        })
+      }
+      throw new Error(contactResult.error || 'Failed to create/update contact')
+    }
+
+    // Create opportunity if configured
+    if (process.env.GHL_CREATE_OPPORTUNITIES === 'true' && contactResult.contactId) {
+      try {
+        await createGHLOpportunity(contactResult.contactId, data, formType)
+      } catch (oppError) {
+        console.error('[API] Failed to create opportunity:', oppError)
+        // Don't fail the request if opportunity creation fails
+      }
+    }
+
+    // Also send email notification (as backup)
+    try {
+      console.log('[API] Sending backup email notification...')
+      await sendEmailNotification(data, formType)
+      console.log('[API] Backup email sent successfully')
+    } catch (emailError) {
+      console.error('[API] Backup email notification failed:', emailError)
+      // Don't fail the request if email fails
+    }
+
+    return NextResponse.json({ 
+      success: true, 
+      message: 'Lead processed successfully',
+      ghlContactId: contactResult.contactId
+    })
+
+  } catch (error) {
+    console.error('Error processing lead:', error)
+    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+    console.error('Error details:', {
+      name: error instanceof Error ? error.name : 'Unknown',
+      message: error instanceof Error ? error.message : String(error),
+      type: typeof error
+    })
     
-    // Build custom fields with automatic field creation
-    const customFields = await buildCustomFieldsArray(data, formType)
+    return NextResponse.json({ 
+      success: false, 
+      message: 'Internal server error',
+      error: process.env.NODE_ENV === 'development' 
+        ? {
+            message: error instanceof Error ? error.message : String(error),
+            stack: error instanceof Error ? error.stack : undefined,
+            details: error
+          }
+        : undefined
+    }, { status: 500 })
+  }
+}
+
+// Create or update contact in GHL
+async function createOrUpdateGHLContact(data: any, formType: string) {
+  try {
+    // Check if GHL is properly configured
+    const isGHLConfigured = 
+      process.env.GHL_ACCESS_TOKEN && 
+      !process.env.GHL_ACCESS_TOKEN.includes('your_') &&
+      process.env.GHL_LOCATION_ID &&
+      !process.env.GHL_LOCATION_ID.includes('your_')
     
+    if (!isGHLConfigured) {
+      console.log('[GHL] GoHighLevel is not configured. Skipping CRM integration.')
+      return {
+        success: true,
+        contactId: `demo-${Date.now()}`,
+        message: 'GHL not configured - data logged only'
+      }
+    }
     // Build tags
     const tags = [
       `trueflow-${formType}`,
       'web-lead',
-      new Date().toISOString().split('T')[0]
+      new Date().toISOString().split('T')[0] // Add date tag
     ]
     
     if (formType === 'assessment') {
-      tags.push(`score-${data.score}`, `plan-${data.recommendation?.toLowerCase().replace(/\s+/g, '-')}`)
+      tags.push(
+        `score-${data.totalScore || data.score || 0}`,
+        data.recommendation?.toLowerCase().replace(' ', '-') || 'assessment-completed'
+      )
+      // Also add the selected plan if available
+      if (data.selectedPlan) {
+        tags.push(`plan-${data.selectedPlan.toLowerCase().replace(/\s+/g, '-')}`)
+      }
     } else {
-      tags.push(`plan-${data.pricingPlan?.toLowerCase()}`, `business-${data.businessType?.toLowerCase().replace(/\s+/g, '-')}`)
+      tags.push(
+        `plan-${data.pricingPlan?.toLowerCase() || 'unknown'}`,
+        `business-${data.businessType?.toLowerCase().replace(/\s+/g, '-') || 'unknown'}`
+      )
     }
-    
-    // Create or update contact
-    const ghlPayload = {
+
+    // Build custom fields
+    const customFields: GHLCustomField[] = [
+      {
+        key: CUSTOM_FIELD_MAPPING.form_type,
+        field_value: formType
+      },
+      {
+        key: CUSTOM_FIELD_MAPPING.submission_date,
+        field_value: data.timestamp || new Date().toISOString()
+      }
+    ]
+
+    if (formType === 'assessment') {
+      const assessmentData = data as AssessmentData
+      customFields.push(
+        {
+          key: CUSTOM_FIELD_MAPPING.assessment_score,
+          field_value: assessmentData.score.toString()
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.recommended_plan,
+          field_value: assessmentData.recommendation
+        }
+      )
+      
+      // Add assessment answers
+      Object.entries(assessmentData.answers || {}).forEach(([questionId, answer]) => {
+        customFields.push({
+          key: `assessment_${questionId?.toLowerCase().replace(/\s+/g, '_') || 'unknown'}`,
+          field_value: answer || ''
+        })
+      })
+    } else {
+      const getStartedData = data as GetStartedData
+      
+      // Log the data structure for debugging
+      console.log('[GHL] Processing Get Started data:', {
+        hasContentGoals: !!getStartedData.contentGoals,
+        contentGoalsType: Array.isArray(getStartedData.contentGoals) ? 'array' : typeof getStartedData.contentGoals,
+        contentGoalsValue: getStartedData.contentGoals,
+        hasCurrentTools: !!getStartedData.currentTools,
+        currentToolsType: Array.isArray(getStartedData.currentTools) ? 'array' : typeof getStartedData.currentTools,
+        currentToolsValue: getStartedData.currentTools
+      })
+      
+      customFields.push(
+        {
+          key: CUSTOM_FIELD_MAPPING.business_type,
+          field_value: getStartedData.businessType || ''
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.content_goals,
+          field_value: Array.isArray(getStartedData.contentGoals) 
+            ? getStartedData.contentGoals.join(', ') 
+            : (getStartedData.contentGoals || '')
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.monthly_leads,
+          field_value: getStartedData.monthlyLeads || ''
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.team_size,
+          field_value: getStartedData.teamSize || ''
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.current_tools,
+          field_value: Array.isArray(getStartedData.currentTools) 
+            ? getStartedData.currentTools.join(', ') 
+            : (getStartedData.currentTools || '')
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.biggest_challenge,
+          field_value: getStartedData.biggestChallenge || ''
+        },
+        {
+          key: CUSTOM_FIELD_MAPPING.selected_plan,
+          field_value: getStartedData.pricingPlan || ''
+        }
+      )
+    }
+
+    // Prepare GHL payload
+    const ghlPayload: GHLLeadData = {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
       phone: data.phone,
-      locationId: process.env.GHL_LOCATION_ID,
+      locationId: process.env.GHL_LOCATION_ID!,
       name: `${data.firstName} ${data.lastName}`,
       companyName: data.businessName,
       tags,
@@ -320,8 +379,10 @@ export async function POST(request: Request) {
       source: formType === 'assessment' ? 'TrueFlow AI Assessment' : 'TrueFlow Get Started Form',
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     }
-    
-    console.log('[GHL] Creating/updating contact...')
+
+    console.log('[GHL] Attempting to upsert contact with payload:', JSON.stringify(ghlPayload, null, 2))
+
+    // Use upsert endpoint to create or update
     const ghlResponse = await fetch(`${GHL_API_BASE}/contacts/upsert`, {
       method: 'POST',
       headers: {
@@ -332,70 +393,200 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify(ghlPayload)
     })
-    
+
     if (!ghlResponse.ok) {
       const errorData = await ghlResponse.text()
-      console.error('[GHL] API Error:', errorData)
-      throw new Error(`GHL API error: ${ghlResponse.status}`)
+      console.error('[GHL] API Error:', {
+        status: ghlResponse.status,
+        statusText: ghlResponse.statusText,
+        error: errorData
+      })
+      
+      return {
+        success: false,
+        error: `GHL API error: ${ghlResponse.status}`
+      }
     }
-    
+
     const ghlResult = await ghlResponse.json()
-    console.log('[GHL] Contact created/updated successfully:', ghlResult.contact?.id || ghlResult.id)
+    console.log('[GHL] Contact upserted successfully:', ghlResult)
     
-    // Send backup email notification
-    try {
-      await sendEmailNotification(data, formType)
-    } catch (emailError) {
-      console.error('[API] Backup email failed:', emailError)
+    return {
+      success: true,
+      contactId: ghlResult.contact?.id || ghlResult.id,
+      isNew: ghlResult.new || false
     }
-    
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Lead processed successfully',
-      ghlContactId: ghlResult.contact?.id || ghlResult.id
-    })
     
   } catch (error) {
-    console.error('[API] Error processing lead:', error)
-    return NextResponse.json({ 
-      success: false, 
-      message: 'Internal server error',
-      error: process.env.NODE_ENV === 'development' ? error : undefined
-    }, { status: 500 })
+    console.error('[GHL] Error creating/updating contact:', error)
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    }
   }
 }
 
-// Email notification helper
+// Create opportunity in GHL
+async function createGHLOpportunity(contactId: string, data: any, formType: string) {
+  try {
+    const pipelineId = formType === 'assessment' 
+      ? PIPELINE_CONFIG.assessmentPipelineId 
+      : PIPELINE_CONFIG.getStartedPipelineId
+      
+    const stages = formType === 'assessment'
+      ? PIPELINE_CONFIG.assessmentStages
+      : PIPELINE_CONFIG.getStartedStages
+      
+    if (!pipelineId) {
+      console.log('[GHL] No pipeline configured for', formType)
+      return
+    }
+
+    // Calculate monetary value based on plan
+    let monetaryValue = 0
+    if (formType === 'get-started' && data.pricingPlan) {
+      const planValues: Record<string, number> = {
+        'starter': 97,
+        'professional': 297,
+        'growth': 497,
+        'enterprise': 997
+      }
+      monetaryValue = planValues[data.pricingPlan?.toLowerCase() || 'unknown'] || 0
+    } else if (formType === 'assessment' && data.recommendation) {
+      const recommendationValues: Record<string, number> = {
+        'starter': 97,
+        'professional': 297,
+        'growth': 497,
+        'enterprise': 997
+      }
+      monetaryValue = recommendationValues[data.recommendation?.toLowerCase() || 'unknown'] || 0
+    }
+
+    const opportunityPayload = {
+      pipelineId,
+      locationId: process.env.GHL_LOCATION_ID!,
+      contactId,
+      name: formType === 'assessment' 
+        ? `Assessment - ${data.firstName} ${data.lastName}` 
+        : `Get Started - ${data.firstName} ${data.lastName}`,
+      pipelineStageId: stages.new,
+      status: 'open',
+      monetaryValue,
+      source: formType === 'assessment' ? 'Assessment Form' : 'Get Started Form'
+    }
+
+    console.log('[GHL] Creating opportunity:', opportunityPayload)
+
+    const oppResponse = await fetch(`${GHL_API_BASE}/opportunities/`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.GHL_ACCESS_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Version': GHL_API_VERSION
+      },
+      body: JSON.stringify(opportunityPayload)
+    })
+
+    if (!oppResponse.ok) {
+      const errorData = await oppResponse.text()
+      console.error('[GHL] Failed to create opportunity:', errorData)
+      throw new Error(`Failed to create opportunity: ${oppResponse.status}`)
+    }
+
+    const oppResult = await oppResponse.json()
+    console.log('[GHL] Opportunity created successfully:', oppResult)
+    
+    return oppResult
+    
+  } catch (error) {
+    console.error('[GHL] Error creating opportunity:', error)
+    throw error
+  }
+}
+
+// Helper function to send email notification
 async function sendEmailNotification(data: any, formType: string) {
+  console.log('[Email] Starting email notification process')
+  
+  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('your_')) {
+    console.error('[Email] ERROR: Resend API key not configured or is placeholder')
+    throw new Error('Email service not configured - please set RESEND_API_KEY in Railway')
+  }
+
+  console.log('[Email] Loading Resend library...')
   const { Resend } = await import('resend')
   const resend = new Resend(process.env.RESEND_API_KEY)
+
+  let emailContent = ''
+  let subject = ''
   
-  const subject = formType === 'assessment' 
-    ? `New Assessment: ${data.firstName} ${data.lastName} (Score: ${data.score}%)`
-    : `New Get Started: ${data.firstName} ${data.lastName} (${data.pricingPlan} Plan)`
+  if (formType === 'assessment') {
+    const assessmentData = data as AssessmentData
+    subject = `New Assessment Lead: ${assessmentData.firstName} ${assessmentData.lastName} (Score: ${assessmentData.score}%)`
+    emailContent = `
+      <h2>New Assessment Lead</h2>
+      <p><strong>Name:</strong> ${assessmentData.firstName} ${assessmentData.lastName}</p>
+      <p><strong>Email:</strong> ${assessmentData.email}</p>
+      ${assessmentData.phone ? `<p><strong>Phone:</strong> ${assessmentData.phone}</p>` : ''}
+      ${assessmentData.businessName ? `<p><strong>Business:</strong> ${assessmentData.businessName}</p>` : ''}
+      <p><strong>Assessment Score:</strong> ${assessmentData.score}%</p>
+      <p><strong>Recommended Plan:</strong> ${assessmentData.recommendation}</p>
+      <p><strong>Date:</strong> ${new Date(assessmentData.timestamp).toLocaleString()}</p>
+      
+      <h3>Assessment Answers:</h3>
+      <ul>
+        ${Object.entries(assessmentData.answers).map(([question, answer]) => 
+          `<li><strong>${question}:</strong> ${answer}</li>`
+        ).join('')}
+      </ul>
+    `
+  } else {
+    const getStartedData = data as GetStartedData
+    subject = `New Get Started Lead: ${getStartedData.firstName} ${getStartedData.lastName} (${getStartedData.pricingPlan} Plan)`
+    emailContent = `
+      <h2>New Get Started Form Submission</h2>
+      <p><strong>Name:</strong> ${getStartedData.firstName} ${getStartedData.lastName}</p>
+      <p><strong>Email:</strong> ${getStartedData.email}</p>
+      ${getStartedData.phone ? `<p><strong>Phone:</strong> ${getStartedData.phone}</p>` : ''}
+      ${getStartedData.businessName ? `<p><strong>Business:</strong> ${getStartedData.businessName}</p>` : ''}
+      <p><strong>Business Type:</strong> ${getStartedData.businessType}</p>
+      <p><strong>Selected Plan:</strong> ${getStartedData.pricingPlan}</p>
+      <p><strong>Date:</strong> ${new Date(getStartedData.timestamp).toLocaleString()}</p>
+      
+      <h3>Business Details:</h3>
+      <ul>
+        <li><strong>Content Goals:</strong> ${Array.isArray(getStartedData.contentGoals) ? getStartedData.contentGoals.join(', ') : (getStartedData.contentGoals || 'Not specified')}</li>
+        <li><strong>Monthly Leads:</strong> ${getStartedData.monthlyLeads || 'Not specified'}</li>
+        <li><strong>Team Size:</strong> ${getStartedData.teamSize || 'Not specified'}</li>
+        <li><strong>Current Tools:</strong> ${Array.isArray(getStartedData.currentTools) ? getStartedData.currentTools.join(', ') : (getStartedData.currentTools || 'Not specified')}</li>
+        <li><strong>Biggest Challenge:</strong> ${getStartedData.biggestChallenge || 'Not specified'}</li>
+      </ul>
+    `
+  }
+
+  const fromEmail = 'TrueFlow AI <onboarding@resend.dev>'
+  const toEmails = ['griffin@trueflow.ai', 'matt@trueflow.ai']
+
+  console.log('[Email] Sending email...')
+  console.log('[Email] From:', fromEmail)
+  console.log('[Email] To:', toEmails)
+  console.log('[Email] Subject:', subject)
+
+  try {
+    const result = await resend.emails.send({
+      from: fromEmail,
+      to: toEmails,
+      subject,
+      html: emailContent
+    })
     
-  const emailContent = formType === 'assessment' ? `
-    <h2>New Assessment Lead</h2>
-    <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
-    <p><strong>Score:</strong> ${data.score}%</p>
-    <p><strong>Recommendation:</strong> ${data.recommendation}</p>
-  ` : `
-    <h2>New Get Started Lead</h2>
-    <p><strong>Name:</strong> ${data.firstName} ${data.lastName}</p>
-    <p><strong>Email:</strong> ${data.email}</p>
-    <p><strong>Business Type:</strong> ${data.businessType}</p>
-    <p><strong>Selected Plan:</strong> ${data.pricingPlan}</p>
-    <p><strong>Team Size:</strong> ${data.teamSize}</p>
-    <p><strong>Monthly Leads:</strong> ${data.monthlyLeads}</p>
-  `
-  
-  await resend.emails.send({
-    from: 'TrueFlow AI <onboarding@resend.dev>',
-    to: ['griffin@trueflow.ai', 'matt@trueflow.ai'],
-    subject,
-    html: emailContent
-  })
+    console.log('[Email] Email sent successfully:', result)
+    return result
+  } catch (error) {
+    console.error('[Email] ERROR sending email:', error)
+    throw error
+  }
 }
 
 // OPTIONS handler for CORS
@@ -406,6 +597,7 @@ export async function OPTIONS(request: Request) {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Max-Age': '86400',
     },
   })
 }
