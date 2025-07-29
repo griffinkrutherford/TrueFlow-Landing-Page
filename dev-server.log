@@ -718,3 +718,58 @@ Error details: { name: 'Error', message: 'GHL API error: 401', type: 'object' }
 [API] Missing required fields: { firstName: true, lastName: false, email: false }
  POST /api/ghl/create-lead 400 in 5ms
  GET /api/test-ghl?scenario=broken 200 in 17ms
+ ✓ Compiled in 559ms (879 modules)
+ ✓ Compiled in 433ms (879 modules)
+ ✓ Compiled in 506ms (879 modules)
+ ✓ Compiled /api/test-webhook in 140ms (397 modules)
+ ✓ Compiled /api/webhooks/ghl in 78ms (400 modules)
+[Webhook] Received GHL webhook
+[Webhook] Headers: {
+  "accept": "*/*",
+  "accept-encoding": "gzip, deflate",
+  "accept-language": "*",
+  "connection": "keep-alive",
+  "content-length": "413",
+  "content-type": "application/json",
+  "host": "localhost:3001",
+  "sec-fetch-mode": "cors",
+  "user-agent": "node",
+  "x-event-id": "evt_1753757948608",
+  "x-event-type": "contact.created",
+  "x-forwarded-for": "::1",
+  "x-forwarded-host": "localhost:3001",
+  "x-forwarded-port": "3001",
+  "x-forwarded-proto": "http",
+  "x-ghl-signature": "test-signature-123",
+  "x-webhook-source": "gohighlevel"
+}
+[Webhook] Body: {
+  "type": "contact.created",
+  "eventId": "evt_1753757948608",
+  "contact": {
+    "id": "con_mvcmb7gs6",
+    "locationId": "loc_123456",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john.doe1753757948608@example.com",
+    "phone": "+1234567890",
+    "dateAdded": "2025-07-29T02:59:08.608Z",
+    "tags": [
+      "new-lead",
+      "web-form"
+    ],
+    "source": "TrueFlow Landing Page",
+    "customFields": [
+      {
+        "id": "field1",
+        "value": "Test Value"
+      }
+    ]
+  },
+  "timestamp": "2025-07-29T02:59:08.608Z"
+}
+[Webhook] Processing event type: contact.created
+[Webhook] New contact created: con_mvcmb7gs6
+ POST /api/webhooks/ghl 200 in 98ms
+ GET /api/test-webhook?type=contact.created 200 in 284ms
+ GET /api/webhooks/ghl 200 in 5ms
