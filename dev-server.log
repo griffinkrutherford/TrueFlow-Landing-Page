@@ -61,3 +61,12 @@ Email sent successfully: { data: { id: 'ad48808a-5139-4d0f-b4c5-99099e791857' },
  ✓ Compiled in 358ms (655 modules)
  ✓ Compiled in 165ms (320 modules)
  ✓ Compiled in 242ms (320 modules)
+ GET / 200 in 88ms
+ ✓ Compiled /content-engine in 434ms (651 modules)
+ ✓ Compiled /faq in 214ms (663 modules)
+ ✓ Compiled /get-started in 185ms (675 modules)
+ ✓ Compiled /blog in 193ms (685 modules)
+ ✓ Compiled in 595ms (673 modules)
+ ✓ Compiled in 159ms (333 modules)
+ ✓ Compiled in 86ms (636 modules)
+ ✓ Compiled in 158ms (333 modules)
