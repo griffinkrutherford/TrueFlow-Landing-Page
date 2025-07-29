@@ -6,6 +6,15 @@ import {
   ensureCustomFieldsExist,
   customFieldDefinitions 
 } from '@/lib/ghl/custom-fields'
+import {
+  TAG_DEFINITIONS,
+  getLeadScoreTag,
+  getLeadQualityTag,
+  getPlanTag,
+  getBusinessTypeTag,
+  getTimelineTag,
+  getBudgetTag
+} from '@/lib/ghl/tag-definitions'
 
 // GHL API configuration
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
@@ -226,29 +235,55 @@ async function createOrUpdateGHLContact(data: any, formType: string, fieldMappin
     
     console.log(`[API V2] Lead quality: ${leadScore}/100 (${qualificationStatus})`)
     
-    // Build tags
-    const tags = [
-      `trueflow-${formType}`,
-      'web-lead',
-      `lead-quality-${qualificationStatus}`,
-      `lead-score-${leadScore}`,
-      new Date().toISOString().split('T')[0] // Add date tag
-    ]
+    // Build tags using consistent, pre-defined tags from tag-definitions
+    const tags: string[] = []
     
-    if (formType === 'assessment') {
-      tags.push(
-        `score-${data.totalScore || data.score || 0}`,
-        data.recommendation?.toLowerCase().replace(' ', '-') || 'assessment-completed'
-      )
-      if (data.selectedPlan) {
-        tags.push(`plan-${data.selectedPlan.toLowerCase().replace(/\s+/g, '-')}`)
-      }
-    } else {
-      tags.push(
-        `plan-${data.pricingPlan?.toLowerCase() || 'unknown'}`,
-        `business-${data.businessType?.toLowerCase().replace(/\s+/g, '-') || 'unknown'}`
-      )
+    // Form type tag
+    tags.push(formType === 'assessment' 
+      ? TAG_DEFINITIONS.FORM_TYPES.ASSESSMENT 
+      : TAG_DEFINITIONS.FORM_TYPES.GET_STARTED
+    )
+    
+    // Source tag
+    tags.push(TAG_DEFINITIONS.SOURCES.WEB_LEAD)
+    
+    // Lead quality tag
+    tags.push(getLeadQualityTag(qualificationStatus))
+    
+    // Lead score range tag
+    tags.push(getLeadScoreTag(leadScore))
+    
+    // Plan tag
+    if (formType === 'assessment' && data.selectedPlan) {
+      tags.push(getPlanTag(data.selectedPlan, formType))
+    } else if (formType === 'get-started' && data.pricingPlan) {
+      tags.push(getPlanTag(data.pricingPlan, formType))
     }
+    
+    // Business type tag
+    if (data.businessType) {
+      tags.push(getBusinessTypeTag(data.businessType))
+    }
+    
+    // Timeline tag (for assessment forms)
+    if (formType === 'assessment' && data.answers?.timeline) {
+      const timelineTag = getTimelineTag(data.answers.timeline)
+      if (timelineTag) tags.push(timelineTag)
+    }
+    
+    // Budget tag (for assessment forms)
+    if (formType === 'assessment' && data.answers?.budget) {
+      tags.push(getBudgetTag(data.answers.budget))
+    }
+    
+    // Time-based tags for reporting (monthly/quarterly)
+    const now = new Date()
+    const month = now.toISOString().substring(0, 7) // YYYY-MM
+    const quarter = `${now.getFullYear()}-Q${Math.floor(now.getMonth() / 3) + 1}`
+    tags.push(`submitted-${month}`)
+    tags.push(`submitted-${quarter}`)
+    
+    console.log(`[API V2] Applied consistent tags:`, tags)
 
     // Build custom fields array with proper IDs
     const customFields: GHLCustomField[] = []
