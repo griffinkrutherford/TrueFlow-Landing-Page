@@ -46,3 +46,18 @@ Email sent successfully: { data: { id: 'ad48808a-5139-4d0f-b4c5-99099e791857' },
  ✓ Compiled in 101ms (202 modules)
  ✓ Compiled in 41ms (202 modules)
  ✓ Compiled in 47ms (202 modules)
+(node:89862) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling / ...
+ ✓ Compiled / in 3.3s (619 modules)
+ GET / 200 in 3589ms
+ ✓ Compiled in 303ms (308 modules)
+ ✓ Compiled in 599ms (308 modules)
+ ✓ Compiled /blog/[slug] in 328ms (634 modules)
+ ✓ Compiled in 382ms (648 modules)
+ ✓ Compiled in 173ms (317 modules)
+ ✓ Compiled in 211ms (317 modules)
+ ✓ Compiled in 207ms (648 modules)
+ ✓ Compiled in 358ms (655 modules)
+ ✓ Compiled in 165ms (320 modules)
+ ✓ Compiled in 242ms (320 modules)

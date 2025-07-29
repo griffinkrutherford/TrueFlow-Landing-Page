@@ -8,6 +8,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Navigation from '../components/Navigation'
 import { 
   ChevronDown,
   ChevronUp,
@@ -524,36 +525,7 @@ export default function FAQPage() {
         }}
       />
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            {/* Logo */}
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/true-flow-logo.webp" 
-                alt="TrueFlow" 
-                width={280} 
-                height={70} 
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto transform hover:scale-105 transition-transform"
-                priority
-                style={{ 
-                  maxWidth: '100%',
-                  objectFit: 'contain'
-                }}
-              />
-            </Link>
-
-            <div className="flex items-center space-x-6">
-              <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
-                Back to Home
-              </Link>
-              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity text-sm font-semibold">
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Main Content */}
       <main className="pt-32 pb-20 px-4">
@@ -663,7 +635,7 @@ export default function FAQPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity">
+                <Link href="/get-started" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity">
                   Get Started
                 </Link>
                 <Link href="/" className="text-white/70 hover:text-white transition-colors underline text-sm">

@@ -8,6 +8,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Navigation from '../components/Navigation'
 import { 
   ArrowRight,
   ChevronRight,
@@ -685,32 +686,7 @@ export default function GetStartedPage() {
         }}
       />
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/10 bg-black/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            <Link href="/" className="flex items-center">
-              <Image 
-                src="/true-flow-logo.webp" 
-                alt="TrueFlow" 
-                width={280} 
-                height={70} 
-                className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto transform hover:scale-105 transition-transform"
-                priority
-                style={{ 
-                  maxWidth: '100%',
-                  objectFit: 'contain'
-                }}
-              />
-            </Link>
-
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">
-                Back to Home
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Progress Bar */}
       <div className="fixed top-24 left-0 right-0 z-40 bg-black/60 backdrop-blur-md border-b border-white/10">
@@ -729,7 +705,7 @@ export default function GetStartedPage() {
       </div>
 
       {/* Main Content */}
-      <main className="pt-48 pb-20 px-4">
+      <main className="pt-36 sm:pt-40 md:pt-48 pb-20 px-4">
         <div className="max-w-4xl mx-auto">
           
           {/* Step 1: Contact Information */}

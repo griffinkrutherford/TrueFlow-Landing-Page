@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Navigation from '../components/Navigation'
 import { Calendar, Clock, ArrowRight, Search } from 'lucide-react'
 import { getPublishedPosts, categories, tagColorPalettes } from '@/app/data/blog-posts'
 import type { BlogPost, Category } from '@/app/types/blog'
@@ -50,39 +51,7 @@ export default function BlogPage() {
       <ParticleBackground particleCount={50} />
       
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl border-b border-white/10 transition-all duration-500 bg-black/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-24">
-            {/* Logo */}
-            <div className="flex items-center">
-              <Link href="/">
-                <Image
-                  src="/true-flow-logo.webp"
-                  alt="TrueFlow"
-                  width={280}
-                  height={70}
-                  className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto transform hover:scale-105 transition-transform"
-                  priority
-                />
-              </Link>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="text-white/70 hover:text-white transition-colors text-sm">Home</Link>
-              <Link href="/content-engine" className="text-white/70 hover:text-white transition-colors text-sm">Content Engine</Link>
-              <a href="/#features" className="text-white/70 hover:text-white transition-colors text-sm">Features</a>
-              <a href="/#how-it-works" className="text-white/70 hover:text-white transition-colors text-sm">How it Works</a>
-              <a href="/#testimonials" className="text-white/70 hover:text-white transition-colors text-sm">Success Stories</a>
-              <Link href="/blog" className="text-white transition-colors text-sm">Blog</Link>
-              <Link href="/faq" className="text-white/70 hover:text-white transition-colors text-sm">FAQs</Link>
-              <Link href="/readiness-assessment" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity text-sm font-semibold">
-                Get Started
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
