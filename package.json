@@ -14,9 +14,9 @@
     "dev:clean": "pkill -f 'next.*3001' 2>/dev/null || true && rm -f .pidfile && echo 'Cleaned up processes'",
     "dev:check-port": "lsof -i :3001 || echo 'Port 3001 is free'",
     "dev:kill-port": "lsof -ti:3001 | xargs kill -9 2>/dev/null || echo 'Port 3001 already free'",
-    "prebuild": "rm -rf .next node_modules/.cache",
+    "prebuild": "rm -rf .next/static .next/server || true",
     "build": "next build",
-    "postinstall": "rm -rf .next node_modules/.cache && echo 'Cleared Next.js cache'",
+    "postinstall": "echo 'Installation complete'",
     "start": "next start",
     "lint": "next lint",
     "validate:env": "node -e \"const e=require('fs').readFileSync('.env.local','utf8'); if(e.includes('your_')) {console.error('⚠️  WARNING: Placeholder values found in .env.local'); process.exit(1);} else {console.log('✅ Environment variables validated');}\""

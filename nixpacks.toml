@@ -7,7 +7,6 @@ nixPkgs = ["nodejs_20"]
 dependsOn = ["setup"]
 cmds = [
   "npm cache clean --force",
-  "rm -rf node_modules .next",
   "npm install --force"
 ]
 
