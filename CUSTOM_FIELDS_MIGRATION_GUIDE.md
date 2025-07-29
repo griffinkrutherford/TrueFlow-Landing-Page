@@ -2,177 +2,201 @@
 
 ## Overview
 
-This guide explains how to migrate from the current GoHighLevel integration to the enhanced custom fields implementation that ensures form submissions never fail.
+This guide walks through migrating from the current working version to the enhanced custom fields implementation with GoHighLevel API v2021-07-28.
 
-## Key Improvements
+## What's New
 
-1. **Non-blocking Custom Field Creation**: Fields are created asynchronously and cached
-2. **Robust Error Handling**: Multiple retry attempts with exponential backoff
-3. **Graceful Degradation**: Falls back to tags-only if custom fields fail
-4. **Lead Quality Scoring**: Automatic calculation and qualification status
-5. **Performance Optimized**: Field ID caching reduces API calls
+### 1. Custom Fields System
+- **16 custom fields** automatically created in GoHighLevel
+- Fields are created only once (no duplicates)
+- All form data stored in structured custom fields (not just tags)
+
+### 2. Lead Quality Scoring
+- Automatic scoring algorithm (0-100)
+- Based on:
+  - Business size and type
+  - Monthly lead volume
+  - Team size
+  - Selected pricing plan
+  - Assessment scores
+  - Timeline urgency
+
+### 3. Lead Qualification
+- Automatic categorization:
+  - **Hot** (70-100): High-value, ready to buy
+  - **Warm** (40-69): Interested, needs nurturing
+  - **Cold** (0-39): Early stage, long-term prospect
+
+### 4. Non-Blocking Design
+- Forms always succeed (better user experience)
+- GHL failures don't block submissions
+- Email notifications as mandatory backup
+
+## Pre-Migration Checklist
+
+### 1. Verify Environment Variables
+```bash
+# Check your Railway environment has:
+GHL_ACCESS_TOKEN=your_actual_token  # Not a placeholder
+GHL_LOCATION_ID=your_actual_location_id
+GHL_ENABLED=true
+GHL_CREATE_OPPORTUNITIES=true
+RESEND_API_KEY=your_resend_key
+```
+
+### 2. Test Current Production
+```bash
+# Ensure forms are working
+curl -X POST https://your-domain.com/api/ghl/create-lead \
+  -H "Content-Type: application/json" \
+  -d '{"firstName":"Test","lastName":"User","email":"test@example.com"}'
+```
+
+### 3. Backup Current Version
+```bash
+cp app/api/ghl/create-lead/route.ts app/api/ghl/create-lead/route-backup-$(date +%Y%m%d).ts
+```
 
 ## Migration Steps
 
-### 1. Add New Files
-
-First, ensure these new files are in place:
-- `/lib/ghl/custom-fields.ts` - Custom field definitions and management
-- `/lib/ghl/api-client.ts` - Robust API client with retry logic
-- `/app/api/ghl/create-lead/route-custom-fields.ts` - Enhanced route implementation
-
-### 2. Test the New Implementation
-
-Before switching over, test the new implementation:
+### Step 1: Deploy Custom Fields Version
 
 ```bash
-# Make the test script executable
-chmod +x scripts/test-custom-fields-enhanced.js
+# 1. Navigate to the repo
+cd trueflow-landing-repo
 
-# Run against local development
-node scripts/test-custom-fields-enhanced.js http://localhost:3001
-
-# Run against production (be careful!)
-node scripts/test-custom-fields-enhanced.js https://your-production-url.com
-```
-
-### 3. Update Environment Variables
-
-Ensure these are set in your `.env.local` and production environment:
-
-```env
-# Required
-GHL_ACCESS_TOKEN=your_actual_token_here
-GHL_LOCATION_ID=your_location_id_here
-RESEND_API_KEY=your_resend_key_here
-
-# Optional (for opportunities)
-GHL_CREATE_OPPORTUNITIES=true
-GHL_ASSESSMENT_PIPELINE_ID=your_pipeline_id
-GHL_GETSTARTED_PIPELINE_ID=your_pipeline_id
-```
-
-### 4. Switch the Route
-
-Once tested, replace the current route:
-
-```bash
-# Backup current route
-cp app/api/ghl/create-lead/route.ts app/api/ghl/create-lead/route-old.ts
-
-# Copy new implementation
+# 2. Activate custom fields version
 cp app/api/ghl/create-lead/route-custom-fields.ts app/api/ghl/create-lead/route.ts
+
+# 3. Commit and push
+git add -A
+git commit -m "feat: migrate to custom fields implementation with lead scoring"
+git push origin main
 ```
 
-### 5. Verify Custom Fields in GoHighLevel
+### Step 2: Monitor Deployment
 
-After migration, check GoHighLevel for these custom fields:
-- `trueflow_form_type` - Identifies assessment vs get-started
-- `trueflow_submission_date` - When the form was submitted
-- `trueflow_lead_quality_score` - 0-100 score
-- `trueflow_qualification_status` - hot/warm/cold
-- Plus all form-specific fields with `trueflow_` prefix
+Railway will automatically deploy. Monitor the deployment:
+- Check Railway dashboard for build status
+- Watch for any build errors
+- Deployment usually takes 1-2 minutes
 
-## Custom Field Mapping
-
-### Assessment Form Fields
-- `trueflow_assessment_score` - The assessment percentage score
-- `trueflow_recommended_plan` - Starter/Professional/Growth/Enterprise
-- `trueflow_assessment_[question_id]` - Individual answer fields
-
-### Get Started Form Fields
-- `trueflow_business_type` - Type of business
-- `trueflow_content_goals` - Comma-separated goals
-- `trueflow_monthly_leads` - Lead generation target
-- `trueflow_team_size` - Size of the team
-- `trueflow_current_tools` - Current marketing stack
-- `trueflow_biggest_challenge` - Main pain point
-- `trueflow_selected_plan` - Chosen pricing tier
-
-## Lead Quality Scoring Logic
-
-The system automatically calculates a lead quality score (0-100):
-
-### Assessment Forms
-- Base: Assessment score (max 40 points)
-- +10: Has phone number
-- +10: Has business name
-- +10-40: Based on recommended plan (Enterprise=40, Growth=30, etc.)
-
-### Get Started Forms
-- +15: Has phone number
-- +15: Has business name
-- +10-40: Based on selected plan
-- +5-15: Based on team size
-- +5-15: Based on monthly lead target
-
-### Qualification Status
-- **Hot**: Score ≥ 70
-- **Warm**: Score ≥ 40
-- **Cold**: Score < 40
-
-## Monitoring and Debugging
-
-### Check Logs
-The enhanced implementation provides detailed logging:
-```
-[API] Processing form submission for: email@example.com
-[API] Form type: assessment
-[API] Refreshing field ID map...
-[API] Field ID map refreshed with 12 fields
-[API] Creating contact with 15 custom fields
-[API] Contact created successfully: contact_id
-[API] Backup email sent successfully
-```
-
-### Common Issues
-
-1. **"Custom fields not appearing"**
-   - Check that GHL credentials are valid
-   - Verify field creation permissions
-   - Look for field creation errors in logs
-
-2. **"Form submissions failing"**
-   - This should NOT happen with new implementation
-   - Check that route was properly replaced
-   - Verify email service is configured
-
-3. **"Duplicate custom fields"**
-   - The system caches field IDs to prevent this
-   - Clear cache if needed: restart the server
-
-## Rollback Plan
-
-If you need to rollback:
+### Step 3: Verify in Production
 
 ```bash
-# Restore original route
-cp app/api/ghl/create-lead/route-old.ts app/api/ghl/create-lead/route.ts
-
-# Restart the server
-npm run dev
+# Run the test suite
+node scripts/test-custom-fields-enhanced.js https://your-domain.com full
 ```
 
-## Performance Considerations
+### Step 4: Check GoHighLevel
 
-- Field ID cache reduces API calls by ~90%
-- Parallel processing of custom fields
-- Automatic retry with exponential backoff
-- Response times typically under 2 seconds
+1. Log into GoHighLevel
+2. Navigate to Settings > Custom Fields
+3. You should see these new fields:
+   - TrueFlow Form Type
+   - TrueFlow Lead Quality Score
+   - TrueFlow Qualification Status
+   - TrueFlow Submission Date
+   - Business Type
+   - Content Goals
+   - Monthly Leads
+   - Team Size
+   - Current Tools
+   - Biggest Challenge
+   - Selected Plan
+   - Assessment Score
+   - Recommended Plan
+   - Assessment Answers
+   - Budget Range
+   - Timeline
 
-## Security Notes
+### Step 5: Test Real Submissions
 
-- All API credentials are environment variables
-- No sensitive data is logged
-- Custom field values are sanitized
-- Email notifications use secure HTTPS
+1. Submit a test form on your landing page
+2. Check:
+   - Email notification received
+   - Contact appears in GoHighLevel
+   - Custom fields are populated
+   - Lead score is calculated
+   - Qualification status is set
+
+## Rollback Procedure
+
+If issues occur:
+
+```bash
+# 1. Revert immediately
+cp app/api/ghl/create-lead/route-backup-[date].ts app/api/ghl/create-lead/route.ts
+
+# 2. Push the revert
+git add -A
+git commit -m "revert: rollback to previous version"
+git push origin main
+```
+
+## Post-Migration
+
+### Using Lead Scores
+
+In GoHighLevel:
+1. Create workflows based on qualification status
+2. Set up automations for hot leads (immediate follow-up)
+3. Create nurture campaigns for warm leads
+4. Long-term drip campaigns for cold leads
+
+### Custom Field Mapping
+
+| Form Field | Custom Field Name | Field Key |
+|------------|------------------|-----------|
+| Form Type | TrueFlow Form Type | trueflow_form_type |
+| Lead Score | TrueFlow Lead Quality Score | trueflow_lead_quality_score |
+| Status | TrueFlow Qualification Status | trueflow_qualification_status |
+| Business | Business Name | trueflow_business_name |
+| Industry | Business Type | trueflow_business_type |
+| Goals | Content Goals | trueflow_content_goals |
+| Volume | Monthly Leads | trueflow_monthly_leads |
+| Team | Team Size | trueflow_team_size |
+| Tools | Current Tools | trueflow_current_tools |
+| Challenge | Biggest Challenge | trueflow_biggest_challenge |
+| Plan | Selected Plan | trueflow_selected_plan |
+
+## Troubleshooting
+
+### Custom Fields Not Created
+- Check GHL_ACCESS_TOKEN has correct permissions
+- Verify GHL_LOCATION_ID is correct
+- Check Railway logs for API errors
+
+### Contacts Not Appearing
+- Verify GHL_ENABLED=true in Railway
+- Check email notifications are arriving (backup working)
+- Review API response in Railway logs
+
+### Lead Scores Incorrect
+- Scores are calculated based on form data
+- Check the scoring algorithm in `/lib/ghl/custom-fields.ts`
+- Verify all form fields are being passed correctly
 
 ## Support
 
 If you encounter issues:
-1. Check the logs for detailed error messages
-2. Run the test script to diagnose problems
-3. Verify all environment variables are set
-4. Ensure GoHighLevel API access is working
+1. Check Railway logs for detailed error messages
+2. Run the test script to diagnose
+3. Verify environment variables
+4. Use the rollback procedure if needed
 
-The new implementation is designed to NEVER block form submissions, so users should always have a smooth experience even if backend services are having issues.
+## API Changes
+
+The implementation now uses GoHighLevel API v2021-07-28 with:
+- Correct `objectKey` parameter for contact fields
+- Updated endpoints for custom field operations
+- Proper error handling and retry logic
+- Non-blocking architecture
+
+## Next Steps
+
+After successful migration:
+1. Monitor form submissions for 24 hours
+2. Review lead quality scores for accuracy
+3. Set up GoHighLevel automations based on custom fields
+4. Train team on using the new lead scoring system

@@ -81,7 +81,7 @@ export async function fetchCustomFields(config: GHLApiConfig): Promise<any[]> {
     console.log('[GHL API] Fetching custom fields...')
     
     const response = await makeApiRequest(
-      `${GHL_API_BASE}/locations/${config.locationId}/customFields`,
+      `${GHL_API_BASE}/custom-fields?locationId=${config.locationId}`,
       { method: 'GET' },
       config
     )
@@ -126,9 +126,10 @@ export async function createCustomField(
       name: field.name,
       fieldKey: field.fieldKey,
       dataType: field.dataType,
-      objectType: 'contact', // Standard object for contacts
-      description: field.description,
+      objectKey: 'contact', // Standard object key for contacts
+      description: field.description || '',
       showInForms: field.showInForms ?? true,
+      parentId: config.locationId, // Use location ID as parent for contact fields
       ...(field.options && { options: field.options })
     }
     

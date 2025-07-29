@@ -7,126 +7,68 @@
   - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 2.1s
-(node:58920) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+ ✓ Ready in 1497ms
  ○ Compiling / ...
- ✓ Compiled / in 3.5s (619 modules)
- GET / 200 in 3634ms
- ✓ Compiled in 259ms (308 modules)
- ✓ Compiled /api/ghl/create-lead in 352ms (368 modules)
-[API] Received POST request to /api/ghl/create-lead
-[API] Headers: {
-  accept: '*/*',
-  'content-length': '463',
-  'content-type': 'application/json',
-  host: 'localhost:3001',
-  'user-agent': 'curl/8.7.1',
-  'x-forwarded-for': '::1',
-  'x-forwarded-host': 'localhost:3001',
-  'x-forwarded-port': '3001',
-  'x-forwarded-proto': 'http'
-}
+ ✓ Compiled / in 1586ms (597 modules)
+ HEAD / 200 in 1718ms
+ ✓ Compiled in 313ms (308 modules)
+ ✓ Compiled in 295ms (583 modules)
+ ✓ Compiled /api/ghl/create-lead-test in 205ms (370 modules)
+[API] Received POST request to /api/ghl/create-lead (custom fields version)
 [API] Request data: {
-  "firstName": "Test",
-  "lastName": "User",
-  "email": "test@example.com",
-  "phone": "555-1234",
-  "businessName": "Test Business",
-  "businessType": "E-commerce",
+  "firstName": "HighValue",
+  "lastName": "Lead",
+  "email": "highvalue-1753812066350@test.com",
+  "phone": "555-9999",
+  "businessName": "Enterprise Corp",
+  "businessType": "SaaS",
   "contentGoals": [
     "Blog posts",
-    "Social media"
+    "Whitepapers",
+    "Case studies",
+    "Email campaigns"
   ],
-  "monthlyLeads": "100-500",
-  "teamSize": "5-10",
+  "monthlyLeads": "100+",
+  "teamSize": "10+",
   "currentTools": [
+    "HubSpot",
+    "Salesforce",
+    "Marketo",
     "WordPress",
-    "Mailchimp"
+    "Canva"
   ],
-  "biggestChallenge": "Content consistency",
-  "pricingPlan": "professional",
-  "timestamp": "2025-07-29T03:17:55.3NZ"
+  "biggestChallenge": "Scaling content production while maintaining quality and brand consistency",
+  "pricingPlan": "enterprise",
+  "timestamp": "2025-07-29T18:01:06.350Z"
 }
 [API] Processing get-started form submission
-[GHL] GoHighLevel is not configured. Skipping CRM integration.
-[API] Sending backup email notification...
-[Email] Starting email notification process
-[Email] Loading Resend library...
-[Email] Sending email...
-[Email] From: TrueFlow AI <onboarding@resend.dev>
-[Email] To: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ]
-[Email] Subject: New Get Started Lead: Test User (professional Plan)
-[Email] Email sent successfully: { data: { id: 'effcc489-c3e2-4c8b-a65b-84e1802ea7a6' }, error: null }
-[API] Backup email sent successfully
- POST /api/ghl/create-lead 200 in 1088ms
-[API] Received POST request to /api/ghl/create-lead
-[API] Headers: {
-  accept: '*/*',
-  'content-length': '336',
-  'content-type': 'application/json',
-  host: 'localhost:3001',
-  'user-agent': 'curl/8.7.1',
-  'x-forwarded-for': '::1',
-  'x-forwarded-host': 'localhost:3001',
-  'x-forwarded-port': '3001',
-  'x-forwarded-proto': 'http'
-}
+[API] Lead quality: 100/100 (hot)
+[API] GHL not configured, using email fallback
+[Email] Sending notification...
+[Email] Email sent successfully: { data: { id: 'cb8fd42a-da7a-41f1-9b44-cac4003bf220' }, error: null }
+ POST /api/ghl/create-lead-test 200 in 1159ms
+[API] Received POST request to /api/ghl/create-lead (custom fields version)
 [API] Request data: {
-  "firstName": "Assessment",
-  "lastName": "Test",
-  "email": "assessment@example.com",
-  "phone": "555-5678",
-  "businessName": "Assessment Business",
-  "score": 85,
+  "firstName": "MediumValue",
+  "lastName": "Assessment",
+  "email": "medium-1753812066351@test.com",
+  "phone": "555-5555",
+  "businessName": "Growing Business LLC",
+  "score": 65,
   "recommendation": "Professional",
   "answers": {
-    "q1": "Answer 1",
-    "q2": "Answer 2"
+    "marketing_goals": "Increase brand awareness",
+    "current_challenges": "Limited resources",
+    "budget": "medium",
+    "timeline": "3-6 months",
+    "decision_maker": "no"
   },
-  "timestamp": "2025-07-29T03:18:04.3NZ"
+  "timestamp": "2025-07-29T18:01:06.351Z"
 }
 [API] Processing assessment form submission
-[GHL] GoHighLevel is not configured. Skipping CRM integration.
-[API] Sending backup email notification...
-[Email] Starting email notification process
-[Email] Loading Resend library...
-[Email] Sending email...
-[Email] From: TrueFlow AI <onboarding@resend.dev>
-[Email] To: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ]
-[Email] Subject: New Assessment Lead: Assessment Test (Score: 85%)
-[Email] Email sent successfully: { data: { id: 'a7b89cc0-da98-4552-889c-c9680aa76d21' }, error: null }
-[API] Backup email sent successfully
- POST /api/ghl/create-lead 200 in 736ms
- ✓ Compiled /api/webhooks/ghl in 62ms (370 modules)
-[Webhook] Received GHL webhook
-[Webhook] Headers: {
-  "accept": "*/*",
-  "content-length": "184",
-  "content-type": "application/json",
-  "host": "localhost:3001",
-  "user-agent": "curl/8.7.1",
-  "x-forwarded-for": "::1",
-  "x-forwarded-host": "localhost:3001",
-  "x-forwarded-port": "3001",
-  "x-forwarded-proto": "http",
-  "x-ghl-signature": "test-signature"
-}
-[Webhook] Body: {
-  "type": "contact.created",
-  "contact": {
-    "id": "test-contact-123",
-    "firstName": "Webhook",
-    "lastName": "Test",
-    "email": "webhook@example.com"
-  }
-}
-[Webhook] Processing event type: contact.created
-[Webhook] New contact created: test-contact-123
- POST /api/webhooks/ghl 200 in 81ms
- GET /api/webhooks/ghl 200 in 5ms
- ✓ Compiled in 220ms (308 modules)
- ✓ Compiled in 177ms (308 modules)
- ✓ Compiled in 154ms (308 modules)
- ✓ Compiled in 141ms (308 modules)
-[?25h
+[API] Lead quality: 65/100 (warm)
+[API] GHL not configured, using email fallback
+[Email] Sending notification...
+[Email] Email sent successfully: { data: { id: 'a1668522-a747-4ec9-ad47-b08da68d1d62' }, error: null }
+ POST /api/ghl/create-lead-test 200 in 513ms
+ ✓ Compiled in 16ms
