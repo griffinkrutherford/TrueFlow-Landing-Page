@@ -1,33 +1,25 @@
 # Nixpacks configuration for TrueFlow Landing Page
 
 [phases.setup]
-nixPkgs = ["nodejs-20_x"]
+nixPkgs = ["nodejs_20"]
 
 [phases.install]
 dependsOn = ["setup"]
 cmds = [
   "npm cache clean --force",
   "rm -rf node_modules .next",
-  "rm -f package-lock.json",
-  "npm install --no-cache --prefer-offline=false --force"
+  "npm install --force"
 ]
 
 [phases.build]
 dependsOn = ["install"]
 cmds = [
-  "rm -rf .next",
-  "npm run prebuild || true",
   "npm run build"
 ]
 
 [start]
-cmd = "PORT=${PORT:-3001} npm start"
+cmd = "npm start"
 
 [variables]
 NODE_ENV = "production"
 NEXT_TELEMETRY_DISABLED = "1"
-NIXPACKS_NO_CACHE = "1"
-
-# Disable cache completely to force fresh builds
-[cache]
-paths = []
