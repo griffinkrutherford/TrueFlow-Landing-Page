@@ -715,7 +715,7 @@ export default function ReadinessAssessment() {
       // Send lead notification email (backup to ensure emails are sent)
       try {
         console.log('[Assessment] Sending email notification...')
-        const emailResponse = await fetch('/api/lead-notification', {
+        const emailResponse = await fetch('/api/form-notification', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
