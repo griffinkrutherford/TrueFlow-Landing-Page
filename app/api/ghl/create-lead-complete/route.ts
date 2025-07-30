@@ -125,7 +125,7 @@ export async function POST(request: Request) {
     console.log('[API Complete] Custom fields being sent to GHL:')
     customFields.forEach((cf, index) => {
       const preview = cf.field_value.length > 100 ? cf.field_value.substring(0, 100) + '...' : cf.field_value
-      console.log(`[API Complete]   ${index + 1}. ${cf.key}: "${preview}"`)
+      console.log(`[API Complete]   ${index + 1}. Field ID ${cf.id}: "${preview}"`)
     })
     
     // Minimal tags - most data should be in fields, not tags
