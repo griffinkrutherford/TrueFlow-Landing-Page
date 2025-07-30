@@ -7,21 +7,28 @@
   - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 1323ms
+ ✓ Ready in 1485ms
+(node:48047) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
  ○ Compiling / ...
- ✓ Compiled / in 1161ms (597 modules)
- GET / 200 in 1339ms
- ✓ Compiled in 363ms (308 modules)
- ✓ Compiled /api/get-started-notification in 217ms (368 modules)
-Get Started notification request received from: http://localhost:3001
-Error processing get started lead notification: SyntaxError: Unexpected non-whitespace character after JSON at position 472 (line 1 column 473)
-    at JSON.parse (<anonymous>)
-    at parseJSONFromBytes (node:internal/deps/undici/undici:5731:19)
-    at successSteps (node:internal/deps/undici/undici:5712:27)
-    at fullyReadBody (node:internal/deps/undici/undici:4609:9)
+ ✓ Compiled / in 58s (619 modules)
+ GET / 200 in 58173ms
+ ✓ Compiled in 260ms (308 modules)
+ ✓ Compiled in 230ms (308 modules)
+ ✓ Compiled in 167ms (308 modules)
+ ✓ Compiled in 198ms (308 modules)
+ ✓ Compiled in 184ms (308 modules)
+ ✓ Compiled /api/ghl/create-lead-v3 in 422ms (111 modules)
+[API V3] Received POST request to /api/ghl/create-lead-v3
+[API V3] Processing form submission...
+[API V3] Form type: get-started
+[API V3] Lead score: 80, quality: hot
+[API V3] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V3] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async consumeBody (node:internal/deps/undici/undici:5721:7)
-    at async POST (webpack-internal:///(rsc)/./app/api/get-started-notification/route.ts:18:26)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v3/route.ts:50:21)
     at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
     at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
     at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
@@ -40,97 +47,99 @@ Error processing get started lead notification: SyntaxError: Unexpected non-whit
     at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
     at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
     at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
-Get Started full error details: {
-  message: 'Unexpected non-whitespace character after JSON at position 472 (line 1 column 473)',
-  stack: 'SyntaxError: Unexpected non-whitespace character after JSON at position 472 (line 1 column 473)\n' +
-    '    at JSON.parse (<anonymous>)\n' +
-    '    at parseJSONFromBytes (node:internal/deps/undici/undici:5731:19)\n' +
-    '    at successSteps (node:internal/deps/undici/undici:5712:27)\n' +
-    '    at fullyReadBody (node:internal/deps/undici/undici:4609:9)\n' +
-    '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n' +
-    '    at async consumeBody (node:internal/deps/undici/undici:5721:7)\n' +
-    '    at async POST (webpack-internal:///(rsc)/./app/api/get-started-notification/route.ts:18:26)\n' +
-    '    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228\n' +
-    '    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)\n' +
-    '    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)\n' +
-    '    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)\n' +
-    '    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)\n' +
-    '    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)\n' +
-    '    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)\n' +
-    '    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)\n' +
-    '    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)\n' +
-    '    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)\n' +
-    '    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)\n' +
-    '    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20\n' +
-    '    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)\n' +
-    '    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)\n' +
-    '    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)\n' +
-    '    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)\n' +
-    '    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)\n' +
-    '    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)',
-  timestamp: '2025-07-29T22:47:56.851Z'
-}
- POST /api/get-started-notification 500 in 318ms
-Get Started notification request received from: http://localhost:3001
-Get Started lead data received: {
-  name: 'Test User',
-  email: 'testuser@example.com',
-  business: 'Test Business Inc.',
-  plan: 'Professional Plan'
-}
-Resend API configuration: {
-  hasApiKey: true,
-  keyLength: 36,
-  keyPrefix: 're_gp5M...',
-  nodeEnv: 'development'
-}
-Using Resend API key for email sending only (restricted key mode)
-Attempting to send Get Started email: {
-  from: 'TrueFlow Leads <onboarding@resend.dev>',
-  to: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ],
-  subject: '🚀 New TrueFlow Get Started Lead: Test User - Test Business Inc.',
-  timestamp: '2025-07-29T22:48:16.606Z'
-}
-Get Started email sent successfully: {
-  emailId: 'c34e95fb-bf8c-4973-be59-70a1fcf4cf5f',
-  timestamp: '2025-07-29T22:48:17.390Z',
-  recipients: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ]
-}
- POST /api/get-started-notification 200 in 793ms
-Get Started notification request received from: http://localhost:3001
-Get Started lead data received: {
-  name: 'Jane Smith',
-  email: 'jane.smith@techcorp.com',
-  business: 'TechCorp Solutions',
-  plan: 'Enterprise Plan'
-}
-Resend API configuration: {
-  hasApiKey: true,
-  keyLength: 36,
-  keyPrefix: 're_gp5M...',
-  nodeEnv: 'development'
-}
-Using Resend API key for email sending only (restricted key mode)
-Attempting to send Get Started email: {
-  from: 'TrueFlow Leads <onboarding@resend.dev>',
-  to: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ],
-  subject: '🚀 New TrueFlow Get Started Lead: Jane Smith - TechCorp Solutions',
-  timestamp: '2025-07-29T22:48:31.904Z'
-}
-Get Started email sent successfully: {
-  emailId: '26e5e963-0317-4b13-a10b-3d73a48c7d64',
-  timestamp: '2025-07-29T22:48:32.564Z',
-  recipients: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ]
-}
- POST /api/get-started-notification 200 in 666ms
-Get Started notification request received from: http://localhost:3001
-Get Started lead data received: {
-  name: 'John undefined',
-  email: 'john@example.com',
-  business: undefined,
-  plan: undefined
-}
- POST /api/get-started-notification 400 in 6ms
- OPTIONS /api/get-started-notification 200 in 6ms
- OPTIONS /api/get-started-notification 200 in 3ms
-[?25h
+ POST /api/ghl/create-lead-v3 200 in 1218ms
+[API V3] Received POST request to /api/ghl/create-lead-v3
+[API V3] Processing form submission...
+[API V3] Form type: assessment
+[API V3] Lead score: 75, quality: hot
+[API V3] GHL integration not configured, using email fallback
+[Email] Sending assessment notification...
+[API V3] Email notification failed: Error: Unable to connect to Resend API
+    at sendAssessmentNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:36:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v3/route.ts:48:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/ghl/create-lead-v3 200 in 156ms
+[API V3] Received POST request to /api/ghl/create-lead-v3
+[API V3] Processing form submission...
+[API V3] Form type: get-started
+[API V3] Lead score: 80, quality: hot
+[API V3] GHL integration not configured, using email fallback
+[Email] Sending get-started notification...
+[API V3] Email notification failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v3/route.ts:50:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/ghl/create-lead-v3 200 in 518ms
+ ✓ Compiled / in 144ms (289 modules)
+ GET / 200 in 252ms
+ ✓ Compiled /get-started in 416ms (605 modules)
+ ✓ Compiled /api/ghl/create-lead-v3 in 87ms (383 modules)
+[API V3] Received POST request to /api/ghl/create-lead-v3
+[API V3] Processing form submission...
+[API V3] Form type: assessment
+[API V3] Lead score: 38, quality: cold
+[API V3] GHL integration not configured, using email fallback
+[Email] Sending assessment notification...
+[API V3] Email notification failed: Error: Unable to connect to Resend API
+    at sendAssessmentNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:36:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v3/route.ts:48:21)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/ghl/create-lead-v3 200 in 1014ms
+ ✓ Compiled /api/form-notification in 60ms (385 modules)
+[Form Notification] Received submission: testesttest testesttest
+[Form Notification] Email sent successfully: 0cde1e96-8641-46fc-97b8-359c45c3f54b
+ POST /api/form-notification 200 in 610ms

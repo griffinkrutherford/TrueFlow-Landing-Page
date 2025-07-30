@@ -680,7 +680,9 @@ export default function ReadinessAssessment() {
         
         // Core assessment data
         score: score, // This is the percentage score
+        scorePercentage: score, // V3 API expects this field
         recommendation: recommendation.recommendation,
+        readinessLevel: recommendation.level, // V3 API expects this field
         
         // Simplified answers object (not nested)
         answers: answers,
@@ -695,7 +697,7 @@ export default function ReadinessAssessment() {
       }
 
       // Send to GHL API
-      const response = await fetch('/api/ghl/create-lead-v2', {
+      const response = await fetch('/api/ghl/create-lead-v3', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

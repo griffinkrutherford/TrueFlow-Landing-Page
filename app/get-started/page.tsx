@@ -716,10 +716,10 @@ export default function ReadinessAssessment() {
 
       // Send to GHL API
       console.log('[Form Submit] Sending data to API...')
-      console.log('[Form Submit] API URL:', '/api/ghl/create-lead-v2')
+      console.log('[Form Submit] API URL:', '/api/ghl/create-lead-v3')
       console.log('[Form Submit] Request body:', JSON.stringify(leadData, null, 2))
       
-      const response = await fetch('/api/ghl/create-lead-v2', {
+      const response = await fetch('/api/ghl/create-lead-v3', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
