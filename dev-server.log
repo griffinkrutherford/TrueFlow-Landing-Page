@@ -143,3 +143,5 @@
 [Form Notification] Received submission: testesttest testesttest
 [Form Notification] Email sent successfully: 0cde1e96-8641-46fc-97b8-359c45c3f54b
  POST /api/form-notification 200 in 610ms
+ ✓ Compiled in 311ms (600 modules)
+ ✓ Compiled in 152ms (318 modules)

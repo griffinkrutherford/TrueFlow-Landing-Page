@@ -160,7 +160,10 @@ export async function POST(request: Request) {
       console.error('[API V3] GHL API Error:', {
         status: ghlResponse.status,
         statusText: ghlResponse.statusText,
-        error: errorData
+        error: errorData,
+        endpoint: `${GHL_API_BASE}/contacts/upsert`,
+        locationId: process.env.GHL_LOCATION_ID?.substring(0, 8) + '...', // Log partial for security
+        hasToken: !!process.env.GHL_ACCESS_TOKEN
       })
       
       // Still try to send email as backup
@@ -174,13 +177,15 @@ export async function POST(request: Request) {
         console.error('[API V3] Backup email also failed:', emailError)
       }
       
+      // Don't fail the entire request if GHL fails - still send email and show success
       return NextResponse.json({ 
-        success: false, 
-        message: 'Failed to create contact in CRM',
-        warning: 'Your submission was received but CRM sync failed. We will process it manually.',
+        success: true, 
+        message: 'Submission received successfully',
+        warning: 'CRM sync pending - we will process your submission manually',
         leadScore,
-        leadQuality
-      }, { status: 500 })
+        leadQuality,
+        ghlError: process.env.NODE_ENV === 'development' ? errorData : undefined
+      })
     }
     
     const ghlResult = await ghlResponse.json()
