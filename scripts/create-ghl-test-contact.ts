@@ -88,7 +88,7 @@ async function createTestContact() {
     }
 
     // Add custom fields using existing field IDs
-    const customFields = []
+    const customFields: Array<{ id: string; value: string }> = []
     
     // Use existing fields that match our verbatim concepts
     testableFields.forEach((field: any) => {
