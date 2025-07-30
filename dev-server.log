@@ -3273,3 +3273,1203 @@
     at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
 [API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
  POST /api/ghl/create-lead-v4 200 in 894ms
+[API V4] ===== NEW REQUEST =====
+[API V4] Received POST request to /api/ghl/create-lead-v4
+[API V4] Processing form submission...
+[API V4] Form data received: {
+  firstName: 'DEBUG',
+  lastName: 'V4FIELDS',
+  email: 'debug-v4fields@test.com',
+  businessName: 'DEBUG V4 Field Test',
+  businessType: 'coach',
+  contentGoals: [ 'newsletters', 'courses', 'support' ],
+  integrations: [ 'gohighlevel', 'activecampaign' ],
+  hasAnswers: false,
+  answerCount: 0
+}
+[API V4] Form type: get-started
+[API V4] Lead score: 80, quality: hot
+[API V4] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 67 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+[CustomFields V3] Checking for expected fields...
+[CustomFields V3] Missing expected field: "What type of business do you run?"
+[CustomFields V3] Missing expected field: "What systems do you already have in place?"
+[CustomFields V3] Missing expected field: "AI Readiness Level"
+[CustomFields V3] Building payload with mapped fields...
+[CustomFields V3] Available GHL fields:
+  - Name: "In one sentence... What do you hope to get out of this Case Study with TrueFlow?", ID: 1Ep7s6vDnqc82uMIdrh3
+  - Name: "Which source actually performs best based on client conversion? (Objective data):", ID: 37lJ9GrMWVc2IabsOZrH
+  - Name: "automation score", ID: 55kCKV1JLTieF1ErKE9t
+  - Name: "What have you already invested in to solve this? (Check all that apply.)", ID: 5mJvFizLOnAM7KNyZbZF
+  - Name: "readiness score", ID: 775YQw2eMJFlqQKhyNjN
+  - Name: "How are leads currently being generated? (Check all that apply)", ID: 7YcD4dFRlVZsPdEk4Tcm
+  - Name: "offer score", ID: 8CF4FgisjBDt3eq9Fq1P
+  - Name: "Current revenue range? (We don’t need exact numbers—just a ballpark.)", ID: 8CNs6Ol3Bwchi8TY0AnC
+  - Name: "What's already working well in your business?", ID: 8eycyxGF2bDNKomAzOp8
+  - Name: "readiness tier", ID: 9y4KOp7qN4dRVshd2m6o
+  - Name: "case study invitation", ID: ACbKpAtk9EMT4j8fTXMz
+  - Name: "What are your goals?", ID: Brkz04tAudIpTtwlH5I5
+  - Name: "Why are you reaching out?", ID: EGrdNGTizO9YtDuMqAlO
+  - Name: "readiness recommendation", ID: GEYL4Phe8movetNBtqme
+  - Name: "How did you hear about us?", ID: IMu5sYdj4QHp47d6xRQL
+  - Name: "What is the average lifetime value of a new client (estimation is fine):", ID: JptQGJqKgCyGPCN97kFZ
+  - Name: "Briefly describe your ideal client:", ID: NhI7C9KeIlROzSDWCeve
+  - Name: "readiness summary", ID: R2xMXY1BvSCXvycoozwf
+  - Name: "SMS Notifications for Appointments", ID: RUw2THNCkK0xuNpsca25
+  - Name: "What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.)", ID: RmMzHUkIJQEUsioCgYmC
+  - Name: "How many team/staff members do you have?", ID: SW74qfoKtVATuI8arKeT
+  - Name: "marketing score", ID: XzI839OJt4CqmZORmS5w
+  - Name: "Which source do you feel is working the best? (Subjective opinion):", ID: YXlskHPp9IlD8Dulv93l
+  - Name: "Where are you still experiencing friction? (Choose your biggest challenge or type your own.)", ID: cEI7a3EjazGsLzlgdMiy
+  - Name: "If you accept insurance, what is the average reimbursement per session:", ID: cKKpE8M72QtLfyJVYt5n
+  - Name: "Something else...?", ID: eSDkptKJvGHWZfCeckZw
+  - Name: "On average, how many sessions does a new client complete in their care plan?", ID: fzLAHfQAWOsvH38xVsLZ
+  - Name: "Can we text you the link to the training?", ID: gGkPMtSVHHa7SHVLqbjg
+  - Name: "Do you have contact list to transfer? (upload CSV or XLS file)", ID: hUIHxc3BdxrEbks6dyKK
+  - Name: "recent_tag", ID: iHwM6HHvWxJS8GNxGBbG
+  - Name: "How is your business currently structured? (Check all that apply.)", ID: jWkTVX67RmZccclWPVM8
+  - Name: "What are your top 3 business goals in the next 90 days?", ID: mVPxlVWnWvO9W9deoD0v
+  - Name: "Time Zone", ID: nIdXc7Yn0gP2W302jVA3
+  - Name: "Which lead source is bringing in the most volume currently?", ID: nkcH2eWKW2Cn5NFvGBhp
+  - Name: "Estimated total number of new leads per month", ID: o21JcZLsvRtV1FB8gbcx
+  - Name: "report link", ID: pBl3uwgfJZlRpZRdYDLH
+  - Name: "Which of the following do you currently use?", ID: qIuaJLoxGAbXLeIQc3Nw
+  - Name: "vision score", ID: qROGqhpHOgR9rbAQKSLZ
+  - Name: "If we could solve ONE thing for you right now, what would it be?", ID: sgiGrcIplu2VWfsl1tip
+  - Name: "DBA (if applicable)", ID: tsxXfcm4iUVS4XXzZdSR
+  - Name: "What is the cost of one session (cash price):", ID: tn5OGhOCigVr1l8NcXGp
+  - Name: "Do you sell care packages or memberships? If so, describe briefly:", ID: uzqeiOdTtWNeS7ci2j2D
+  - Name: "What systems do you already have in place? (Check all that apply.)", ID: wABhU7FjyeniGpFcnKRn
+  - Name: "Is there anything you want us to know that would help us serve you better?", ID: vewyhslsTEI7vdnqjYGt
+  - Name: "Business EIN", ID: wHnV45thHpLBCgMfmjqf
+  - Name: "What do you want to get out of this program in the next 90 days?", ID: yKyEaS011UxKHuenmbyJ
+  - Name: "Instagram Handle", ID: yRNJgVSJIHytKpXPrCKb
+  - Name: "What’s the biggest bottleneck keeping you from more revenue and more freedom?", ID: z0mDk9Kc0E7ORo1CHCRD
+  - Name: "execution score", ID: zDS6ol0hSR8fqiRYT5CW
+  - Name: "List your platform names here:", ID: zg9FACNSylS63m3P7j1Y
+  - Name: "Business Name", ID: lpmpRi1M77nAS6zxTuUr
+  - Name: "Submission Date", ID: 8NH3Elaej0wpunZjXXMh
+  - Name: "Lead Score", ID: 0HLVAtRKvV9eki6PK17o
+  - Name: "Assessment Score", ID: q7Fpn4tANyIUWyM0uzuD
+  - Name: "Readiness Level", ID: xSUmu4GXhxrVxu2l8uBZ
+  - Name: "Recommended Plan", ID: yzY8dpCOVQzsq5TyMFNh
+  - Name: "Test Field Delete Me", ID: ckAoICo85L14GsRy7TKP
+  - Name: "Business Type", ID: dXKJp1XJuv7jW2JlLp90
+  - Name: "Content Goals", ID: th0d43amiLOtURkAgDit
+  - Name: "Integration Preferences", ID: N4GXLCbInwNn8lMEhkiW
+  - Name: "Selected Plan", ID: tV6OLe2gYJmnrLqw9cwG
+  - Name: "Lead Quality", ID: 2Owd2Z40bLCrbPoeC8t1
+  - Name: "Current Content Creation", ID: bS74zF9bdwJRPFqcz7xT
+  - Name: "Content Volume", ID: 4ev4wk2FVF74II8nb23d
+  - Name: "CRM Usage", ID: VNu2k2u0SDWguuBC5Rbr
+  - Name: "Lead Response Time", ID: LGwvORhgYMIJl43JiYDb
+  - Name: "Time on Repetitive Tasks", ID: b32TtiflBHOnMc12RSIr
+[Field Mapping] Mapped businessName -> Business Name: DEBUG V4 Field Test
+[Field Mapping] Mapped businessType -> Business Type: Coach or Consultant
+[Field Mapping] Mapped contentGoals -> What are your goals?: Email Newsletters, Course Content, Customer Support
+[Field Mapping] Mapped integrations -> Integration Preferences: GoHighLevel, ActiveCampaign
+[Field Mapping] Mapped selectedPlan -> Selected Plan: complete_system
+[Field Mapping] No field ID found for: Form Submission Date
+[Field Mapping] Mapped leadScore -> Lead Score: 80
+[Field Mapping] Mapped leadQuality -> Lead Quality: hot
+[CustomFields V3] Built 7 field values
+[API V4] Built 7 custom field values
+[API V4] Using tags: [
+  'web-lead',
+  'lead-quality-hot',
+  'get-started-form',
+  'business-type-coach'
+]
+[API V4] Sending to GHL with payload: {
+  name: 'DEBUG V4FIELDS',
+  email: 'debug-v4fields@test.com',
+  companyName: 'DEBUG V4 Field Test',
+  tagsCount: 4,
+  customFieldsCount: 7,
+  customFieldsSample: [
+    { id: 'lpmpRi1M...', value: 'DEBUG V4 Field Test' },
+    { id: 'dXKJp1XJ...', value: 'Coach or Consultant' },
+    {
+      id: 'Brkz04tA...',
+      value: 'Email Newsletters, Course Content, Customer Suppor...'
+    },
+    { id: 'N4GXLCbI...', value: 'GoHighLevel, ActiveCampaign' },
+    { id: 'tV6OLe2g...', value: 'complete_system' }
+  ]
+}
+[API V4] Contact created/updated successfully: { contactId: 'KnOH4sFfyqNfqBN1Dzwl', hasContact: true, hasId: false }
+[API V4] Sending backup email notification...
+[Email] Sending get-started notification...
+[API V4] Backup email failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v4/route.ts:179:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v4 200 in 3316ms
+ ✓ Compiled in 15ms
+ ✓ Compiled /api/ghl/create-lead-v4 in 49ms (112 modules)
+[API V4] ===== NEW REQUEST =====
+[API V4] Received POST request to /api/ghl/create-lead-v4
+[API V4] Processing form submission...
+[API V4] Form data received: {
+  firstName: 'V4TEST',
+  lastName: 'AGENCY',
+  email: 'v4test-agency@deletetest.com',
+  businessName: 'V4 TEST AGENCY - DELETE ME',
+  businessType: 'agency',
+  contentGoals: [ 'newsletters', 'blogs', 'social', 'sales', 'courses' ],
+  integrations: [ 'gohighlevel', 'hubspot', 'zapier' ],
+  hasAnswers: false,
+  answerCount: 0
+}
+[API V4] Form type: get-started
+[API V4] Lead score: 95, quality: hot
+[API V4] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 67 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+[CustomFields V3] Checking for expected fields...
+[CustomFields V3] Missing expected field: "What type of business do you run?"
+[CustomFields V3] Missing expected field: "What systems do you already have in place?"
+[CustomFields V3] Missing expected field: "AI Readiness Level"
+[CustomFields V3] Building payload with mapped fields...
+[CustomFields V3] Available GHL fields:
+  - Name: "In one sentence... What do you hope to get out of this Case Study with TrueFlow?", ID: 1Ep7s6vDnqc82uMIdrh3
+  - Name: "Which source actually performs best based on client conversion? (Objective data):", ID: 37lJ9GrMWVc2IabsOZrH
+  - Name: "automation score", ID: 55kCKV1JLTieF1ErKE9t
+  - Name: "What have you already invested in to solve this? (Check all that apply.)", ID: 5mJvFizLOnAM7KNyZbZF
+  - Name: "readiness score", ID: 775YQw2eMJFlqQKhyNjN
+  - Name: "How are leads currently being generated? (Check all that apply)", ID: 7YcD4dFRlVZsPdEk4Tcm
+  - Name: "offer score", ID: 8CF4FgisjBDt3eq9Fq1P
+  - Name: "Current revenue range? (We don’t need exact numbers—just a ballpark.)", ID: 8CNs6Ol3Bwchi8TY0AnC
+  - Name: "What's already working well in your business?", ID: 8eycyxGF2bDNKomAzOp8
+  - Name: "readiness tier", ID: 9y4KOp7qN4dRVshd2m6o
+  - Name: "case study invitation", ID: ACbKpAtk9EMT4j8fTXMz
+  - Name: "What are your goals?", ID: Brkz04tAudIpTtwlH5I5
+  - Name: "Why are you reaching out?", ID: EGrdNGTizO9YtDuMqAlO
+  - Name: "readiness recommendation", ID: GEYL4Phe8movetNBtqme
+  - Name: "How did you hear about us?", ID: IMu5sYdj4QHp47d6xRQL
+  - Name: "What is the average lifetime value of a new client (estimation is fine):", ID: JptQGJqKgCyGPCN97kFZ
+  - Name: "Briefly describe your ideal client:", ID: NhI7C9KeIlROzSDWCeve
+  - Name: "readiness summary", ID: R2xMXY1BvSCXvycoozwf
+  - Name: "SMS Notifications for Appointments", ID: RUw2THNCkK0xuNpsca25
+  - Name: "What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.)", ID: RmMzHUkIJQEUsioCgYmC
+  - Name: "How many team/staff members do you have?", ID: SW74qfoKtVATuI8arKeT
+  - Name: "marketing score", ID: XzI839OJt4CqmZORmS5w
+  - Name: "Which source do you feel is working the best? (Subjective opinion):", ID: YXlskHPp9IlD8Dulv93l
+  - Name: "Where are you still experiencing friction? (Choose your biggest challenge or type your own.)", ID: cEI7a3EjazGsLzlgdMiy
+  - Name: "If you accept insurance, what is the average reimbursement per session:", ID: cKKpE8M72QtLfyJVYt5n
+  - Name: "Something else...?", ID: eSDkptKJvGHWZfCeckZw
+  - Name: "On average, how many sessions does a new client complete in their care plan?", ID: fzLAHfQAWOsvH38xVsLZ
+  - Name: "Can we text you the link to the training?", ID: gGkPMtSVHHa7SHVLqbjg
+  - Name: "Do you have contact list to transfer? (upload CSV or XLS file)", ID: hUIHxc3BdxrEbks6dyKK
+  - Name: "recent_tag", ID: iHwM6HHvWxJS8GNxGBbG
+  - Name: "How is your business currently structured? (Check all that apply.)", ID: jWkTVX67RmZccclWPVM8
+  - Name: "What are your top 3 business goals in the next 90 days?", ID: mVPxlVWnWvO9W9deoD0v
+  - Name: "Time Zone", ID: nIdXc7Yn0gP2W302jVA3
+  - Name: "Which lead source is bringing in the most volume currently?", ID: nkcH2eWKW2Cn5NFvGBhp
+  - Name: "Estimated total number of new leads per month", ID: o21JcZLsvRtV1FB8gbcx
+  - Name: "report link", ID: pBl3uwgfJZlRpZRdYDLH
+  - Name: "Which of the following do you currently use?", ID: qIuaJLoxGAbXLeIQc3Nw
+  - Name: "vision score", ID: qROGqhpHOgR9rbAQKSLZ
+  - Name: "If we could solve ONE thing for you right now, what would it be?", ID: sgiGrcIplu2VWfsl1tip
+  - Name: "DBA (if applicable)", ID: tsxXfcm4iUVS4XXzZdSR
+  - Name: "What is the cost of one session (cash price):", ID: tn5OGhOCigVr1l8NcXGp
+  - Name: "Do you sell care packages or memberships? If so, describe briefly:", ID: uzqeiOdTtWNeS7ci2j2D
+  - Name: "What systems do you already have in place? (Check all that apply.)", ID: wABhU7FjyeniGpFcnKRn
+  - Name: "Is there anything you want us to know that would help us serve you better?", ID: vewyhslsTEI7vdnqjYGt
+  - Name: "Business EIN", ID: wHnV45thHpLBCgMfmjqf
+  - Name: "What do you want to get out of this program in the next 90 days?", ID: yKyEaS011UxKHuenmbyJ
+  - Name: "Instagram Handle", ID: yRNJgVSJIHytKpXPrCKb
+  - Name: "What’s the biggest bottleneck keeping you from more revenue and more freedom?", ID: z0mDk9Kc0E7ORo1CHCRD
+  - Name: "execution score", ID: zDS6ol0hSR8fqiRYT5CW
+  - Name: "List your platform names here:", ID: zg9FACNSylS63m3P7j1Y
+  - Name: "Business Name", ID: lpmpRi1M77nAS6zxTuUr
+  - Name: "Submission Date", ID: 8NH3Elaej0wpunZjXXMh
+  - Name: "Lead Score", ID: 0HLVAtRKvV9eki6PK17o
+  - Name: "Assessment Score", ID: q7Fpn4tANyIUWyM0uzuD
+  - Name: "Readiness Level", ID: xSUmu4GXhxrVxu2l8uBZ
+  - Name: "Recommended Plan", ID: yzY8dpCOVQzsq5TyMFNh
+  - Name: "Test Field Delete Me", ID: ckAoICo85L14GsRy7TKP
+  - Name: "Business Type", ID: dXKJp1XJuv7jW2JlLp90
+  - Name: "Content Goals", ID: th0d43amiLOtURkAgDit
+  - Name: "Integration Preferences", ID: N4GXLCbInwNn8lMEhkiW
+  - Name: "Selected Plan", ID: tV6OLe2gYJmnrLqw9cwG
+  - Name: "Lead Quality", ID: 2Owd2Z40bLCrbPoeC8t1
+  - Name: "Current Content Creation", ID: bS74zF9bdwJRPFqcz7xT
+  - Name: "Content Volume", ID: 4ev4wk2FVF74II8nb23d
+  - Name: "CRM Usage", ID: VNu2k2u0SDWguuBC5Rbr
+  - Name: "Lead Response Time", ID: LGwvORhgYMIJl43JiYDb
+  - Name: "Time on Repetitive Tasks", ID: b32TtiflBHOnMc12RSIr
+[Field Mapping] Mapped businessName -> Business Name: V4 TEST AGENCY - DELETE ME
+[Field Mapping] Mapped businessType -> Business Type: Marketing Agency
+[Field Mapping] Mapped contentGoals -> What are your goals?: Email Newsletters, Blog Posts, Social Media Content, Sales Materials, Course Content
+[Field Mapping] Mapped integrations -> Integration Preferences: GoHighLevel, HubSpot, Zapier
+[Field Mapping] Mapped selectedPlan -> Selected Plan: custom_enterprise
+[Field Mapping] Mapped submissionDate -> Submission Date: 2025-07-30T02:43:48.773Z
+[Field Mapping] Mapped leadScore -> Lead Score: 95
+[Field Mapping] Mapped leadQuality -> Lead Quality: hot
+[CustomFields V3] Built 8 field values
+[API V4] Built 8 custom field values
+[API V4] Using tags: [
+  'web-lead',
+  'lead-quality-hot',
+  'get-started-form',
+  'business-type-agency'
+]
+[API V4] Sending to GHL with payload: {
+  name: 'V4TEST AGENCY',
+  email: 'v4test-agency@deletetest.com',
+  companyName: 'V4 TEST AGENCY - DELETE ME',
+  tagsCount: 4,
+  customFieldsCount: 8,
+  customFieldsSample: [
+    { id: 'lpmpRi1M...', value: 'V4 TEST AGENCY - DELETE ME' },
+    { id: 'dXKJp1XJ...', value: 'Marketing Agency' },
+    {
+      id: 'Brkz04tA...',
+      value: 'Email Newsletters, Blog Posts, Social Media Conten...'
+    },
+    { id: 'N4GXLCbI...', value: 'GoHighLevel, HubSpot, Zapier' },
+    { id: 'tV6OLe2g...', value: 'custom_enterprise' }
+  ]
+}
+[API V4] Contact created/updated successfully: { contactId: 'v3J0TIUgxl133nHdcbyb', hasContact: true, hasId: false }
+[API V4] Sending backup email notification...
+[Email] Sending get-started notification...
+[API V4] Backup email failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v4/route.ts:179:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v4 200 in 1419ms
+[API V4] ===== NEW REQUEST =====
+[API V4] Received POST request to /api/ghl/create-lead-v4
+[API V4] Processing form submission...
+[API V4] Form data received: {
+  firstName: 'V4TEST',
+  lastName: 'CREATOR',
+  email: 'v4test-creator@deletetest.com',
+  businessName: 'V4 TEST CREATOR - DELETE ME',
+  businessType: 'content_creator',
+  contentGoals: [ 'blogs', 'social' ],
+  integrations: [ 'mailchimp' ],
+  hasAnswers: false,
+  answerCount: 0
+}
+[API V4] Form type: get-started
+[API V4] Lead score: 65, quality: warm
+[API V4] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 67 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+[CustomFields V3] Checking for expected fields...
+[CustomFields V3] Missing expected field: "What type of business do you run?"
+[CustomFields V3] Missing expected field: "What systems do you already have in place?"
+[CustomFields V3] Missing expected field: "AI Readiness Level"
+[CustomFields V3] Building payload with mapped fields...
+[CustomFields V3] Available GHL fields:
+  - Name: "In one sentence... What do you hope to get out of this Case Study with TrueFlow?", ID: 1Ep7s6vDnqc82uMIdrh3
+  - Name: "Which source actually performs best based on client conversion? (Objective data):", ID: 37lJ9GrMWVc2IabsOZrH
+  - Name: "automation score", ID: 55kCKV1JLTieF1ErKE9t
+  - Name: "What have you already invested in to solve this? (Check all that apply.)", ID: 5mJvFizLOnAM7KNyZbZF
+  - Name: "readiness score", ID: 775YQw2eMJFlqQKhyNjN
+  - Name: "How are leads currently being generated? (Check all that apply)", ID: 7YcD4dFRlVZsPdEk4Tcm
+  - Name: "offer score", ID: 8CF4FgisjBDt3eq9Fq1P
+  - Name: "Current revenue range? (We don’t need exact numbers—just a ballpark.)", ID: 8CNs6Ol3Bwchi8TY0AnC
+  - Name: "What's already working well in your business?", ID: 8eycyxGF2bDNKomAzOp8
+  - Name: "readiness tier", ID: 9y4KOp7qN4dRVshd2m6o
+  - Name: "case study invitation", ID: ACbKpAtk9EMT4j8fTXMz
+  - Name: "What are your goals?", ID: Brkz04tAudIpTtwlH5I5
+  - Name: "Why are you reaching out?", ID: EGrdNGTizO9YtDuMqAlO
+  - Name: "readiness recommendation", ID: GEYL4Phe8movetNBtqme
+  - Name: "How did you hear about us?", ID: IMu5sYdj4QHp47d6xRQL
+  - Name: "What is the average lifetime value of a new client (estimation is fine):", ID: JptQGJqKgCyGPCN97kFZ
+  - Name: "Briefly describe your ideal client:", ID: NhI7C9KeIlROzSDWCeve
+  - Name: "readiness summary", ID: R2xMXY1BvSCXvycoozwf
+  - Name: "SMS Notifications for Appointments", ID: RUw2THNCkK0xuNpsca25
+  - Name: "What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.)", ID: RmMzHUkIJQEUsioCgYmC
+  - Name: "How many team/staff members do you have?", ID: SW74qfoKtVATuI8arKeT
+  - Name: "marketing score", ID: XzI839OJt4CqmZORmS5w
+  - Name: "Which source do you feel is working the best? (Subjective opinion):", ID: YXlskHPp9IlD8Dulv93l
+  - Name: "Where are you still experiencing friction? (Choose your biggest challenge or type your own.)", ID: cEI7a3EjazGsLzlgdMiy
+  - Name: "If you accept insurance, what is the average reimbursement per session:", ID: cKKpE8M72QtLfyJVYt5n
+  - Name: "Something else...?", ID: eSDkptKJvGHWZfCeckZw
+  - Name: "On average, how many sessions does a new client complete in their care plan?", ID: fzLAHfQAWOsvH38xVsLZ
+  - Name: "Can we text you the link to the training?", ID: gGkPMtSVHHa7SHVLqbjg
+  - Name: "Do you have contact list to transfer? (upload CSV or XLS file)", ID: hUIHxc3BdxrEbks6dyKK
+  - Name: "recent_tag", ID: iHwM6HHvWxJS8GNxGBbG
+  - Name: "How is your business currently structured? (Check all that apply.)", ID: jWkTVX67RmZccclWPVM8
+  - Name: "What are your top 3 business goals in the next 90 days?", ID: mVPxlVWnWvO9W9deoD0v
+  - Name: "Time Zone", ID: nIdXc7Yn0gP2W302jVA3
+  - Name: "Which lead source is bringing in the most volume currently?", ID: nkcH2eWKW2Cn5NFvGBhp
+  - Name: "Estimated total number of new leads per month", ID: o21JcZLsvRtV1FB8gbcx
+  - Name: "report link", ID: pBl3uwgfJZlRpZRdYDLH
+  - Name: "Which of the following do you currently use?", ID: qIuaJLoxGAbXLeIQc3Nw
+  - Name: "vision score", ID: qROGqhpHOgR9rbAQKSLZ
+  - Name: "If we could solve ONE thing for you right now, what would it be?", ID: sgiGrcIplu2VWfsl1tip
+  - Name: "DBA (if applicable)", ID: tsxXfcm4iUVS4XXzZdSR
+  - Name: "What is the cost of one session (cash price):", ID: tn5OGhOCigVr1l8NcXGp
+  - Name: "Do you sell care packages or memberships? If so, describe briefly:", ID: uzqeiOdTtWNeS7ci2j2D
+  - Name: "What systems do you already have in place? (Check all that apply.)", ID: wABhU7FjyeniGpFcnKRn
+  - Name: "Is there anything you want us to know that would help us serve you better?", ID: vewyhslsTEI7vdnqjYGt
+  - Name: "Business EIN", ID: wHnV45thHpLBCgMfmjqf
+  - Name: "What do you want to get out of this program in the next 90 days?", ID: yKyEaS011UxKHuenmbyJ
+  - Name: "Instagram Handle", ID: yRNJgVSJIHytKpXPrCKb
+  - Name: "What’s the biggest bottleneck keeping you from more revenue and more freedom?", ID: z0mDk9Kc0E7ORo1CHCRD
+  - Name: "execution score", ID: zDS6ol0hSR8fqiRYT5CW
+  - Name: "List your platform names here:", ID: zg9FACNSylS63m3P7j1Y
+  - Name: "Business Name", ID: lpmpRi1M77nAS6zxTuUr
+  - Name: "Submission Date", ID: 8NH3Elaej0wpunZjXXMh
+  - Name: "Lead Score", ID: 0HLVAtRKvV9eki6PK17o
+  - Name: "Assessment Score", ID: q7Fpn4tANyIUWyM0uzuD
+  - Name: "Readiness Level", ID: xSUmu4GXhxrVxu2l8uBZ
+  - Name: "Recommended Plan", ID: yzY8dpCOVQzsq5TyMFNh
+  - Name: "Test Field Delete Me", ID: ckAoICo85L14GsRy7TKP
+  - Name: "Business Type", ID: dXKJp1XJuv7jW2JlLp90
+  - Name: "Content Goals", ID: th0d43amiLOtURkAgDit
+  - Name: "Integration Preferences", ID: N4GXLCbInwNn8lMEhkiW
+  - Name: "Selected Plan", ID: tV6OLe2gYJmnrLqw9cwG
+  - Name: "Lead Quality", ID: 2Owd2Z40bLCrbPoeC8t1
+  - Name: "Current Content Creation", ID: bS74zF9bdwJRPFqcz7xT
+  - Name: "Content Volume", ID: 4ev4wk2FVF74II8nb23d
+  - Name: "CRM Usage", ID: VNu2k2u0SDWguuBC5Rbr
+  - Name: "Lead Response Time", ID: LGwvORhgYMIJl43JiYDb
+  - Name: "Time on Repetitive Tasks", ID: b32TtiflBHOnMc12RSIr
+[Field Mapping] Mapped businessName -> Business Name: V4 TEST CREATOR - DELETE ME
+[Field Mapping] Mapped businessType -> Business Type: content_creator
+[Field Mapping] Mapped contentGoals -> What are your goals?: Blog Posts, Social Media Content
+[Field Mapping] Mapped integrations -> Integration Preferences: Mailchimp
+[Field Mapping] Mapped selectedPlan -> Selected Plan: content_engine
+[Field Mapping] Mapped submissionDate -> Submission Date: 2025-07-30T02:43:51.141Z
+[Field Mapping] Mapped leadScore -> Lead Score: 65
+[Field Mapping] Mapped leadQuality -> Lead Quality: warm
+[CustomFields V3] Built 8 field values
+[API V4] Built 8 custom field values
+[API V4] Using tags: [
+  'web-lead',
+  'lead-quality-warm',
+  'get-started-form',
+  'business-type-content_creator'
+]
+[API V4] Sending to GHL with payload: {
+  name: 'V4TEST CREATOR',
+  email: 'v4test-creator@deletetest.com',
+  companyName: 'V4 TEST CREATOR - DELETE ME',
+  tagsCount: 4,
+  customFieldsCount: 8,
+  customFieldsSample: [
+    { id: 'lpmpRi1M...', value: 'V4 TEST CREATOR - DELETE ME' },
+    { id: 'dXKJp1XJ...', value: 'content_creator' },
+    { id: 'Brkz04tA...', value: 'Blog Posts, Social Media Content' },
+    { id: 'N4GXLCbI...', value: 'Mailchimp' },
+    { id: 'tV6OLe2g...', value: 'content_engine' }
+  ]
+}
+[API V4] Contact created/updated successfully: { contactId: 'vE4w34TsalZOZgnu9Oqz', hasContact: true, hasId: false }
+[API V4] Sending backup email notification...
+[Email] Sending get-started notification...
+[API V4] Backup email failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v4/route.ts:179:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v4 200 in 1031ms
+[API V4] ===== NEW REQUEST =====
+[API V4] Received POST request to /api/ghl/create-lead-v4
+[API V4] Processing form submission...
+[API V4] Form data received: {
+  firstName: 'V4TEST',
+  lastName: 'COACH',
+  email: 'v4test-coach@deletetest.com',
+  businessName: 'V4 TEST COACHING - DELETE ME',
+  businessType: 'coach',
+  contentGoals: [ 'newsletters', 'courses', 'support' ],
+  integrations: [ 'gohighlevel', 'activecampaign', 'convertkit' ],
+  hasAnswers: false,
+  answerCount: 0
+}
+[API V4] Form type: get-started
+[API V4] Lead score: 85, quality: hot
+[API V4] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 67 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+[CustomFields V3] Checking for expected fields...
+[CustomFields V3] Missing expected field: "What type of business do you run?"
+[CustomFields V3] Missing expected field: "What systems do you already have in place?"
+[CustomFields V3] Missing expected field: "AI Readiness Level"
+[CustomFields V3] Building payload with mapped fields...
+[CustomFields V3] Available GHL fields:
+  - Name: "In one sentence... What do you hope to get out of this Case Study with TrueFlow?", ID: 1Ep7s6vDnqc82uMIdrh3
+  - Name: "Which source actually performs best based on client conversion? (Objective data):", ID: 37lJ9GrMWVc2IabsOZrH
+  - Name: "automation score", ID: 55kCKV1JLTieF1ErKE9t
+  - Name: "What have you already invested in to solve this? (Check all that apply.)", ID: 5mJvFizLOnAM7KNyZbZF
+  - Name: "readiness score", ID: 775YQw2eMJFlqQKhyNjN
+  - Name: "How are leads currently being generated? (Check all that apply)", ID: 7YcD4dFRlVZsPdEk4Tcm
+  - Name: "offer score", ID: 8CF4FgisjBDt3eq9Fq1P
+  - Name: "Current revenue range? (We don’t need exact numbers—just a ballpark.)", ID: 8CNs6Ol3Bwchi8TY0AnC
+  - Name: "What's already working well in your business?", ID: 8eycyxGF2bDNKomAzOp8
+  - Name: "readiness tier", ID: 9y4KOp7qN4dRVshd2m6o
+  - Name: "case study invitation", ID: ACbKpAtk9EMT4j8fTXMz
+  - Name: "What are your goals?", ID: Brkz04tAudIpTtwlH5I5
+  - Name: "Why are you reaching out?", ID: EGrdNGTizO9YtDuMqAlO
+  - Name: "readiness recommendation", ID: GEYL4Phe8movetNBtqme
+  - Name: "How did you hear about us?", ID: IMu5sYdj4QHp47d6xRQL
+  - Name: "What is the average lifetime value of a new client (estimation is fine):", ID: JptQGJqKgCyGPCN97kFZ
+  - Name: "Briefly describe your ideal client:", ID: NhI7C9KeIlROzSDWCeve
+  - Name: "readiness summary", ID: R2xMXY1BvSCXvycoozwf
+  - Name: "SMS Notifications for Appointments", ID: RUw2THNCkK0xuNpsca25
+  - Name: "What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.)", ID: RmMzHUkIJQEUsioCgYmC
+  - Name: "How many team/staff members do you have?", ID: SW74qfoKtVATuI8arKeT
+  - Name: "marketing score", ID: XzI839OJt4CqmZORmS5w
+  - Name: "Which source do you feel is working the best? (Subjective opinion):", ID: YXlskHPp9IlD8Dulv93l
+  - Name: "Where are you still experiencing friction? (Choose your biggest challenge or type your own.)", ID: cEI7a3EjazGsLzlgdMiy
+  - Name: "If you accept insurance, what is the average reimbursement per session:", ID: cKKpE8M72QtLfyJVYt5n
+  - Name: "Something else...?", ID: eSDkptKJvGHWZfCeckZw
+  - Name: "On average, how many sessions does a new client complete in their care plan?", ID: fzLAHfQAWOsvH38xVsLZ
+  - Name: "Can we text you the link to the training?", ID: gGkPMtSVHHa7SHVLqbjg
+  - Name: "Do you have contact list to transfer? (upload CSV or XLS file)", ID: hUIHxc3BdxrEbks6dyKK
+  - Name: "recent_tag", ID: iHwM6HHvWxJS8GNxGBbG
+  - Name: "How is your business currently structured? (Check all that apply.)", ID: jWkTVX67RmZccclWPVM8
+  - Name: "What are your top 3 business goals in the next 90 days?", ID: mVPxlVWnWvO9W9deoD0v
+  - Name: "Time Zone", ID: nIdXc7Yn0gP2W302jVA3
+  - Name: "Which lead source is bringing in the most volume currently?", ID: nkcH2eWKW2Cn5NFvGBhp
+  - Name: "Estimated total number of new leads per month", ID: o21JcZLsvRtV1FB8gbcx
+  - Name: "report link", ID: pBl3uwgfJZlRpZRdYDLH
+  - Name: "Which of the following do you currently use?", ID: qIuaJLoxGAbXLeIQc3Nw
+  - Name: "vision score", ID: qROGqhpHOgR9rbAQKSLZ
+  - Name: "If we could solve ONE thing for you right now, what would it be?", ID: sgiGrcIplu2VWfsl1tip
+  - Name: "DBA (if applicable)", ID: tsxXfcm4iUVS4XXzZdSR
+  - Name: "What is the cost of one session (cash price):", ID: tn5OGhOCigVr1l8NcXGp
+  - Name: "Do you sell care packages or memberships? If so, describe briefly:", ID: uzqeiOdTtWNeS7ci2j2D
+  - Name: "What systems do you already have in place? (Check all that apply.)", ID: wABhU7FjyeniGpFcnKRn
+  - Name: "Is there anything you want us to know that would help us serve you better?", ID: vewyhslsTEI7vdnqjYGt
+  - Name: "Business EIN", ID: wHnV45thHpLBCgMfmjqf
+  - Name: "What do you want to get out of this program in the next 90 days?", ID: yKyEaS011UxKHuenmbyJ
+  - Name: "Instagram Handle", ID: yRNJgVSJIHytKpXPrCKb
+  - Name: "What’s the biggest bottleneck keeping you from more revenue and more freedom?", ID: z0mDk9Kc0E7ORo1CHCRD
+  - Name: "execution score", ID: zDS6ol0hSR8fqiRYT5CW
+  - Name: "List your platform names here:", ID: zg9FACNSylS63m3P7j1Y
+  - Name: "Business Name", ID: lpmpRi1M77nAS6zxTuUr
+  - Name: "Submission Date", ID: 8NH3Elaej0wpunZjXXMh
+  - Name: "Lead Score", ID: 0HLVAtRKvV9eki6PK17o
+  - Name: "Assessment Score", ID: q7Fpn4tANyIUWyM0uzuD
+  - Name: "Readiness Level", ID: xSUmu4GXhxrVxu2l8uBZ
+  - Name: "Recommended Plan", ID: yzY8dpCOVQzsq5TyMFNh
+  - Name: "Test Field Delete Me", ID: ckAoICo85L14GsRy7TKP
+  - Name: "Business Type", ID: dXKJp1XJuv7jW2JlLp90
+  - Name: "Content Goals", ID: th0d43amiLOtURkAgDit
+  - Name: "Integration Preferences", ID: N4GXLCbInwNn8lMEhkiW
+  - Name: "Selected Plan", ID: tV6OLe2gYJmnrLqw9cwG
+  - Name: "Lead Quality", ID: 2Owd2Z40bLCrbPoeC8t1
+  - Name: "Current Content Creation", ID: bS74zF9bdwJRPFqcz7xT
+  - Name: "Content Volume", ID: 4ev4wk2FVF74II8nb23d
+  - Name: "CRM Usage", ID: VNu2k2u0SDWguuBC5Rbr
+  - Name: "Lead Response Time", ID: LGwvORhgYMIJl43JiYDb
+  - Name: "Time on Repetitive Tasks", ID: b32TtiflBHOnMc12RSIr
+[Field Mapping] Mapped businessName -> Business Name: V4 TEST COACHING - DELETE ME
+[Field Mapping] Mapped businessType -> Business Type: Coach or Consultant
+[Field Mapping] Mapped contentGoals -> What are your goals?: Email Newsletters, Course Content, Customer Support
+[Field Mapping] Mapped integrations -> Integration Preferences: GoHighLevel, ActiveCampaign, ConvertKit
+[Field Mapping] Mapped selectedPlan -> Selected Plan: complete_system
+[Field Mapping] Mapped submissionDate -> Submission Date: 2025-07-30T02:43:53.173Z
+[Field Mapping] Mapped leadScore -> Lead Score: 85
+[Field Mapping] Mapped leadQuality -> Lead Quality: hot
+[CustomFields V3] Built 8 field values
+[API V4] Built 8 custom field values
+[API V4] Using tags: [
+  'web-lead',
+  'lead-quality-hot',
+  'get-started-form',
+  'business-type-coach'
+]
+[API V4] Sending to GHL with payload: {
+  name: 'V4TEST COACH',
+  email: 'v4test-coach@deletetest.com',
+  companyName: 'V4 TEST COACHING - DELETE ME',
+  tagsCount: 4,
+  customFieldsCount: 8,
+  customFieldsSample: [
+    { id: 'lpmpRi1M...', value: 'V4 TEST COACHING - DELETE ME' },
+    { id: 'dXKJp1XJ...', value: 'Coach or Consultant' },
+    {
+      id: 'Brkz04tA...',
+      value: 'Email Newsletters, Course Content, Customer Suppor...'
+    },
+    {
+      id: 'N4GXLCbI...',
+      value: 'GoHighLevel, ActiveCampaign, ConvertKit'
+    },
+    { id: 'tV6OLe2g...', value: 'complete_system' }
+  ]
+}
+[API V4] Contact created/updated successfully: { contactId: '6m6U52DLHEYUTHt3FctF', hasContact: true, hasId: false }
+[API V4] Sending backup email notification...
+[Email] Sending get-started notification...
+[API V4] Backup email failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v4/route.ts:179:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v4 200 in 682ms
+ ✓ Compiled in 11ms
+ ⨯ ./lib/ghl/field-mapping.ts
+Error: 
+  [31mx[0m Expected ',', got 't'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/lib/ghl/field-mapping.ts[0m:151:1]
+ [2m151[0m |   },
+ [2m152[0m |   {
+ [2m153[0m |     formField: 'budget',
+ [2m154[0m |     ghlFieldName: 'Current revenue range? (We don't need exact numbers—just a ballpark.)',  // Use existing field - with correct em dash and apostrophe
+     : [31;1m                                                  ^[0m
+ [2m155[0m |     dataType: 'SINGLE_OPTIONS',
+ [2m156[0m |     transform: (value: string) => {
+ [2m157[0m |       const budgetMap: Record<string, string> = {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./lib/ghl/field-mapping.ts
+./lib/ghl/custom-fields-v3.ts
+./app/api/ghl/create-lead-v4/route.ts
+(node:59608) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ○ Compiling /_not-found ...
+ ⨯ ./lib/ghl/field-mapping.ts
+Error: 
+  [31mx[0m Expected ',', got 't'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/lib/ghl/field-mapping.ts[0m:151:1]
+ [2m151[0m |   },
+ [2m152[0m |   {
+ [2m153[0m |     formField: 'budget',
+ [2m154[0m |     ghlFieldName: 'Current revenue range? (We don't need exact numbers—just a ballpark.)',  // Use existing field - with correct em dash and apostrophe
+     : [31;1m                                                  ^[0m
+ [2m155[0m |     dataType: 'SINGLE_OPTIONS',
+ [2m156[0m |     transform: (value: string) => {
+ [2m157[0m |       const budgetMap: Record<string, string> = {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./lib/ghl/field-mapping.ts
+./lib/ghl/custom-fields-v3.ts
+./app/api/ghl/create-lead-v4/route.ts
+ ✓ Compiled /_not-found in 148ms (237 modules)
+ ○ Compiling /_error ...
+ ⨯ ./lib/ghl/field-mapping.ts
+Error: 
+  [31mx[0m Expected ',', got 't'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/lib/ghl/field-mapping.ts[0m:151:1]
+ [2m151[0m |   },
+ [2m152[0m |   {
+ [2m153[0m |     formField: 'budget',
+ [2m154[0m |     ghlFieldName: 'Current revenue range? (We don't need exact numbers—just a ballpark.)',  // Use existing field - with correct em dash and apostrophe
+     : [31;1m                                                  ^[0m
+ [2m155[0m |     dataType: 'SINGLE_OPTIONS',
+ [2m156[0m |     transform: (value: string) => {
+ [2m157[0m |       const budgetMap: Record<string, string> = {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./lib/ghl/field-mapping.ts
+./lib/ghl/custom-fields-v3.ts
+./app/api/ghl/create-lead-v4/route.ts
+ POST /api/ghl/create-lead-v4 500 in 4197ms
+ ⨯ ./lib/ghl/field-mapping.ts
+Error: 
+  [31mx[0m Expected ',', got 't'
+     ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/lib/ghl/field-mapping.ts[0m:151:1]
+ [2m151[0m |   },
+ [2m152[0m |   {
+ [2m153[0m |     formField: 'budget',
+ [2m154[0m |     ghlFieldName: 'Current revenue range? (We don't need exact numbers—just a ballpark.)',  // Use existing field - with correct em dash and apostrophe
+     : [31;1m                                                  ^[0m
+ [2m155[0m |     dataType: 'SINGLE_OPTIONS',
+ [2m156[0m |     transform: (value: string) => {
+ [2m157[0m |       const budgetMap: Record<string, string> = {
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./lib/ghl/field-mapping.ts
+./lib/ghl/custom-fields-v3.ts
+./app/api/ghl/create-lead-v4/route.ts
+ GET / 500 in 414ms
+ ✓ Compiled / in 90ms (414 modules)
+[API V4] ===== NEW REQUEST =====
+[API V4] Received POST request to /api/ghl/create-lead-v4
+[API V4] Processing form submission...
+[API V4] Form data received: {
+  firstName: 'FINAL',
+  lastName: 'FIELDTEST',
+  email: 'final-fieldtest@test.com',
+  businessName: 'Final Field Test Company',
+  businessType: 'agency',
+  contentGoals: [ 'newsletters', 'blogs', 'social', 'courses', 'sales', 'support' ],
+  integrations: [ 'gohighlevel', 'hubspot', 'mailchimp', 'zapier' ],
+  hasAnswers: true,
+  answerCount: 6
+}
+[API V4] Form type: assessment
+[API V4] Lead score: 92, quality: hot
+[API V4] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 67 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+[CustomFields V3] Checking for expected fields...
+[CustomFields V3] Missing expected field: "What type of business do you run?"
+[CustomFields V3] Missing expected field: "What systems do you already have in place?"
+[CustomFields V3] Missing expected field: "AI Readiness Level"
+[CustomFields V3] Building payload with mapped fields...
+[CustomFields V3] Available GHL fields:
+  - Name: "In one sentence... What do you hope to get out of this Case Study with TrueFlow?", ID: 1Ep7s6vDnqc82uMIdrh3
+  - Name: "Which source actually performs best based on client conversion? (Objective data):", ID: 37lJ9GrMWVc2IabsOZrH
+  - Name: "automation score", ID: 55kCKV1JLTieF1ErKE9t
+  - Name: "What have you already invested in to solve this? (Check all that apply.)", ID: 5mJvFizLOnAM7KNyZbZF
+  - Name: "readiness score", ID: 775YQw2eMJFlqQKhyNjN
+  - Name: "How are leads currently being generated? (Check all that apply)", ID: 7YcD4dFRlVZsPdEk4Tcm
+  - Name: "offer score", ID: 8CF4FgisjBDt3eq9Fq1P
+  - Name: "Current revenue range? (We don’t need exact numbers—just a ballpark.)", ID: 8CNs6Ol3Bwchi8TY0AnC
+  - Name: "What's already working well in your business?", ID: 8eycyxGF2bDNKomAzOp8
+  - Name: "readiness tier", ID: 9y4KOp7qN4dRVshd2m6o
+  - Name: "case study invitation", ID: ACbKpAtk9EMT4j8fTXMz
+  - Name: "What are your goals?", ID: Brkz04tAudIpTtwlH5I5
+  - Name: "Why are you reaching out?", ID: EGrdNGTizO9YtDuMqAlO
+  - Name: "readiness recommendation", ID: GEYL4Phe8movetNBtqme
+  - Name: "How did you hear about us?", ID: IMu5sYdj4QHp47d6xRQL
+  - Name: "What is the average lifetime value of a new client (estimation is fine):", ID: JptQGJqKgCyGPCN97kFZ
+  - Name: "Briefly describe your ideal client:", ID: NhI7C9KeIlROzSDWCeve
+  - Name: "readiness summary", ID: R2xMXY1BvSCXvycoozwf
+  - Name: "SMS Notifications for Appointments", ID: RUw2THNCkK0xuNpsca25
+  - Name: "What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.)", ID: RmMzHUkIJQEUsioCgYmC
+  - Name: "How many team/staff members do you have?", ID: SW74qfoKtVATuI8arKeT
+  - Name: "marketing score", ID: XzI839OJt4CqmZORmS5w
+  - Name: "Which source do you feel is working the best? (Subjective opinion):", ID: YXlskHPp9IlD8Dulv93l
+  - Name: "Where are you still experiencing friction? (Choose your biggest challenge or type your own.)", ID: cEI7a3EjazGsLzlgdMiy
+  - Name: "If you accept insurance, what is the average reimbursement per session:", ID: cKKpE8M72QtLfyJVYt5n
+  - Name: "Something else...?", ID: eSDkptKJvGHWZfCeckZw
+  - Name: "On average, how many sessions does a new client complete in their care plan?", ID: fzLAHfQAWOsvH38xVsLZ
+  - Name: "Can we text you the link to the training?", ID: gGkPMtSVHHa7SHVLqbjg
+  - Name: "Do you have contact list to transfer? (upload CSV or XLS file)", ID: hUIHxc3BdxrEbks6dyKK
+  - Name: "recent_tag", ID: iHwM6HHvWxJS8GNxGBbG
+  - Name: "How is your business currently structured? (Check all that apply.)", ID: jWkTVX67RmZccclWPVM8
+  - Name: "What are your top 3 business goals in the next 90 days?", ID: mVPxlVWnWvO9W9deoD0v
+  - Name: "Time Zone", ID: nIdXc7Yn0gP2W302jVA3
+  - Name: "Which lead source is bringing in the most volume currently?", ID: nkcH2eWKW2Cn5NFvGBhp
+  - Name: "Estimated total number of new leads per month", ID: o21JcZLsvRtV1FB8gbcx
+  - Name: "report link", ID: pBl3uwgfJZlRpZRdYDLH
+  - Name: "Which of the following do you currently use?", ID: qIuaJLoxGAbXLeIQc3Nw
+  - Name: "vision score", ID: qROGqhpHOgR9rbAQKSLZ
+  - Name: "If we could solve ONE thing for you right now, what would it be?", ID: sgiGrcIplu2VWfsl1tip
+  - Name: "DBA (if applicable)", ID: tsxXfcm4iUVS4XXzZdSR
+  - Name: "What is the cost of one session (cash price):", ID: tn5OGhOCigVr1l8NcXGp
+  - Name: "Do you sell care packages or memberships? If so, describe briefly:", ID: uzqeiOdTtWNeS7ci2j2D
+  - Name: "What systems do you already have in place? (Check all that apply.)", ID: wABhU7FjyeniGpFcnKRn
+  - Name: "Is there anything you want us to know that would help us serve you better?", ID: vewyhslsTEI7vdnqjYGt
+  - Name: "Business EIN", ID: wHnV45thHpLBCgMfmjqf
+  - Name: "What do you want to get out of this program in the next 90 days?", ID: yKyEaS011UxKHuenmbyJ
+  - Name: "Instagram Handle", ID: yRNJgVSJIHytKpXPrCKb
+  - Name: "What’s the biggest bottleneck keeping you from more revenue and more freedom?", ID: z0mDk9Kc0E7ORo1CHCRD
+  - Name: "execution score", ID: zDS6ol0hSR8fqiRYT5CW
+  - Name: "List your platform names here:", ID: zg9FACNSylS63m3P7j1Y
+  - Name: "Business Name", ID: lpmpRi1M77nAS6zxTuUr
+  - Name: "Submission Date", ID: 8NH3Elaej0wpunZjXXMh
+  - Name: "Lead Score", ID: 0HLVAtRKvV9eki6PK17o
+  - Name: "Assessment Score", ID: q7Fpn4tANyIUWyM0uzuD
+  - Name: "Readiness Level", ID: xSUmu4GXhxrVxu2l8uBZ
+  - Name: "Recommended Plan", ID: yzY8dpCOVQzsq5TyMFNh
+  - Name: "Test Field Delete Me", ID: ckAoICo85L14GsRy7TKP
+  - Name: "Business Type", ID: dXKJp1XJuv7jW2JlLp90
+  - Name: "Content Goals", ID: th0d43amiLOtURkAgDit
+  - Name: "Integration Preferences", ID: N4GXLCbInwNn8lMEhkiW
+  - Name: "Selected Plan", ID: tV6OLe2gYJmnrLqw9cwG
+  - Name: "Lead Quality", ID: 2Owd2Z40bLCrbPoeC8t1
+  - Name: "Current Content Creation", ID: bS74zF9bdwJRPFqcz7xT
+  - Name: "Content Volume", ID: 4ev4wk2FVF74II8nb23d
+  - Name: "CRM Usage", ID: VNu2k2u0SDWguuBC5Rbr
+  - Name: "Lead Response Time", ID: LGwvORhgYMIJl43JiYDb
+  - Name: "Time on Repetitive Tasks", ID: b32TtiflBHOnMc12RSIr
+[Field Mapping] Mapped businessName -> Business Name: Final Field Test Company
+[Field Mapping] Mapped businessType -> Business Type: Marketing Agency
+[Field Mapping] Mapped contentGoals -> What are your goals?: Email Newsletters, Blog Posts, Social Media Content, Course Content, Sales Materials, Customer Support
+[Field Mapping] Mapped integrations -> Integration Preferences: GoHighLevel, HubSpot, Mailchimp, Zapier
+[Field Mapping] Mapped currentContent -> Current Content Creation: Mix of manual and automated tools
+[Field Mapping] Mapped contentVolume -> Content Volume: 21-50 pieces
+[Field Mapping] Mapped crmUsage -> CRM Usage: Advanced CRM with automation
+[Field Mapping] Mapped leadResponse -> Lead Response Time: Almost instantly
+[Field Mapping] Mapped timeSpent -> Time on Repetitive Tasks: More than 30 hours
+[Field Mapping] No field ID found for: Current revenue range? (We don't need exact numbers—just a ballpark.)
+[Field Mapping] Mapped readinessLevel -> Readiness Level: Highly Ready
+[Field Mapping] Mapped selectedPlan -> Selected Plan: Custom Enterprise
+[Field Mapping] Mapped submissionDate -> Submission Date: 2025-07-30T02:46:08.838Z
+[Field Mapping] Mapped leadScore -> Lead Score: 92
+[Field Mapping] Mapped leadQuality -> Lead Quality: hot
+[CustomFields V3] Built 14 field values
+[API V4] Built 14 custom field values
+[API V4] Using tags: [
+  'web-lead',
+  'lead-quality-hot',
+  'assessment-form',
+  'business-type-agency'
+]
+[API V4] Sending to GHL with payload: {
+  name: 'FINAL FIELDTEST',
+  email: 'final-fieldtest@test.com',
+  companyName: 'Final Field Test Company',
+  tagsCount: 4,
+  customFieldsCount: 14,
+  customFieldsSample: [
+    { id: 'lpmpRi1M...', value: 'Final Field Test Company' },
+    { id: 'dXKJp1XJ...', value: 'Marketing Agency' },
+    {
+      id: 'Brkz04tA...',
+      value: 'Email Newsletters, Blog Posts, Social Media Conten...'
+    },
+    {
+      id: 'N4GXLCbI...',
+      value: 'GoHighLevel, HubSpot, Mailchimp, Zapier'
+    },
+    { id: 'bS74zF9b...', value: 'Mix of manual and automated tools' }
+  ]
+}
+[API V4] Contact created/updated successfully: { contactId: '6ABbtSas1ZrhOjIJYJMI', hasContact: true, hasId: false }
+[API V4] Sending backup email notification...
+[Email] Sending assessment notification...
+[API V4] Backup email failed: Error: Unable to connect to Resend API
+    at sendAssessmentNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:36:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v4/route.ts:177:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v4 200 in 1573ms

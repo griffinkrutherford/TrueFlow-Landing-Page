@@ -151,7 +151,7 @@ export const fieldMappings: FieldMapping[] = [
   },
   {
     formField: 'budget',
-    ghlFieldName: 'Current revenue range? (We don\'t need exact numbers—just a ballpark.)',  // Use existing field
+    ghlFieldName: 'Current revenue range? (We don\'t need exact numbers—just a ballpark.)',  // Use existing field - with correct em dash and apostrophe
     dataType: 'SINGLE_OPTIONS',
     transform: (value: string) => {
       const budgetMap: Record<string, string> = {
@@ -191,7 +191,7 @@ export const fieldMappings: FieldMapping[] = [
   },
   {
     formField: 'submissionDate',
-    ghlFieldName: 'Form Submission Date',
+    ghlFieldName: 'Submission Date',
     dataType: 'DATE'
   },
   {
