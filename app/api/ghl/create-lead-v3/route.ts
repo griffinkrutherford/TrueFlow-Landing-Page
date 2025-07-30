@@ -96,16 +96,23 @@ export async function POST(request: Request) {
     
     // GHL is configured - ensure custom fields exist
     console.log('[API V3] Ensuring custom fields exist in GHL...')
-    const fieldMap = await ensureCustomFieldsExist(
-      process.env.GHL_ACCESS_TOKEN,
-      process.env.GHL_LOCATION_ID
-    )
+    let fieldMap = new Map<string, string>()
+    let customFields: Array<{ id: string; field_value: string }> = []
     
-    console.log(`[API V3] Field map has ${fieldMap.size} fields`)
-    
-    // Build custom fields payload
-    const customFields = buildCustomFieldsPayload(data, fieldMap, formType)
-    console.log(`[API V3] Built ${customFields.length} custom field values`)
+    try {
+      fieldMap = await ensureCustomFieldsExist(
+        process.env.GHL_ACCESS_TOKEN,
+        process.env.GHL_LOCATION_ID
+      )
+      console.log(`[API V3] Field map has ${fieldMap.size} fields`)
+      
+      // Build custom fields payload
+      customFields = buildCustomFieldsPayload(data, fieldMap, formType)
+      console.log(`[API V3] Built ${customFields.length} custom field values`)
+    } catch (fieldError) {
+      console.error('[API V3] Custom field setup failed, continuing without custom fields:', fieldError)
+      // Continue without custom fields rather than failing the entire submission
+    }
     
     // Build minimal tags (only essential ones)
     const tags = [

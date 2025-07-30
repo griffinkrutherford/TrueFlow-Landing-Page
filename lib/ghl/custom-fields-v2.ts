@@ -15,7 +15,7 @@ export interface CustomFieldDefinition {
 
 // GHL API configuration
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
-const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
+const GHL_API_VERSION = '2021-07-28' // Fixed version for consistency
 
 // Define all TrueFlow custom fields for the Get Started form
 export const getStartedCustomFields: CustomFieldDefinition[] = [
@@ -278,12 +278,11 @@ export async function createCustomField(
 ): Promise<string | null> {
   try {
     const payload: any = {
-      locationId,
       name: field.name,
       fieldKey: field.fieldKey,
       dataType: field.dataType,
-      objectKey: 'contact', // Standard object for contacts
-      showInForms: field.showInForms ?? false
+      model: 'contact', // Changed from objectKey to model
+      position: 0 // Add position field
     }
     
     if (field.description) {
@@ -301,7 +300,7 @@ export async function createCustomField(
     
     console.log(`[CustomFields] Creating field: ${field.fieldKey}`)
     
-    const response = await fetch(`${GHL_API_BASE}/custom-fields/`, {
+    const response = await fetch(`${GHL_API_BASE}/locations/${locationId}/customFields`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
