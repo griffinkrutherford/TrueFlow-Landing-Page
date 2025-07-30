@@ -93,7 +93,13 @@ export function buildCustomFieldsPayloadV3(
   })
   
   // Use our field mapping to build the payload
-  const customFields = buildFieldsV3(formData, ghlFields, formType || 'get-started')
+  const mappedFields = buildFieldsV3(formData, ghlFields, formType || 'get-started')
+  
+  // Convert MappedField format to expected format
+  const customFields = mappedFields.map(mf => ({
+    id: mf.key,
+    value: mf.field_value
+  }))
   
   console.log(`[CustomFields V3] Built ${customFields.length} field values`)
   return customFields
