@@ -645,6 +645,13 @@ export default function ReadinessAssessment() {
   const handleSubmit = async () => {
     setIsSubmitting(true)
     setSubmitError('')
+    
+    // Check for network connectivity
+    if (!navigator.onLine) {
+      setSubmitError('No internet connection. Please check your network and try again.')
+      setIsSubmitting(false)
+      return
+    }
 
     try {
       const score = calculateScore()
@@ -708,6 +715,10 @@ export default function ReadinessAssessment() {
       }
 
       // Send to GHL API
+      console.log('[Form Submit] Sending data to API...')
+      console.log('[Form Submit] API URL:', '/api/ghl/create-lead-v2')
+      console.log('[Form Submit] Request body:', JSON.stringify(leadData, null, 2))
+      
       const response = await fetch('/api/ghl/create-lead-v2', {
         method: 'POST',
         headers: {
@@ -716,10 +727,21 @@ export default function ReadinessAssessment() {
         body: JSON.stringify(leadData)
       })
 
+      console.log('[Form Submit] Response status:', response.status)
+      console.log('[Form Submit] Response ok:', response.ok)
+      console.log('[Form Submit] Response headers:', response.headers)
+
       if (!response.ok) {
-        const errorData = await response.json()
-        console.error('API Error:', errorData)
-        throw new Error(errorData.message || 'Failed to submit assessment')
+        let errorData
+        try {
+          errorData = await response.json()
+        } catch (parseError) {
+          console.error('[Form Submit] Failed to parse error response:', parseError)
+          errorData = { message: `HTTP ${response.status}: ${response.statusText}` }
+        }
+        console.error('[Form Submit] API Error Response:', errorData)
+        console.error('[Form Submit] Full response:', response)
+        throw new Error(errorData.message || errorData.error || `Failed to submit assessment (HTTP ${response.status})`)
       }
 
       const result = await response.json()
@@ -728,8 +750,27 @@ export default function ReadinessAssessment() {
       // Show success page
       setShowSuccess(true)
     } catch (error) {
-      console.error('Error submitting assessment:', error)
-      setSubmitError('Failed to submit assessment. Please try again.')
+      console.error('[Form Submit] Submission failed:', error)
+      console.error('[Form Submit] Error type:', error instanceof Error ? error.constructor.name : typeof error)
+      console.error('[Form Submit] Error message:', error instanceof Error ? error.message : String(error))
+      console.error('[Form Submit] Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+      
+      // Set a more detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred'
+      setSubmitError(`Failed to submit: ${errorMessage}`)
+      
+      // Log the full form state for debugging
+      console.error('[Form Submit] Form state at time of error:', {
+        contactInfo,
+        selectedBusinessType,
+        contentGoals,
+        integrations,
+        answers,
+        selectedPlan,
+        currentStep,
+        score: calculateScore(),
+        recommendation: getRecommendation(calculateScore())
+      })
     } finally {
       setIsSubmitting(false)
     }
