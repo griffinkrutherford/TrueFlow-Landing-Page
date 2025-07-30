@@ -255,7 +255,15 @@ export async function checkExistingCustomFields(
     if (data.customFields && Array.isArray(data.customFields)) {
       data.customFields.forEach((field: any) => {
         if (field.fieldKey) {
+          // Store both with and without 'contact.' prefix for compatibility
           fieldMap.set(field.fieldKey, field.id)
+          
+          // If fieldKey starts with 'contact.', also store without prefix
+          if (field.fieldKey.startsWith('contact.')) {
+            const keyWithoutPrefix = field.fieldKey.substring(8)
+            fieldMap.set(keyWithoutPrefix, field.id)
+          }
+          
           console.log(`[CustomFields] Found existing field: ${field.fieldKey} -> ${field.id}`)
         }
       })
@@ -293,9 +301,9 @@ export async function createCustomField(
       payload.placeholder = field.placeholder
     }
     
-    // Add options for select fields
+    // Add options for select fields - GHL expects array of strings
     if (field.options && ['SINGLE_OPTIONS', 'MULTIPLE_OPTIONS'].includes(field.dataType)) {
-      payload.options = field.options
+      payload.options = field.options.map(opt => opt.label)
     }
     
     console.log(`[CustomFields] Creating field: ${field.fieldKey}`)
@@ -318,8 +326,9 @@ export async function createCustomField(
     }
     
     const result = await response.json()
-    console.log(`[CustomFields] Created field ${field.fieldKey} with ID: ${result.field?.id}`)
-    return result.field?.id || null
+    const fieldId = result.customField?.id || result.field?.id || result.id
+    console.log(`[CustomFields] Created field ${field.fieldKey} with ID: ${fieldId}`)
+    return fieldId || null
     
   } catch (error) {
     console.error(`[CustomFields] Error creating field ${field.fieldKey}:`, error)
@@ -362,8 +371,8 @@ export function buildCustomFieldsPayload(
   data: any,
   fieldMap: Map<string, string>,
   formType: 'get-started' | 'assessment'
-): Array<{ id: string; field_value: string }> {
-  const customFields: Array<{ id: string; field_value: string }> = []
+): Array<{ id: string; value: string }> {
+  const customFields: Array<{ id: string; value: string }> = []
   
   // Helper to add field if it exists in the map
   const addField = (fieldKey: string, value: any) => {
@@ -371,7 +380,7 @@ export function buildCustomFieldsPayload(
     if (fieldId && value !== undefined && value !== null && value !== '') {
       // Convert arrays to comma-separated strings for GHL
       const fieldValue = Array.isArray(value) ? value.join(', ') : String(value)
-      customFields.push({ id: fieldId, field_value: fieldValue })
+      customFields.push({ id: fieldId, value: fieldValue })
       console.log(`[CustomFields] Added ${fieldKey}: ${fieldValue}`)
     }
   }

@@ -1,46 +1,40 @@
 import { NextResponse } from 'next/server'
 import { sendAssessmentNotification, sendGetStartedNotification } from '@/lib/email/resend-notifications'
 import { 
-  ensureCustomFieldsExist,
-  buildCustomFieldsPayload,
+  fetchGHLCustomFields,
+  buildCustomFieldsPayloadV3,
   calculateLeadScore,
-  getLeadQuality
-} from '@/lib/ghl/custom-fields-v2'
+  getLeadQuality,
+  logMissingFields
+} from '@/lib/ghl/custom-fields-v3'
 
 // GHL API configuration
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
 const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
 
-interface GHLCustomField {
-  id: string
-  value: string
-}
-
-interface GHLLeadData {
-  firstName: string
-  lastName: string
-  email: string
-  phone?: string
-  locationId: string
-  name?: string
-  companyName?: string
-  tags?: string[]
-  customFields?: GHLCustomField[]
-  source?: string
-  timezone?: string
-}
-
 export async function POST(request: Request) {
-  console.log('[API V3] Received POST request to /api/ghl/create-lead-v3')
+  console.log('[API V4] ===== NEW REQUEST =====')
+  console.log('[API V4] Received POST request to /api/ghl/create-lead-v4')
   
   try {
     // Parse request body
     const data = await request.json()
-    console.log('[API V3] Processing form submission...')
+    console.log('[API V4] Processing form submission...')
+    console.log('[API V4] Form data received:', {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      businessName: data.businessName,
+      businessType: data.businessType,
+      contentGoals: data.contentGoals,
+      integrations: data.integrations,
+      hasAnswers: !!data.answers,
+      answerCount: data.answers ? Object.keys(data.answers).length : 0
+    })
     
     // Validate required fields
     if (!data.firstName || !data.lastName || !data.email) {
-      console.error('[API V3] Missing required fields')
+      console.error('[API V4] Missing required fields')
       return NextResponse.json({ 
         success: false, 
         message: 'Missing required fields: firstName, lastName, or email' 
@@ -51,23 +45,24 @@ export async function POST(request: Request) {
     const isAssessment = 'scorePercentage' in data || ('score' in data && 'recommendation' in data)
     const formType = isAssessment ? 'assessment' : 'get-started'
     
-    console.log(`[API V3] Form type: ${formType}`)
+    console.log(`[API V4] Form type: ${formType}`)
     
     // Calculate lead score and quality
     const leadScore = calculateLeadScore(data, formType)
     const leadQuality = getLeadQuality(leadScore)
     
-    console.log(`[API V3] Lead score: ${leadScore}, quality: ${leadQuality}`)
+    console.log(`[API V4] Lead score: ${leadScore}, quality: ${leadQuality}`)
     
     // Add calculated values to data
     data.leadScore = leadScore
     data.leadQuality = leadQuality
+    data.submissionDate = new Date().toISOString()
     
     // Check if GHL integration is enabled
     if (!process.env.GHL_ACCESS_TOKEN || !process.env.GHL_LOCATION_ID ||
         process.env.GHL_ACCESS_TOKEN.includes('your_') || 
         process.env.GHL_LOCATION_ID.includes('your_')) {
-      console.log('[API V3] GHL integration not configured, using email fallback')
+      console.log('[API V4] GHL integration not configured, using email fallback')
       
       // Send email notification
       try {
@@ -83,7 +78,7 @@ export async function POST(request: Request) {
           leadQuality
         })
       } catch (emailError) {
-        console.error('[API V3] Email notification failed:', emailError)
+        console.error('[API V4] Email notification failed:', emailError)
         return NextResponse.json({ 
           success: true, 
           message: 'Submission received successfully',
@@ -94,37 +89,39 @@ export async function POST(request: Request) {
       }
     }
     
-    // GHL is configured - ensure custom fields exist
-    console.log('[API V3] Ensuring custom fields exist in GHL...')
-    let fieldMap = new Map<string, string>()
-    let customFields: Array<{ id: string; field_value: string }> = []
+    // Fetch actual custom fields from GHL
+    console.log('[API V4] Fetching custom fields from GHL...')
+    const ghlFields = await fetchGHLCustomFields(
+      process.env.GHL_ACCESS_TOKEN,
+      process.env.GHL_LOCATION_ID
+    )
     
-    try {
-      fieldMap = await ensureCustomFieldsExist(
-        process.env.GHL_ACCESS_TOKEN,
-        process.env.GHL_LOCATION_ID
-      )
-      console.log(`[API V3] Field map has ${fieldMap.size} fields`)
-      
-      // Build custom fields payload
-      customFields = buildCustomFieldsPayload(data, fieldMap, formType)
-      console.log(`[API V3] Built ${customFields.length} custom field values`)
-    } catch (fieldError) {
-      console.error('[API V3] Custom field setup failed, continuing without custom fields:', fieldError)
-      // Continue without custom fields rather than failing the entire submission
+    if (ghlFields.length === 0) {
+      console.warn('[API V4] No custom fields found in GHL')
+    } else {
+      // Log missing fields for debugging
+      logMissingFields(ghlFields)
     }
     
-    // Build minimal tags (only essential ones)
+    // Build custom fields payload using actual field names
+    const customFields = buildCustomFieldsPayloadV3(data, ghlFields)
+    console.log(`[API V4] Built ${customFields.length} custom field values`)
+    
+    // Build tags
     const tags = [
       'web-lead',
       `lead-quality-${leadQuality}`,
       formType === 'assessment' ? 'assessment-form' : 'get-started-form'
     ]
     
-    console.log('[API V3] Using minimal tags:', tags)
+    if (data.businessType) {
+      tags.push(`business-type-${data.businessType}`)
+    }
+    
+    console.log('[API V4] Using tags:', tags)
     
     // Prepare GHL payload
-    const ghlPayload: GHLLeadData = {
+    const ghlPayload = {
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -138,12 +135,16 @@ export async function POST(request: Request) {
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
     }
     
-    console.log('[API V3] Sending to GHL:', {
+    console.log('[API V4] Sending to GHL with payload:', {
       name: ghlPayload.name,
       email: ghlPayload.email,
+      companyName: ghlPayload.companyName,
       tagsCount: tags.length,
       customFieldsCount: customFields.length,
-      customFieldsSample: customFields.slice(0, 3) // Show first 3 fields for debugging
+      customFieldsSample: customFields.slice(0, 5).map(cf => ({
+        id: cf.id.substring(0, 8) + '...',
+        value: cf.value.substring(0, 50) + (cf.value.length > 50 ? '...' : '')
+      }))
     })
     
     // Create or update contact in GHL
@@ -160,13 +161,10 @@ export async function POST(request: Request) {
     
     if (!ghlResponse.ok) {
       const errorData = await ghlResponse.text()
-      console.error('[API V3] GHL API Error:', {
+      console.error('[API V4] GHL API Error:', {
         status: ghlResponse.status,
         statusText: ghlResponse.statusText,
-        error: errorData,
-        endpoint: `${GHL_API_BASE}/contacts/upsert`,
-        locationId: process.env.GHL_LOCATION_ID?.substring(0, 8) + '...', // Log partial for security
-        hasToken: !!process.env.GHL_ACCESS_TOKEN
+        error: errorData
       })
       
       // Still try to send email as backup
@@ -177,10 +175,10 @@ export async function POST(request: Request) {
           await sendGetStartedNotification(data)
         }
       } catch (emailError) {
-        console.error('[API V3] Backup email also failed:', emailError)
+        console.error('[API V4] Backup email also failed:', emailError)
       }
       
-      // Don't fail the entire request if GHL fails - still send email and show success
+      // Don't fail the entire request if GHL fails
       return NextResponse.json({ 
         success: true, 
         message: 'Submission received successfully',
@@ -192,21 +190,27 @@ export async function POST(request: Request) {
     }
     
     const ghlResult = await ghlResponse.json()
-    console.log('[API V3] Contact created/updated successfully:', ghlResult.contact?.id)
+    console.log('[API V4] Contact created/updated successfully:', {
+      contactId: ghlResult.contact?.id || ghlResult.id,
+      hasContact: !!ghlResult.contact,
+      hasId: !!ghlResult.id
+    })
     
     // Send backup email notification
     try {
-      console.log('[API V3] Sending backup email notification...')
+      console.log('[API V4] Sending backup email notification...')
       if (isAssessment) {
         await sendAssessmentNotification(data)
       } else {
         await sendGetStartedNotification(data)
       }
-      console.log('[API V3] Backup email sent successfully')
+      console.log('[API V4] Backup email sent successfully')
     } catch (emailError) {
-      console.error('[API V3] Backup email failed:', emailError)
+      console.error('[API V4] Backup email failed:', emailError)
       // Don't fail the request if backup email fails
     }
+    
+    console.log('[API V4] ===== REQUEST COMPLETED SUCCESSFULLY =====')
     
     return NextResponse.json({ 
       success: true, 
@@ -219,8 +223,9 @@ export async function POST(request: Request) {
     })
     
   } catch (error) {
-    console.error('[API V3] Error processing lead:', error)
-    console.error('[API V3] Error stack:', error instanceof Error ? error.stack : 'No stack trace')
+    console.error('[API V4] ===== ERROR IN REQUEST =====')
+    console.error('[API V4] Error processing lead:', error)
+    console.error('[API V4] Error stack:', error instanceof Error ? error.stack : 'No stack trace')
     
     return NextResponse.json({ 
       success: false, 
