@@ -19,7 +19,16 @@
     "postinstall": "echo 'Installation complete'",
     "start": "next start",
     "lint": "next lint",
-    "validate:env": "node -e \"const e=require('fs').readFileSync('.env.local','utf8'); if(e.includes('your_')) {console.error('⚠️  WARNING: Placeholder values found in .env.local'); process.exit(1);} else {console.log('✅ Environment variables validated');}\""
+    "validate:env": "node -e \"const e=require('fs').readFileSync('.env.local','utf8'); if(e.includes('your_')) {console.error('⚠️  WARNING: Placeholder values found in .env.local'); process.exit(1);} else {console.log('✅ Environment variables validated');}\"",
+    "test:fields": "node scripts/test-custom-fields.js",
+    "test:fields:verbose": "node scripts/test-custom-fields.js --verbose",
+    "test:integration": "tsx scripts/test-ghl-integration.ts",
+    "test:integration:verbose": "tsx scripts/test-ghl-integration.ts --verbose",
+    "verify:fields": "tsx scripts/verify-ghl-fields.ts",
+    "test:all": "npm run test:fields && npm run test:integration",
+    "test": "node scripts/run-tests.js",
+    "sync-ghl-fields": "tsx scripts/create-ghl-fields.ts",
+    "debug-fields": "tsx scripts/debug-field-mapping.ts"
   },
   "dependencies": {
     "axios": "^1.11.0",
@@ -42,6 +51,7 @@
     "eslint-config-next": "14.1.4",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.7.0",
     "typescript": "^5"
   },
   "engines": {

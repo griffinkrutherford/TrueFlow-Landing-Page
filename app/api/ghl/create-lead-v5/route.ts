@@ -3,10 +3,10 @@ import { sendAssessmentNotification, sendGetStartedNotification } from '@/lib/em
 import { 
   fetchGHLCustomFields,
   calculateLeadScore,
-  getLeadQuality,
-  logMissingFields
+  getLeadQuality
 } from '@/lib/ghl/custom-fields-v3'
-import { buildMappedCustomFieldsV2 } from '@/lib/ghl/field-mapping-v2'
+import { buildCustomFieldsPayloadV3, logMissingFields } from '@/lib/ghl/field-mapping-v3'
+import { buildTrueFlowCustomFields, logMissingTrueFlowFields } from '@/lib/ghl/trueflow-field-mapping'
 
 // GHL API configuration
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
@@ -14,9 +14,19 @@ const GHL_API_VERSION = process.env.GHL_API_VERSION || '2021-07-28'
 
 /**
  * Enhanced form type detection
- * Checks for actual assessment-specific fields, not just score fields
+ * Accurately detects form type based on form-specific fields
  */
 function detectFormType(data: any): 'assessment' | 'get-started' {
+  // Check for source field first (most reliable)
+  if (data.source === 'readiness-assessment') {
+    return 'assessment'
+  }
+  
+  // Check for assessment-specific fields
+  if (data.assessmentVersion || data.recommendation || data.scorePercentage) {
+    return 'assessment'
+  }
+  
   // Check for assessment-specific answer fields
   if (data.answers && typeof data.answers === 'object') {
     const assessmentKeys = ['current-content', 'content-volume', 'crm-usage', 'lead-response', 'time-spent', 'budget']
@@ -31,7 +41,12 @@ function detectFormType(data: any): 'assessment' | 'get-started' {
     return 'assessment'
   }
   
-  // Default to get-started
+  // Check for get-started specific fields
+  if (data.monthlyLeads || data.teamSize || data.currentTools || data.biggestChallenge || data.pricingPlan) {
+    return 'get-started'
+  }
+  
+  // Default to get-started if no clear indicators
   return 'get-started'
 }
 
@@ -71,14 +86,37 @@ export async function POST(request: Request) {
     console.log(`[API V5] Detected form type: ${formType}`)
     
     // Log what led to this detection
+    console.log('[API V5] Form type detection details:')
     if (formType === 'assessment') {
-      console.log('[API V5] Form detected as assessment due to:')
+      console.log('  Detected as ASSESSMENT due to:')
+      if (data.source === 'readiness-assessment') {
+        console.log('  - source field = "readiness-assessment"')
+      }
+      if (data.assessmentVersion || data.recommendation || data.scorePercentage) {
+        console.log('  - Has assessment-specific fields:', {
+          assessmentVersion: data.assessmentVersion,
+          recommendation: !!data.recommendation,
+          scorePercentage: data.scorePercentage
+        })
+      }
       if (data.answers) {
         console.log('  - Has answers object with keys:', Object.keys(data.answers))
       }
       if (data.assessmentAnswers) {
         console.log('  - Has assessmentAnswers array with length:', data.assessmentAnswers.length)
       }
+    } else {
+      console.log('  Detected as GET-STARTED due to:')
+      if (data.monthlyLeads || data.teamSize || data.currentTools || data.biggestChallenge) {
+        console.log('  - Has get-started specific fields:', {
+          monthlyLeads: !!data.monthlyLeads,
+          teamSize: !!data.teamSize,
+          currentTools: !!data.currentTools,
+          biggestChallenge: !!data.biggestChallenge,
+          pricingPlan: !!data.pricingPlan
+        })
+      }
+      console.log('  - No assessment indicators found')
     }
     
     // Calculate lead score and quality
@@ -134,23 +172,40 @@ export async function POST(request: Request) {
     
     if (ghlFields.length === 0) {
       console.warn('[API V5] No custom fields found in GHL')
+      console.warn('[API V5] This means either:')
+      console.warn('[API V5]   1. No custom fields have been created in GHL yet')
+      console.warn('[API V5]   2. The API token doesn\'t have permission to read custom fields')
+      console.warn('[API V5]   3. The location ID is incorrect')
     } else {
       console.log(`[API V5] Found ${ghlFields.length} custom fields`)
+      console.log('[API V5] First 5 fields for debugging:')
+      ghlFields.slice(0, 5).forEach(field => {
+        console.log(`[API V5]   - ${field.name} (key: ${field.fieldKey || 'none'}, id: ${field.id})`)
+      })
       // Log missing fields for debugging
       logMissingFields(ghlFields)
+      logMissingTrueFlowFields(ghlFields)
     }
     
-    // Build custom fields payload using V2 mapping with better unicode handling
-    console.log('[API V5] Building custom fields with V2 mapping...')
-    const customFields = buildMappedCustomFieldsV2(data, ghlFields)
+    // Build custom fields payload using TrueFlow mapping with actual GHL field keys
+    console.log('[API V5] Building custom fields with TrueFlow mapping...')
+    const customFields = buildTrueFlowCustomFields(data, ghlFields, formType)
     console.log(`[API V5] Built ${customFields.length} custom field values`)
     
     // Log the actual custom fields being sent
     console.log('[API V5] Custom fields detail:')
-    customFields.forEach(cf => {
-      const field = ghlFields.find(f => f.id === cf.id)
-      console.log(`  - ${field?.name || 'Unknown'}: "${cf.value.substring(0, 50)}${cf.value.length > 50 ? '...' : ''}"`)
-    })
+    if (customFields.length === 0) {
+      console.warn('[API V5] WARNING: No custom fields were mapped!')
+      console.log('[API V5] Data keys available:', Object.keys(data))
+    } else {
+      customFields.forEach(cf => {
+        const field = ghlFields.find(f => f.fieldKey?.replace(/^contact\./, '') === cf.key || f.fieldKey === cf.key)
+        const fieldName = field?.name || 'Unknown'
+        const fieldKey = cf.key
+        const preview = cf.field_value.length > 50 ? cf.field_value.substring(0, 50) + '...' : cf.field_value
+        console.log(`  - ${fieldName} (${fieldKey}): "${preview}"`)
+      })
+    }
     
     // Build tags
     const tags = [

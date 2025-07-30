@@ -1,0 +1,242 @@
+
+> trueflow-landing@1.0.0 dev
+> next dev -p 3001
+
+  ▲ Next.js 14.2.30
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 1321ms (597 modules)
+ GET / 200 in 1498ms
+ ✓ Compiled in 341ms (308 modules)
+ ✓ Compiled /api/ghl/create-lead-v5 in 241ms (374 modules)
+[API V5] ===== NEW REQUEST =====
+[API V5] Received POST request to /api/ghl/create-lead-v5
+[API V5] Processing form submission...
+[API V5] Form data received: {
+  firstName: 'Michael',
+  lastName: 'Chen',
+  email: 'michael.chen.production.test@techcorp.com',
+  businessName: 'Tech Solutions Corp',
+  businessType: 'Technology',
+  contentGoals: [ 'SEO Content', 'Social Media' ],
+  integrations: [ 'CRM Integration', 'Email Marketing' ],
+  hasAnswers: false,
+  answerCount: 0,
+  hasAssessmentAnswers: false,
+  assessmentAnswerCount: 0
+}
+[API V5] Detected form type: get-started
+[API V5] Form type detection details:
+  Detected as GET-STARTED due to:
+  - Has get-started specific fields: {
+  monthlyLeads: true,
+  teamSize: true,
+  currentTools: true,
+  biggestChallenge: true,
+  pricingPlan: true
+}
+  - No assessment indicators found
+[API V5] Lead score: 65, quality: warm
+[API V5] Fetching custom fields from GHL...
+[CustomFields V3] Fetching fields from GHL...
+[CustomFields V3] Found 75 custom fields:
+  - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (ID: 1Ep7s6vDnqc82uMIdrh3, Type: TEXT)
+  - Which source actually performs best based on client conversion? (Objective data): (ID: 37lJ9GrMWVc2IabsOZrH, Type: LARGE_TEXT)
+  - automation score (ID: 55kCKV1JLTieF1ErKE9t, Type: NUMERICAL)
+  - What have you already invested in to solve this? (Check all that apply.) (ID: 5mJvFizLOnAM7KNyZbZF, Type: CHECKBOX)
+  - readiness score (ID: 775YQw2eMJFlqQKhyNjN, Type: NUMERICAL)
+  - How are leads currently being generated? (Check all that apply) (ID: 7YcD4dFRlVZsPdEk4Tcm, Type: CHECKBOX)
+  - offer score (ID: 8CF4FgisjBDt3eq9Fq1P, Type: NUMERICAL)
+  - Current revenue range? (We don’t need exact numbers—just a ballpark.) (ID: 8CNs6Ol3Bwchi8TY0AnC, Type: SINGLE_OPTIONS)
+  - What's already working well in your business? (ID: 8eycyxGF2bDNKomAzOp8, Type: LARGE_TEXT)
+  - readiness tier (ID: 9y4KOp7qN4dRVshd2m6o, Type: TEXT)
+  - case study invitation (ID: ACbKpAtk9EMT4j8fTXMz, Type: LARGE_TEXT)
+  - What are your goals? (ID: Brkz04tAudIpTtwlH5I5, Type: LARGE_TEXT)
+  - Why are you reaching out? (ID: EGrdNGTizO9YtDuMqAlO, Type: LARGE_TEXT)
+  - readiness recommendation (ID: GEYL4Phe8movetNBtqme, Type: LARGE_TEXT)
+  - How did you hear about us? (ID: IMu5sYdj4QHp47d6xRQL, Type: LARGE_TEXT)
+  - What is the average lifetime value of a new client (estimation is fine): (ID: JptQGJqKgCyGPCN97kFZ, Type: MONETORY)
+  - Briefly describe your ideal client: (ID: NhI7C9KeIlROzSDWCeve, Type: LARGE_TEXT)
+  - readiness summary (ID: R2xMXY1BvSCXvycoozwf, Type: LARGE_TEXT)
+  - SMS Notifications for Appointments (ID: RUw2THNCkK0xuNpsca25, Type: RADIO)
+  - What type of business do you run? (Coaching, consulting, agency, e-commerce, etc.) (ID: RmMzHUkIJQEUsioCgYmC, Type: SINGLE_OPTIONS)
+  - How many team/staff members do you have? (ID: SW74qfoKtVATuI8arKeT, Type: RADIO)
+  - marketing score (ID: XzI839OJt4CqmZORmS5w, Type: NUMERICAL)
+  - Which source do you feel is working the best? (Subjective opinion): (ID: YXlskHPp9IlD8Dulv93l, Type: LARGE_TEXT)
+  - Where are you still experiencing friction? (Choose your biggest challenge or type your own.) (ID: cEI7a3EjazGsLzlgdMiy, Type: CHECKBOX)
+  - If you accept insurance, what is the average reimbursement per session: (ID: cKKpE8M72QtLfyJVYt5n, Type: MONETORY)
+  - Something else...? (ID: eSDkptKJvGHWZfCeckZw, Type: TEXT)
+  - On average, how many sessions does a new client complete in their care plan? (ID: fzLAHfQAWOsvH38xVsLZ, Type: NUMERICAL)
+  - Can we text you the link to the training? (ID: gGkPMtSVHHa7SHVLqbjg, Type: RADIO)
+  - Do you have contact list to transfer? (upload CSV or XLS file) (ID: hUIHxc3BdxrEbks6dyKK, Type: FILE_UPLOAD)
+  - recent_tag (ID: iHwM6HHvWxJS8GNxGBbG, Type: TEXT)
+  - How is your business currently structured? (Check all that apply.) (ID: jWkTVX67RmZccclWPVM8, Type: SINGLE_OPTIONS)
+  - What are your top 3 business goals in the next 90 days? (ID: mVPxlVWnWvO9W9deoD0v, Type: LARGE_TEXT)
+  - Time Zone (ID: nIdXc7Yn0gP2W302jVA3, Type: TEXT)
+  - Which lead source is bringing in the most volume currently? (ID: nkcH2eWKW2Cn5NFvGBhp, Type: TEXT)
+  - Estimated total number of new leads per month (ID: o21JcZLsvRtV1FB8gbcx, Type: NUMERICAL)
+  - report link (ID: pBl3uwgfJZlRpZRdYDLH, Type: TEXT)
+  - Which of the following do you currently use? (ID: qIuaJLoxGAbXLeIQc3Nw, Type: CHECKBOX)
+  - vision score (ID: qROGqhpHOgR9rbAQKSLZ, Type: NUMERICAL)
+  - If we could solve ONE thing for you right now, what would it be? (ID: sgiGrcIplu2VWfsl1tip, Type: TEXT)
+  - DBA (if applicable) (ID: tsxXfcm4iUVS4XXzZdSR, Type: TEXT)
+  - What is the cost of one session (cash price): (ID: tn5OGhOCigVr1l8NcXGp, Type: MONETORY)
+  - Do you sell care packages or memberships? If so, describe briefly: (ID: uzqeiOdTtWNeS7ci2j2D, Type: LARGE_TEXT)
+  - What systems do you already have in place? (Check all that apply.) (ID: wABhU7FjyeniGpFcnKRn, Type: CHECKBOX)
+  - Is there anything you want us to know that would help us serve you better? (ID: vewyhslsTEI7vdnqjYGt, Type: LARGE_TEXT)
+  - Business EIN (ID: wHnV45thHpLBCgMfmjqf, Type: TEXT)
+  - What do you want to get out of this program in the next 90 days? (ID: yKyEaS011UxKHuenmbyJ, Type: LARGE_TEXT)
+  - Instagram Handle (ID: yRNJgVSJIHytKpXPrCKb, Type: TEXT)
+  - What’s the biggest bottleneck keeping you from more revenue and more freedom? (ID: z0mDk9Kc0E7ORo1CHCRD, Type: LARGE_TEXT)
+  - execution score (ID: zDS6ol0hSR8fqiRYT5CW, Type: NUMERICAL)
+  - List your platform names here: (ID: zg9FACNSylS63m3P7j1Y, Type: LARGE_TEXT)
+  - Business Name (ID: lpmpRi1M77nAS6zxTuUr, Type: TEXT)
+  - Submission Date (ID: 8NH3Elaej0wpunZjXXMh, Type: DATE)
+  - Lead Score (ID: 0HLVAtRKvV9eki6PK17o, Type: NUMERICAL)
+  - Assessment Score (ID: q7Fpn4tANyIUWyM0uzuD, Type: NUMERICAL)
+  - Readiness Level (ID: xSUmu4GXhxrVxu2l8uBZ, Type: TEXT)
+  - Recommended Plan (ID: yzY8dpCOVQzsq5TyMFNh, Type: TEXT)
+  - Test Field Delete Me (ID: ckAoICo85L14GsRy7TKP, Type: TEXT)
+  - Business Type (ID: dXKJp1XJuv7jW2JlLp90, Type: SINGLE_OPTIONS)
+  - Content Goals (ID: th0d43amiLOtURkAgDit, Type: MULTIPLE_OPTIONS)
+  - Integration Preferences (ID: N4GXLCbInwNn8lMEhkiW, Type: MULTIPLE_OPTIONS)
+  - Selected Plan (ID: tV6OLe2gYJmnrLqw9cwG, Type: SINGLE_OPTIONS)
+  - Lead Quality (ID: 2Owd2Z40bLCrbPoeC8t1, Type: SINGLE_OPTIONS)
+  - Current Content Creation (ID: bS74zF9bdwJRPFqcz7xT, Type: SINGLE_OPTIONS)
+  - Content Volume (ID: 4ev4wk2FVF74II8nb23d, Type: SINGLE_OPTIONS)
+  - CRM Usage (ID: VNu2k2u0SDWguuBC5Rbr, Type: SINGLE_OPTIONS)
+  - Lead Response Time (ID: LGwvORhgYMIJl43JiYDb, Type: SINGLE_OPTIONS)
+  - Time on Repetitive Tasks (ID: b32TtiflBHOnMc12RSIr, Type: SINGLE_OPTIONS)
+  - Monthly Budget (ID: 6yOVy22GpN9h50RGwMHn, Type: SINGLE_OPTIONS)
+  - Revenue Range (ID: 8i5UFVt81Qw2oDSzERVs, Type: SINGLE_OPTIONS)
+  - Form Type (ID: GavVJuPSomiJdpVO6AfO, Type: TEXT)
+  - Assessment Answers (ID: LMtrKrO7ZHCuUDyM0BXP, Type: LARGE_TEXT)
+  - Monthly Leads (ID: vpNJbjVAjDlv2TwbsbCd, Type: TEXT)
+  - Team Size (ID: JAdOecqltrglZC1u04k9, Type: TEXT)
+  - Current Tools (ID: OuEQ2VUpfZgajT7o0ffA, Type: LARGE_TEXT)
+  - Biggest Challenge (ID: VOKhwVTUgBl060eqTQXw, Type: LARGE_TEXT)
+[API V5] Found 75 custom fields
+[API V5] First 5 fields for debugging:
+[API V5]   - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (key: contact.in_one_sentence_what_do_you_hope_to_get_out_of_this_case_study_with_true_flow, id: 1Ep7s6vDnqc82uMIdrh3)
+[API V5]   - Which source actually performs best based on client conversion? (Objective data): (key: contact.which_source_actually_performs_best_based_on_client_conversion_objective_data, id: 37lJ9GrMWVc2IabsOZrH)
+[API V5]   - automation score (key: contact.automation_score, id: 55kCKV1JLTieF1ErKE9t)
+[API V5]   - What have you already invested in to solve this? (Check all that apply.) (key: contact.what_have_you_already_invested_in_to_solve_this_check_all_that_apply, id: 5mJvFizLOnAM7KNyZbZF)
+[API V5]   - readiness score (key: contact.readiness_score, id: 775YQw2eMJFlqQKhyNjN)
+[Field Mapping V3] Checking for missing fields...
+[TrueFlow Fields] Checking for missing TrueFlow fields...
+[TrueFlow Fields] Missing 20 TrueFlow fields:
+[TrueFlow Fields]   - trueflow_first_name
+[TrueFlow Fields]   - trueflow_last_name
+[TrueFlow Fields]   - trueflow_email
+[TrueFlow Fields]   - trueflow_phone
+[TrueFlow Fields]   - trueflow_integration_preferences
+[TrueFlow Fields]   - trueflow_pricing_plan
+[TrueFlow Fields]   - trueflow_monthly_leads
+[TrueFlow Fields]   - trueflow_team_size
+[TrueFlow Fields]   - trueflow_current_tools
+[TrueFlow Fields]   - trueflow_biggest_challenge
+[TrueFlow Fields]   - trueflow_assessment_answers
+[TrueFlow Fields]   - trueflow_raw_answers
+[TrueFlow Fields]   - trueflow_score_percentage
+[TrueFlow Fields]   - trueflow_total_score
+[TrueFlow Fields]   - trueflow_max_score
+[TrueFlow Fields]   - trueflow_recommendation
+[TrueFlow Fields]   - trueflow_form_type
+[TrueFlow Fields]   - trueflow_timestamp
+[TrueFlow Fields]   - trueflow_source
+[TrueFlow Fields]   - trueflow_assessment_version
+[TrueFlow Fields] Found 18 TrueFlow fields in GHL:
+[TrueFlow Fields]   - In one sentence... What do you hope to get out of this Case Study with TrueFlow? (in_one_sentence_what_do_you_hope_to_get_out_of_this_case_study_with_true_flow)
+[TrueFlow Fields]   - Business Name (trueflow_business_name)
+[TrueFlow Fields]   - Submission Date (trueflow_submission_date)
+[TrueFlow Fields]   - Lead Score (trueflow_lead_score)
+[TrueFlow Fields]   - Assessment Score (trueflow_assessment_score)
+[TrueFlow Fields]   - Readiness Level (trueflow_readiness_level)
+[TrueFlow Fields]   - Recommended Plan (trueflow_recommended_plan)
+[TrueFlow Fields]   - Business Type (trueflow_business_type)
+[TrueFlow Fields]   - Content Goals (trueflow_content_goals)
+[TrueFlow Fields]   - Integration Preferences (trueflow_integrations)
+[TrueFlow Fields]   - Selected Plan (trueflow_selected_plan)
+[TrueFlow Fields]   - Lead Quality (trueflow_lead_quality)
+[TrueFlow Fields]   - Current Content Creation (trueflow_current_content)
+[TrueFlow Fields]   - Content Volume (trueflow_content_volume)
+[TrueFlow Fields]   - CRM Usage (trueflow_crm_usage)
+[TrueFlow Fields]   - Lead Response Time (trueflow_lead_response)
+[TrueFlow Fields]   - Time on Repetitive Tasks (trueflow_time_spent)
+[TrueFlow Fields]   - Monthly Budget (trueflow_budget)
+[API V5] Building custom fields with TrueFlow mapping...
+[TrueFlow Fields] Building custom fields with actual GHL keys...
+[TrueFlow Fields] Form type: get-started
+[TrueFlow Fields] ✓ Mapped businessName -> trueflow_business_name: "Tech Solutions Corp"
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_first_name (for firstName)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_last_name (for lastName)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_email (for email)
+[TrueFlow Fields] ✓ Mapped businessType -> trueflow_business_type: "Technology"
+[TrueFlow Fields] ✓ Mapped contentGoals -> trueflow_content_goals: "SEO Content, Social Media"
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_integration_preferences (for integrations)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_pricing_plan (for pricingPlan)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_monthly_leads (for monthlyLeads)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_team_size (for teamSize)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_current_tools (for currentTools)
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_biggest_challenge (for biggestChallenge)
+[TrueFlow Fields] ✓ Mapped leadScore -> trueflow_lead_score: "65"
+[TrueFlow Fields] ✓ Mapped leadQuality -> trueflow_lead_quality: "warm"
+[TrueFlow Fields] ✓ Mapped submissionDate -> trueflow_submission_date: "2025-07-30T16:50:11.117Z"
+[TrueFlow Fields] ✗ Field not found in GHL: trueflow_source (for source)
+[TrueFlow Fields] Total mapped fields: 8
+[API V5] Built 8 custom field values
+[API V5] Custom fields detail:
+  - Business Name (trueflow_business_name): "Tech Solutions Corp"
+  - Business Type (trueflow_business_type): "Technology"
+  - Content Goals (trueflow_content_goals): "SEO Content, Social Media"
+  - Lead Score (trueflow_lead_score): "65"
+  - Lead Quality (trueflow_lead_quality): "warm"
+  - Submission Date (trueflow_submission_date): "2025-07-30T16:50:11.117Z"
+  - Form Type (form_type): "get-started"
+  - Submission Date (trueflow_submission_date): "2025-07-30T16:50:11.763Z"
+[API V5] Using tags: [
+  'web-lead',
+  'lead-quality-warm',
+  'get-started-form',
+  'business-type-technology'
+]
+[API V5] Sending to GHL with payload: {
+  name: 'Michael Chen',
+  email: 'michael.chen.production.test@techcorp.com',
+  companyName: 'Tech Solutions Corp',
+  source: 'TrueFlow Get Started Form',
+  tagsCount: 4,
+  customFieldsCount: 8
+}
+[API V5] Contact created/updated successfully: { contactId: 'fsjIEVYr8owHloi9VMP1', hasContact: true, hasId: false }
+[API V5] Sending backup email notification...
+[Email] Sending get-started notification...
+[API V5] Backup email failed: Error: Unable to connect to Resend API
+    at sendGetStartedNotification (webpack-internal:///(rsc)/./lib/email/resend-notifications.ts:191:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async POST (webpack-internal:///(rsc)/./app/api/ghl/create-lead-v5/route.ts:282:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
+[API V5] ===== REQUEST COMPLETED SUCCESSFULLY =====
+ POST /api/ghl/create-lead-v5 200 in 2255ms
+[?25h

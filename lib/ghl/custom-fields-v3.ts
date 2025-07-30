@@ -3,7 +3,7 @@
  * This version fetches real fields from GHL and maps our data to them
  */
 
-import { buildMappedCustomFields } from './field-mapping'
+import { buildCustomFieldsPayloadV3 as buildFieldsV3 } from './field-mapping-v3'
 
 // GHL API configuration
 const GHL_API_BASE = 'https://services.leadconnectorhq.com'
@@ -27,8 +27,9 @@ export async function fetchGHLCustomFields(
   try {
     console.log('[CustomFields V3] Fetching fields from GHL...')
     
+    // Try the standard endpoint for custom fields
     const response = await fetch(
-      `${GHL_API_BASE}/locations/${locationId}/customFields?model=contact`,
+      `${GHL_API_BASE}/locations/${locationId}/customFields`,
       {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -65,18 +66,34 @@ export async function fetchGHLCustomFields(
  */
 export function buildCustomFieldsPayloadV3(
   formData: any,
-  ghlFields: GHLField[]
+  ghlFields: GHLField[],
+  formType?: 'assessment' | 'get-started'
 ): Array<{ id: string; value: string }> {
   console.log('[CustomFields V3] Building payload with mapped fields...')
+  console.log('[CustomFields V3] Form type:', formType)
   
   // First, let's log what fields we have to work with
   console.log('[CustomFields V3] Available GHL fields:')
   ghlFields.forEach(field => {
-    console.log(`  - Name: "${field.name}", ID: ${field.id}`)
+    console.log(`  - Name: "${field.name}", ID: ${field.id}, Key: ${field.fieldKey || 'N/A'}`)
+  })
+  
+  // Log form data to debug
+  console.log('[CustomFields V3] Form data keys:', Object.keys(formData))
+  console.log('[CustomFields V3] Form data sample:', {
+    businessName: formData.businessName,
+    businessType: formData.businessType,
+    contentGoals: formData.contentGoals,
+    integrations: formData.integrations,
+    selectedPlan: formData.selectedPlan,
+    monthlyLeads: formData.monthlyLeads,
+    teamSize: formData.teamSize,
+    currentTools: formData.currentTools,
+    biggestChallenge: formData.biggestChallenge
   })
   
   // Use our field mapping to build the payload
-  const customFields = buildMappedCustomFields(formData, ghlFields)
+  const customFields = buildFieldsV3(formData, ghlFields, formType || 'get-started')
   
   console.log(`[CustomFields V3] Built ${customFields.length} field values`)
   return customFields
