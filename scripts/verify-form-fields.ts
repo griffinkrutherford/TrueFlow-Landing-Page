@@ -82,7 +82,7 @@ async function verifyFormFields() {
       contact.customFields.forEach((cf: any) => {
         const field = fieldMap.get(cf.id)
         if (field) {
-          const formMapping = FORM_FIELD_MAPPING[field.name]
+          const formMapping = FORM_FIELD_MAPPING[field.name as keyof typeof FORM_FIELD_MAPPING]
           if (formMapping) {
             totalRelevantFields++
             let value = cf.value

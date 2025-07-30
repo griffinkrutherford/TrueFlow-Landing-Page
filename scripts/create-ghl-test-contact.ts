@@ -73,7 +73,16 @@ async function createTestContact() {
     }
 
     // Create test contact data using existing fields
-    const testContactData = {
+    const testContactData: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      phone: string;
+      companyName: string;
+      tags: string[];
+      source: string;
+      customFields?: Array<{ id: string; value: string }>;
+    } = {
       firstName: 'Verbatim',
       lastName: 'Test User',
       email: `verbatim.test.${Date.now()}@example.com`,
@@ -110,7 +119,7 @@ async function createTestContact() {
       
       customFields.push({
         id: field.id,
-        field_value: testValue // Always string - demonstrating verbatim preservation
+        value: testValue // Always string - demonstrating verbatim preservation
       })
     })
 
@@ -204,7 +213,7 @@ async function createTestContact() {
       const fieldMap = new Map(existingFields.map((f: any) => [f.id, f]))
       
       contact.customFields.forEach((cf: any) => {
-        const fieldDef = fieldMap.get(cf.id)
+        const fieldDef = fieldMap.get(cf.id) as any
         if (fieldDef && cf.value) {
           console.log(`✅ "${fieldDef.name}"`)
           console.log(`   Value: "${cf.value}"`)

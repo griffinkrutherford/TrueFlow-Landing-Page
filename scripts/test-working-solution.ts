@@ -124,7 +124,7 @@ async function testWorkingSolution() {
           console.log(`Found ${customFields.length} custom fields:`)
           
           if (customFields.length > 0) {
-            customFields.forEach(cf => {
+            customFields.forEach((cf: any) => {
               const field = ghlFields.find(f => f.id === cf.id)
               const fieldName = field?.name || 'Unknown'
               console.log(`  ✅ ${fieldName}: "${cf.value || cf.fieldValue}"`)

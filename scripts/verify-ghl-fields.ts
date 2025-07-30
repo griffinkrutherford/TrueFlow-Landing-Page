@@ -253,7 +253,7 @@ class GHLFieldVerifier {
       valueColor = 'yellow';
     }
 
-    console.log(`      ${colors.gray('•')} ${field.name}: ${colors[valueColor](displayValue)}`);
+    console.log(`      ${colors.gray('•')} ${field.name}: ${(colors as any)[valueColor](displayValue)}`);
   }
 
   /**

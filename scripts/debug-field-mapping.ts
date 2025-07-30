@@ -44,7 +44,7 @@ async function debugFieldMapping() {
   
   // Fetch GHL fields
   console.log('1️⃣  Fetching GHL custom fields...')
-  const ghlFields = await fetchGHLCustomFields(ACCESS_TOKEN, LOCATION_ID)
+  const ghlFields = await fetchGHLCustomFields(ACCESS_TOKEN!, LOCATION_ID!)
   
   console.log(`\n✓ Found ${ghlFields.length} custom fields in GHL:\n`)
   
@@ -105,8 +105,8 @@ async function debugFieldMapping() {
   
   console.log(`\nMapped ${mappedFields.length} fields:`)
   mappedFields.forEach(field => {
-    const ghlField = ghlFields.find(f => f.id === field.id)
-    console.log(`  - ${ghlField?.name || 'Unknown'}: "${field.value.substring(0, 50)}${field.value.length > 50 ? '...' : ''}"`)
+    const ghlField = ghlFields.find(f => f.fieldKey === field.key || f.id === field.key)
+    console.log(`  - ${ghlField?.name || 'Unknown'}: "${field.field_value.substring(0, 50)}${field.field_value.length > 50 ? '...' : ''}"`)
   })
   
   // Show unmapped data
@@ -121,7 +121,7 @@ async function debugFieldMapping() {
   // Try to reverse engineer which form fields were mapped
   Object.entries(FIELD_MAPPINGS).forEach(([formKey, fieldKey]) => {
     if (mappedFields.some(mf => {
-      const ghlField = ghlFields.find(f => f.id === mf.id)
+      const ghlField = ghlFields.find(f => f.fieldKey === mf.key || f.id === mf.key)
       return ghlField?.fieldKey === fieldKey || 
              ghlField?.fieldKey === `contact.${fieldKey}` ||
              ghlField?.name.toLowerCase().includes(fieldKey.replace(/_/g, ' '))

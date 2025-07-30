@@ -52,15 +52,15 @@ async function verifyFinalContact() {
           }
         })
         
-        let fieldNames = {}
+        let fieldNames: Record<string, string> = {}
         if (fieldResponse.ok) {
           const fieldsData = await fieldResponse.json()
-          fieldsData.customFields.forEach(field => {
+          fieldsData.customFields.forEach((field: any) => {
             fieldNames[field.id] = field.name
           })
         }
         
-        customFields.forEach((cf, index) => {
+        customFields.forEach((cf: any, index: number) => {
           const fieldName = fieldNames[cf.id] || 'Unknown Field'
           console.log(`  ${index + 1}. ${fieldName}`)
           console.log(`     ID: ${cf.id}`)
