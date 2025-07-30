@@ -2935,3 +2935,281 @@
  POST /api/ghl/create-lead-v2 200 in 581ms
  ✓ Compiled in 250ms (308 modules)
  ✓ Compiled in 265ms (308 modules)
+ ✓ Compiled in 239ms (308 modules)
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Expected unicode escape
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:5:1]
+ [2m 5[0m |   try {
+ [2m 6[0m |     const { email } = await request.json()
+ [2m 7[0m |     
+ [2m 8[0m |     if (\!email) {
+    : [31;1m    ^|[0m[33;1m  ^[0m
+    :      [31;1m`-- [31;1mTried to parse the condition for an if statement[0m[0m
+ [2m 9[0m |       return NextResponse.json({ error: 'Email address is required' }, { status: 400 })
+ [2m10[0m |     }
+ [2m11[0m |     
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Expected unicode escape
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:5:1]
+ [2m 5[0m |   try {
+ [2m 6[0m |     const { email } = await request.json()
+ [2m 7[0m |     
+ [2m 8[0m |     if (\!email) {
+    : [31;1m    ^|[0m[33;1m  ^[0m
+    :      [31;1m`-- [31;1mTried to parse the condition for an if statement[0m[0m
+ [2m 9[0m |       return NextResponse.json({ error: 'Email address is required' }, { status: 400 })
+ [2m10[0m |     }
+ [2m11[0m |     
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ ○ Compiling /_not-found ...
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Expected unicode escape
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:5:1]
+ [2m 5[0m |   try {
+ [2m 6[0m |     const { email } = await request.json()
+ [2m 7[0m |     
+ [2m 8[0m |     if (\!email) {
+    : [31;1m    ^|[0m[33;1m  ^[0m
+    :      [31;1m`-- [31;1mTried to parse the condition for an if statement[0m[0m
+ [2m 9[0m |       return NextResponse.json({ error: 'Email address is required' }, { status: 400 })
+ [2m10[0m |     }
+ [2m11[0m |     
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ POST /api/test-email 500 in 1268ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/page' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js', but to 'Error: Can't resolve '../../../../.next/server/app/page' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/page (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/ghl/create-lead-v2/route' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/ghl/create-lead-v2/route' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/ghl/create-lead-v2/route (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/bundle5.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/compiled/webpack/webpack.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/plugins/define-env-plugin.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/swc/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/swc/index.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-swc-loader.js
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Expected unicode escape
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:12:1]
+ [2m12[0m |     console.log('[Test Email] Attempting to send test email to:', email)
+ [2m13[0m |     
+ [2m14[0m |     // Check if Resend is configured
+ [2m15[0m |     if (\!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('your_')) {
+    : [31;1m    ^|[0m[33;1m  ^[0m
+    :      [31;1m`-- [31;1mTried to parse the condition for an if statement[0m[0m
+ [2m16[0m |       return NextResponse.json({ 
+ [2m17[0m |         error: 'Resend API key not configured',
+ [2m18[0m |         details: 'The RESEND_API_KEY environment variable is not properly set'
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Unknown regular expression flags.
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:70:1]
+ [2m70[0m |     message: 'Use POST method with { "email": "your-email@example.com" } to test' 
+ [2m71[0m |   })
+ [2m72[0m | }
+ [2m73[0m | EOF < /dev/null
+    : [31;1m      ^^^^^^^^^[0m
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Unknown regular expression flags.
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:70:1]
+ [2m70[0m |     message: 'Use POST method with { "email": "your-email@example.com" } to test' 
+ [2m71[0m |   })
+ [2m72[0m | }
+ [2m73[0m | EOF < /dev/null
+    : [31;1m      ^^^^^^^^^[0m
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ ⨯ ./app/api/test-email/route.ts
+Error: 
+  [31mx[0m Unknown regular expression flags.
+    ,-[[36;1;4m/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/app/api/test-email/route.ts[0m:70:1]
+ [2m70[0m |     message: 'Use POST method with { "email": "your-email@example.com" } to test' 
+ [2m71[0m |   })
+ [2m72[0m | }
+ [2m73[0m | EOF < /dev/null
+    : [31;1m      ^^^^^^^^^[0m
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/api/test-email/route.ts
+ POST /api/test-email 500 in 8ms
+ ✓ Compiled /_error in 548ms (835 modules)
+[Test Email] Attempting to send test email to: test@example.com
+[Test Email] Email sent successfully: {
+  data: null,
+  error: {
+    statusCode: 403,
+    error: 'You can only send testing emails to your own email address (griffin@trueflow.ai). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.'
+  }
+}
+ POST /api/test-email 200 in 820ms
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/page' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js', but to 'Error: Can't resolve '../../../../.next/server/app/page' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/page (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/ghl/create-lead-v2/route' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/ghl/create-lead-v2/route' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/ghl/create-lead-v2/route (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+[Test Email] Attempting to send test email to: user@example.com
+[Test Email] Email sent successfully: {
+  data: null,
+  error: {
+    statusCode: 403,
+    error: 'You can only send testing emails to your own email address (griffin@trueflow.ai). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.'
+  }
+}
+ POST /api/test-email 200 in 569ms
+ ✓ Compiled /api/get-started-notification in 54ms (150 modules)
+Get Started notification request received from: unknown
+Get Started lead data received: {
+  name: 'Test User',
+  email: 'testuser@example.com',
+  business: 'Test Business',
+  plan: 'Growth'
+}
+Resend API configuration: {
+  hasApiKey: true,
+  keyLength: 36,
+  keyPrefix: 're_gp5M...',
+  nodeEnv: 'development'
+}
+Using Resend API key for email sending only (restricted key mode)
+Attempting to send Get Started email: {
+  from: 'TrueFlow Leads <onboarding@resend.dev>',
+  to: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ],
+  subject: '🚀 New TrueFlow Get Started Lead: Test User - Test Business',
+  timestamp: '2025-07-30T00:10:13.790Z'
+}
+Get Started email sent successfully: {
+  emailId: '158b6c50-2994-4915-b564-546b5e97c9c8',
+  timestamp: '2025-07-30T00:10:14.077Z',
+  recipients: [ 'griffin@trueflow.ai', 'matt@trueflow.ai' ]
+}
+ POST /api/get-started-notification 200 in 406ms
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/page' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js', but to 'Error: Can't resolve '../../../../.next/server/app/page' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/page (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/ghl/create-lead-v2/route' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/ghl/create-lead-v2/route' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/ghl/create-lead-v2/route (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ✓ Compiled in 384ms (493 modules)
+ ✓ Compiled in 281ms (493 modules)
+ ✓ Compiled in 166ms (493 modules)
+ ✓ Compiled in 274ms (493 modules)
+ ✓ Compiled in 178ms (493 modules)
+ ✓ Compiled in 160ms (493 modules)
+ ✓ Compiled in 164ms (527 modules)

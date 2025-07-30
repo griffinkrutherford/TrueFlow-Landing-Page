@@ -712,6 +712,27 @@ export default function ReadinessAssessment() {
       const result = await response.json()
       console.log('Assessment submitted successfully:', result)
 
+      // Send lead notification email (backup to ensure emails are sent)
+      try {
+        console.log('[Assessment] Sending email notification...')
+        const emailResponse = await fetch('/api/lead-notification', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(leadData)
+        })
+        
+        if (emailResponse.ok) {
+          console.log('[Assessment] Email notification sent successfully')
+        } else {
+          console.error('[Assessment] Email notification failed:', emailResponse.status)
+        }
+      } catch (emailError) {
+        console.error('[Assessment] Email notification error:', emailError)
+        // Don't throw - email is backup, main submission succeeded
+      }
+
       // Show success page
       setShowSuccess(true)
     } catch (error) {

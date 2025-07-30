@@ -1,61 +1,72 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { Resend } from 'resend'
 
-export async function GET(request: Request) {
-  console.log('[Test Email] Testing email configuration...')
-  
-  const config = {
-    RESEND_API_KEY: process.env.RESEND_API_KEY ? 
-      (process.env.RESEND_API_KEY === 'your_resend_api_key_here' ? 'PLACEHOLDER' : 'SET') : 
-      'NOT SET',
-    RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL || 'NOT SET',
-    NOTIFICATION_EMAILS: process.env.NOTIFICATION_EMAILS || 'NOT SET',
-    NODE_ENV: process.env.NODE_ENV || 'NOT SET'
-  }
-  
-  console.log('[Test Email] Configuration:', config)
-  
-  // Try to send a test email
-  if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== 'your_resend_api_key_here') {
-    try {
-      const { Resend } = await import('resend')
-      const resend = new Resend(process.env.RESEND_API_KEY)
-      
-      const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev'
-      const toEmails = (process.env.NOTIFICATION_EMAILS || 'griffin@trueflow.ai').split(',')
-      
-      const result = await resend.emails.send({
-        from: fromEmail,
-        to: toEmails,
-        subject: 'TrueFlow Email Test',
-        html: `
-          <h2>Email Configuration Test</h2>
-          <p>This is a test email from your TrueFlow deployment.</p>
-          <p>If you receive this, your email configuration is working correctly!</p>
-          <p><strong>Sent at:</strong> ${new Date().toISOString()}</p>
-          <p><strong>Environment:</strong> ${process.env.NODE_ENV || 'unknown'}</p>
-        `
-      })
-      
-      return NextResponse.json({
-        success: true,
-        message: 'Test email sent successfully',
-        config,
-        result
-      })
-    } catch (error) {
-      console.error('[Test Email] Error:', error)
-      return NextResponse.json({
-        success: false,
-        message: 'Failed to send test email',
-        config,
-        error: error instanceof Error ? error.message : 'Unknown error'
+export async function POST(request: NextRequest) {
+  try {
+    const { email } = await request.json()
+    
+    if (!email) {
+      return NextResponse.json({ error: 'Email address is required' }, { status: 400 })
+    }
+    
+    console.log('[Test Email] Attempting to send test email to:', email)
+    
+    // Check if Resend is configured
+    if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('your_')) {
+      return NextResponse.json({ 
+        error: 'Resend API key not configured',
+        details: 'The RESEND_API_KEY environment variable is not properly set'
       }, { status: 500 })
     }
+    
+    const resend = new Resend(process.env.RESEND_API_KEY)
+    
+    // Send test email
+    const result = await resend.emails.send({
+      from: 'TrueFlow Test <onboarding@resend.dev>',
+      to: [email],
+      subject: 'TrueFlow Email Test - Your submission was received!',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h1 style="color: #3b82f6;">Email Test Successful!</h1>
+          <p>This is a test email from TrueFlow's Getting Started form.</p>
+          <p><strong>What this means:</strong></p>
+          <ul>
+            <li>✅ Resend API is properly configured</li>
+            <li>✅ Emails can be sent successfully</li>
+            <li>✅ Your email address (${email}) is receiving notifications</li>
+          </ul>
+          <hr style="margin: 20px 0;">
+          <p><strong>Note:</strong> In production, form submissions are sent to:</p>
+          <ul>
+            <li>griffin@trueflow.ai</li>
+            <li>matt@trueflow.ai</li>
+          </ul>
+          <p>To receive notifications at your email address, the code would need to be updated to include your email in the recipient list.</p>
+        </div>
+      `
+    })
+    
+    console.log('[Test Email] Email sent successfully:', result)
+    
+    return NextResponse.json({ 
+      success: true,
+      message: `Test email sent to ${email}`,
+      emailId: result.data?.id,
+      note: 'Check your inbox (and spam folder) for the test email'
+    })
+    
+  } catch (error: any) {
+    console.error('[Test Email] Error:', error)
+    return NextResponse.json({ 
+      error: 'Failed to send test email',
+      details: error.message
+    }, { status: 500 })
   }
-  
-  return NextResponse.json({
-    success: false,
-    message: 'Email not configured properly',
-    config
+}
+
+export async function GET() {
+  return NextResponse.json({ 
+    message: 'Use POST method with { "email": "your-email@example.com" } to test' 
   })
 }
