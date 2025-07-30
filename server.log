@@ -3213,3 +3213,27 @@ Get Started email sent successfully: {
  ✓ Compiled in 178ms (493 modules)
  ✓ Compiled in 160ms (493 modules)
  ✓ Compiled in 164ms (527 modules)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, lstat '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js'
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/page' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js', but to 'Error: Can't resolve '../../../../.next/server/app/page' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/page (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/page.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w> [webpack.cache.PackFileCacheStrategy/webpack.FileSystemInfo] Resolving '../../../../.next/server/app/api/ghl/create-lead-v2/route' in /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server for build dependencies doesn't lead to expected result '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js', but to 'Error: Can't resolve '../../../../.next/server/app/api/ghl/create-lead-v2/route' in '/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server'' instead. Resolving dependencies are ignored for this path.
+<w>  at resolve commonjs file ../../../../.next/server/app/api/ghl/create-lead-v2/route (expected /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/.next/server/app/api/ghl/create-lead-v2/route.js)
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/require.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/load-components.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/utils.js
+<w>  at file dependencies /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at file /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+<w>  at resolve commonjs /Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/build/webpack/loaders/next-route-loader/index.js
+ ✓ Compiled in 187ms (493 modules)

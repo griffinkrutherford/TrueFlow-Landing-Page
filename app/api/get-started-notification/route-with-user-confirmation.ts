@@ -281,7 +281,7 @@ Follow up within 24 hours to schedule onboarding.
         to: [leadData.email],
         subject: userEmailSubject,
         html: userEmailHtml,
-        replyTo: 'support@trueflow.ai'
+        reply_to: 'support@trueflow.ai'
       })
 
       console.log('User confirmation sent:', {
