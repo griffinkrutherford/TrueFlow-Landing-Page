@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     // GHL is configured - ensure custom fields exist
     console.log('[API V3] Ensuring custom fields exist in GHL...')
     let fieldMap = new Map<string, string>()
-    let customFields: Array<{ id: string; field_value: string }> = []
+    let customFields: Array<{ id: string; value: string }> = []
     
     try {
       fieldMap = await ensureCustomFieldsExist(

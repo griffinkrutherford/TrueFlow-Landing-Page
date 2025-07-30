@@ -5253,3 +5253,9 @@ Import trace for requested module:
     at async Server.requestListener (/Users/griffinrutherford/Documents/TrueFlow AI MVP/trueflow-landing-repo/node_modules/next/dist/server/lib/start-server.js:141:13)
 [API V5] ===== REQUEST COMPLETED SUCCESSFULLY =====
  POST /api/ghl/create-lead-v5 200 in 2038ms
+ ○ Compiling /get-started ...
+ ✓ Compiled /get-started in 651ms (811 modules)
+ ✓ Compiled in 252ms (503 modules)
+ ✓ Compiled / in 104ms (329 modules)
+ GET / 200 in 214ms
+[?25h

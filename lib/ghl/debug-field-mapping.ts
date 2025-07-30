@@ -132,10 +132,7 @@ async function debugFieldMapping() {
     console.log(`Assessment form detected as: ${checkFormType(assessmentFormData)}`)
     
     // Clean form data without assessment fields
-    const cleanGetStartedData = { ...getStartedFormData }
-    delete cleanGetStartedData.scorePercentage
-    delete cleanGetStartedData.score
-    delete cleanGetStartedData.recommendation
+    const { scorePercentage, score, recommendation, ...cleanGetStartedData } = getStartedFormData
     
     console.log(`\nClean Getting Started form detected as: ${checkFormType(cleanGetStartedData)}`)
     
